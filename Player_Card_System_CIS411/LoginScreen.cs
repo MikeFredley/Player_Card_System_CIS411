@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Player_Card_System_CIS411
 {
-    static class Program
+    static class LoginScreen
     {
         /// <summary>
         /// The main entry point for the application.
