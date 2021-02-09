@@ -21,5 +21,10 @@ namespace Player_Card_System_CIS411
         {
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
