@@ -16,5 +16,10 @@ namespace Player_Card_System_CIS411
         {
             InitializeComponent();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
