@@ -58,6 +58,8 @@
     <Compile Include="EmployeeWindow.Designer.cs">
       <DependentUpon>EmployeeWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExportInfo.cs" />
+    <Compile Include="Receipt.cs" />
     <Compile Include="WelcomeWindow.cs">
       <SubType>Form</SubType>
     </Compile>
