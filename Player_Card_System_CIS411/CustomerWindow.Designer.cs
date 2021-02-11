@@ -1,7 +1,7 @@
 ﻿
 namespace Player_Card_System_CIS411
 {
-    partial class Customer
+    partial class CustomerWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -31,11 +31,12 @@ namespace Player_Card_System_CIS411
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -64,6 +65,32 @@ namespace Player_Card_System_CIS411
             this.tabPage1.Text = "Round Info";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(31, 83);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(159, 47);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "View Transactions";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(32, 70);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Current Rounds: ";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.listBox1);
@@ -83,39 +110,24 @@ namespace Player_Card_System_CIS411
             this.listBox1.Size = new System.Drawing.Size(186, 329);
             this.listBox1.TabIndex = 0;
             // 
-            // label1
+            // btnLogout
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Current Rounds: ";
+            this.btnLogout.Location = new System.Drawing.Point(222, 3);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.TabIndex = 1;
+            this.btnLogout.Text = "Log Out";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 13);
-            this.label2.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(31, 83);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 47);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "View Transactions";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // Customer
+            // CustomerWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Customer";
+            this.Name = "CustomerWindow";
             this.Text = "Customer";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -134,5 +146,6 @@ namespace Player_Card_System_CIS411
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btnLogout;
     }
 }

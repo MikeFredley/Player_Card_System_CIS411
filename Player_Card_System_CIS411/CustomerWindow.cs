@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Player_Card_System_CIS411
 {
-    public partial class Customer : Form
+    public partial class CustomerWindow : Form
     {
-        public Customer()
+        public CustomerWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

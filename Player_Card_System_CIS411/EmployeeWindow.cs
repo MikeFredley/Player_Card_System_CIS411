@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Player_Card_System_CIS411
 {
-    public partial class Employee : Form
+    public partial class EmployeeWindow : Form
     {
-        public Employee()
+        public EmployeeWindow()
         {
             InitializeComponent();
         }
@@ -23,6 +23,11 @@ namespace Player_Card_System_CIS411
         }
 
         private void Employee_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
         {
 
         }

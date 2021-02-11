@@ -12,7 +12,7 @@ namespace Player_Card_System_CIS411
 {
     public partial class WelcomeWindow : Form
     {
-        login loginScreen;
+        LoginWindow loginScreen;
 
         public WelcomeWindow()
         {
@@ -31,15 +31,16 @@ namespace Player_Card_System_CIS411
 
         private void employeeBtn_Click(object sender, EventArgs e)
         {
-            loginScreen = new login(true, false);
-            loginScreen.Visible = true;
-            
+            loginScreen = new LoginWindow(true, false, this);
+            loginScreen.Show();
+            this.Hide();
         }
 
         private void customerBtn_Click(object sender, EventArgs e)
         {
-            loginScreen = new login(false, true);
-            loginScreen.Visible = true;
+            loginScreen = new LoginWindow(false, true, this);
+            loginScreen.Show();
+            this.Hide();
         }
     }
 }

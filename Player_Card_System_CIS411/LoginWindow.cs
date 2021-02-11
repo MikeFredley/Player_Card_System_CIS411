@@ -10,17 +10,19 @@ using System.Windows.Forms;
 
 namespace Player_Card_System_CIS411
 {
-    public partial class login : Form
+    public partial class LoginWindow : Form
     {
         bool isEmployee;
         bool isCustomer;
-        Employee employeeScreen;
-        Customer customerScreen;
-        public login(bool employee, bool customer)
+        EmployeeWindow employeeScreen;
+        CustomerWindow customerScreen;
+        WelcomeWindow welcomeWindow;
+        public LoginWindow(bool employee, bool customer, WelcomeWindow welcome)
         {
             InitializeComponent();
             isEmployee = employee;
             isCustomer = customer;
+            welcomeWindow = welcome;
 
             if(isEmployee)
             {
@@ -53,18 +55,28 @@ namespace Player_Card_System_CIS411
             {
                 if((txtUsername.Text == "Employee") && (txtPassword.Text == "Employee"))
                 {
-                    employeeScreen = new Employee();
+                    employeeScreen = new EmployeeWindow();
                     employeeScreen.Visible = true;
+                    this.Hide();
+                    this.Dispose();
                 }
             }
             else
             {
                 if ((txtUsername.Text == "Customer") && (txtPassword.Text == "Customer"))
                 {
-                    customerScreen = new Customer();
+                    customerScreen = new CustomerWindow();
                     customerScreen.Visible = true;
+                    this.Hide();
+                    this.Dispose();
                 }
             }
+        }
+
+        private void LoginWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            welcomeWindow.Show();
         }
     }
 }

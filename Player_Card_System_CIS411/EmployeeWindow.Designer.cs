@@ -1,7 +1,7 @@
 ﻿
 namespace Player_Card_System_CIS411
 {
-    partial class Employee
+    partial class EmployeeWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -35,6 +35,7 @@ namespace Player_Card_System_CIS411
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -89,18 +90,29 @@ namespace Player_Card_System_CIS411
             this.listBox1.Size = new System.Drawing.Size(168, 173);
             this.listBox1.TabIndex = 5;
             // 
-            // Employee
+            // btnLogout
+            // 
+            this.btnLogout.Location = new System.Drawing.Point(648, 376);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(86, 23);
+            this.btnLogout.TabIndex = 6;
+            this.btnLogout.Text = "Log Out";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // EmployeeWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Employee";
+            this.Name = "EmployeeWindow";
             this.Text = "Employee";
             this.Load += new System.EventHandler(this.Employee_Load);
             this.ResumeLayout(false);
@@ -116,5 +128,6 @@ namespace Player_Card_System_CIS411
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btnLogout;
     }
 }

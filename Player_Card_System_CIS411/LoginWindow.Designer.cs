@@ -1,7 +1,7 @@
 ﻿
 namespace Player_Card_System_CIS411
 {
-    partial class login
+    partial class LoginWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,7 @@ namespace Player_Card_System_CIS411
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(358, 128);
+            this.label1.Location = new System.Drawing.Point(44, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 0;
@@ -49,7 +49,7 @@ namespace Player_Card_System_CIS411
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(358, 188);
+            this.label2.Location = new System.Drawing.Point(44, 121);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 1;
@@ -57,21 +57,21 @@ namespace Player_Card_System_CIS411
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(339, 156);
+            this.txtUsername.Location = new System.Drawing.Point(25, 89);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(100, 20);
             this.txtUsername.TabIndex = 2;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(339, 217);
+            this.txtPassword.Location = new System.Drawing.Point(25, 150);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(100, 20);
             this.txtPassword.TabIndex = 3;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(339, 269);
+            this.btnLogin.Location = new System.Drawing.Point(25, 202);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(100, 23);
             this.btnLogin.TabIndex = 4;
@@ -82,25 +82,26 @@ namespace Player_Card_System_CIS411
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
-            this.lblLogin.Location = new System.Drawing.Point(336, 88);
+            this.lblLogin.Location = new System.Drawing.Point(22, 21);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(87, 13);
             this.lblLogin.TabIndex = 5;
             this.lblLogin.Text = "Placeholder Text";
             // 
-            // login
+            // LoginWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(161, 253);
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "login";
-            this.Text = "login";
+            this.Name = "LoginWindow";
+            this.Text = "Login";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginWindow_FormClosing);
             this.Load += new System.EventHandler(this.login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
