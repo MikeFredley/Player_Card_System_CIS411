@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace Player_Card_System_CIS411
 {
-    public partial class Form1 : Form
+    public partial class WelcomeWindow : Form
     {
-        public Form1()
+        login loginScreen;
+
+        public WelcomeWindow()
         {
             InitializeComponent();
         }
@@ -25,6 +27,19 @@ namespace Player_Card_System_CIS411
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void employeeBtn_Click(object sender, EventArgs e)
+        {
+            loginScreen = new login(true, false);
+            loginScreen.Visible = true;
+            
+        }
+
+        private void customerBtn_Click(object sender, EventArgs e)
+        {
+            loginScreen = new login(false, true);
+            loginScreen.Visible = true;
         }
     }
 }

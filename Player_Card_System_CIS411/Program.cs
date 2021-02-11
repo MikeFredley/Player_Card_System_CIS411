@@ -16,7 +16,7 @@ namespace Player_Card_System_CIS411
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new WelcomeWindow());
         }
     }
 }

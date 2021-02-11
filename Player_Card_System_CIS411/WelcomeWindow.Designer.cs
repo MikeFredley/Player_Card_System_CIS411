@@ -1,6 +1,6 @@
 ﻿namespace Player_Card_System_CIS411
 {
-    partial class Form1
+    partial class WelcomeWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -45,6 +45,7 @@
             this.employeeBtn.TabIndex = 0;
             this.employeeBtn.Text = "Employee";
             this.employeeBtn.UseVisualStyleBackColor = true;
+            this.employeeBtn.Click += new System.EventHandler(this.employeeBtn_Click);
             // 
             // panel1
             // 
@@ -76,6 +77,7 @@
             this.customerBtn.TabIndex = 1;
             this.customerBtn.Text = "Customer";
             this.customerBtn.UseVisualStyleBackColor = true;
+            this.customerBtn.Click += new System.EventHandler(this.customerBtn_Click);
             // 
             // panel2
             // 
