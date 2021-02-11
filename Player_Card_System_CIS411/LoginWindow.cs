@@ -55,7 +55,7 @@ namespace Player_Card_System_CIS411
             {
                 if((txtUsername.Text == "Employee") && (txtPassword.Text == "Employee"))
                 {
-                    employeeScreen = new EmployeeWindow();
+                    employeeScreen = new EmployeeWindow(welcomeWindow);
                     employeeScreen.Visible = true;
                     this.Hide();
                     this.Dispose();
@@ -65,7 +65,7 @@ namespace Player_Card_System_CIS411
             {
                 if ((txtUsername.Text == "Customer") && (txtPassword.Text == "Customer"))
                 {
-                    customerScreen = new CustomerWindow();
+                    customerScreen = new CustomerWindow(welcomeWindow);
                     customerScreen.Visible = true;
                     this.Hide();
                     this.Dispose();

@@ -112,7 +112,7 @@ namespace Player_Card_System_CIS411
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(222, 3);
+            this.btnLogout.Location = new System.Drawing.Point(715, 444);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(75, 23);
             this.btnLogout.TabIndex = 1;
@@ -124,11 +124,12 @@ namespace Player_Card_System_CIS411
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(802, 478);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.tabControl1);
             this.Name = "CustomerWindow";
             this.Text = "Customer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CustomerWindow_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

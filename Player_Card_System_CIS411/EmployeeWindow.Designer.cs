@@ -92,7 +92,7 @@ namespace Player_Card_System_CIS411
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(648, 376);
+            this.btnLogout.Location = new System.Drawing.Point(702, 415);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(86, 23);
             this.btnLogout.TabIndex = 6;
@@ -114,6 +114,7 @@ namespace Player_Card_System_CIS411
             this.Controls.Add(this.label1);
             this.Name = "EmployeeWindow";
             this.Text = "Employee";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeeWindow_FormClosing);
             this.Load += new System.EventHandler(this.Employee_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -12,9 +12,11 @@ namespace Player_Card_System_CIS411
 {
     public partial class EmployeeWindow : Form
     {
-        public EmployeeWindow()
+        WelcomeWindow welcomeWindow;
+        public EmployeeWindow(WelcomeWindow welcome)
         {
             InitializeComponent();
+            welcomeWindow = welcome;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -29,7 +31,20 @@ namespace Player_Card_System_CIS411
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
 
+        private void EmployeeWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Logging out", MessageBoxButtons.YesNo);
+            if(dialogResult == DialogResult.Yes)
+            {
+                welcomeWindow.Show();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
