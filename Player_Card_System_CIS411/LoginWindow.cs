@@ -60,6 +60,10 @@ namespace Player_Card_System_CIS411
                     this.Hide();
                     this.Dispose();
                 }
+                else
+                {
+                    MessageBox.Show("Incorrect Username or Password.");
+                }
             }
             else
             {
@@ -69,6 +73,10 @@ namespace Player_Card_System_CIS411
                     customerScreen.Visible = true;
                     this.Hide();
                     this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect Username or Password.");
                 }
             }
         }
