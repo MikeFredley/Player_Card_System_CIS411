@@ -15,7 +15,7 @@ namespace Player_Card_System_CIS411
         bool isEmployee;
         bool isCustomer;
         EmployeeWindow employeeScreen;
-        CustomerWindow customerScreen;
+      //  CustomerWindow customerScreen;
         WelcomeWindow welcomeWindow;
         public LoginWindow(bool employee, bool customer, WelcomeWindow welcome)
         {
@@ -69,8 +69,8 @@ namespace Player_Card_System_CIS411
             {
                 if ((txtUsername.Text == "Customer") && (txtPassword.Text == "Customer"))
                 {
-                    customerScreen = new CustomerWindow(welcomeWindow);
-                    customerScreen.Visible = true;
+                  //  customerScreen = new CustomerWindow(welcomeWindow);
+                  //  customerScreen.Visible = true;
                     this.Hide();
                     this.Dispose();
                 }
