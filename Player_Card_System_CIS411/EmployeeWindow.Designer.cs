@@ -36,27 +36,30 @@ namespace Player_Card_System_CIS411
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.roundsPage = new System.Windows.Forms.TabPage();
-            this.addPage = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
+            this.btnSubmit = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.addPage = new System.Windows.Forms.TabPage();
+            this.btnDeleteUser = new System.Windows.Forms.Button();
+            this.btnAddUser = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.adminPage = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnGetData = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.csvBtn = new System.Windows.Forms.Button();
-            this.resetBtn = new System.Windows.Forms.Button();
-            this.adduserBtn = new System.Windows.Forms.Button();
-            this.deleteuserBtn = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnImportData = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.roundsPage.SuspendLayout();
             this.addPage.SuspendLayout();
-            this.adminPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.adminPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,7 +107,7 @@ namespace Player_Card_System_CIS411
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(131, 109);
+            this.textBox2.Location = new System.Drawing.Point(138, 109);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 14;
@@ -122,7 +125,9 @@ namespace Player_Card_System_CIS411
             // 
             // roundsPage
             // 
-            this.roundsPage.Controls.Add(this.button2);
+            this.roundsPage.Controls.Add(this.label7);
+            this.roundsPage.Controls.Add(this.comboBox1);
+            this.roundsPage.Controls.Add(this.btnSubmit);
             this.roundsPage.Controls.Add(this.label6);
             this.roundsPage.Controls.Add(this.label4);
             this.roundsPage.Controls.Add(this.radioButton2);
@@ -132,32 +137,19 @@ namespace Player_Card_System_CIS411
             this.roundsPage.Location = new System.Drawing.Point(4, 22);
             this.roundsPage.Name = "roundsPage";
             this.roundsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.roundsPage.Size = new System.Drawing.Size(774, 223);
+            this.roundsPage.Size = new System.Drawing.Size(774, 222);
             this.roundsPage.TabIndex = 0;
             this.roundsPage.Text = "Rounds";
             this.roundsPage.UseVisualStyleBackColor = true;
             // 
-            // addPage
+            // btnSubmit
             // 
-            this.addPage.Controls.Add(this.deleteuserBtn);
-            this.addPage.Controls.Add(this.adduserBtn);
-            this.addPage.Controls.Add(this.dataGridView1);
-            this.addPage.Location = new System.Drawing.Point(4, 22);
-            this.addPage.Name = "addPage";
-            this.addPage.Padding = new System.Windows.Forms.Padding(3);
-            this.addPage.Size = new System.Drawing.Size(774, 223);
-            this.addPage.TabIndex = 1;
-            this.addPage.Text = "Add/Delete Account";
-            this.addPage.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 41);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(133, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Current Rounds Available: ";
+            this.btnSubmit.Location = new System.Drawing.Point(20, 184);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(84, 23);
+            this.btnSubmit.TabIndex = 17;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -168,10 +160,59 @@ namespace Player_Card_System_CIS411
             this.label6.TabIndex = 16;
             this.label6.Text = "0";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(17, 41);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(133, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Current Rounds Available: ";
+            // 
+            // addPage
+            // 
+            this.addPage.Controls.Add(this.btnDeleteUser);
+            this.addPage.Controls.Add(this.btnAddUser);
+            this.addPage.Controls.Add(this.dataGridView1);
+            this.addPage.Location = new System.Drawing.Point(4, 22);
+            this.addPage.Name = "addPage";
+            this.addPage.Padding = new System.Windows.Forms.Padding(3);
+            this.addPage.Size = new System.Drawing.Size(774, 222);
+            this.addPage.TabIndex = 1;
+            this.addPage.Text = "Add/Delete Account";
+            this.addPage.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteUser
+            // 
+            this.btnDeleteUser.Location = new System.Drawing.Point(158, 189);
+            this.btnDeleteUser.Name = "btnDeleteUser";
+            this.btnDeleteUser.Size = new System.Drawing.Size(102, 23);
+            this.btnDeleteUser.TabIndex = 2;
+            this.btnDeleteUser.Text = "Delete User";
+            this.btnDeleteUser.UseVisualStyleBackColor = true;
+            // 
+            // btnAddUser
+            // 
+            this.btnAddUser.Location = new System.Drawing.Point(31, 189);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(102, 23);
+            this.btnAddUser.TabIndex = 1;
+            this.btnAddUser.Text = "Create New User";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(21, 26);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(730, 141);
+            this.dataGridView1.TabIndex = 0;
+            // 
             // adminPage
             // 
-            this.adminPage.Controls.Add(this.resetBtn);
-            this.adminPage.Controls.Add(this.csvBtn);
+            this.adminPage.Controls.Add(this.btnImportData);
+            this.adminPage.Controls.Add(this.btnReset);
+            this.adminPage.Controls.Add(this.btnGetData);
             this.adminPage.Location = new System.Drawing.Point(4, 22);
             this.adminPage.Name = "adminPage";
             this.adminPage.Size = new System.Drawing.Size(774, 222);
@@ -179,23 +220,32 @@ namespace Player_Card_System_CIS411
             this.adminPage.Text = "Admin";
             this.adminPage.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnReset
             // 
-            this.button2.Location = new System.Drawing.Point(20, 144);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 23);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Submit";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnReset.Location = new System.Drawing.Point(258, 37);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(99, 49);
+            this.btnReset.TabIndex = 1;
+            this.btnReset.Text = "Reset Season";
+            this.btnReset.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnGetData
             // 
-            this.button1.Location = new System.Drawing.Point(524, 37);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(182, 32);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnGetData.Location = new System.Drawing.Point(141, 37);
+            this.btnGetData.Name = "btnGetData";
+            this.btnGetData.Size = new System.Drawing.Size(99, 49);
+            this.btnGetData.TabIndex = 0;
+            this.btnGetData.Text = "Get Data Table";
+            this.btnGetData.UseVisualStyleBackColor = true;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(524, 37);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(182, 32);
+            this.btnSearch.TabIndex = 22;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -231,14 +281,6 @@ namespace Player_Card_System_CIS411
             this.label2.TabIndex = 19;
             this.label2.Text = "Employee Name";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(21, 26);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(730, 141);
-            this.dataGridView1.TabIndex = 0;
-            // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -247,41 +289,31 @@ namespace Player_Card_System_CIS411
             this.dataGridView2.Size = new System.Drawing.Size(777, 53);
             this.dataGridView2.TabIndex = 23;
             // 
-            // csvBtn
+            // comboBox1
             // 
-            this.csvBtn.Location = new System.Drawing.Point(23, 77);
-            this.csvBtn.Name = "csvBtn";
-            this.csvBtn.Size = new System.Drawing.Size(99, 49);
-            this.csvBtn.TabIndex = 0;
-            this.csvBtn.Text = "Get Data Table";
-            this.csvBtn.UseVisualStyleBackColor = true;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(138, 149);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 18;
             // 
-            // resetBtn
+            // label7
             // 
-            this.resetBtn.Location = new System.Drawing.Point(183, 77);
-            this.resetBtn.Name = "resetBtn";
-            this.resetBtn.Size = new System.Drawing.Size(99, 49);
-            this.resetBtn.TabIndex = 1;
-            this.resetBtn.Text = "Reset Season";
-            this.resetBtn.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 152);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(115, 13);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Transaction Employee:";
             // 
-            // adduserBtn
+            // btnImportData
             // 
-            this.adduserBtn.Location = new System.Drawing.Point(31, 189);
-            this.adduserBtn.Name = "adduserBtn";
-            this.adduserBtn.Size = new System.Drawing.Size(102, 23);
-            this.adduserBtn.TabIndex = 1;
-            this.adduserBtn.Text = "Create New User";
-            this.adduserBtn.UseVisualStyleBackColor = true;
-            // 
-            // deleteuserBtn
-            // 
-            this.deleteuserBtn.Location = new System.Drawing.Point(158, 189);
-            this.deleteuserBtn.Name = "deleteuserBtn";
-            this.deleteuserBtn.Size = new System.Drawing.Size(102, 23);
-            this.deleteuserBtn.TabIndex = 2;
-            this.deleteuserBtn.Text = "Delete User";
-            this.deleteuserBtn.UseVisualStyleBackColor = true;
+            this.btnImportData.Location = new System.Drawing.Point(23, 37);
+            this.btnImportData.Name = "btnImportData";
+            this.btnImportData.Size = new System.Drawing.Size(99, 49);
+            this.btnImportData.TabIndex = 2;
+            this.btnImportData.Text = "Import Data Table";
+            this.btnImportData.UseVisualStyleBackColor = true;
             // 
             // EmployeeWindow
             // 
@@ -289,7 +321,7 @@ namespace Player_Card_System_CIS411
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
@@ -304,8 +336,8 @@ namespace Player_Card_System_CIS411
             this.roundsPage.ResumeLayout(false);
             this.roundsPage.PerformLayout();
             this.addPage.ResumeLayout(false);
-            this.adminPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.adminPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -320,21 +352,24 @@ namespace Player_Card_System_CIS411
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage roundsPage;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TabPage addPage;
         private System.Windows.Forms.TabPage adminPage;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button csvBtn;
+        private System.Windows.Forms.Button btnGetData;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button resetBtn;
-        private System.Windows.Forms.Button deleteuserBtn;
-        private System.Windows.Forms.Button adduserBtn;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnDeleteUser;
+        private System.Windows.Forms.Button btnAddUser;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btnImportData;
     }
 }
