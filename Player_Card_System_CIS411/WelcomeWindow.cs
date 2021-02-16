@@ -12,8 +12,7 @@ namespace Player_Card_System_CIS411
 {
     public partial class WelcomeWindow : Form
     {
-        LoginWindow loginScreen;
-
+        EmployeeWindow employeeScreen;
         public WelcomeWindow()
         {
             InitializeComponent();
@@ -29,18 +28,28 @@ namespace Player_Card_System_CIS411
 
         }
 
-        private void employeeBtn_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
-            loginScreen = new LoginWindow(true, false, this);
-            loginScreen.Show();
-            this.Hide();
+            if ((txtUsername.Text == "Employee") && (txtPassword.Text == "Employee"))
+            {
+                employeeScreen = new EmployeeWindow(this);
+                employeeScreen.Visible = true;
+                this.Hide();
+            }
         }
 
-        private void customerBtn_Click(object sender, EventArgs e)
+        private void WelcomeWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            loginScreen = new LoginWindow(false, true, this);
-            loginScreen.Show();
-            this.Hide();
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to Exit?", "Exit", MessageBoxButtons.YesNo);
+            if (dialogResult != DialogResult.Yes)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
