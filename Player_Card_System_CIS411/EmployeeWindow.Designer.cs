@@ -36,6 +36,8 @@ namespace Player_Card_System_CIS411
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.roundsPage = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,6 +46,7 @@ namespace Player_Card_System_CIS411
             this.btnAddUser = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.adminPage = new System.Windows.Forms.TabPage();
+            this.btnImportData = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnGetData = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -52,9 +55,10 @@ namespace Player_Card_System_CIS411
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btnImportData = new System.Windows.Forms.Button();
+            this.btnAddAccount = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.roundsPage.SuspendLayout();
             this.addPage.SuspendLayout();
@@ -65,7 +69,7 @@ namespace Player_Card_System_CIS411
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(702, 415);
+            this.btnLogout.Location = new System.Drawing.Point(696, 46);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(86, 23);
             this.btnLogout.TabIndex = 6;
@@ -117,7 +121,7 @@ namespace Player_Card_System_CIS411
             this.tabControl1.Controls.Add(this.roundsPage);
             this.tabControl1.Controls.Add(this.addPage);
             this.tabControl1.Controls.Add(this.adminPage);
-            this.tabControl1.Location = new System.Drawing.Point(5, 161);
+            this.tabControl1.Location = new System.Drawing.Point(22, 406);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(782, 248);
@@ -141,6 +145,23 @@ namespace Player_Card_System_CIS411
             this.roundsPage.TabIndex = 0;
             this.roundsPage.Text = "Rounds";
             this.roundsPage.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 152);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(115, 13);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Transaction Employee:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(138, 149);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 18;
             // 
             // btnSubmit
             // 
@@ -210,6 +231,8 @@ namespace Player_Card_System_CIS411
             // 
             // adminPage
             // 
+            this.adminPage.Controls.Add(this.button3);
+            this.adminPage.Controls.Add(this.button2);
             this.adminPage.Controls.Add(this.btnImportData);
             this.adminPage.Controls.Add(this.btnReset);
             this.adminPage.Controls.Add(this.btnGetData);
@@ -219,6 +242,15 @@ namespace Player_Card_System_CIS411
             this.adminPage.TabIndex = 2;
             this.adminPage.Text = "Admin";
             this.adminPage.UseVisualStyleBackColor = true;
+            // 
+            // btnImportData
+            // 
+            this.btnImportData.Location = new System.Drawing.Point(23, 37);
+            this.btnImportData.Name = "btnImportData";
+            this.btnImportData.Size = new System.Drawing.Size(99, 49);
+            this.btnImportData.TabIndex = 2;
+            this.btnImportData.Text = "Backup";
+            this.btnImportData.UseVisualStyleBackColor = true;
             // 
             // btnReset
             // 
@@ -235,14 +267,14 @@ namespace Player_Card_System_CIS411
             this.btnGetData.Name = "btnGetData";
             this.btnGetData.Size = new System.Drawing.Size(99, 49);
             this.btnGetData.TabIndex = 0;
-            this.btnGetData.Text = "Get Data Table";
+            this.btnGetData.Text = "Export Accounts";
             this.btnGetData.UseVisualStyleBackColor = true;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(524, 37);
+            this.btnSearch.Location = new System.Drawing.Point(309, 41);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(182, 32);
+            this.btnSearch.Size = new System.Drawing.Size(157, 32);
             this.btnSearch.TabIndex = 22;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -284,42 +316,54 @@ namespace Player_Card_System_CIS411
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(5, 82);
+            this.dataGridView2.Location = new System.Drawing.Point(9, 79);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(777, 53);
+            this.dataGridView2.Size = new System.Drawing.Size(777, 328);
             this.dataGridView2.TabIndex = 23;
             // 
-            // comboBox1
+            // btnAddAccount
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(138, 149);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 18;
+            this.btnAddAccount.Location = new System.Drawing.Point(481, 46);
+            this.btnAddAccount.Name = "btnAddAccount";
+            this.btnAddAccount.Size = new System.Drawing.Size(103, 23);
+            this.btnAddAccount.TabIndex = 24;
+            this.btnAddAccount.Text = "Add Account";
+            this.btnAddAccount.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // button1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 152);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(115, 13);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "Transaction Employee:";
+            this.button1.Location = new System.Drawing.Point(599, 46);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Admin";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // btnImportData
+            // button2
             // 
-            this.btnImportData.Location = new System.Drawing.Point(23, 37);
-            this.btnImportData.Name = "btnImportData";
-            this.btnImportData.Size = new System.Drawing.Size(99, 49);
-            this.btnImportData.TabIndex = 2;
-            this.btnImportData.Text = "Import Data Table";
-            this.btnImportData.UseVisualStyleBackColor = true;
+            this.button2.Location = new System.Drawing.Point(23, 106);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(99, 49);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Restore";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(141, 106);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(99, 49);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Export Transactions";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // EmployeeWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(886, 666);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAddAccount);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label3);
@@ -371,5 +415,9 @@ namespace Player_Card_System_CIS411
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btnImportData;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAddAccount;
+        private System.Windows.Forms.Button button1;
     }
 }
