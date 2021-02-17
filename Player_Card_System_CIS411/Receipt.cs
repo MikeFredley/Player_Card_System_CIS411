@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Player_Card_System_CIS411
 {
-    class Receipt : CustomerScreen
     {
         string[] transHist;
         decimal newBalance;
@@ -18,7 +17,7 @@ namespace Player_Card_System_CIS411
 
         public Receipt()
         {
-            
+
         }
 
         private void sendReceipt()
@@ -30,7 +29,7 @@ namespace Player_Card_System_CIS411
         {
 
         }
-           
+
         private void ReceiveFromDatabase()
         {
 

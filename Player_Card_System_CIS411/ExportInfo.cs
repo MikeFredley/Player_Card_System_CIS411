@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Player_Card_System_CIS411
 {
-    class ExportInfo : EmployeeScreen
+    class ExportInfo
     {
         int numCashiers;
         int numCustomers;
