@@ -16,5 +16,10 @@ namespace Player_Card_System_CIS411
         {
             InitializeComponent();
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

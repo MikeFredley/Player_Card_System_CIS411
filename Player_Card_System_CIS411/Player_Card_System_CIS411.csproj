@@ -80,6 +80,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminWindow.resx">
+      <DependentUpon>AdminWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeductRounds.resx">
+      <DependentUpon>DeductRounds.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmployeeWindow.resx">
       <DependentUpon>EmployeeWindow.cs</DependentUpon>
     </EmbeddedResource>
