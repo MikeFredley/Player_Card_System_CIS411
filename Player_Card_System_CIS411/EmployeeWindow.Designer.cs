@@ -29,6 +29,7 @@ namespace Player_Card_System_CIS411
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeWindow));
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,15 +39,9 @@ namespace Player_Card_System_CIS411
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.btnAddAccount = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.addPage = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnAddUser = new System.Windows.Forms.Button();
-            this.btnDeleteUser = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.pcbExampleGraph = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.addPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbExampleGraph)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLogout
@@ -128,59 +123,21 @@ namespace Player_Card_System_CIS411
             this.button1.Text = "Admin";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // addPage
+            // pcbExampleGraph
             // 
-            this.addPage.Controls.Add(this.btnDeleteUser);
-            this.addPage.Controls.Add(this.btnAddUser);
-            this.addPage.Controls.Add(this.dataGridView1);
-            this.addPage.Location = new System.Drawing.Point(4, 22);
-            this.addPage.Name = "addPage";
-            this.addPage.Padding = new System.Windows.Forms.Padding(3);
-            this.addPage.Size = new System.Drawing.Size(774, 222);
-            this.addPage.TabIndex = 1;
-            this.addPage.Text = "Add/Delete Account";
-            this.addPage.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(21, 26);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(730, 141);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // btnAddUser
-            // 
-            this.btnAddUser.Location = new System.Drawing.Point(31, 189);
-            this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(102, 23);
-            this.btnAddUser.TabIndex = 1;
-            this.btnAddUser.Text = "Create New User";
-            this.btnAddUser.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteUser
-            // 
-            this.btnDeleteUser.Location = new System.Drawing.Point(158, 189);
-            this.btnDeleteUser.Name = "btnDeleteUser";
-            this.btnDeleteUser.Size = new System.Drawing.Size(102, 23);
-            this.btnDeleteUser.TabIndex = 2;
-            this.btnDeleteUser.Text = "Delete User";
-            this.btnDeleteUser.UseVisualStyleBackColor = true;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.addPage);
-            this.tabControl1.Location = new System.Drawing.Point(22, 406);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(782, 248);
-            this.tabControl1.TabIndex = 17;
+            this.pcbExampleGraph.Image = ((System.Drawing.Image)(resources.GetObject("pcbExampleGraph.Image")));
+            this.pcbExampleGraph.Location = new System.Drawing.Point(9, 79);
+            this.pcbExampleGraph.Name = "pcbExampleGraph";
+            this.pcbExampleGraph.Size = new System.Drawing.Size(563, 227);
+            this.pcbExampleGraph.TabIndex = 26;
+            this.pcbExampleGraph.TabStop = false;
             // 
             // EmployeeWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(886, 666);
+            this.ClientSize = new System.Drawing.Size(788, 408);
+            this.Controls.Add(this.pcbExampleGraph);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAddAccount);
             this.Controls.Add(this.dataGridView2);
@@ -190,15 +147,12 @@ namespace Player_Card_System_CIS411
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.tabControl1);
             this.Name = "EmployeeWindow";
             this.Text = "Employee";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeeWindow_FormClosing);
             this.Load += new System.EventHandler(this.Employee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.addPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcbExampleGraph)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,10 +168,6 @@ namespace Player_Card_System_CIS411
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button btnAddAccount;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TabPage addPage;
-        private System.Windows.Forms.Button btnDeleteUser;
-        private System.Windows.Forms.Button btnAddUser;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.PictureBox pcbExampleGraph;
     }
 }
