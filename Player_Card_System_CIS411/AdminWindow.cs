@@ -16,5 +16,19 @@ namespace Player_Card_System_CIS411
         {
             InitializeComponent();
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void AdminWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo);
+            if (dialogResult != DialogResult.Yes)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

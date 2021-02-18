@@ -38,9 +38,10 @@ namespace Player_Card_System_CIS411
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.btnAddAccount = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAdmin = new System.Windows.Forms.Button();
             this.pcbExampleGraph = new System.Windows.Forms.PictureBox();
             this.btnEditTest = new System.Windows.Forms.Button();
+            this.btnUseTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbExampleGraph)).BeginInit();
             this.SuspendLayout();
@@ -114,15 +115,17 @@ namespace Player_Card_System_CIS411
             this.btnAddAccount.TabIndex = 24;
             this.btnAddAccount.Text = "Add Account";
             this.btnAddAccount.UseVisualStyleBackColor = true;
+            this.btnAddAccount.Click += new System.EventHandler(this.btnAddAccount_Click);
             // 
-            // button1
+            // btnAdmin
             // 
-            this.button1.Location = new System.Drawing.Point(599, 46);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Admin";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAdmin.Location = new System.Drawing.Point(599, 46);
+            this.btnAdmin.Name = "btnAdmin";
+            this.btnAdmin.Size = new System.Drawing.Size(75, 23);
+            this.btnAdmin.TabIndex = 25;
+            this.btnAdmin.Text = "Admin";
+            this.btnAdmin.UseVisualStyleBackColor = true;
+            this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
             // 
             // pcbExampleGraph
             // 
@@ -143,14 +146,25 @@ namespace Player_Card_System_CIS411
             this.btnEditTest.UseVisualStyleBackColor = true;
             this.btnEditTest.Click += new System.EventHandler(this.btnEditTest_Click);
             // 
+            // btnUseTest
+            // 
+            this.btnUseTest.Location = new System.Drawing.Point(404, 11);
+            this.btnUseTest.Name = "btnUseTest";
+            this.btnUseTest.Size = new System.Drawing.Size(75, 23);
+            this.btnUseTest.TabIndex = 28;
+            this.btnUseTest.Text = "Use Rounds";
+            this.btnUseTest.UseVisualStyleBackColor = true;
+            this.btnUseTest.Click += new System.EventHandler(this.btnUseTest_Click);
+            // 
             // EmployeeWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 408);
+            this.Controls.Add(this.btnUseTest);
             this.Controls.Add(this.btnEditTest);
             this.Controls.Add(this.pcbExampleGraph);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAdmin);
             this.Controls.Add(this.btnAddAccount);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.btnSearch);
@@ -160,6 +174,7 @@ namespace Player_Card_System_CIS411
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLogout);
             this.Name = "EmployeeWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeeWindow_FormClosing);
             this.Load += new System.EventHandler(this.Employee_Load);
@@ -179,8 +194,9 @@ namespace Player_Card_System_CIS411
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button btnAddAccount;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAdmin;
         private System.Windows.Forms.PictureBox pcbExampleGraph;
         private System.Windows.Forms.Button btnEditTest;
+        private System.Windows.Forms.Button btnUseTest;
     }
 }

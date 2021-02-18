@@ -127,6 +127,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel2);
             this.Name = "WelcomeWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WelcomeWindow_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);

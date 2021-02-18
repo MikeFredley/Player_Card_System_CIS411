@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.crntRndLbl = new System.Windows.Forms.Label();
+            this.lblCurrenRounds = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.submitBtn = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.cmbEmployee = new System.Windows.Forms.ComboBox();
+            this.btnSubmit = new System.Windows.Forms.Button();
+            this.txtNumRounds = new System.Windows.Forms.NumericUpDown();
+            this.btnExit = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNumRounds)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -47,14 +48,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Current Rounds Avalible:";
             // 
-            // crntRndLbl
+            // lblCurrenRounds
             // 
-            this.crntRndLbl.AutoSize = true;
-            this.crntRndLbl.Location = new System.Drawing.Point(165, 22);
-            this.crntRndLbl.Name = "crntRndLbl";
-            this.crntRndLbl.Size = new System.Drawing.Size(13, 13);
-            this.crntRndLbl.TabIndex = 1;
-            this.crntRndLbl.Text = "0";
+            this.lblCurrenRounds.AutoSize = true;
+            this.lblCurrenRounds.Location = new System.Drawing.Point(165, 22);
+            this.lblCurrenRounds.Name = "lblCurrenRounds";
+            this.lblCurrenRounds.Size = new System.Drawing.Size(13, 13);
+            this.lblCurrenRounds.TabIndex = 1;
+            this.lblCurrenRounds.Text = "0";
             // 
             // label3
             // 
@@ -74,46 +75,65 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Transaction Employee: ";
             // 
-            // comboBox1
+            // cmbEmployee
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(147, 91);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 4;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbEmployee.FormattingEnabled = true;
+            this.cmbEmployee.Location = new System.Drawing.Point(147, 91);
+            this.cmbEmployee.Name = "cmbEmployee";
+            this.cmbEmployee.Size = new System.Drawing.Size(121, 21);
+            this.cmbEmployee.TabIndex = 4;
+            this.cmbEmployee.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // submitBtn
+            // btnSubmit
             // 
-            this.submitBtn.Location = new System.Drawing.Point(115, 134);
-            this.submitBtn.Name = "submitBtn";
-            this.submitBtn.Size = new System.Drawing.Size(75, 23);
-            this.submitBtn.TabIndex = 5;
-            this.submitBtn.Text = "Submit";
-            this.submitBtn.UseVisualStyleBackColor = true;
+            this.btnSubmit.Location = new System.Drawing.Point(50, 136);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(75, 23);
+            this.btnSubmit.TabIndex = 5;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown1
+            // txtNumRounds
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(158, 56);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(32, 20);
-            this.numericUpDown1.TabIndex = 6;
+            this.txtNumRounds.Location = new System.Drawing.Point(158, 56);
+            this.txtNumRounds.Name = "txtNumRounds";
+            this.txtNumRounds.Size = new System.Drawing.Size(32, 20);
+            this.txtNumRounds.TabIndex = 6;
+            this.txtNumRounds.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.txtNumRounds.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(168, 136);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 7;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // DeductRounds
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(306, 180);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.submitBtn);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.txtNumRounds);
+            this.Controls.Add(this.btnSubmit);
+            this.Controls.Add(this.cmbEmployee);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.crntRndLbl);
+            this.Controls.Add(this.lblCurrenRounds);
             this.Controls.Add(this.label1);
             this.Name = "DeductRounds";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DeductRounds";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeductRounds_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.txtNumRounds)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,11 +142,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label crntRndLbl;
+        private System.Windows.Forms.Label lblCurrenRounds;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button submitBtn;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.ComboBox cmbEmployee;
+        private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.NumericUpDown txtNumRounds;
+        private System.Windows.Forms.Button btnExit;
     }
 }

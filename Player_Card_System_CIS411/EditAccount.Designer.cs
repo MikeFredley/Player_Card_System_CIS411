@@ -53,6 +53,10 @@
             this.cmbCluster = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAddFamily = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.lstComments = new System.Windows.Forms.ListBox();
+            this.lblComments = new System.Windows.Forms.Label();
+            this.btnAddComment = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +73,7 @@
             this.lstFamilyMembers.FormattingEnabled = true;
             this.lstFamilyMembers.Location = new System.Drawing.Point(245, 33);
             this.lstFamilyMembers.Name = "lstFamilyMembers";
-            this.lstFamilyMembers.Size = new System.Drawing.Size(181, 316);
+            this.lstFamilyMembers.Size = new System.Drawing.Size(181, 108);
             this.lstFamilyMembers.TabIndex = 2;
             // 
             // label2
@@ -83,7 +87,7 @@
             // 
             // btnEditInfo
             // 
-            this.btnEditInfo.Location = new System.Drawing.Point(180, 415);
+            this.btnEditInfo.Location = new System.Drawing.Point(144, 415);
             this.btnEditInfo.Name = "btnEditInfo";
             this.btnEditInfo.Size = new System.Drawing.Size(75, 23);
             this.btnEditInfo.TabIndex = 4;
@@ -92,7 +96,7 @@
             // 
             // btnAddRounds
             // 
-            this.btnAddRounds.Location = new System.Drawing.Point(65, 415);
+            this.btnAddRounds.Location = new System.Drawing.Point(48, 415);
             this.btnAddRounds.Name = "btnAddRounds";
             this.btnAddRounds.Size = new System.Drawing.Size(75, 23);
             this.btnAddRounds.TabIndex = 5;
@@ -265,7 +269,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(294, 415);
+            this.btnSave.Location = new System.Drawing.Point(245, 415);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 26;
@@ -274,18 +278,58 @@
             // 
             // btnAddFamily
             // 
-            this.btnAddFamily.Location = new System.Drawing.Point(294, 379);
+            this.btnAddFamily.Location = new System.Drawing.Point(294, 156);
             this.btnAddFamily.Name = "btnAddFamily";
             this.btnAddFamily.Size = new System.Drawing.Size(75, 23);
             this.btnAddFamily.TabIndex = 27;
             this.btnAddFamily.Text = "Add Family";
             this.btnAddFamily.UseVisualStyleBackColor = true;
             // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(351, 415);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.TabIndex = 28;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // lstComments
+            // 
+            this.lstComments.FormattingEnabled = true;
+            this.lstComments.Location = new System.Drawing.Point(245, 217);
+            this.lstComments.Name = "lstComments";
+            this.lstComments.Size = new System.Drawing.Size(181, 108);
+            this.lstComments.TabIndex = 29;
+            // 
+            // lblComments
+            // 
+            this.lblComments.AutoSize = true;
+            this.lblComments.Location = new System.Drawing.Point(301, 191);
+            this.lblComments.Name = "lblComments";
+            this.lblComments.Size = new System.Drawing.Size(56, 13);
+            this.lblComments.TabIndex = 30;
+            this.lblComments.Text = "Comments";
+            // 
+            // btnAddComment
+            // 
+            this.btnAddComment.Location = new System.Drawing.Point(290, 348);
+            this.btnAddComment.Name = "btnAddComment";
+            this.btnAddComment.Size = new System.Drawing.Size(87, 23);
+            this.btnAddComment.TabIndex = 31;
+            this.btnAddComment.Text = "Add Comment";
+            this.btnAddComment.UseVisualStyleBackColor = true;
+            // 
             // EditAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(452, 450);
+            this.Controls.Add(this.btnAddComment);
+            this.Controls.Add(this.lblComments);
+            this.Controls.Add(this.lstComments);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnAddFamily);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cmbCluster);
@@ -312,7 +356,8 @@
             this.Controls.Add(this.lstFamilyMembers);
             this.Controls.Add(this.label1);
             this.Name = "EditAccount";
-            this.Text = "EditAccount";
+            this.Text = "Edit Account";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditAccount_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,5 +390,9 @@
         private System.Windows.Forms.ComboBox cmbCluster;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAddFamily;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.ListBox lstComments;
+        private System.Windows.Forms.Label lblComments;
+        private System.Windows.Forms.Button btnAddComment;
     }
 }
