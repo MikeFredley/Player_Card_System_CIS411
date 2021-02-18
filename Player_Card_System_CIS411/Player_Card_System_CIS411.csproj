@@ -86,6 +86,9 @@
     <EmbeddedResource Include="DeductRounds.resx">
       <DependentUpon>DeductRounds.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditAccount.resx">
+      <DependentUpon>EditAccount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmployeeWindow.resx">
       <DependentUpon>EmployeeWindow.cs</DependentUpon>
     </EmbeddedResource>

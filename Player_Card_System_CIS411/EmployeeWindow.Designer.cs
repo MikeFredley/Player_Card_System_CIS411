@@ -40,6 +40,7 @@ namespace Player_Card_System_CIS411
             this.btnAddAccount = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pcbExampleGraph = new System.Windows.Forms.PictureBox();
+            this.btnEditTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbExampleGraph)).BeginInit();
             this.SuspendLayout();
@@ -132,11 +133,22 @@ namespace Player_Card_System_CIS411
             this.pcbExampleGraph.TabIndex = 26;
             this.pcbExampleGraph.TabStop = false;
             // 
+            // btnEditTest
+            // 
+            this.btnEditTest.Location = new System.Drawing.Point(309, 12);
+            this.btnEditTest.Name = "btnEditTest";
+            this.btnEditTest.Size = new System.Drawing.Size(75, 23);
+            this.btnEditTest.TabIndex = 27;
+            this.btnEditTest.Text = "Edit Test";
+            this.btnEditTest.UseVisualStyleBackColor = true;
+            this.btnEditTest.Click += new System.EventHandler(this.btnEditTest_Click);
+            // 
             // EmployeeWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 408);
+            this.Controls.Add(this.btnEditTest);
             this.Controls.Add(this.pcbExampleGraph);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAddAccount);
@@ -169,5 +181,6 @@ namespace Player_Card_System_CIS411
         private System.Windows.Forms.Button btnAddAccount;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pcbExampleGraph;
+        private System.Windows.Forms.Button btnEditTest;
     }
 }

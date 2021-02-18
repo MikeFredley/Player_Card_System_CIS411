@@ -46,5 +46,11 @@ namespace Player_Card_System_CIS411
                 e.Cancel = true;
             }
         }
+
+        private void btnEditTest_Click(object sender, EventArgs e)
+        {
+            EditAccount editScreen = new EditAccount();
+            editScreen.Show();
+        }
     }
 }
