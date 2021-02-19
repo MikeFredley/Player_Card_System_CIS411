@@ -47,7 +47,7 @@
             // 
             // btnExportAccounts
             // 
-            this.btnExportAccounts.Location = new System.Drawing.Point(250, 12);
+            this.btnExportAccounts.Location = new System.Drawing.Point(145, 12);
             this.btnExportAccounts.Name = "btnExportAccounts";
             this.btnExportAccounts.Size = new System.Drawing.Size(83, 52);
             this.btnExportAccounts.TabIndex = 0;
@@ -65,7 +65,7 @@
             // 
             // btnExportTransactions
             // 
-            this.btnExportTransactions.Location = new System.Drawing.Point(250, 88);
+            this.btnExportTransactions.Location = new System.Drawing.Point(145, 88);
             this.btnExportTransactions.Name = "btnExportTransactions";
             this.btnExportTransactions.Size = new System.Drawing.Size(83, 49);
             this.btnExportTransactions.TabIndex = 0;
@@ -74,7 +74,7 @@
             // 
             // btnResetSeason
             // 
-            this.btnResetSeason.Location = new System.Drawing.Point(145, 12);
+            this.btnResetSeason.Location = new System.Drawing.Point(250, 12);
             this.btnResetSeason.Name = "btnResetSeason";
             this.btnResetSeason.Size = new System.Drawing.Size(83, 52);
             this.btnResetSeason.TabIndex = 0;
@@ -83,7 +83,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(145, 88);
+            this.btnExit.Location = new System.Drawing.Point(250, 88);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(83, 49);
             this.btnExit.TabIndex = 1;

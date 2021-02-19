@@ -18,8 +18,6 @@ namespace Player_Card_System_CIS411
             if(!isEdit)
             {
                 this.Text = "Add Account";
-                txtID.ReadOnly = false;
-                txtID.Text = "";
                 txtFirstName.ReadOnly = false;
                 txtFirstName.Text = "";
                 txtLastName.ReadOnly = false;
@@ -33,6 +31,7 @@ namespace Player_Card_System_CIS411
                 txtPhone.Text = "";
                 txtCardNumber.ReadOnly = false;
                 txtCardNumber.Text = "";
+                btnTransHistory.Visible = false;
             }
         }
 
@@ -43,17 +42,39 @@ namespace Player_Card_System_CIS411
 
         private void EditAccount_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to Exit?", "Exit", MessageBoxButtons.YesNo);
-            if (dialogResult != DialogResult.Yes)
-            {
-                e.Cancel = true;
-            }
+            
         }
 
         private void btnAddRounds_Click(object sender, EventArgs e)
         {
-            DeductRounds addRounds = new DeductRounds(false);
+            AddRounds addRounds = new AddRounds();
             addRounds.Show();
+        }
+
+        private void btnEditInfo_Click(object sender, EventArgs e)
+        {
+            txtFirstName.ReadOnly = false;
+            txtLastName.ReadOnly = false;
+            cmbCluster.Enabled = true;
+            txtUnit.ReadOnly = false;
+            txtEmail.ReadOnly = false;
+            txtPhone.ReadOnly = false;
+                
+            btnEditInfo.Visible = false;
+            btnSave.Visible = true;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            txtFirstName.ReadOnly = true;
+            txtLastName.ReadOnly = true;
+            cmbCluster.Enabled = false;
+            txtUnit.ReadOnly = true;
+            txtEmail.ReadOnly = true;
+            txtPhone.ReadOnly = true;
+
+            btnEditInfo.Visible = true;
+            btnSave.Visible = false;
         }
     }
 }

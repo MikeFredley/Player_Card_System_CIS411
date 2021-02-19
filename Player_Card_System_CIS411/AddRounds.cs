@@ -10,26 +10,16 @@ using System.Windows.Forms;
 
 namespace Player_Card_System_CIS411
 {
-    public partial class DeductRounds : Form
+    public partial class AddRounds : Form
     {
-        public DeductRounds()
+        public AddRounds()
         {
             InitializeComponent();
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void DeductRounds_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
         }
     }
 }

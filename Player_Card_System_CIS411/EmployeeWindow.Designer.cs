@@ -34,7 +34,6 @@ namespace Player_Card_System_CIS411
             this.btnSearch = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.btnAddAccount = new System.Windows.Forms.Button();
@@ -48,9 +47,9 @@ namespace Player_Card_System_CIS411
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(696, 46);
+            this.btnLogout.Location = new System.Drawing.Point(846, 23);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(86, 23);
+            this.btnLogout.Size = new System.Drawing.Size(83, 23);
             this.btnLogout.TabIndex = 6;
             this.btnLogout.Text = "Log Out";
             this.btnLogout.UseVisualStyleBackColor = true;
@@ -58,9 +57,9 @@ namespace Player_Card_System_CIS411
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(309, 41);
+            this.btnSearch.Location = new System.Drawing.Point(311, 23);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(157, 32);
+            this.btnSearch.Size = new System.Drawing.Size(83, 23);
             this.btnSearch.TabIndex = 22;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -68,7 +67,7 @@ namespace Player_Card_System_CIS411
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 56);
+            this.label3.Location = new System.Drawing.Point(12, 28);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 13);
             this.label3.TabIndex = 20;
@@ -76,42 +75,33 @@ namespace Player_Card_System_CIS411
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(103, 53);
+            this.textBox1.Location = new System.Drawing.Point(105, 25);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(200, 20);
             this.textBox1.TabIndex = 21;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Hello";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(47, 31);
+            this.label2.Location = new System.Drawing.Point(791, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.Size = new System.Drawing.Size(138, 13);
             this.label2.TabIndex = 19;
-            this.label2.Text = "Employee Name";
+            this.label2.Text = "Logged In: Employee Name";
             // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(9, 79);
+            this.dataGridView2.Location = new System.Drawing.Point(9, 51);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(777, 328);
+            this.dataGridView2.Size = new System.Drawing.Size(927, 355);
             this.dataGridView2.TabIndex = 23;
             // 
             // btnAddAccount
             // 
-            this.btnAddAccount.Location = new System.Drawing.Point(481, 46);
+            this.btnAddAccount.Location = new System.Drawing.Point(412, 23);
             this.btnAddAccount.Name = "btnAddAccount";
-            this.btnAddAccount.Size = new System.Drawing.Size(103, 23);
+            this.btnAddAccount.Size = new System.Drawing.Size(83, 23);
             this.btnAddAccount.TabIndex = 24;
             this.btnAddAccount.Text = "Add Account";
             this.btnAddAccount.UseVisualStyleBackColor = true;
@@ -119,9 +109,9 @@ namespace Player_Card_System_CIS411
             // 
             // btnAdmin
             // 
-            this.btnAdmin.Location = new System.Drawing.Point(599, 46);
+            this.btnAdmin.Location = new System.Drawing.Point(513, 23);
             this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(75, 23);
+            this.btnAdmin.Size = new System.Drawing.Size(83, 23);
             this.btnAdmin.TabIndex = 25;
             this.btnAdmin.Text = "Admin";
             this.btnAdmin.UseVisualStyleBackColor = true;
@@ -130,15 +120,15 @@ namespace Player_Card_System_CIS411
             // pcbExampleGraph
             // 
             this.pcbExampleGraph.Image = ((System.Drawing.Image)(resources.GetObject("pcbExampleGraph.Image")));
-            this.pcbExampleGraph.Location = new System.Drawing.Point(9, 79);
+            this.pcbExampleGraph.Location = new System.Drawing.Point(9, 51);
             this.pcbExampleGraph.Name = "pcbExampleGraph";
-            this.pcbExampleGraph.Size = new System.Drawing.Size(563, 227);
+            this.pcbExampleGraph.Size = new System.Drawing.Size(909, 147);
             this.pcbExampleGraph.TabIndex = 26;
             this.pcbExampleGraph.TabStop = false;
             // 
             // btnEditTest
             // 
-            this.btnEditTest.Location = new System.Drawing.Point(481, 119);
+            this.btnEditTest.Location = new System.Drawing.Point(802, 91);
             this.btnEditTest.Name = "btnEditTest";
             this.btnEditTest.Size = new System.Drawing.Size(75, 23);
             this.btnEditTest.TabIndex = 27;
@@ -148,7 +138,7 @@ namespace Player_Card_System_CIS411
             // 
             // btnUseTest
             // 
-            this.btnUseTest.Location = new System.Drawing.Point(400, 119);
+            this.btnUseTest.Location = new System.Drawing.Point(709, 91);
             this.btnUseTest.Name = "btnUseTest";
             this.btnUseTest.Size = new System.Drawing.Size(75, 23);
             this.btnUseTest.TabIndex = 28;
@@ -160,7 +150,7 @@ namespace Player_Card_System_CIS411
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(788, 408);
+            this.ClientSize = new System.Drawing.Size(941, 414);
             this.Controls.Add(this.btnUseTest);
             this.Controls.Add(this.btnEditTest);
             this.Controls.Add(this.pcbExampleGraph);
@@ -170,7 +160,6 @@ namespace Player_Card_System_CIS411
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLogout);
             this.Name = "EmployeeWindow";
@@ -190,7 +179,6 @@ namespace Player_Card_System_CIS411
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button btnAddAccount;

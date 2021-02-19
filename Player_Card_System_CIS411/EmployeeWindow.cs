@@ -67,7 +67,7 @@ namespace Player_Card_System_CIS411
 
         private void btnUseTest_Click(object sender, EventArgs e)
         {
-            DeductRounds deductRounds = new DeductRounds(true);
+            DeductRounds deductRounds = new DeductRounds();
             deductRounds.Show();
         }
     }
