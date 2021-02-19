@@ -131,7 +131,7 @@
             this.Controls.Add(this.label1);
             this.Name = "DeductRounds";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DeductRounds";
+            this.Text = "Deduct Rounds";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeductRounds_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.txtNumRounds)).EndInit();
             this.ResumeLayout(false);

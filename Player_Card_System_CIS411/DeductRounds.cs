@@ -12,9 +12,13 @@ namespace Player_Card_System_CIS411
 {
     public partial class DeductRounds : Form
     {
-        public DeductRounds()
+        public DeductRounds(bool isDeduct)
         {
             InitializeComponent();
+            if (!isDeduct)
+            {
+                this.Text = "Add Rounds";
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

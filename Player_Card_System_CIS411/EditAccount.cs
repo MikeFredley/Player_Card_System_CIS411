@@ -49,5 +49,11 @@ namespace Player_Card_System_CIS411
                 e.Cancel = true;
             }
         }
+
+        private void btnAddRounds_Click(object sender, EventArgs e)
+        {
+            DeductRounds addRounds = new DeductRounds(false);
+            addRounds.Show();
+        }
     }
 }

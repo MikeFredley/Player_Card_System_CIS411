@@ -102,6 +102,7 @@
             this.btnAddRounds.TabIndex = 5;
             this.btnAddRounds.Text = "Add Rounds";
             this.btnAddRounds.UseVisualStyleBackColor = true;
+            this.btnAddRounds.Click += new System.EventHandler(this.btnAddRounds_Click);
             // 
             // lblNumRounds
             // 
