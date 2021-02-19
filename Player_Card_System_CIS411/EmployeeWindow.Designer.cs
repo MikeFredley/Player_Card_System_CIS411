@@ -138,17 +138,17 @@ namespace Player_Card_System_CIS411
             // 
             // btnEditTest
             // 
-            this.btnEditTest.Location = new System.Drawing.Point(309, 12);
+            this.btnEditTest.Location = new System.Drawing.Point(481, 119);
             this.btnEditTest.Name = "btnEditTest";
             this.btnEditTest.Size = new System.Drawing.Size(75, 23);
             this.btnEditTest.TabIndex = 27;
-            this.btnEditTest.Text = "Edit Test";
+            this.btnEditTest.Text = "Edit";
             this.btnEditTest.UseVisualStyleBackColor = true;
             this.btnEditTest.Click += new System.EventHandler(this.btnEditTest_Click);
             // 
             // btnUseTest
             // 
-            this.btnUseTest.Location = new System.Drawing.Point(404, 11);
+            this.btnUseTest.Location = new System.Drawing.Point(400, 119);
             this.btnUseTest.Name = "btnUseTest";
             this.btnUseTest.Size = new System.Drawing.Size(75, 23);
             this.btnUseTest.TabIndex = 28;
