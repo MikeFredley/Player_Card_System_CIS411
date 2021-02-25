@@ -32,6 +32,8 @@ namespace Player_Card_System_CIS411
                 txtCardNumber.ReadOnly = false;
                 txtCardNumber.Text = "";
                 btnTransHistory.Visible = false;
+                pictureBox1.Visible = false;
+                btnAddRounds.Visible = false;
             }
         }
 
