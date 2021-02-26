@@ -35,8 +35,16 @@ namespace Player_Card_System_CIS411
         }
 
         private void EmployeeWindow_FormClosing(object sender, FormClosingEventArgs e)
-        { 
-            welcomeWindow.Show();
+        {
+          /*  DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Logging out", MessageBoxButtons.YesNo);
+            if(dialogResult == DialogResult.Yes)
+            {
+                welcomeWindow.Show();
+            }
+            else
+            {
+                e.Cancel = true;
+            } */
         }
 
         private void btnEditTest_Click(object sender, EventArgs e)
