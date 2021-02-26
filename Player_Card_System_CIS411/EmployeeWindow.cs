@@ -35,8 +35,10 @@ namespace Player_Card_System_CIS411
         }
 
         private void EmployeeWindow_FormClosing(object sender, FormClosingEventArgs e)
-        { 
+        {
+
             welcomeWindow.Show();
+
         }
 
         private void btnEditTest_Click(object sender, EventArgs e)

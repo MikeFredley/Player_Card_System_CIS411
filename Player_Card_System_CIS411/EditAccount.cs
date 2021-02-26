@@ -49,8 +49,7 @@ namespace Player_Card_System_CIS411
 
         private void btnAddRounds_Click(object sender, EventArgs e)
         {
-            AddRounds addRounds = new AddRounds();
-            addRounds.Show();
+
         }
 
         private void btnEditInfo_Click(object sender, EventArgs e)

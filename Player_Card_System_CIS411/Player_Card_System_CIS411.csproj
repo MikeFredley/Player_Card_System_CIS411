@@ -33,7 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,12 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddRounds.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddRounds.Designer.cs">
-      <DependentUpon>AddRounds.cs</DependentUpon>
-    </Compile>
     <Compile Include="AdminWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +73,11 @@
       <DependentUpon>EmployeeWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="ExportInfo.cs" />
+    <Compile Include="OceanVillagePlayerCardDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OceanVillagePlayerCardDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="OceanVillagePlayerCardDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -91,9 +92,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddRounds.resx">
-      <DependentUpon>AddRounds.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AdminWindow.resx">
       <DependentUpon>AdminWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,12 +116,24 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="OceanVillagePlayerCardDataSet.xsc">
+      <DependentUpon>OceanVillagePlayerCardDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OceanVillagePlayerCardDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OceanVillagePlayerCardDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="OceanVillagePlayerCardDataSet.xss">
+      <DependentUpon>OceanVillagePlayerCardDataSet.xsd</DependentUpon>
+    </None>
     <None Include="OceanVillagePlayerCardDataSet1.xsc">
       <DependentUpon>OceanVillagePlayerCardDataSet1.xsd</DependentUpon>
     </None>
     <None Include="OceanVillagePlayerCardDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>OceanVillagePlayerCardDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="OceanVillagePlayerCardDataSet1.xss">
       <DependentUpon>OceanVillagePlayerCardDataSet1.xsd</DependentUpon>
