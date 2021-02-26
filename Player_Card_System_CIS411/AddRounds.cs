@@ -25,7 +25,7 @@ namespace Player_Card_System_CIS411
         private void AddRounds_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'oceanVillagePlayerCardDataSet.PERSON' table. You can move, or remove it, as needed.
-            this.pERSONTableAdapter.Fill(this.oceanVillagePlayerCardDataSet.PERSON);
+         //   this.pERSONTableAdapter.Fill(this.oceanVillagePlayerCardDataSet.PERSON);
             // TODO: This line of code loads data into the 'oceanVillagePlayerCardDataSet.EMPLOYEE' table. You can move, or remove it, as needed.
             this.eMPLOYEETableAdapter.Fill(this.oceanVillagePlayerCardDataSet.EMPLOYEE);
 
