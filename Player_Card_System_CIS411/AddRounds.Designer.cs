@@ -28,14 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddRounds));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnTransHistory = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.oceanVillagePlayerCardDataSet = new Player_Card_System_CIS411.OceanVillagePlayerCardDataSet();
+            this.eMPLOYEEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.eMPLOYEETableAdapter = new Player_Card_System_CIS411.OceanVillagePlayerCardDataSetTableAdapters.EMPLOYEETableAdapter();
+            this.pERSONBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pERSONTableAdapter = new Player_Card_System_CIS411.OceanVillagePlayerCardDataSetTableAdapters.PERSONTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oceanVillagePlayerCardDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eMPLOYEEBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pERSONBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -83,6 +92,29 @@
             this.button1.Text = "Add Rounds";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // oceanVillagePlayerCardDataSet
+            // 
+            this.oceanVillagePlayerCardDataSet.DataSetName = "OceanVillagePlayerCardDataSet";
+            this.oceanVillagePlayerCardDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // eMPLOYEEBindingSource
+            // 
+            this.eMPLOYEEBindingSource.DataMember = "EMPLOYEE";
+            this.eMPLOYEEBindingSource.DataSource = this.oceanVillagePlayerCardDataSet;
+            // 
+            // eMPLOYEETableAdapter
+            // 
+            this.eMPLOYEETableAdapter.ClearBeforeFill = true;
+            // 
+            // pERSONBindingSource
+            // 
+            this.pERSONBindingSource.DataMember = "PERSON";
+            this.pERSONBindingSource.DataSource = this.oceanVillagePlayerCardDataSet;
+            // 
+            // pERSONTableAdapter
+            // 
+            this.pERSONTableAdapter.ClearBeforeFill = true;
+            // 
             // AddRounds
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -95,8 +127,12 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "AddRounds";
             this.Text = "AddRounds";
+            this.Load += new System.EventHandler(this.AddRounds_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.oceanVillagePlayerCardDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eMPLOYEEBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pERSONBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -108,5 +144,10 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
+        private OceanVillagePlayerCardDataSet oceanVillagePlayerCardDataSet;
+        private System.Windows.Forms.BindingSource eMPLOYEEBindingSource;
+        private OceanVillagePlayerCardDataSetTableAdapters.EMPLOYEETableAdapter eMPLOYEETableAdapter;
+        private System.Windows.Forms.BindingSource pERSONBindingSource;
+        private OceanVillagePlayerCardDataSetTableAdapters.PERSONTableAdapter pERSONTableAdapter;
     }
 }

@@ -77,6 +77,16 @@
       <DependentUpon>EmployeeWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="ExportInfo.cs" />
+    <Compile Include="OceanVillagePlayerCardDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OceanVillagePlayerCardDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="OceanVillagePlayerCardDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OceanVillagePlayerCardDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Receipt.cs" />
     <Compile Include="WelcomeWindow.cs">
       <SubType>Form</SubType>
@@ -113,6 +123,28 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="OceanVillagePlayerCardDataSet.xsc">
+      <DependentUpon>OceanVillagePlayerCardDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OceanVillagePlayerCardDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OceanVillagePlayerCardDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="OceanVillagePlayerCardDataSet.xss">
+      <DependentUpon>OceanVillagePlayerCardDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OceanVillagePlayerCardDataSet1.xsc">
+      <DependentUpon>OceanVillagePlayerCardDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="OceanVillagePlayerCardDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OceanVillagePlayerCardDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="OceanVillagePlayerCardDataSet1.xss">
+      <DependentUpon>OceanVillagePlayerCardDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
