@@ -8,32 +8,32 @@ using System.Data;
 
 namespace Player_Card_System_CIS411
 {
-    class Database
+    public static class Database
     {
-        private string connectionString;
-        private SqlCommand command;
-        private SqlConnection connection;
-        private List<Person> person;
-        private List<Resident> resident;
-        private List<ResidentInfo> residentInfo;
+        private static string connectionString;
+        private static SqlCommand command;
+        private static SqlConnection connection;
+        private static List<Person> person;
+        private static List<Resident> resident;
+        private static List<Transaction> transaction;
+        private static List<ResidentInfo> residentInfo;
 
-        public Database()
+
+        static Database()
         {
             connectionString = Properties.Settings.Default.OceanVillagePlayerCardConnectionString;
             person = new List<Person>();
             resident = new List<Resident>();
+            transaction = new List<Transaction>();
             residentInfo = new List<ResidentInfo>();
             try
             {
                 connection = new SqlConnection(connectionString);
-                connection.Open();
-                ReadPerson();
-                connection.Open();
-                ReadResident();
-
-                Console.WriteLine("Person: " + person.Count());
-                Console.WriteLine("Resident: " + resident.Count());
                 
+                ReadPerson();              
+                ReadResident();              
+                ReadTransaction();
+                Console.WriteLine(transaction[0].DateTime);
                 CreateResidentInfo();
             }
             catch(Exception ex)
@@ -42,23 +42,24 @@ namespace Player_Card_System_CIS411
             }
         }
 
-        private void ReadClusters()
+        private static void ReadClusters()
         {
 
         }
 
-        private void ReadEmployee()
+        private static void ReadEmployee()
         {
 
         }
 
-        private void ReadGolf_Rounds()
+        private static void ReadGolf_Rounds()
         {
 
         }
 
-        private void ReadPerson()
+        private static void ReadPerson()
         {
+            connection.Open();
             string GetPersonSQL = "SELECT ID, FirstName, LastName FROM Person";
             command = new SqlCommand(GetPersonSQL, connection);
 
@@ -77,8 +78,9 @@ namespace Player_Card_System_CIS411
             connection.Close();
         }
 
-        private void ReadResident()
+        private static void ReadResident()
         {
+            connection.Open();
             string GetResidentSQL = "SELECT ID, Address, Email, Phone, CommentBox, CardRelation, ClusterName, UnitNumber FROM Resident";
             command = new SqlCommand(GetResidentSQL, connection);
 
@@ -102,12 +104,35 @@ namespace Player_Card_System_CIS411
             connection.Close();
         }
 
-        private void ReadTransaction()
+        private static void ReadTransaction()
         {
+            connection.Open();
+            string GetTransactionSQL = "SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID, CardNo FROM Trans_Action";
+            command = new SqlCommand(GetTransactionSQL, connection);
 
+            SqlDataReader transactionReader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            while (transactionReader.Read())
+            {
+                Transaction tempTransaction = new Transaction();
+                tempTransaction.TransNo = int.Parse(transactionReader["TransNo"].ToString());
+                tempTransaction.DateTime = transactionReader["DateTime"].ToString();
+                tempTransaction.TypeTrans = transactionReader["TypeTrans"].ToString();
+                tempTransaction.Reason = transactionReader["Reason"].ToString();
+                tempTransaction.TotalRounds = int.Parse(transactionReader["TotalRounds"].ToString());
+                tempTransaction.Comments = transactionReader["Comments"].ToString();
+                tempTransaction.NoEmail = transactionReader["NoEmail"].ToString();
+                tempTransaction.EmployeeID = int.Parse(transactionReader["EmployeeID"].ToString());
+                tempTransaction.ResidentID = int.Parse(transactionReader["ResidentID"].ToString());
+                tempTransaction.CardNo = int.Parse(transactionReader["CardNo"].ToString());
+                transaction.Add(tempTransaction);
+
+                tempTransaction = null;
+            }
+            connection.Close();
         }
 
-        private void CreateResidentInfo()
+        private static void CreateResidentInfo()
         {
             
             // 69420 FUCK-A-SQL-QUERY BLAZE SHIT LMAO
@@ -131,8 +156,27 @@ namespace Player_Card_System_CIS411
                     }
                 }
             }
+
+            DateTime today = DateTime.Today;
+            int result;
+            int todayDay = today.DayOfYear;
+            int dbDay;
+
+            for (int i = 0; i < residentInfo.Count(); i++)
+            {
+                for (int j = 0; j < transaction.Count(); j++)
+                {
+                    if (residentInfo[i].ID == transaction[j].ResidentID)
+                    {
+                        dbDay = Convert.ToDateTime(transaction[j].DateTime).DayOfYear;
+                        result = todayDay - dbDay;
+                        result = DateTime.Compare(today, Convert.ToDateTime(transaction[j].DateTime));
+                        Console.WriteLine(result);
+                    }
+                }
+            }
         }
 
-        public List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }
+        internal static List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }
     }
 }
