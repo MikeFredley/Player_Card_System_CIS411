@@ -30,11 +30,12 @@ namespace Player_Card_System_CIS411
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            employeeScreen = new EmployeeWindow(this);
+            employeeScreen.Visible = true;
+            this.Hide();
             if ((txtUsername.Text == "Employee") && (txtPassword.Text == "Employee"))
             {
-                employeeScreen = new EmployeeWindow(this);
-                employeeScreen.Visible = true;
-                this.Hide();
+                
             }
         }
 

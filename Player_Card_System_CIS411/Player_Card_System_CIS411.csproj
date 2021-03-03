@@ -54,6 +54,8 @@
     <Compile Include="AdminWindow.Designer.cs">
       <DependentUpon>AdminWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clusters.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="DeductRounds.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,7 +80,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OceanVillagePlayerCardDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Person.cs" />
     <Compile Include="Receipt.cs" />
+    <Compile Include="Resident.cs" />
+    <Compile Include="ResidentInfo.cs" />
+    <Compile Include="Transaction.cs" />
     <Compile Include="WelcomeWindow.cs">
       <SubType>Form</SubType>
     </Compile>

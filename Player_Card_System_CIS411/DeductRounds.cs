@@ -12,6 +12,7 @@ namespace Player_Card_System_CIS411
 {
     public partial class DeductRounds : Form
     {
+        Database data;
         public DeductRounds()
         {
             InitializeComponent();

@@ -29,25 +29,22 @@ namespace Player_Card_System_CIS411
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeWindow));
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvResidentInfo = new System.Windows.Forms.DataGridView();
             this.btnAddAccount = new System.Windows.Forms.Button();
             this.btnAdmin = new System.Windows.Forms.Button();
-            this.pcbExampleGraph = new System.Windows.Forms.PictureBox();
             this.btnEditTest = new System.Windows.Forms.Button();
             this.btnUseTest = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbExampleGraph)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResidentInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(846, 23);
+            this.btnLogout.Location = new System.Drawing.Point(860, 22);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(83, 23);
             this.btnLogout.TabIndex = 6;
@@ -83,19 +80,20 @@ namespace Player_Card_System_CIS411
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(791, 7);
+            this.label2.Location = new System.Drawing.Point(805, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(138, 13);
             this.label2.TabIndex = 19;
             this.label2.Text = "Logged In: Employee Name";
             // 
-            // dataGridView2
+            // dgvResidentInfo
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(9, 51);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(927, 355);
-            this.dataGridView2.TabIndex = 23;
+            this.dgvResidentInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResidentInfo.Location = new System.Drawing.Point(9, 51);
+            this.dgvResidentInfo.Name = "dgvResidentInfo";
+            this.dgvResidentInfo.Size = new System.Drawing.Size(934, 355);
+            this.dgvResidentInfo.TabIndex = 23;
+            this.dgvResidentInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvResidentInfo_CellClick);
             // 
             // btnAddAccount
             // 
@@ -117,18 +115,9 @@ namespace Player_Card_System_CIS411
             this.btnAdmin.UseVisualStyleBackColor = true;
             this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
             // 
-            // pcbExampleGraph
-            // 
-            this.pcbExampleGraph.Image = ((System.Drawing.Image)(resources.GetObject("pcbExampleGraph.Image")));
-            this.pcbExampleGraph.Location = new System.Drawing.Point(9, 51);
-            this.pcbExampleGraph.Name = "pcbExampleGraph";
-            this.pcbExampleGraph.Size = new System.Drawing.Size(909, 147);
-            this.pcbExampleGraph.TabIndex = 26;
-            this.pcbExampleGraph.TabStop = false;
-            // 
             // btnEditTest
             // 
-            this.btnEditTest.Location = new System.Drawing.Point(802, 91);
+            this.btnEditTest.Location = new System.Drawing.Point(727, 18);
             this.btnEditTest.Name = "btnEditTest";
             this.btnEditTest.Size = new System.Drawing.Size(75, 23);
             this.btnEditTest.TabIndex = 27;
@@ -138,7 +127,7 @@ namespace Player_Card_System_CIS411
             // 
             // btnUseTest
             // 
-            this.btnUseTest.Location = new System.Drawing.Point(709, 91);
+            this.btnUseTest.Location = new System.Drawing.Point(636, 18);
             this.btnUseTest.Name = "btnUseTest";
             this.btnUseTest.Size = new System.Drawing.Size(75, 23);
             this.btnUseTest.TabIndex = 28;
@@ -150,13 +139,12 @@ namespace Player_Card_System_CIS411
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(941, 414);
+            this.ClientSize = new System.Drawing.Size(955, 414);
             this.Controls.Add(this.btnUseTest);
             this.Controls.Add(this.btnEditTest);
-            this.Controls.Add(this.pcbExampleGraph);
             this.Controls.Add(this.btnAdmin);
             this.Controls.Add(this.btnAddAccount);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dgvResidentInfo);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);
@@ -167,8 +155,7 @@ namespace Player_Card_System_CIS411
             this.Text = "Employee";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeeWindow_FormClosing);
             this.Load += new System.EventHandler(this.Employee_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbExampleGraph)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResidentInfo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,10 +167,9 @@ namespace Player_Card_System_CIS411
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvResidentInfo;
         private System.Windows.Forms.Button btnAddAccount;
         private System.Windows.Forms.Button btnAdmin;
-        private System.Windows.Forms.PictureBox pcbExampleGraph;
         private System.Windows.Forms.Button btnEditTest;
         private System.Windows.Forms.Button btnUseTest;
     }
