@@ -68,6 +68,7 @@
     <Compile Include="EditAccount.Designer.cs">
       <DependentUpon>EditAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Employee.cs" />
     <Compile Include="EmployeeWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +76,7 @@
       <DependentUpon>EmployeeWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="ExportInfo.cs" />
+    <Compile Include="GolfRounds.cs" />
     <Compile Include="OceanVillagePlayerCardDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
