@@ -100,5 +100,28 @@ namespace Player_Card_System_CIS411
             DeductRounds deductRounds = new DeductRounds();
             deductRounds.Show();
         }
+
+        private void dgvResidentInfo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // If the deduct rounds button is clicked
+            if (e.ColumnIndex == 7)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    // grabs the residents ID in the corresponding row
+                    MessageBox.Show(data.ResidentInfo[e.RowIndex].ID.ToString());
+                }
+            }
+
+            // If the Edit account button is clicked
+            if (e.ColumnIndex == 8)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    // grabs the residents ID in the corresponding row
+                    MessageBox.Show(data.ResidentInfo[e.RowIndex].ID.ToString());
+                }
+            }
+        }
     }
 }

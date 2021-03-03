@@ -93,6 +93,7 @@ namespace Player_Card_System_CIS411
             this.dgvResidentInfo.Name = "dgvResidentInfo";
             this.dgvResidentInfo.Size = new System.Drawing.Size(934, 355);
             this.dgvResidentInfo.TabIndex = 23;
+            this.dgvResidentInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvResidentInfo_CellClick);
             // 
             // btnAddAccount
             // 
