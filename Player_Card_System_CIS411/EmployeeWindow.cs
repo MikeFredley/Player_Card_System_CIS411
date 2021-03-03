@@ -13,7 +13,7 @@ namespace Player_Card_System_CIS411
     public partial class EmployeeWindow : Form
     {
         WelcomeWindow welcomeWindow;
-        Database data;
+      //  Database data;
         public EmployeeWindow(WelcomeWindow welcome)
         {
             InitializeComponent();
@@ -27,7 +27,7 @@ namespace Player_Card_System_CIS411
 
         private void Employee_Load(object sender, EventArgs e)
         {
-            data = new Database();
+           // data = new Database();
             InitializeDataGridView();
 
         }
@@ -65,10 +65,10 @@ namespace Player_Card_System_CIS411
             editAccountButton.Text = "Edit Account";
             editAccountButton.UseColumnTextForButtonValue = true;
             
-            for (int i = 0; i < data.ResidentInfo.Count(); i++)
+            for (int i = 0; i < Database.ResidentInfo.Count(); i++)
             {
-                dt.Rows.Add(data.ResidentInfo[i].FirstName, data.ResidentInfo[i].LastName, data.ResidentInfo[i].ClusterName, data.ResidentInfo[i].UnitNumber,
-                    data.ResidentInfo[i].Email, data.ResidentInfo[i].Phone);
+                dt.Rows.Add(Database.ResidentInfo[i].FirstName, Database.ResidentInfo[i].LastName, Database.ResidentInfo[i].ClusterName, Database.ResidentInfo[i].UnitNumber,
+                    Database.ResidentInfo[i].Email, Database.ResidentInfo[i].Phone);
             }
 
             dgvResidentInfo.DataSource = dt;
@@ -109,7 +109,7 @@ namespace Player_Card_System_CIS411
                 if (e.RowIndex >= 0)
                 {
                     // grabs the residents ID in the corresponding row
-                    MessageBox.Show(data.ResidentInfo[e.RowIndex].ID.ToString());
+                    MessageBox.Show(Database.ResidentInfo[e.RowIndex].ID.ToString());
                 }
             }
 
@@ -119,7 +119,7 @@ namespace Player_Card_System_CIS411
                 if (e.RowIndex >= 0)
                 {
                     // grabs the residents ID in the corresponding row
-                    MessageBox.Show(data.ResidentInfo[e.RowIndex].ID.ToString());
+                    MessageBox.Show(Database.ResidentInfo[e.RowIndex].ID.ToString());
                 }
             }
         }

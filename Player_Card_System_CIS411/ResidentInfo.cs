@@ -15,7 +15,7 @@ namespace Player_Card_System_CIS411
         private int unitNumber;
         private string email;
         private string phone;
-        private string currentRounds;
+        private int currentRounds;
 
         public ResidentInfo()
         {
@@ -26,7 +26,7 @@ namespace Player_Card_System_CIS411
             unitNumber = 0;
             email = "";
             phone = "";
-            currentRounds = "";
+            currentRounds = 0;
         }
 
         public int ID { get => id; set => id = value; }
@@ -36,6 +36,6 @@ namespace Player_Card_System_CIS411
         public int UnitNumber { get => unitNumber; set => unitNumber = value; }
         public string Email { get => email; set => email = value; }
         public string Phone { get => phone; set => phone = value; }
-        public string CurrentRounds { get => currentRounds; set => currentRounds = value; }
+        public int CurrentRounds { get => currentRounds; set => currentRounds = value; }
     }
 }
