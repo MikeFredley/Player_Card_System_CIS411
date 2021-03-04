@@ -68,7 +68,7 @@ namespace Player_Card_System_CIS411
             for (int i = 0; i < Database.ResidentInfo.Count(); i++)
             {
                 dt.Rows.Add(Database.ResidentInfo[i].FirstName, Database.ResidentInfo[i].LastName, Database.ResidentInfo[i].ClusterName, Database.ResidentInfo[i].UnitNumber,
-                    Database.ResidentInfo[i].Email, Database.ResidentInfo[i].Phone);
+                    Database.ResidentInfo[i].Email, Database.ResidentInfo[i].Phone, Database.ResidentInfo[i].CurrentRounds);
             }
 
             dgvResidentInfo.DataSource = dt;
