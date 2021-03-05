@@ -85,8 +85,8 @@ namespace Player_Card_System_CIS411
 
         private void btnEditTest_Click(object sender, EventArgs e)
         {
-            EditAccount editScreen = new EditAccount(true);
-            editScreen.Show();
+           // EditAccount editScreen = new EditAccount(true);
+          //  editScreen.Show();
         }
 
         private void btnAdmin_Click(object sender, EventArgs e)
@@ -97,7 +97,7 @@ namespace Player_Card_System_CIS411
 
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
-            EditAccount addAccount = new EditAccount(false);
+            EditAccount addAccount = new EditAccount(false, 0);
             addAccount.Show();
         }
 
@@ -114,8 +114,7 @@ namespace Player_Card_System_CIS411
             {
                 if (e.RowIndex >= 0)
                 {
-                    // grabs the residents ID in the corresponding row
-                    MessageBox.Show(Database.ResidentInfo[e.RowIndex].ID.ToString());
+                                
                 }
             }
 
@@ -124,10 +123,27 @@ namespace Player_Card_System_CIS411
             {
                 if (e.RowIndex >= 0)
                 {
-                    // grabs the residents ID in the corresponding row
-                    MessageBox.Show(Database.ResidentInfo[e.RowIndex].ID.ToString());
+                    EditAccount editScreen = new EditAccount(true, GetIDFromRow(e));
+                    editScreen.Show();
                 }
             }
+        }
+
+        public int GetIDFromRow(DataGridViewCellEventArgs e)
+        {
+            for (int i = 0; i < Database.ResidentInfo.Count; i++)
+            {
+                // for each row it takes the first and last name of the row where the button was pressed
+                // it then searches through the residentinfo list and matches up the firstnames and last names
+                // using those it gets the correct ID for that row, which will be used to pass into the
+                // appropriate window
+                if (dgvResidentInfo.Rows[e.RowIndex].Cells[0].Value.ToString() == Database.ResidentInfo[i].FirstName &&
+                    dgvResidentInfo.Rows[e.RowIndex].Cells[1].Value.ToString() == Database.ResidentInfo[i].LastName)
+                {
+                    return Database.ResidentInfo[i].ID;
+                }              
+            }
+            return 0;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -135,6 +151,7 @@ namespace Player_Card_System_CIS411
             string searchText = txtSearch.Text;
             // if some jackass doesnt want to hit the shift key then he doesnt have too
             searchText = searchText.ToLower();
+            // A list to save the row indices of the items searched in the list
             List<int> saveIndex = new List<int>();
             bool breakForEach = false;
 
@@ -147,32 +164,35 @@ namespace Player_Card_System_CIS411
                     row.Selected = false;
                     // It then goes through every column of that row
                     for (int i = 0; i < row.Cells.Count; i++)
-                    {
+                    {                        
                         // if its at the last row that is blank it
                         // stops the loop or else it will throw a nullpointer exception
                         if (row.Cells[i].Value == null)
                         {
+                            // Breaks the loops if nothing is found
                             if (saveIndex.Count == 0)
                             {
                                 breakForEach = true;
                                 break;
                             }
+                            // Wonky stuff happens if this isn't here when the search finishes
+                            // This else statement basically means the search completed succesfully
                             else
                             {
                                 //MessageBox.Show("Search Complete");
                                 break;
                             }                         
                         }
-                        else 
                         // Checks each value of every column for that row
-                        if (row.Cells[i].Value.ToString().ToLower().Equals(searchText))
+                        else if (row.Cells[i].Value.ToString().ToLower().Equals(searchText))
                         {
                             // If it matches what the user entered it selects the row and breaks the loop
                             saveIndex.Add(row.Index);
                             //row.Selected = true;
                             break;
-                        }                        
+                        }
                     }
+                    // If nothing is found it tells you nothing was found and refreshes the grid view
                     if (saveIndex.Count == 0 && breakForEach)
                     {
                         MessageBox.Show("No Items Found");
@@ -182,6 +202,7 @@ namespace Player_Card_System_CIS411
                     }
                 }
 
+                // Adds the rows that meet the search criteria
                 if (saveIndex.Count != 0)
                 {
                     dt.Rows.Clear();

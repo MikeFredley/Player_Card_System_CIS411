@@ -12,7 +12,7 @@ namespace Player_Card_System_CIS411
 {
     public partial class EditAccount : Form
     {
-        public EditAccount(bool isEdit)
+        public EditAccount(bool isEdit, int ID)
         {
             InitializeComponent();
             if(!isEdit)
@@ -29,11 +29,27 @@ namespace Player_Card_System_CIS411
                 txtEmail.Text = "";
                 txtPhone.ReadOnly = false;
                 txtPhone.Text = "";
-                txtCardNumber.ReadOnly = false;
-                txtCardNumber.Text = "";
+                txtID.ReadOnly = false;
+                txtID.Text = "";
                 btnTransHistory.Visible = false;
                 pictureBox1.Visible = false;
                 btnAddRounds.Visible = false;
+            }
+            else
+            {
+                for (int i = 0; i < Database.ResidentInfo.Count; i++)
+                {
+                    if (Database.ResidentInfo[i].ID == ID )
+                    {
+                        txtID.Text = Database.ResidentInfo[i].ID.ToString();
+                        txtFirstName.Text = Database.ResidentInfo[i].FirstName;
+                        txtLastName.Text = Database.ResidentInfo[i].LastName;
+                        cmbCluster.Text = Database.ResidentInfo[i].ClusterName;
+                        txtUnit.Text = Database.ResidentInfo[i].UnitNumber.ToString();
+                        txtEmail.Text = Database.ResidentInfo[i].Email;
+                        txtPhone.Text = Database.ResidentInfo[i].Phone;
+                    }
+                }
             }
         }
 
