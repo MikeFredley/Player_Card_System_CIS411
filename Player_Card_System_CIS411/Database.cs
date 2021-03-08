@@ -207,7 +207,29 @@ namespace Player_Card_System_CIS411
                         res.CurrentRounds = getRounds[i].Rounds;
                     }
                 }
-            }                  
+            }
+            
+
+            
+            /*DateTime today = DateTime.Today;
+            int result;
+            int todayDay = today.DayOfYear;
+            int dbDay;
+
+            for (int i = 0; i < residentInfo.Count(); i++)
+            {
+                for (int j = 0; j < transaction.Count(); j++)
+                {
+                    if (residentInfo[i].ID == transaction[j].ResidentID)
+                    {
+                        dbDay = Convert.ToDateTime(transaction[j].DateTime).DayOfYear;
+                        result = todayDay - dbDay;
+
+                        result = DateTime.Compare(today, Convert.ToDateTime(transaction[j].DateTime));
+                        Console.WriteLine(result);
+                    }
+                }
+            } */
         }
 
         internal static List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }

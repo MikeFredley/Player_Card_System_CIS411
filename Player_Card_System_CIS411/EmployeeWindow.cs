@@ -13,7 +13,6 @@ namespace Player_Card_System_CIS411
     public partial class EmployeeWindow : Form
     {
         WelcomeWindow welcomeWindow;
-        DataTable dt;
       //  Database data;
         public EmployeeWindow(WelcomeWindow welcome)
         {
@@ -45,7 +44,7 @@ namespace Player_Card_System_CIS411
 
         private void InitializeDataGridView()
         {
-            dt = new DataTable();
+            DataTable dt = new DataTable();
             dt.Columns.Add(new DataColumn("First Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Last Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Cluster", typeof(string)));
@@ -65,22 +64,17 @@ namespace Player_Card_System_CIS411
             editAccountButton.Name = "btnEditAccount";
             editAccountButton.Text = "Edit Account";
             editAccountButton.UseColumnTextForButtonValue = true;
-
-            AddDataGridRows();
-
-            dgvResidentInfo.DataSource = dt;
-            dgvResidentInfo.Columns.Add(deductRoundButton);
-            dgvResidentInfo.Columns.Add(editAccountButton);
-            dgvResidentInfo.ReadOnly = true;
-        }
-
-        private void AddDataGridRows()
-        {
+            
             for (int i = 0; i < Database.ResidentInfo.Count(); i++)
             {
                 dt.Rows.Add(Database.ResidentInfo[i].FirstName, Database.ResidentInfo[i].LastName, Database.ResidentInfo[i].ClusterName, Database.ResidentInfo[i].UnitNumber,
                     Database.ResidentInfo[i].Email, Database.ResidentInfo[i].Phone, Database.ResidentInfo[i].CurrentRounds);
             }
+
+            dgvResidentInfo.DataSource = dt;
+            dgvResidentInfo.Columns.Add(deductRoundButton);
+            dgvResidentInfo.Columns.Add(editAccountButton);
+            dgvResidentInfo.ReadOnly = true;
         }
 
         private void btnEditTest_Click(object sender, EventArgs e)
@@ -128,83 +122,6 @@ namespace Player_Card_System_CIS411
                     MessageBox.Show(Database.ResidentInfo[e.RowIndex].ID.ToString());
                 }
             }
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            string searchText = txtSearch.Text;
-            // if some jackass doesnt want to hit the shift key then he doesnt have too
-            searchText = searchText.ToLower();
-            List<int> saveIndex = new List<int>();
-            bool breakForEach = false;
-
-            try
-            {
-                
-                // Goes through every row in the datagridview
-                foreach (DataGridViewRow row in dgvResidentInfo.Rows)
-                {
-                    row.Selected = false;
-                    // It then goes through every column of that row
-                    for (int i = 0; i < row.Cells.Count; i++)
-                    {
-                        // if its at the last row that is blank it
-                        // stops the loop or else it will throw a nullpointer exception
-                        if (row.Cells[i].Value == null)
-                        {
-                            if (saveIndex.Count == 0)
-                            {
-                                breakForEach = true;
-                                break;
-                            }
-                            else
-                            {
-                                //MessageBox.Show("Search Complete");
-                                break;
-                            }                         
-                        }
-                        else 
-                        // Checks each value of every column for that row
-                        if (row.Cells[i].Value.ToString().ToLower().Equals(searchText))
-                        {
-                            // If it matches what the user entered it selects the row and breaks the loop
-                            saveIndex.Add(row.Index);
-                            //row.Selected = true;
-                            break;
-                        }                        
-                    }
-                    if (saveIndex.Count == 0 && breakForEach)
-                    {
-                        MessageBox.Show("No Items Found");
-                        dt.Rows.Clear();
-                        AddDataGridRows();
-                        break;
-                    }
-                }
-
-                if (saveIndex.Count != 0)
-                {
-                    dt.Rows.Clear();
-                    for (int i = 0; i < saveIndex.Count(); i++)
-                    {
-                        dt.Rows.Add(Database.ResidentInfo[saveIndex[i]].FirstName, Database.ResidentInfo[saveIndex[i]].LastName, Database.ResidentInfo[saveIndex[i]].ClusterName, Database.ResidentInfo[saveIndex[i]].UnitNumber,
-                            Database.ResidentInfo[saveIndex[i]].Email, Database.ResidentInfo[saveIndex[i]].Phone, Database.ResidentInfo[saveIndex[i]].CurrentRounds);
-                    }
-                }
-                
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            dt.Rows.Clear();
-            AddDataGridRows();
         }
     }
 }
