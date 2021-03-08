@@ -46,7 +46,7 @@
             this.txtUnit = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
-            this.txtCardNumber = new System.Windows.Forms.TextBox();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.chkEmails = new System.Windows.Forms.CheckBox();
             this.cmbCluster = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
@@ -219,14 +219,14 @@
             this.txtPhone.TabIndex = 22;
             this.txtPhone.Text = "8675309";
             // 
-            // txtCardNumber
+            // txtID
             // 
-            this.txtCardNumber.Location = new System.Drawing.Point(98, 42);
-            this.txtCardNumber.Name = "txtCardNumber";
-            this.txtCardNumber.ReadOnly = true;
-            this.txtCardNumber.Size = new System.Drawing.Size(215, 20);
-            this.txtCardNumber.TabIndex = 23;
-            this.txtCardNumber.Text = "8675309";
+            this.txtID.Location = new System.Drawing.Point(98, 42);
+            this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
+            this.txtID.Size = new System.Drawing.Size(215, 20);
+            this.txtID.TabIndex = 23;
+            this.txtID.Text = "8675309";
             // 
             // chkEmails
             // 
@@ -366,7 +366,7 @@
             this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.cmbCluster);
             this.Controls.Add(this.chkEmails);
-            this.Controls.Add(this.txtCardNumber);
+            this.Controls.Add(this.txtID);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtUnit);
@@ -415,7 +415,7 @@
         private System.Windows.Forms.TextBox txtUnit;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtPhone;
-        private System.Windows.Forms.TextBox txtCardNumber;
+        private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.CheckBox chkEmails;
         private System.Windows.Forms.ComboBox cmbCluster;
         private System.Windows.Forms.Button btnSave;
