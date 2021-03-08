@@ -32,7 +32,7 @@ namespace Player_Card_System_CIS411
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvResidentInfo = new System.Windows.Forms.DataGridView();
             this.btnAddAccount = new System.Windows.Forms.Button();
@@ -60,6 +60,7 @@ namespace Player_Card_System_CIS411
             this.btnSearch.TabIndex = 22;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // label3
             // 
@@ -70,12 +71,12 @@ namespace Player_Card_System_CIS411
             this.label3.TabIndex = 20;
             this.label3.Text = "Search Account:";
             // 
-            // textBox1
+            // txtSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(105, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 20);
-            this.textBox1.TabIndex = 21;
+            this.txtSearch.Location = new System.Drawing.Point(105, 25);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(200, 20);
+            this.txtSearch.TabIndex = 21;
             // 
             // label2
             // 
@@ -147,7 +148,7 @@ namespace Player_Card_System_CIS411
             this.Controls.Add(this.dgvResidentInfo);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLogout);
             this.Name = "EmployeeWindow";
@@ -165,7 +166,7 @@ namespace Player_Card_System_CIS411
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvResidentInfo;
         private System.Windows.Forms.Button btnAddAccount;
