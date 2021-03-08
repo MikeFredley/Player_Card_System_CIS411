@@ -123,5 +123,82 @@ namespace Player_Card_System_CIS411
                 }
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchText = txtSearch.Text;
+            // if some jackass doesnt want to hit the shift key then he doesnt have too
+            searchText = searchText.ToLower();
+            List<int> saveIndex = new List<int>();
+            bool breakForEach = false;
+
+            try
+            {
+                
+                // Goes through every row in the datagridview
+                foreach (DataGridViewRow row in dgvResidentInfo.Rows)
+                {
+                    row.Selected = false;
+                    // It then goes through every column of that row
+                    for (int i = 0; i < row.Cells.Count; i++)
+                    {
+                        // if its at the last row that is blank it
+                        // stops the loop or else it will throw a nullpointer exception
+                        if (row.Cells[i].Value == null)
+                        {
+                            if (saveIndex.Count == 0)
+                            {
+                                breakForEach = true;
+                                break;
+                            }
+                            else
+                            {
+                                //MessageBox.Show("Search Complete");
+                                break;
+                            }                         
+                        }
+                        else 
+                        // Checks each value of every column for that row
+                        if (row.Cells[i].Value.ToString().ToLower().Equals(searchText))
+                        {
+                            // If it matches what the user entered it selects the row and breaks the loop
+                            saveIndex.Add(row.Index);
+                            //row.Selected = true;
+                            break;
+                        }                        
+                    }
+                    if (saveIndex.Count == 0 && breakForEach)
+                    {
+                        MessageBox.Show("No Items Found");
+                        dt.Rows.Clear();
+                        AddDataGridRows();
+                        break;
+                    }
+                }
+
+                if (saveIndex.Count != 0)
+                {
+                    dt.Rows.Clear();
+                    for (int i = 0; i < saveIndex.Count(); i++)
+                    {
+                        dt.Rows.Add(Database.ResidentInfo[saveIndex[i]].FirstName, Database.ResidentInfo[saveIndex[i]].LastName, Database.ResidentInfo[saveIndex[i]].ClusterName, Database.ResidentInfo[saveIndex[i]].UnitNumber,
+                            Database.ResidentInfo[saveIndex[i]].Email, Database.ResidentInfo[saveIndex[i]].Phone, Database.ResidentInfo[saveIndex[i]].CurrentRounds);
+                    }
+                }
+                
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            dt.Rows.Clear();
+            AddDataGridRows();
+        }
     }
 }
