@@ -12,28 +12,34 @@ namespace Player_Card_System_CIS411
 {
     public partial class EditAccount : Form
     {
-        public EditAccount(bool isEdit)
+
+        int rowIndexHolder;
+
+        public EditAccount(bool isEdit, int rowIndex)
         {
             InitializeComponent();
             if(!isEdit)
             {
                 this.Text = "Add Account";
-                txtFirstName.ReadOnly = false;
-                txtFirstName.Text = "";
-                txtLastName.ReadOnly = false;
-                txtLastName.Text = "";
-                cmbCluster.Enabled = true;
-                txtUnit.ReadOnly = false;
+                txtFirstName.ReadOnly = true;
+                txtFirstName.Text = Database.ResidentInfo[rowIndex].FirstName;
+                txtLastName.ReadOnly = true;
+                txtLastName.Text = Database.ResidentInfo[rowIndex].LastName; ;
+                cmbCluster.Enabled = false;
+                txtUnit.ReadOnly = true;
                 txtUnit.Text = "";
-                txtEmail.ReadOnly = false;
-                txtEmail.Text = "";
-                txtPhone.ReadOnly = false;
-                txtPhone.Text = "";
-                txtCardNumber.ReadOnly = false;
-                txtCardNumber.Text = "";
-                btnTransHistory.Visible = false;
-                pictureBox1.Visible = false;
-                btnAddRounds.Visible = false;
+                txtEmail.ReadOnly = true;
+                txtEmail.Text = Database.ResidentInfo[rowIndex].Email;
+                txtPhone.ReadOnly = true;
+                txtPhone.Text = Database.ResidentInfo[rowIndex].Phone;
+                txtCardNumber.ReadOnly = true;
+                txtCardNumber.Text = Database.ResidentInfo[rowIndex].ID + "";
+                btnTransHistory.Visible = true;
+                //delete this
+               // pictureBox1.Visible = true;
+                btnAddRounds.Visible = true;
+
+                rowIndexHolder = rowIndex;
             }
         }
 
@@ -63,6 +69,7 @@ namespace Player_Card_System_CIS411
                 
             btnEditInfo.Visible = false;
             btnSave.Visible = true;
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -76,6 +83,13 @@ namespace Player_Card_System_CIS411
 
             btnEditInfo.Visible = true;
             btnSave.Visible = false;
+
+            Database.ResidentInfo[rowIndexHolder].FirstName = txtFirstName.Text;
+            Database.ResidentInfo[rowIndexHolder].LastName = txtLastName.Text;
+            //Database.ResidentInfo[rowIndexHolder].ClusterName = txtFirstName.Text;
+            Database.ResidentInfo[rowIndexHolder].UnitNumber = int.Parse(txtUnit.Text);
+            Database.ResidentInfo[rowIndexHolder].Email = txtEmail.Text;
+            Database.ResidentInfo[rowIndexHolder].Phone = txtPhone.Text;
         }
     }
 }

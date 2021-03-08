@@ -79,8 +79,8 @@ namespace Player_Card_System_CIS411
 
         private void btnEditTest_Click(object sender, EventArgs e)
         {
-            EditAccount editScreen = new EditAccount(true);
-            editScreen.Show();
+            //EditAccount editScreen = new EditAccount(true);
+            //editScreen.Show();
         }
 
         private void btnAdmin_Click(object sender, EventArgs e)
@@ -91,14 +91,14 @@ namespace Player_Card_System_CIS411
 
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
-            EditAccount addAccount = new EditAccount(false);
-            addAccount.Show();
+            //EditAccount addAccount = new EditAccount(false);
+            //addAccount.Show();
         }
 
         private void btnUseTest_Click(object sender, EventArgs e)
         {
-            DeductRounds deductRounds = new DeductRounds();
-            deductRounds.Show();
+            //DeductRounds deductRounds = new DeductRounds();
+            //deductRounds.Show();
         }
 
         private void dgvResidentInfo_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -109,7 +109,11 @@ namespace Player_Card_System_CIS411
                 if (e.RowIndex >= 0)
                 {
                     // grabs the residents ID in the corresponding row
-                    MessageBox.Show(Database.ResidentInfo[e.RowIndex].ID.ToString());
+                    //MessageBox.Show(Database.ResidentInfo[e.RowIndex].ID.ToString());
+
+                    int rowIndexHolder = e.RowIndex;
+                    DeductRounds deductWindow = new DeductRounds(rowIndexHolder);
+                    deductWindow.Show();
                 }
             }
 
@@ -119,7 +123,14 @@ namespace Player_Card_System_CIS411
                 if (e.RowIndex >= 0)
                 {
                     // grabs the residents ID in the corresponding row
-                    MessageBox.Show(Database.ResidentInfo[e.RowIndex].ID.ToString());
+                    //MessageBox.Show(Database.ResidentInfo[e.RowIndex].ID.ToString());
+
+                    int rowIndexHolder = e.RowIndex;
+
+                    EditAccount editWindow = new EditAccount(false, rowIndexHolder);
+
+                    editWindow.Show();
+
                 }
             }
         }
