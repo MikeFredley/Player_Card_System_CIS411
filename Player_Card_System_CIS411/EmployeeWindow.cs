@@ -103,8 +103,8 @@ namespace Player_Card_System_CIS411
 
         private void btnUseTest_Click(object sender, EventArgs e)
         {
-            DeductRounds deductRounds = new DeductRounds();
-            deductRounds.Show();
+          //  DeductRounds deductRounds = new DeductRounds();
+           // deductRounds.Show();
         }
 
         private void dgvResidentInfo_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -13,9 +13,11 @@ namespace Player_Card_System_CIS411
     public partial class DeductRounds : Form
     {
        
-        public DeductRounds()
+        public DeductRounds(int rowIndex)
         {
             InitializeComponent();
+            lblCurrenRounds.Text = Database.ResidentInfo[rowIndex].CurrentRounds + "";
+            //cmbEmployee.Items.Add(Database);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

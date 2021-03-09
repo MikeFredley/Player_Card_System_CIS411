@@ -48,7 +48,17 @@ namespace Player_Card_System_CIS411
 
         private static void ReadEmployee()
         {
+            string GetEmployeeSQL = "SELECT ID, IsAdmin, UserName, Password FROM Employee";
+            command = new SqlCommand(GetEmployeeSQL, connection);
 
+            SqlDataReader employeeReader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            while (employeeReader.Read())
+            {
+                Employee tempEmployee = new Employee();
+                tempEmployee.ID = int.Parse(employeeReader["ID"].ToString());
+                //tempEmployee.IsAdmin = employeeReader["IsAdmin"];
+            }
         }
 
         private static void ReadGolf_Rounds()
