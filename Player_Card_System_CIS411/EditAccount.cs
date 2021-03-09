@@ -12,6 +12,7 @@ namespace Player_Card_System_CIS411
 {
     public partial class EditAccount : Form
     {
+        int rowIndexHolder;
         public EditAccount(bool isEdit, int ID)
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace Player_Card_System_CIS411
             }
             else
             {
+                rowIndexHolder = ID;
                 /*for (int i = 0; i < Database.ResidentInfo.Count; i++)
                 {
                     if (Database.ResidentInfo[i].ID == ID )
@@ -92,6 +94,13 @@ namespace Player_Card_System_CIS411
 
             btnEditInfo.Visible = true;
             btnSave.Visible = false;
+
+            Database.ResidentInfo[rowIndexHolder].FirstName = txtFirstName.Text;
+            Database.ResidentInfo[rowIndexHolder].LastName = txtLastName.Text;
+            //Database.ResidentInfo[rowIndexHolder].ClusterName = txtFirstName.Text;
+            Database.ResidentInfo[rowIndexHolder].UnitNumber = int.Parse(txtUnit.Text);
+            Database.ResidentInfo[rowIndexHolder].Email = txtEmail.Text;
+            Database.ResidentInfo[rowIndexHolder].Phone = txtPhone.Text;
         }
     }
 }
