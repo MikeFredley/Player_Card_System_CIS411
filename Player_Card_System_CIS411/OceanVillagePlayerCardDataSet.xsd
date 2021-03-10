@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="OceanVillagePlayerCardDataSet1" targetNamespace="http://tempuri.org/OceanVillagePlayerCardDataSet1.xsd" xmlns:mstns="http://tempuri.org/OceanVillagePlayerCardDataSet1.xsd" xmlns="http://tempuri.org/OceanVillagePlayerCardDataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="OceanVillagePlayerCardDataSet" targetNamespace="http://tempuri.org/OceanVillagePlayerCardDataSet.xsd" xmlns:mstns="http://tempuri.org/OceanVillagePlayerCardDataSet.xsd" xmlns="http://tempuri.org/OceanVillagePlayerCardDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="OceanVillagePlayerCardConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="OceanVillagePlayerCardConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Player_Card_System_CIS411.Properties.Settings.GlobalReference.Default.OceanVillagePlayerCardConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="OceanVillagePlayerCardConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="OceanVillagePlayerCardConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Player_Card_System_CIS411.Properties.Settings.GlobalReference.Default.OceanVillagePlayerCardConnectionString1" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CLUSTERSTableAdapter" GeneratorDataComponentClassName="CLUSTERSTableAdapter" Name="CLUSTERS" UserDataComponentName="CLUSTERSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="OceanVillagePlayerCardConnectionString (Settings)" DbObjectName="OceanVillagePlayerCard.dbo.CLUSTERS" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="OceanVillagePlayerCardConnectionString1 (Settings)" DbObjectName="OceanVillagePlayerCard.dbo.CLUSTERS" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[CLUSTERS] WHERE (([ClusterName] = @Original_ClusterName))</CommandText>
@@ -52,49 +52,53 @@ SELECT ClusterName FROM CLUSTERS WHERE (ClusterName = @ClusterName)</CommandText
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EMPLOYEETableAdapter" GeneratorDataComponentClassName="EMPLOYEETableAdapter" Name="EMPLOYEE" UserDataComponentName="EMPLOYEETableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="OceanVillagePlayerCardConnectionString (Settings)" DbObjectName="OceanVillagePlayerCard.dbo.EMPLOYEE" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="OceanVillagePlayerCardConnectionString1 (Settings)" DbObjectName="OceanVillagePlayerCard.dbo.EMPLOYEE" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>DELETE FROM [dbo].[EMPLOYEE] WHERE (([ID] = @Original_ID) AND ([IsAdmin] = @Original_IsAdmin) AND ([UserName] = @Original_UserName) AND ([Password] = @Original_Password))</CommandText>
+                    <CommandText>DELETE FROM [dbo].[EMPLOYEE] WHERE (([ID] = @Original_ID) AND ([IsAdmin] = @Original_IsAdmin) AND ([UserName] = @Original_UserName) AND ([Password] = @Original_Password) AND ([IsCurrent] = @Original_IsCurrent))</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_IsAdmin" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="IsAdmin" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_UserName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="UserName" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Password" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Password" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_IsCurrent" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="IsCurrent" SourceColumnNullMapping="false" SourceVersion="Original" />
                     </Parameters>
                   </DbCommand>
                 </DeleteCommand>
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO [dbo].[EMPLOYEE] ([ID], [IsAdmin], [UserName], [Password]) VALUES (@ID, @IsAdmin, @UserName, @Password);
-SELECT ID, IsAdmin, UserName, Password FROM EMPLOYEE WHERE (ID = @ID)</CommandText>
+                    <CommandText>INSERT INTO [dbo].[EMPLOYEE] ([ID], [IsAdmin], [UserName], [Password], [IsCurrent]) VALUES (@ID, @IsAdmin, @UserName, @Password, @IsCurrent);
+SELECT ID, IsAdmin, UserName, Password, IsCurrent FROM EMPLOYEE WHERE (ID = @ID)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@IsAdmin" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="IsAdmin" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@UserName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="UserName" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Password" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Password" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@IsCurrent" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="IsCurrent" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, IsAdmin, UserName, Password FROM dbo.EMPLOYEE</CommandText>
+                    <CommandText>SELECT ID, IsAdmin, UserName, Password, IsCurrent FROM dbo.EMPLOYEE</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>UPDATE [dbo].[EMPLOYEE] SET [ID] = @ID, [IsAdmin] = @IsAdmin, [UserName] = @UserName, [Password] = @Password WHERE (([ID] = @Original_ID) AND ([IsAdmin] = @Original_IsAdmin) AND ([UserName] = @Original_UserName) AND ([Password] = @Original_Password));
-SELECT ID, IsAdmin, UserName, Password FROM EMPLOYEE WHERE (ID = @ID)</CommandText>
+                    <CommandText>UPDATE [dbo].[EMPLOYEE] SET [ID] = @ID, [IsAdmin] = @IsAdmin, [UserName] = @UserName, [Password] = @Password, [IsCurrent] = @IsCurrent WHERE (([ID] = @Original_ID) AND ([IsAdmin] = @Original_IsAdmin) AND ([UserName] = @Original_UserName) AND ([Password] = @Original_Password) AND ([IsCurrent] = @Original_IsCurrent));
+SELECT ID, IsAdmin, UserName, Password, IsCurrent FROM EMPLOYEE WHERE (ID = @ID)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@IsAdmin" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="IsAdmin" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@UserName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="UserName" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Password" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Password" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@IsCurrent" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="IsCurrent" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ID" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_IsAdmin" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="IsAdmin" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_UserName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="UserName" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Password" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Password" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_IsCurrent" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="IsCurrent" SourceColumnNullMapping="false" SourceVersion="Original" />
                     </Parameters>
                   </DbCommand>
                 </UpdateCommand>
@@ -105,12 +109,13 @@ SELECT ID, IsAdmin, UserName, Password FROM EMPLOYEE WHERE (ID = @ID)</CommandTe
               <Mapping SourceColumn="IsAdmin" DataSetColumn="IsAdmin" />
               <Mapping SourceColumn="UserName" DataSetColumn="UserName" />
               <Mapping SourceColumn="Password" DataSetColumn="Password" />
+              <Mapping SourceColumn="IsCurrent" DataSetColumn="IsCurrent" />
             </Mappings>
             <Sources />
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GOLF_ROUNDSTableAdapter" GeneratorDataComponentClassName="GOLF_ROUNDSTableAdapter" Name="GOLF_ROUNDS" UserDataComponentName="GOLF_ROUNDSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="OceanVillagePlayerCardConnectionString (Settings)" DbObjectName="OceanVillagePlayerCard.dbo.GOLF_ROUNDS" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="OceanVillagePlayerCardConnectionString1 (Settings)" DbObjectName="OceanVillagePlayerCard.dbo.GOLF_ROUNDS" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[GOLF_ROUNDS] WHERE (([Years] = @Original_Years) AND ([TotalRounds] = @Original_TotalRounds) AND ((@IsNull_PackageType = 1 AND [PackageType] IS NULL) OR ([PackageType] = @Original_PackageType)) AND ((@IsNull_CostPerRound = 1 AND [CostPerRound] IS NULL) OR ([CostPerRound] = @Original_CostPerRound)))</CommandText>
@@ -172,7 +177,7 @@ SELECT Years, TotalRounds, PackageType, CostPerRound FROM GOLF_ROUNDS WHERE (Tot
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PERSONTableAdapter" GeneratorDataComponentClassName="PERSONTableAdapter" Name="PERSON" UserDataComponentName="PERSONTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="OceanVillagePlayerCardConnectionString (Settings)" DbObjectName="OceanVillagePlayerCard.dbo.PERSON" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="OceanVillagePlayerCardConnectionString1 (Settings)" DbObjectName="OceanVillagePlayerCard.dbo.PERSON" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[PERSON] WHERE (([ID] = @Original_ID) AND ([FirstName] = @Original_FirstName) AND ([LastName] = @Original_LastName))</CommandText>
@@ -224,7 +229,7 @@ SELECT ID, FirstName, LastName FROM PERSON WHERE (ID = @ID)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RESIDENTTableAdapter" GeneratorDataComponentClassName="RESIDENTTableAdapter" Name="RESIDENT" UserDataComponentName="RESIDENTTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="OceanVillagePlayerCardConnectionString (Settings)" DbObjectName="OceanVillagePlayerCard.dbo.RESIDENT" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="OceanVillagePlayerCardConnectionString1 (Settings)" DbObjectName="OceanVillagePlayerCard.dbo.RESIDENT" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[RESIDENT] WHERE (([ID] = @Original_ID) AND ([Address] = @Original_Address) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([Phone] = @Original_Phone) AND ([CardRelation] = @Original_CardRelation) AND ((@IsNull_CommentBox = 1 AND [CommentBox] IS NULL) OR ([CommentBox] = @Original_CommentBox)) AND ([ClusterName] = @Original_ClusterName) AND ((@IsNull_UnitNumber = 1 AND [UnitNumber] IS NULL) OR ([UnitNumber] = @Original_UnitNumber)))</CommandText>
@@ -308,10 +313,10 @@ SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNum
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TRANS_ACTIONTableAdapter" GeneratorDataComponentClassName="TRANS_ACTIONTableAdapter" Name="TRANS_ACTION" UserDataComponentName="TRANS_ACTIONTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="OceanVillagePlayerCardConnectionString (Settings)" DbObjectName="OceanVillagePlayerCard.dbo.TRANS_ACTION" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="OceanVillagePlayerCardConnectionString1 (Settings)" DbObjectName="OceanVillagePlayerCard.dbo.TRANS_ACTION" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>DELETE FROM [dbo].[TRANS_ACTION] WHERE (([TransNo] = @Original_TransNo) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ([TypeTrans] = @Original_TypeTrans) AND ((@IsNull_Reason = 1 AND [Reason] IS NULL) OR ([Reason] = @Original_Reason)) AND ((@IsNull_TotalRounds = 1 AND [TotalRounds] IS NULL) OR ([TotalRounds] = @Original_TotalRounds)) AND ((@IsNull_Comments = 1 AND [Comments] IS NULL) OR ([Comments] = @Original_Comments)) AND ((@IsNull_NoEmail = 1 AND [NoEmail] IS NULL) OR ([NoEmail] = @Original_NoEmail)) AND ((@IsNull_EmployeeID = 1 AND [EmployeeID] IS NULL) OR ([EmployeeID] = @Original_EmployeeID)) AND ((@IsNull_ResidentID = 1 AND [ResidentID] IS NULL) OR ([ResidentID] = @Original_ResidentID)) AND ((@IsNull_CardNo = 1 AND [CardNo] IS NULL) OR ([CardNo] = @Original_CardNo)))</CommandText>
+                    <CommandText>DELETE FROM [dbo].[TRANS_ACTION] WHERE (([TransNo] = @Original_TransNo) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ([TypeTrans] = @Original_TypeTrans) AND ((@IsNull_Reason = 1 AND [Reason] IS NULL) OR ([Reason] = @Original_Reason)) AND ((@IsNull_TotalRounds = 1 AND [TotalRounds] IS NULL) OR ([TotalRounds] = @Original_TotalRounds)) AND ((@IsNull_Comments = 1 AND [Comments] IS NULL) OR ([Comments] = @Original_Comments)) AND ((@IsNull_NoEmail = 1 AND [NoEmail] IS NULL) OR ([NoEmail] = @Original_NoEmail)) AND ((@IsNull_EmployeeID = 1 AND [EmployeeID] IS NULL) OR ([EmployeeID] = @Original_EmployeeID)) AND ((@IsNull_ResidentID = 1 AND [ResidentID] IS NULL) OR ([ResidentID] = @Original_ResidentID)))</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_TransNo" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="TransNo" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_DateTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="DateTime" SourceColumnNullMapping="true" SourceVersion="Original" />
@@ -329,15 +334,13 @@ SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNum
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_EmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="EmployeeID" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ResidentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ResidentID" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ResidentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ResidentID" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CardNo" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CardNo" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_CardNo" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CardNo" SourceColumnNullMapping="false" SourceVersion="Original" />
                     </Parameters>
                   </DbCommand>
                 </DeleteCommand>
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO [dbo].[TRANS_ACTION] ([DateTime], [TypeTrans], [Reason], [TotalRounds], [Comments], [NoEmail], [EmployeeID], [ResidentID], [CardNo]) VALUES (@DateTime, @TypeTrans, @Reason, @TotalRounds, @Comments, @NoEmail, @EmployeeID, @ResidentID, @CardNo);
-SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID, CardNo FROM TRANS_ACTION WHERE (TransNo = SCOPE_IDENTITY())</CommandText>
+                    <CommandText>INSERT INTO [dbo].[TRANS_ACTION] ([DateTime], [TypeTrans], [Reason], [TotalRounds], [Comments], [NoEmail], [EmployeeID], [ResidentID]) VALUES (@DateTime, @TypeTrans, @Reason, @TotalRounds, @Comments, @NoEmail, @EmployeeID, @ResidentID);
+SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID FROM TRANS_ACTION WHERE (TransNo = SCOPE_IDENTITY())</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@DateTime" Precision="0" ProviderType="SmallDateTime" Scale="0" Size="0" SourceColumn="DateTime" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@TypeTrans" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="TypeTrans" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -347,20 +350,19 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@NoEmail" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="NoEmail" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@EmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="EmployeeID" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ResidentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ResidentID" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@CardNo" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CardNo" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID, CardNo FROM dbo.TRANS_ACTION</CommandText>
+                    <CommandText>SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID FROM dbo.TRANS_ACTION</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>UPDATE [dbo].[TRANS_ACTION] SET [DateTime] = @DateTime, [TypeTrans] = @TypeTrans, [Reason] = @Reason, [TotalRounds] = @TotalRounds, [Comments] = @Comments, [NoEmail] = @NoEmail, [EmployeeID] = @EmployeeID, [ResidentID] = @ResidentID, [CardNo] = @CardNo WHERE (([TransNo] = @Original_TransNo) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ([TypeTrans] = @Original_TypeTrans) AND ((@IsNull_Reason = 1 AND [Reason] IS NULL) OR ([Reason] = @Original_Reason)) AND ((@IsNull_TotalRounds = 1 AND [TotalRounds] IS NULL) OR ([TotalRounds] = @Original_TotalRounds)) AND ((@IsNull_Comments = 1 AND [Comments] IS NULL) OR ([Comments] = @Original_Comments)) AND ((@IsNull_NoEmail = 1 AND [NoEmail] IS NULL) OR ([NoEmail] = @Original_NoEmail)) AND ((@IsNull_EmployeeID = 1 AND [EmployeeID] IS NULL) OR ([EmployeeID] = @Original_EmployeeID)) AND ((@IsNull_ResidentID = 1 AND [ResidentID] IS NULL) OR ([ResidentID] = @Original_ResidentID)) AND ((@IsNull_CardNo = 1 AND [CardNo] IS NULL) OR ([CardNo] = @Original_CardNo)));
-SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID, CardNo FROM TRANS_ACTION WHERE (TransNo = @TransNo)</CommandText>
+                    <CommandText>UPDATE [dbo].[TRANS_ACTION] SET [DateTime] = @DateTime, [TypeTrans] = @TypeTrans, [Reason] = @Reason, [TotalRounds] = @TotalRounds, [Comments] = @Comments, [NoEmail] = @NoEmail, [EmployeeID] = @EmployeeID, [ResidentID] = @ResidentID WHERE (([TransNo] = @Original_TransNo) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ([TypeTrans] = @Original_TypeTrans) AND ((@IsNull_Reason = 1 AND [Reason] IS NULL) OR ([Reason] = @Original_Reason)) AND ((@IsNull_TotalRounds = 1 AND [TotalRounds] IS NULL) OR ([TotalRounds] = @Original_TotalRounds)) AND ((@IsNull_Comments = 1 AND [Comments] IS NULL) OR ([Comments] = @Original_Comments)) AND ((@IsNull_NoEmail = 1 AND [NoEmail] IS NULL) OR ([NoEmail] = @Original_NoEmail)) AND ((@IsNull_EmployeeID = 1 AND [EmployeeID] IS NULL) OR ([EmployeeID] = @Original_EmployeeID)) AND ((@IsNull_ResidentID = 1 AND [ResidentID] IS NULL) OR ([ResidentID] = @Original_ResidentID)));
+SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID FROM TRANS_ACTION WHERE (TransNo = @TransNo)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@DateTime" Precision="0" ProviderType="SmallDateTime" Scale="0" Size="0" SourceColumn="DateTime" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@TypeTrans" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="TypeTrans" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -370,7 +372,6 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@NoEmail" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="NoEmail" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@EmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="EmployeeID" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ResidentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ResidentID" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@CardNo" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CardNo" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_TransNo" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="TransNo" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_DateTime" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="DateTime" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_DateTime" Precision="0" ProviderType="SmallDateTime" Scale="0" Size="0" SourceColumn="DateTime" SourceColumnNullMapping="false" SourceVersion="Original" />
@@ -387,8 +388,6 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_EmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="EmployeeID" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ResidentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ResidentID" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ResidentID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ResidentID" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CardNo" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CardNo" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_CardNo" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CardNo" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="false" AutogeneratedName="TransNo" ColumnName="TransNo" DataSourceName="OceanVillagePlayerCard.dbo.TRANS_ACTION" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@TransNo" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="TransNo" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
@@ -405,7 +404,6 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
               <Mapping SourceColumn="NoEmail" DataSetColumn="NoEmail" />
               <Mapping SourceColumn="EmployeeID" DataSetColumn="EmployeeID" />
               <Mapping SourceColumn="ResidentID" DataSetColumn="ResidentID" />
-              <Mapping SourceColumn="CardNo" DataSetColumn="CardNo" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -414,7 +412,7 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="OceanVillagePlayerCardDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="OceanVillagePlayerCardDataSet1" msprop:Generator_UserDSName="OceanVillagePlayerCardDataSet1">
+  <xs:element name="OceanVillagePlayerCardDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="OceanVillagePlayerCardDataSet" msprop:Generator_UserDSName="OceanVillagePlayerCardDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="CLUSTERS" msprop:Generator_TableClassName="CLUSTERSDataTable" msprop:Generator_TableVarName="tableCLUSTERS" msprop:Generator_TablePropName="CLUSTERS" msprop:Generator_RowDeletingName="CLUSTERSRowDeleting" msprop:Generator_RowChangingName="CLUSTERSRowChanging" msprop:Generator_RowEvHandlerName="CLUSTERSRowChangeEventHandler" msprop:Generator_RowDeletedName="CLUSTERSRowDeleted" msprop:Generator_UserTableName="CLUSTERS" msprop:Generator_RowChangedName="CLUSTERSRowChanged" msprop:Generator_RowEvArgName="CLUSTERSRowChangeEvent" msprop:Generator_RowClassName="CLUSTERSRow">
@@ -437,7 +435,7 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
               <xs:element name="IsAdmin" msprop:Generator_ColumnVarNameInTable="columnIsAdmin" msprop:Generator_ColumnPropNameInRow="IsAdmin" msprop:Generator_ColumnPropNameInTable="IsAdminColumn" msprop:Generator_UserColumnName="IsAdmin">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="1" />
+                    <xs:maxLength value="5" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -452,6 +450,13 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IsCurrent" msprop:Generator_ColumnVarNameInTable="columnIsCurrent" msprop:Generator_ColumnPropNameInRow="IsCurrent" msprop:Generator_ColumnPropNameInTable="IsCurrentColumn" msprop:Generator_UserColumnName="IsCurrent">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -581,13 +586,12 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
               <xs:element name="NoEmail" msprop:Generator_ColumnVarNameInTable="columnNoEmail" msprop:Generator_ColumnPropNameInRow="NoEmail" msprop:Generator_ColumnPropNameInTable="NoEmailColumn" msprop:Generator_UserColumnName="NoEmail" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="1" />
+                    <xs:maxLength value="5" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="EmployeeID" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_UserColumnName="EmployeeID" type="xs:int" minOccurs="0" />
               <xs:element name="ResidentID" msprop:Generator_ColumnVarNameInTable="columnResidentID" msprop:Generator_ColumnPropNameInRow="ResidentID" msprop:Generator_ColumnPropNameInTable="ResidentIDColumn" msprop:Generator_UserColumnName="ResidentID" type="xs:int" minOccurs="0" />
-              <xs:element name="CardNo" msprop:Generator_ColumnVarNameInTable="columnCardNo" msprop:Generator_ColumnPropNameInRow="CardNo" msprop:Generator_ColumnPropNameInTable="CardNoColumn" msprop:Generator_UserColumnName="CardNo" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

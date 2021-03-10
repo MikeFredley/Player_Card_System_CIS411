@@ -12,17 +12,36 @@ namespace Player_Card_System_CIS411
 {
     public partial class DeductRounds : Form
     {
-       
-        public DeductRounds(int rowIndex)
+        int resIndex;
+        int newRounds;
+        Transaction newTransaction;
+        EmployeeWindow employeeWindow;
+        public DeductRounds(int ID, EmployeeWindow pEmployeeWindow)
         {
             InitializeComponent();
-            lblCurrenRounds.Text = Database.ResidentInfo[rowIndex].CurrentRounds + "";
-            //cmbEmployee.Items.Add(Database);
-        }
+            employeeWindow = pEmployeeWindow;
+            // Grabs the residents current rounds
+            for (int i = 0; i < Database.ResidentInfo.Count; i++)
+            {
+                if (Database.ResidentInfo[i].ID == ID)
+                {
+                    lblCurrenRounds.Text = Database.ResidentInfo[i].CurrentRounds + "";
+                    resIndex = i;
+                }
+            }          
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
+            // Adds each employee name into the combo box for selecting the transaction employee
+            foreach (Employee employee in Database.Employee)
+            {
+                for (int i = 0; i < Database.Person.Count; i++)
+                {
+                    if (employee.ID == Database.Person[i].ID && employee.IsCurrent)
+                    {
+                        cmbEmployee.Items.Add(Database.Person[i].FirstName + " " + Database.Person[i].LastName);
+                    }
+                }
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -33,6 +52,32 @@ namespace Player_Card_System_CIS411
         private void DeductRounds_FormClosing(object sender, FormClosingEventArgs e)
         {
 
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            newRounds = Database.ResidentInfo[resIndex].CurrentRounds - int.Parse(txtNumRounds.Value.ToString());
+            if(newRounds < 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Users Number of Rounds Will go Negative. \n\nDo You Wish to Proceed?", "Warning", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    CreateNewTransaction();
+                    this.Close();
+                }
+            }
+            else
+            {
+                CreateNewTransaction();
+                this.Close();
+            }
+        }
+
+        private void CreateNewTransaction()
+        {
+            newTransaction = new Transaction("U", "Use", newRounds, 101, Database.ResidentInfo[resIndex].ID);
+            Database.SubmitTransaction(newTransaction);
+            employeeWindow.RefreshDataTable();
         }
     }
 }

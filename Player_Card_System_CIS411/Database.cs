@@ -15,9 +15,10 @@ namespace Player_Card_System_CIS411
         private static SqlConnection connection;
         private static List<Person> person;
         private static List<Resident> resident;
+        private static List<Employee> employee;
         private static List<Transaction> transaction;
         private static List<ResidentInfo> residentInfo;
-
+        private static List<Clusters> clusters;
 
         static Database()
         {
@@ -26,6 +27,8 @@ namespace Player_Card_System_CIS411
             resident = new List<Resident>();
             transaction = new List<Transaction>();
             residentInfo = new List<ResidentInfo>();
+            employee = new List<Employee>();
+            clusters = new List<Clusters>();
             try
             {
                 connection = new SqlConnection(connectionString);
@@ -34,6 +37,8 @@ namespace Player_Card_System_CIS411
                 ReadResident();              
                 ReadTransaction();             
                 CreateResidentInfo();
+                ReadEmployee();
+                ReadClusters();
             }
             catch(Exception ex)
             {
@@ -41,14 +46,31 @@ namespace Player_Card_System_CIS411
             }
         }
 
+        // Method to read from the Clusters Table
         private static void ReadClusters()
         {
+            connection.Open();
+            string GetClustersSQL = "Select ClusterName FROM Clusters";
+            command = new SqlCommand(GetClustersSQL, connection);
 
+            SqlDataReader clustersReader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            while (clustersReader.Read())
+            {
+                Clusters tempCluster = new Clusters();
+                tempCluster.ClusterName = clustersReader["ClusterName"].ToString();
+                clusters.Add(tempCluster);
+
+                tempCluster = null;
+            }
+            connection.Close();
         }
 
+        // Method to read from the Employee table
         private static void ReadEmployee()
         {
-            string GetEmployeeSQL = "SELECT ID, IsAdmin, UserName, Password FROM Employee";
+            connection.Open();
+            string GetEmployeeSQL = "SELECT ID, IsAdmin, UserName, Password, IsCurrent FROM Employee";
             command = new SqlCommand(GetEmployeeSQL, connection);
 
             SqlDataReader employeeReader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -57,8 +79,15 @@ namespace Player_Card_System_CIS411
             {
                 Employee tempEmployee = new Employee();
                 tempEmployee.ID = int.Parse(employeeReader["ID"].ToString());
-                //tempEmployee.IsAdmin = employeeReader["IsAdmin"];
+                tempEmployee.IsAdmin = Convert.ToBoolean(employeeReader["IsAdmin"]);
+                tempEmployee.Username = employeeReader["UserName"].ToString();
+                tempEmployee.Password = employeeReader["Password"].ToString();
+                tempEmployee.IsCurrent = Convert.ToBoolean(employeeReader["IsCurrent"]);
+                employee.Add(tempEmployee);
+
+                tempEmployee = null;
             }
+            connection.Close();
         }
 
         private static void ReadGolf_Rounds()
@@ -66,6 +95,8 @@ namespace Player_Card_System_CIS411
 
         }
 
+
+        // Method to read form the Person table
         private static void ReadPerson()
         {
             connection.Open();
@@ -87,6 +118,7 @@ namespace Player_Card_System_CIS411
             connection.Close();
         }
 
+        // Method to read of the Resident Table
         private static void ReadResident()
         {
             connection.Open();
@@ -113,10 +145,11 @@ namespace Player_Card_System_CIS411
             connection.Close();
         }
 
+        // Method to read from the Transaction table
         private static void ReadTransaction()
         {
             connection.Open();
-            string GetTransactionSQL = "SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID, CardNo FROM Trans_Action";
+            string GetTransactionSQL = "SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID FROM Trans_Action";
             command = new SqlCommand(GetTransactionSQL, connection);
 
             SqlDataReader transactionReader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -130,10 +163,9 @@ namespace Player_Card_System_CIS411
                 tempTransaction.Reason = transactionReader["Reason"].ToString();
                 tempTransaction.TotalRounds = int.Parse(transactionReader["TotalRounds"].ToString());
                 tempTransaction.Comments = transactionReader["Comments"].ToString();
-                tempTransaction.NoEmail = transactionReader["NoEmail"].ToString();
+                tempTransaction.NoEmail = Convert.ToBoolean(transactionReader["NoEmail"]);
                 tempTransaction.EmployeeID = int.Parse(transactionReader["EmployeeID"].ToString());
                 tempTransaction.ResidentID = int.Parse(transactionReader["ResidentID"].ToString());
-                tempTransaction.CardNo = int.Parse(transactionReader["CardNo"].ToString());
                 transaction.Add(tempTransaction);
 
                 tempTransaction = null;
@@ -141,10 +173,14 @@ namespace Player_Card_System_CIS411
             connection.Close();
         }
 
+        // Creates the resident info list that combines info from the
+        // Person, Resident, and Transaction Tables
         private static void CreateResidentInfo()
         {
-            
+            residentInfo.Clear();
             // 69420 FUCK-A-SQL-QUERY BLAZE SHIT LMAO
+            // Combines the needed information from the 
+            // Person and Resident tables into one list
             for (int i = 0; i < person.Count(); i++)
             {
                 for (int j = 0; j < resident.Count(); j++)
@@ -207,7 +243,6 @@ namespace Player_Card_System_CIS411
 
             // Compares new list by ID with the residentInfo list to get the correct
             // number of rounds for that resident
-
             foreach (ResidentInfo res in residentInfo)
             {
                 for (int i = 0; i < getRounds.Count(); i++)
@@ -218,30 +253,52 @@ namespace Player_Card_System_CIS411
                     }
                 }
             }
-            
+            connection.Close();
+        }
 
-            
-            /*DateTime today = DateTime.Today;
-            int result;
-            int todayDay = today.DayOfYear;
-            int dbDay;
+        // Method to write new lines to the Transaction database
+        internal static void SubmitTransaction(Transaction newTransaction)
+        {
+            connection.Open();
+            string InsertTransactionSQL = "INSERT INTO Trans_Action (DateTime, TypeTrans, Reason, TotalRounds, NoEmail, Comments, EmployeeID, ResidentID) " +
+                                          "VALUES (@pDateTime, @pTypeTrans, @pReason, @pTotalRounds, @pNoEmail, @pComments, @pEmployeeID, @pResidentID)";
+            command = new SqlCommand(InsertTransactionSQL, connection);
 
-            for (int i = 0; i < residentInfo.Count(); i++)
+            try
             {
-                for (int j = 0; j < transaction.Count(); j++)
-                {
-                    if (residentInfo[i].ID == transaction[j].ResidentID)
-                    {
-                        dbDay = Convert.ToDateTime(transaction[j].DateTime).DayOfYear;
-                        result = todayDay - dbDay;
+                DateTime date = DateTime.Now;
+                command.Parameters.AddWithValue("@pDateTime", date);
+                command.Parameters.AddWithValue("@pTypeTrans", newTransaction.TypeTrans);
+                command.Parameters.AddWithValue("@pReason", newTransaction.Reason);
+                command.Parameters.AddWithValue("@pTotalRounds", newTransaction.TotalRounds);
+                command.Parameters.AddWithValue("@pNoEmail", "false");
+                command.Parameters.AddWithValue("@pComments", "");
+                command.Parameters.AddWithValue("@pEmployeeID", newTransaction.EmployeeID);
+                command.Parameters.AddWithValue("@pResidentID", newTransaction.ResidentID);
 
-                        result = DateTime.Compare(today, Convert.ToDateTime(transaction[j].DateTime));
-                        Console.WriteLine(result);
-                    }
+                int rowsAffected = command.ExecuteNonQuery();
+                if(rowsAffected > 0)
+                {
+                    Console.WriteLine("Transaction Added");
                 }
-            } */
+                else
+                {
+                    Console.WriteLine("Transaction Failed");
+                }
+                connection.Close();
+                CreateResidentInfo();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could Not Insert Data");
+            }
         }
 
         internal static List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }
+        internal static List<Employee> Employee { get => employee; set => employee = value; }
+        internal static List<Resident> Resident { get => resident; set => resident = value; }
+        internal static List<Transaction> Transaction { get => transaction; set => transaction = value; }
+        internal static List<Clusters> Clusters { get => clusters; set => clusters = value; }
+        internal static List<Person> Person { get => person; set => person = value; }
     }
 }

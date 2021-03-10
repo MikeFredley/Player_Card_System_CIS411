@@ -114,7 +114,8 @@ namespace Player_Card_System_CIS411
             {
                 if (e.RowIndex >= 0)
                 {
-
+                    DeductRounds deductRounds = new DeductRounds(GetIDFromRow(e), this);
+                    deductRounds.Show();
                 }
             }
 
@@ -184,7 +185,7 @@ namespace Player_Card_System_CIS411
                             }
                         }
                         // Checks each value of every column for that row
-                        else if (row.Cells[i].Value.ToString().ToLower().Equals(searchText))
+                        else if (row.Cells[i].Value.ToString().ToLower().IndexOf(searchText) != -1)
                         {
                             // If it matches what the user entered it selects the row and breaks the loop
                             saveIndex.Add(row.Index);
@@ -222,10 +223,15 @@ namespace Player_Card_System_CIS411
 
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        public void RefreshDataTable()
         {
             dt.Rows.Clear();
             AddDataGridRows();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            RefreshDataTable();
         }
     }
 }

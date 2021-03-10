@@ -38,8 +38,8 @@ namespace Player_Card_System_CIS411
             }
             else
             {
-                rowIndexHolder = ID;
-                /*for (int i = 0; i < Database.ResidentInfo.Count; i++)
+                
+                for (int i = 0; i < Database.ResidentInfo.Count; i++)
                 {
                     if (Database.ResidentInfo[i].ID == ID)
                     {
@@ -50,8 +50,9 @@ namespace Player_Card_System_CIS411
                         txtUnit.Text = Database.ResidentInfo[i].UnitNumber.ToString();
                         txtEmail.Text = Database.ResidentInfo[i].Email;
                         txtPhone.Text = Database.ResidentInfo[i].Phone;
+                        rowIndexHolder = i;
                     }
-                } */
+                } 
             }
         }
 
