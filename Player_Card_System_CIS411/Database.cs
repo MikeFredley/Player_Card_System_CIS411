@@ -195,6 +195,9 @@ namespace Player_Card_System_CIS411
                         tempResInfo.UnitNumber = resident[j].UnitNumber;
                         tempResInfo.Email = resident[j].Email;
                         tempResInfo.Phone = resident[j].Phone;
+                        tempResInfo.CommentBox = resident[j].CommentBox;
+                        tempResInfo.CardRelation = resident[j].CardRelation;
+                        tempResInfo.Address = resident[j].Address;
 
                         residentInfo.Add(tempResInfo);
                         tempResInfo = null;
@@ -292,6 +295,68 @@ namespace Player_Card_System_CIS411
             {
                 Console.WriteLine("Could Not Insert Data");
             }
+        }
+
+        // Updates the person and resident tables for the edit account window
+        // I feel like most of this is self explainitory at this point
+        internal static void UpdateResidentPersonTable(int resIndex)
+        {
+            connection.Open();
+            string UpdateResidentSQL = "UPDATE Resident " +
+                                       "SET Address = @pAddress, Email = @pEmail, Phone = @pPhone, CardRelation = @pCardRelation, CommentBox = @pCommentBox, " +
+    /*ClusterName = @pClusterName,*/   "UnitNumber = @pUnitNumber " + 
+                                       "WHERE ID = @pID";
+            command = new SqlCommand(UpdateResidentSQL, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@pID", residentInfo[resIndex].ID);
+                command.Parameters.AddWithValue("@pAddress", residentInfo[resIndex].Address);
+                command.Parameters.AddWithValue("@pEmail", residentInfo[resIndex].Email);
+                command.Parameters.AddWithValue("@pPhone", residentInfo[resIndex].Phone);
+                command.Parameters.AddWithValue("@pCardRelation", ResidentInfo[resIndex].CardRelation);
+                command.Parameters.AddWithValue("@pCommentBox", residentInfo[resIndex].CommentBox);
+             //   command.Parameters.AddWithValue("@pClusterName", residentInfo[resIndex].ClusterName);
+                command.Parameters.AddWithValue("@pUnitNumber", residentInfo[resIndex].UnitNumber);
+
+                int rowsAffected = command.ExecuteNonQuery(); 
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Resident Updated");
+                }
+                else
+                {
+                    Console.WriteLine("Resident Update Failed");
+                }              
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Could Not Update Resident Data" + ex.Message);
+            }
+
+            string UpdatePersonSQL = "UPDATE Person " +
+                                     "SET FirstName = @pFirstName, LastName = @pLastName " +
+                                     "WHERE ID = @pID";
+            command = new SqlCommand(UpdatePersonSQL, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@pID", residentInfo[resIndex].ID);
+                command.Parameters.AddWithValue("@pFirstName", residentInfo[resIndex].FirstName);
+                command.Parameters.AddWithValue("@pLastName", residentInfo[resIndex].LastName);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Person Updated");
+                }
+                else
+                {
+                    Console.WriteLine("Person Update Failed");
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Could Not Update Person Data");
+            }
+            connection.Close();
         }
 
         internal static List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }

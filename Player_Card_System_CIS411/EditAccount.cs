@@ -13,9 +13,16 @@ namespace Player_Card_System_CIS411
     public partial class EditAccount : Form
     {
         int rowIndexHolder;
-        public EditAccount(bool isEdit, int ID)
+        EmployeeWindow employeeWindow;
+        public EditAccount(bool isEdit, int ID, EmployeeWindow pEmployeeWindow)
         {
             InitializeComponent();
+            // Adds every cluster name to the dropdown list
+            foreach (Clusters cluster in Database.Clusters)
+            {
+                cmbCluster.Items.Add(cluster.ClusterName);
+            }
+            employeeWindow = pEmployeeWindow;
             if (!isEdit)
             {
                 this.Text = "Add Account";
@@ -32,13 +39,16 @@ namespace Player_Card_System_CIS411
                 txtPhone.Text = "";
                 txtID.ReadOnly = false;
                 txtID.Text = "";
+                txtAddress.ReadOnly = false;
+                txtAddress.Text = "";
                 btnTransHistory.Visible = false;
+                txtComments.ReadOnly = false;
+                txtComments.Text = "";
                 pictureBox1.Visible = false;
                 btnAddRounds.Visible = false;
             }
             else
-            {
-                
+            {              
                 for (int i = 0; i < Database.ResidentInfo.Count; i++)
                 {
                     if (Database.ResidentInfo[i].ID == ID)
@@ -50,6 +60,9 @@ namespace Player_Card_System_CIS411
                         txtUnit.Text = Database.ResidentInfo[i].UnitNumber.ToString();
                         txtEmail.Text = Database.ResidentInfo[i].Email;
                         txtPhone.Text = Database.ResidentInfo[i].Phone;
+                        txtAddress.Text = Database.ResidentInfo[i].Address;
+                        txtComments.Text = Database.ResidentInfo[i].CommentBox;
+                        lblCurrentBalance.Text = "Current Rounds: " + Database.ResidentInfo[i].CurrentRounds;
                         rowIndexHolder = i;
                     }
                 } 
@@ -79,7 +92,8 @@ namespace Player_Card_System_CIS411
             txtUnit.ReadOnly = false;
             txtEmail.ReadOnly = false;
             txtPhone.ReadOnly = false;
-
+            txtComments.ReadOnly = false;
+            txtAddress.ReadOnly = false;
             btnEditInfo.Visible = false;
             btnSave.Visible = true;
         }
@@ -92,16 +106,21 @@ namespace Player_Card_System_CIS411
             txtUnit.ReadOnly = true;
             txtEmail.ReadOnly = true;
             txtPhone.ReadOnly = true;
-
+            txtComments.ReadOnly = true;
+            txtAddress.ReadOnly = true;
             btnEditInfo.Visible = true;
             btnSave.Visible = false;
 
             Database.ResidentInfo[rowIndexHolder].FirstName = txtFirstName.Text;
             Database.ResidentInfo[rowIndexHolder].LastName = txtLastName.Text;
-            //Database.ResidentInfo[rowIndexHolder].ClusterName = txtFirstName.Text;
+            Database.ResidentInfo[rowIndexHolder].ClusterName = txtFirstName.Text;
             Database.ResidentInfo[rowIndexHolder].UnitNumber = int.Parse(txtUnit.Text);
             Database.ResidentInfo[rowIndexHolder].Email = txtEmail.Text;
             Database.ResidentInfo[rowIndexHolder].Phone = txtPhone.Text;
+            Database.ResidentInfo[rowIndexHolder].CommentBox = txtComments.Text;
+            Database.ResidentInfo[rowIndexHolder].Address = txtAddress.Text;
+            Database.UpdateResidentPersonTable(rowIndexHolder);
+            employeeWindow.RefreshDataTable();
         }
     }
 }

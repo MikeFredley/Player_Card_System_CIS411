@@ -52,15 +52,16 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.lstComments = new System.Windows.Forms.ListBox();
             this.lblComments = new System.Windows.Forms.Label();
-            this.btnAddComment = new System.Windows.Forms.Button();
             this.btnRemoveUser = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvAuthorizedUsers = new System.Windows.Forms.DataGridView();
             this.btnTransHistory = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtComments = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAuthorizedUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,14 +108,14 @@
             this.lblCurrentBalance.AutoSize = true;
             this.lblCurrentBalance.Location = new System.Drawing.Point(12, 364);
             this.lblCurrentBalance.Name = "lblCurrentBalance";
-            this.lblCurrentBalance.Size = new System.Drawing.Size(107, 13);
+            this.lblCurrentBalance.Size = new System.Drawing.Size(105, 13);
             this.lblCurrentBalance.TabIndex = 6;
-            this.lblCurrentBalance.Text = "Current Balance: 000";
+            this.lblCurrentBalance.Text = "Current Rounds: 000";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 80);
+            this.label5.Location = new System.Drawing.Point(12, 79);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 8;
@@ -123,7 +124,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 118);
+            this.label6.Location = new System.Drawing.Point(12, 113);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 9;
@@ -132,7 +133,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 156);
+            this.label7.Location = new System.Drawing.Point(12, 147);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 13);
             this.label7.TabIndex = 10;
@@ -141,7 +142,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 194);
+            this.label8.Location = new System.Drawing.Point(12, 181);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(29, 13);
             this.label8.TabIndex = 11;
@@ -150,7 +151,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 232);
+            this.label9.Location = new System.Drawing.Point(13, 249);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 12;
@@ -159,7 +160,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 270);
+            this.label10.Location = new System.Drawing.Point(12, 283);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 13);
             this.label10.TabIndex = 13;
@@ -176,48 +177,43 @@
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(98, 77);
+            this.txtFirstName.Location = new System.Drawing.Point(98, 76);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.ReadOnly = true;
             this.txtFirstName.Size = new System.Drawing.Size(215, 20);
             this.txtFirstName.TabIndex = 17;
-            this.txtFirstName.Text = "Jody";
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(98, 115);
+            this.txtLastName.Location = new System.Drawing.Point(98, 110);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.ReadOnly = true;
             this.txtLastName.Size = new System.Drawing.Size(215, 20);
             this.txtLastName.TabIndex = 18;
-            this.txtLastName.Text = "Strausser";
             // 
             // txtUnit
             // 
-            this.txtUnit.Location = new System.Drawing.Point(98, 191);
+            this.txtUnit.Location = new System.Drawing.Point(98, 179);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.ReadOnly = true;
             this.txtUnit.Size = new System.Drawing.Size(215, 20);
             this.txtUnit.TabIndex = 20;
-            this.txtUnit.Text = "100";
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(98, 229);
+            this.txtEmail.Location = new System.Drawing.Point(98, 247);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ReadOnly = true;
             this.txtEmail.Size = new System.Drawing.Size(215, 20);
             this.txtEmail.TabIndex = 21;
-            this.txtEmail.Text = "jody@gmail.com";
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(98, 267);
+            this.txtPhone.Location = new System.Drawing.Point(98, 281);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.ReadOnly = true;
             this.txtPhone.Size = new System.Drawing.Size(215, 20);
             this.txtPhone.TabIndex = 22;
-            this.txtPhone.Text = "8675309";
             // 
             // txtID
             // 
@@ -226,7 +222,6 @@
             this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(215, 20);
             this.txtID.TabIndex = 23;
-            this.txtID.Text = "8675309";
             // 
             // chkEmails
             // 
@@ -244,11 +239,10 @@
             // 
             this.cmbCluster.Enabled = false;
             this.cmbCluster.FormattingEnabled = true;
-            this.cmbCluster.Location = new System.Drawing.Point(98, 153);
+            this.cmbCluster.Location = new System.Drawing.Point(98, 144);
             this.cmbCluster.Name = "cmbCluster";
             this.cmbCluster.Size = new System.Drawing.Size(215, 21);
             this.cmbCluster.TabIndex = 25;
-            this.cmbCluster.Text = "Beachtree 1";
             // 
             // btnSave
             // 
@@ -280,14 +274,6 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // lstComments
-            // 
-            this.lstComments.FormattingEnabled = true;
-            this.lstComments.Location = new System.Drawing.Point(340, 281);
-            this.lstComments.Name = "lstComments";
-            this.lstComments.Size = new System.Drawing.Size(247, 173);
-            this.lstComments.TabIndex = 29;
-            // 
             // lblComments
             // 
             this.lblComments.AutoSize = true;
@@ -296,15 +282,6 @@
             this.lblComments.Size = new System.Drawing.Size(56, 13);
             this.lblComments.TabIndex = 30;
             this.lblComments.Text = "Comments";
-            // 
-            // btnAddComment
-            // 
-            this.btnAddComment.Location = new System.Drawing.Point(250, 337);
-            this.btnAddComment.Name = "btnAddComment";
-            this.btnAddComment.Size = new System.Drawing.Size(84, 40);
-            this.btnAddComment.TabIndex = 31;
-            this.btnAddComment.Text = "Add Comment";
-            this.btnAddComment.UseVisualStyleBackColor = true;
             // 
             // btnRemoveUser
             // 
@@ -324,13 +301,13 @@
             this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgvAuthorizedUsers
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(340, 42);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(247, 183);
-            this.dataGridView1.TabIndex = 34;
+            this.dgvAuthorizedUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAuthorizedUsers.Location = new System.Drawing.Point(340, 42);
+            this.dgvAuthorizedUsers.Name = "dgvAuthorizedUsers";
+            this.dgvAuthorizedUsers.Size = new System.Drawing.Size(247, 183);
+            this.dgvAuthorizedUsers.TabIndex = 34;
             // 
             // btnTransHistory
             // 
@@ -350,18 +327,45 @@
             this.pictureBox1.TabIndex = 36;
             this.pictureBox1.TabStop = false;
             // 
+            // txtComments
+            // 
+            this.txtComments.Location = new System.Drawing.Point(340, 281);
+            this.txtComments.Multiline = true;
+            this.txtComments.Name = "txtComments";
+            this.txtComments.ReadOnly = true;
+            this.txtComments.Size = new System.Drawing.Size(247, 173);
+            this.txtComments.TabIndex = 37;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(98, 213);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.ReadOnly = true;
+            this.txtAddress.Size = new System.Drawing.Size(215, 20);
+            this.txtAddress.TabIndex = 38;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 215);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.TabIndex = 39;
+            this.label3.Text = "Address:";
+            // 
             // EditAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 497);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtAddress);
+            this.Controls.Add(this.txtComments);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnTransHistory);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnRemoveUser);
-            this.Controls.Add(this.btnAddComment);
             this.Controls.Add(this.lblComments);
-            this.Controls.Add(this.lstComments);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.cmbCluster);
@@ -385,11 +389,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvAuthorizedUsers);
             this.Name = "EditAccount";
             this.Text = "Edit Account";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditAccount_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAuthorizedUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -421,13 +425,14 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAddUser;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.ListBox lstComments;
         private System.Windows.Forms.Label lblComments;
-        private System.Windows.Forms.Button btnAddComment;
         private System.Windows.Forms.Button btnRemoveUser;
         private System.Windows.Forms.Button btnHelp;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvAuthorizedUsers;
         private System.Windows.Forms.Button btnTransHistory;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txtComments;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.Label label3;
     }
 }

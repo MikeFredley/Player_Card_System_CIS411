@@ -61,9 +61,9 @@ namespace Player_Card_System_CIS411
             deductRoundButton.UseColumnTextForButtonValue = true;
 
             DataGridViewButtonColumn editAccountButton = new DataGridViewButtonColumn();
-            editAccountButton.HeaderText = "Edit Account";
+            editAccountButton.HeaderText = "Details";
             editAccountButton.Name = "btnEditAccount";
-            editAccountButton.Text = "Edit Account";
+            editAccountButton.Text = "Details";
             editAccountButton.UseColumnTextForButtonValue = true;
 
             AddDataGridRows();
@@ -97,7 +97,7 @@ namespace Player_Card_System_CIS411
 
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
-            EditAccount addAccount = new EditAccount(false, 0);
+            EditAccount addAccount = new EditAccount(false, 0, this);
             addAccount.Show();
         }
 
@@ -124,7 +124,7 @@ namespace Player_Card_System_CIS411
             {
                 if (e.RowIndex >= 0)
                 {
-                    EditAccount editScreen = new EditAccount(true, GetIDFromRow(e));
+                    EditAccount editScreen = new EditAccount(true, GetIDFromRow(e), this);
                     editScreen.Show();
                 }
             }
