@@ -48,25 +48,31 @@ namespace Player_Card_System_CIS411
                 btnAddRounds.Visible = false;
             }
             else
-            {              
-                for (int i = 0; i < Database.ResidentInfo.Count; i++)
-                {
-                    if (Database.ResidentInfo[i].ID == ID)
-                    {
-                        txtID.Text = Database.ResidentInfo[i].ID.ToString();
-                        txtFirstName.Text = Database.ResidentInfo[i].FirstName;
-                        txtLastName.Text = Database.ResidentInfo[i].LastName;
-                        cmbCluster.Text = Database.ResidentInfo[i].ClusterName;
-                        txtUnit.Text = Database.ResidentInfo[i].UnitNumber.ToString();
-                        txtEmail.Text = Database.ResidentInfo[i].Email;
-                        txtPhone.Text = Database.ResidentInfo[i].Phone;
-                        txtAddress.Text = Database.ResidentInfo[i].Address;
-                        txtComments.Text = Database.ResidentInfo[i].CommentBox;
-                        lblCurrentBalance.Text = "Current Rounds: " + Database.ResidentInfo[i].CurrentRounds;
-                        rowIndexHolder = i;
-                    }
-                } 
+            {
+                EditWindowRefresh(ID);
             }
+        }
+
+        public void EditWindowRefresh(int ID)
+        {
+            for (int i = 0; i < Database.ResidentInfo.Count; i++)
+            {
+                if (Database.ResidentInfo[i].ID == ID)
+                {
+                    txtID.Text = Database.ResidentInfo[i].ID.ToString();
+                    txtFirstName.Text = Database.ResidentInfo[i].FirstName;
+                    txtLastName.Text = Database.ResidentInfo[i].LastName;
+                    cmbCluster.Text = Database.ResidentInfo[i].ClusterName;
+                    txtUnit.Text = Database.ResidentInfo[i].UnitNumber.ToString();
+                    txtEmail.Text = Database.ResidentInfo[i].Email;
+                    txtPhone.Text = Database.ResidentInfo[i].Phone;
+                    txtAddress.Text = Database.ResidentInfo[i].Address;
+                    txtComments.Text = Database.ResidentInfo[i].CommentBox;
+                    lblCurrentBalance.Text = "Current Rounds: " + Database.ResidentInfo[i].CurrentRounds;
+                    rowIndexHolder = i;
+                }
+            }
+            employeeWindow.RefreshDataTable();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -81,7 +87,8 @@ namespace Player_Card_System_CIS411
 
         private void btnAddRounds_Click(object sender, EventArgs e)
         {
-
+            AddRounds addRoundWindow = new AddRounds(Database.ResidentInfo[rowIndexHolder].CurrentRounds, Database.ResidentInfo[rowIndexHolder].ID, this);
+            addRoundWindow.Show();
         }
 
         private void btnEditInfo_Click(object sender, EventArgs e)

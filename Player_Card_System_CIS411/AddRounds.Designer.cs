@@ -39,8 +39,9 @@
             this.dgvAddRounds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAddRounds.Location = new System.Drawing.Point(12, 12);
             this.dgvAddRounds.Name = "dgvAddRounds";
-            this.dgvAddRounds.Size = new System.Drawing.Size(720, 215);
+            this.dgvAddRounds.Size = new System.Drawing.Size(639, 215);
             this.dgvAddRounds.TabIndex = 0;
+            this.dgvAddRounds.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAddRounds_CellClick);
             // 
             // btnTransactionDetails
             // 
@@ -53,18 +54,19 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(617, 233);
+            this.btnExit.Location = new System.Drawing.Point(536, 233);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(115, 29);
             this.btnExit.TabIndex = 2;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // AddRounds
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 274);
+            this.ClientSize = new System.Drawing.Size(663, 274);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnTransactionDetails);
             this.Controls.Add(this.dgvAddRounds);

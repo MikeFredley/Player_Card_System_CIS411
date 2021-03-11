@@ -19,6 +19,7 @@ namespace Player_Card_System_CIS411
         private static List<Transaction> transaction;
         private static List<ResidentInfo> residentInfo;
         private static List<Clusters> clusters;
+        private static List<GolfRounds> golfRounds;
 
         static Database()
         {
@@ -29,6 +30,7 @@ namespace Player_Card_System_CIS411
             residentInfo = new List<ResidentInfo>();
             employee = new List<Employee>();
             clusters = new List<Clusters>();
+            golfRounds = new List<GolfRounds>();
             try
             {
                 connection = new SqlConnection(connectionString);
@@ -39,6 +41,7 @@ namespace Player_Card_System_CIS411
                 CreateResidentInfo();
                 ReadEmployee();
                 ReadClusters();
+                ReadGolf_Rounds();
             }
             catch(Exception ex)
             {
@@ -92,7 +95,24 @@ namespace Player_Card_System_CIS411
 
         private static void ReadGolf_Rounds()
         {
+            connection.Open();
+            string GetGolfRoundsSQL = "SELECT Years, TotalRounds, PackageType, CostPerRound FROM Golf_Rounds";
+            command = new SqlCommand(GetGolfRoundsSQL, connection);
 
+            SqlDataReader golfRoundsReader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            while (golfRoundsReader.Read())
+            {
+                GolfRounds tempRounds = new GolfRounds();
+                tempRounds.Year = golfRoundsReader["Years"].ToString();
+                tempRounds.TotalRounds = int.Parse(golfRoundsReader["TotalRounds"].ToString());
+                tempRounds.PackageType = golfRoundsReader["PackageType"].ToString();
+                tempRounds.CostPerRound = Convert.ToDecimal(golfRoundsReader["CostPerRound"].ToString());
+                golfRounds.Add(tempRounds);
+
+                tempRounds = null;
+            }
+            connection.Close();
         }
 
 
@@ -365,5 +385,6 @@ namespace Player_Card_System_CIS411
         internal static List<Transaction> Transaction { get => transaction; set => transaction = value; }
         internal static List<Clusters> Clusters { get => clusters; set => clusters = value; }
         internal static List<Person> Person { get => person; set => person = value; }
+        internal static List<GolfRounds> GolfRounds { get => golfRounds; set => golfRounds = value; }
     }
 }

@@ -158,7 +158,6 @@ namespace Player_Card_System_CIS411
 
             try
             {
-
                 // Goes through every row in the datagridview
                 foreach (DataGridViewRow row in dgvResidentInfo.Rows)
                 {
@@ -213,14 +212,11 @@ namespace Player_Card_System_CIS411
                             Database.ResidentInfo[saveIndex[i]].Email, Database.ResidentInfo[saveIndex[i]].Phone, Database.ResidentInfo[saveIndex[i]].CurrentRounds);
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         public void RefreshDataTable()
