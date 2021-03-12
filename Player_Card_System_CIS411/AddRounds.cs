@@ -22,6 +22,12 @@ namespace Player_Card_System_CIS411
             this.Close();
         }
 
+        private void btnTransactionHistory_Click(object sender, EventArgs e)
+        {
+            TransactionHistory transactionWindow = new TransactionHistory(ID);
+            transactionWindow.Show();
+        }
+
         public AddRounds(int pCurrentRounds, int pID, EditAccount pEditAccount)
         {
             currentRounds = pCurrentRounds;

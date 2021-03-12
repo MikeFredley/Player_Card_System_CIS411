@@ -318,13 +318,13 @@ namespace Player_Card_System_CIS411
         }
 
         // Updates the person and resident tables for the edit account window
-        // I feel like most of this is self explainitory at this point
+        // I feel like most of this is self explanatory at this point
         internal static void UpdateResidentPersonTable(int resIndex)
         {
             connection.Open();
             string UpdateResidentSQL = "UPDATE Resident " +
                                        "SET Address = @pAddress, Email = @pEmail, Phone = @pPhone, CardRelation = @pCardRelation, CommentBox = @pCommentBox, " +
-    /*ClusterName = @pClusterName,*/   "UnitNumber = @pUnitNumber " + 
+   /*ClusterName = @pClusterName,*/    "UnitNumber = @pUnitNumber " + 
                                        "WHERE ID = @pID";
             command = new SqlCommand(UpdateResidentSQL, connection);
             try
@@ -335,7 +335,7 @@ namespace Player_Card_System_CIS411
                 command.Parameters.AddWithValue("@pPhone", residentInfo[resIndex].Phone);
                 command.Parameters.AddWithValue("@pCardRelation", ResidentInfo[resIndex].CardRelation);
                 command.Parameters.AddWithValue("@pCommentBox", residentInfo[resIndex].CommentBox);
-             //   command.Parameters.AddWithValue("@pClusterName", residentInfo[resIndex].ClusterName);
+         //       command.Parameters.AddWithValue("@pClusterName", residentInfo[resIndex].ClusterName);
                 command.Parameters.AddWithValue("@pUnitNumber", residentInfo[resIndex].UnitNumber);
 
                 int rowsAffected = command.ExecuteNonQuery(); 
@@ -377,6 +377,13 @@ namespace Player_Card_System_CIS411
                 Console.WriteLine("Could Not Update Person Data");
             }
             connection.Close();
+        }
+
+        internal static void AddResident()
+        {
+            // Add first name and last name to person table
+            // Read from person table to get the new ID where the name was added
+            // use that ID and insert rest of information into Resident table
         }
 
         internal static List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }

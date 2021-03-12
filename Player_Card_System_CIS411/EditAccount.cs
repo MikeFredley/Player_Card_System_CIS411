@@ -14,8 +14,10 @@ namespace Player_Card_System_CIS411
     {
         int rowIndexHolder;
         EmployeeWindow employeeWindow;
-        public EditAccount(bool isEdit, int ID, EmployeeWindow pEmployeeWindow)
+        bool isEdit;
+        public EditAccount(bool pIsEdit, int ID, EmployeeWindow pEmployeeWindow)
         {
+            isEdit = pIsEdit;
             InitializeComponent();
             // Adds every cluster name to the dropdown list
             foreach (Clusters cluster in Database.Clusters)
@@ -46,6 +48,8 @@ namespace Player_Card_System_CIS411
                 txtComments.Text = "";
                 pictureBox1.Visible = false;
                 btnAddRounds.Visible = false;
+                btnEditInfo.Visible = false;
+                btnSave.Visible = true;
             }
             else
             {
@@ -93,6 +97,7 @@ namespace Player_Card_System_CIS411
 
         private void btnEditInfo_Click(object sender, EventArgs e)
         {
+            txtID.ReadOnly = false;
             txtFirstName.ReadOnly = false;
             txtLastName.ReadOnly = false;
             cmbCluster.Enabled = true;
@@ -107,6 +112,7 @@ namespace Player_Card_System_CIS411
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            txtID.ReadOnly = true;
             txtFirstName.ReadOnly = true;
             txtLastName.ReadOnly = true;
             cmbCluster.Enabled = false;
@@ -118,16 +124,29 @@ namespace Player_Card_System_CIS411
             btnEditInfo.Visible = true;
             btnSave.Visible = false;
 
-            Database.ResidentInfo[rowIndexHolder].FirstName = txtFirstName.Text;
-            Database.ResidentInfo[rowIndexHolder].LastName = txtLastName.Text;
-            Database.ResidentInfo[rowIndexHolder].ClusterName = txtFirstName.Text;
-            Database.ResidentInfo[rowIndexHolder].UnitNumber = int.Parse(txtUnit.Text);
-            Database.ResidentInfo[rowIndexHolder].Email = txtEmail.Text;
-            Database.ResidentInfo[rowIndexHolder].Phone = txtPhone.Text;
-            Database.ResidentInfo[rowIndexHolder].CommentBox = txtComments.Text;
-            Database.ResidentInfo[rowIndexHolder].Address = txtAddress.Text;
-            Database.UpdateResidentPersonTable(rowIndexHolder);
-            employeeWindow.RefreshDataTable();
+            if (!isEdit)
+            {
+                
+            }
+            else
+            {
+                Database.ResidentInfo[rowIndexHolder].FirstName = txtFirstName.Text;
+                Database.ResidentInfo[rowIndexHolder].LastName = txtLastName.Text;
+                Database.ResidentInfo[rowIndexHolder].ClusterName = txtFirstName.Text;
+                Database.ResidentInfo[rowIndexHolder].UnitNumber = int.Parse(txtUnit.Text);
+                Database.ResidentInfo[rowIndexHolder].Email = txtEmail.Text;
+                Database.ResidentInfo[rowIndexHolder].Phone = txtPhone.Text;
+                Database.ResidentInfo[rowIndexHolder].CommentBox = txtComments.Text;
+                Database.ResidentInfo[rowIndexHolder].Address = txtAddress.Text;
+                Database.UpdateResidentPersonTable(rowIndexHolder);
+                employeeWindow.RefreshDataTable();
+            } 
+        }
+
+        private void btnTransHistory_Click(object sender, EventArgs e)
+        {
+            TransactionHistory transactionWindow = new TransactionHistory(Database.ResidentInfo[rowIndexHolder].ID);
+            transactionWindow.Show();
         }
     }
 }

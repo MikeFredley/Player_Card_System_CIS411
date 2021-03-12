@@ -37,8 +37,6 @@ namespace Player_Card_System_CIS411
             this.dgvResidentInfo = new System.Windows.Forms.DataGridView();
             this.btnAddAccount = new System.Windows.Forms.Button();
             this.btnAdmin = new System.Windows.Forms.Button();
-            this.btnEditTest = new System.Windows.Forms.Button();
-            this.btnUseTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResidentInfo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,33 +115,11 @@ namespace Player_Card_System_CIS411
             this.btnAdmin.UseVisualStyleBackColor = true;
             this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
             // 
-            // btnEditTest
-            // 
-            this.btnEditTest.Location = new System.Drawing.Point(727, 18);
-            this.btnEditTest.Name = "btnEditTest";
-            this.btnEditTest.Size = new System.Drawing.Size(75, 23);
-            this.btnEditTest.TabIndex = 27;
-            this.btnEditTest.Text = "Edit";
-            this.btnEditTest.UseVisualStyleBackColor = true;
-            this.btnEditTest.Click += new System.EventHandler(this.btnEditTest_Click);
-            // 
-            // btnUseTest
-            // 
-            this.btnUseTest.Location = new System.Drawing.Point(636, 18);
-            this.btnUseTest.Name = "btnUseTest";
-            this.btnUseTest.Size = new System.Drawing.Size(75, 23);
-            this.btnUseTest.TabIndex = 28;
-            this.btnUseTest.Text = "Use Rounds";
-            this.btnUseTest.UseVisualStyleBackColor = true;
-            this.btnUseTest.Click += new System.EventHandler(this.btnUseTest_Click);
-            // 
             // EmployeeWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 414);
-            this.Controls.Add(this.btnUseTest);
-            this.Controls.Add(this.btnEditTest);
             this.Controls.Add(this.btnAdmin);
             this.Controls.Add(this.btnAddAccount);
             this.Controls.Add(this.dgvResidentInfo);
@@ -172,7 +148,5 @@ namespace Player_Card_System_CIS411
         private System.Windows.Forms.DataGridView dgvResidentInfo;
         private System.Windows.Forms.Button btnAddAccount;
         private System.Windows.Forms.Button btnAdmin;
-        private System.Windows.Forms.Button btnEditTest;
-        private System.Windows.Forms.Button btnUseTest;
     }
 }

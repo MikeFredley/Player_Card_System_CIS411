@@ -317,6 +317,7 @@
             this.btnTransHistory.TabIndex = 35;
             this.btnTransHistory.Text = "View Transaction History";
             this.btnTransHistory.UseVisualStyleBackColor = true;
+            this.btnTransHistory.Click += new System.EventHandler(this.btnTransHistory_Click);
             // 
             // pictureBox1
             // 
