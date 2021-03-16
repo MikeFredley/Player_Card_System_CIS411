@@ -468,6 +468,7 @@ namespace Player_Card_System_CIS411
             }
             return 0;
         }
+
         private static void ReadAdditionalAuthorizedUsers()
         {
             connection.Open();
@@ -487,6 +488,105 @@ namespace Player_Card_System_CIS411
                 newUser = null;
             }
             connection.Close();
+        }
+
+        internal static bool Login(string pUserName, string pPassword)
+        {
+            SqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT ID FROM EMPLOYEE WHERE UserName=@UserName AND Password=@Password";
+            command.Parameters.AddWithValue("@UserName", pUserName);
+            command.Parameters.AddWithValue("@Password", PasswordEncrypt.hash(pPassword));
+            connection.Open();
+            var result = command.ExecuteScalar();
+            connection.Close();
+
+            if (result != null)
+            {
+                connection.Open();
+                command.CommandText = "SELECT ID FROM EMPLOYEE WHERE ID=@ID";
+                command.Parameters.AddWithValue("@ID", result.ToString());
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    connection.Close();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        internal static void AddNewEmployee(Person newPerson, Employee newEmployee)
+        {
+
+            // Add new Person
+            connection.Open();
+            string InsertToPersonSQL = "INSERT INTO Person (FirstName, LastName) " +
+                                       "VALUES (@pFirstName, @pLastName)";
+            command = new SqlCommand(InsertToPersonSQL, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@pFirstName", newPerson.FirstName);
+                command.Parameters.AddWithValue("@pLastName", newPerson.LastName);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Inserted New Person");
+                }
+                else
+                {
+                    Console.WriteLine("New Person Insert Failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could Not Insert Into Person " + ex.Message);
+            }
+            connection.Close();
+            // Read from person to get new ID
+            ReadPerson();
+            int ID = 0;
+            bool canContinue = false;
+            for (int i = 0; i < person.Count; i++)
+            {
+                if (person[i].FirstName == newPerson.FirstName && person[i].LastName == newPerson.LastName)
+                {
+                    ID = person[i].ID;
+                    canContinue = true;
+                }
+            }    
+            // Use new ID to add to Employee
+            if (canContinue)
+            {
+                command = connection.CreateCommand();
+                command.CommandText = "INSERT INTO EMPLOYEE (ID, UserName, Password, IsAdmin, IsCurrent) VALUES (@pID, @pUserName, @pPassword, @pIsAdmin, @pIsCurrent)";
+                command.Parameters.AddWithValue("@pID", ID);
+                command.Parameters.AddWithValue("@pUserName", newEmployee.Username);
+                command.Parameters.AddWithValue("@pPassword", PasswordEncrypt.hash(newEmployee.Password));
+                command.Parameters.AddWithValue("@pIsAdmin", newEmployee.IsAdmin.ToString());
+                command.Parameters.AddWithValue("@pIsCurrent", newEmployee.IsCurrent.ToString());
+                connection.Open();
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    Console.WriteLine("Employee Inserted");
+                }
+                else
+                {
+                    Console.WriteLine("Error Adding to Employee");
+                }
+                connection.Close();
+            }
+            else
+            {
+                Console.WriteLine("New ID Does Not Exist In Person");
+            }
         }
 
         internal static List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }

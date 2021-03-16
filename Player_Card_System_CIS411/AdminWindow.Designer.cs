@@ -34,6 +34,7 @@
             this.btnExportTransactions = new System.Windows.Forms.Button();
             this.btnResetSeason = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnViewEmployees = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBackup
@@ -91,11 +92,22 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // btnViewEmployees
+            // 
+            this.btnViewEmployees.Location = new System.Drawing.Point(40, 163);
+            this.btnViewEmployees.Name = "btnViewEmployees";
+            this.btnViewEmployees.Size = new System.Drawing.Size(83, 49);
+            this.btnViewEmployees.TabIndex = 2;
+            this.btnViewEmployees.Text = "View Employees";
+            this.btnViewEmployees.UseVisualStyleBackColor = true;
+            this.btnViewEmployees.Click += new System.EventHandler(this.btnViewEmployees_Click);
+            // 
             // AdminWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 151);
+            this.ClientSize = new System.Drawing.Size(364, 224);
+            this.Controls.Add(this.btnViewEmployees);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnResetSeason);
             this.Controls.Add(this.btnExportTransactions);
@@ -118,5 +130,6 @@
         private System.Windows.Forms.Button btnExportTransactions;
         private System.Windows.Forms.Button btnResetSeason;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnViewEmployees;
     }
 }

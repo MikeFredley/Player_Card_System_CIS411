@@ -26,5 +26,11 @@ namespace Player_Card_System_CIS411
         {
 
         }
+
+        private void btnViewEmployees_Click(object sender, EventArgs e)
+        {
+            EmployeeViewer employeeViewer = new EmployeeViewer();
+            employeeViewer.Show();
+        }
     }
 }

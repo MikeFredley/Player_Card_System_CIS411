@@ -55,6 +55,12 @@
       <DependentUpon>AddAuthorizedUser.cs</DependentUpon>
     </Compile>
     <Compile Include="AdditionalAuthorizedUsers.cs" />
+    <Compile Include="AddNewEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewEmployee.Designer.cs">
+      <DependentUpon>AddNewEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddRounds.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,12 @@
       <DependentUpon>EditAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeViewer.Designer.cs">
+      <DependentUpon>EmployeeViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +114,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OceanVillagePlayerCardDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PasswordEncrypt.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Receipt.cs" />
     <Compile Include="Resident.cs" />
@@ -124,6 +137,9 @@
     <EmbeddedResource Include="AddAuthorizedUser.resx">
       <DependentUpon>AddAuthorizedUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddNewEmployee.resx">
+      <DependentUpon>AddNewEmployee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddRounds.resx">
       <DependentUpon>AddRounds.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditAccount.resx">
       <DependentUpon>EditAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeViewer.resx">
+      <DependentUpon>EmployeeViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeWindow.resx">
       <DependentUpon>EmployeeWindow.cs</DependentUpon>
