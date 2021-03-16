@@ -70,7 +70,7 @@
             this.Controls.Add(this.btnEmail);
             this.Controls.Add(this.dgvTransactionHistory);
             this.Name = "TransactionHistory";
-            this.Text = "TransactionHistory";
+            this.Text = "Transaction History";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionHistory)).EndInit();
             this.ResumeLayout(false);
 

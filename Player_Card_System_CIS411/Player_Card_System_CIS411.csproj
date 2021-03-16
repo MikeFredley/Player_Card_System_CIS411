@@ -48,6 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAuthorizedUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAuthorizedUser.Designer.cs">
+      <DependentUpon>AddAuthorizedUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdditionalAuthorizedUsers.cs" />
     <Compile Include="AddRounds.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +121,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddAuthorizedUser.resx">
+      <DependentUpon>AddAuthorizedUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddRounds.resx">
       <DependentUpon>AddRounds.cs</DependentUpon>
     </EmbeddedResource>

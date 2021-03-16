@@ -20,6 +20,7 @@ namespace Player_Card_System_CIS411
         private static List<ResidentInfo> residentInfo;
         private static List<Clusters> clusters;
         private static List<GolfRounds> golfRounds;
+        private static List<AdditionalAuthorizedUsers> authorizedUsers;
 
         static Database()
         {
@@ -31,6 +32,7 @@ namespace Player_Card_System_CIS411
             employee = new List<Employee>();
             clusters = new List<Clusters>();
             golfRounds = new List<GolfRounds>();
+            authorizedUsers = new List<AdditionalAuthorizedUsers>();
             try
             {
                 connection = new SqlConnection(connectionString);
@@ -42,6 +44,7 @@ namespace Player_Card_System_CIS411
                 ReadEmployee();
                 ReadClusters();
                 ReadGolf_Rounds();
+                ReadAdditionalAuthorizedUsers();
             }
             catch(Exception ex)
             {
@@ -465,6 +468,26 @@ namespace Player_Card_System_CIS411
             }
             return 0;
         }
+        private static void ReadAdditionalAuthorizedUsers()
+        {
+            connection.Open();
+            string ReadAuthorizedUsersSQL = "SELECT OwnerID, FirstName, LastName FROM Additional_Authorized_Users";
+
+            command = new SqlCommand(ReadAuthorizedUsersSQL, connection);
+
+            SqlDataReader authorizedReader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            while (authorizedReader.Read())
+            {
+                AdditionalAuthorizedUsers newUser = new AdditionalAuthorizedUsers();
+                newUser.OwnerID = int.Parse(authorizedReader["OwnerID"].ToString());
+                newUser.FirstName = authorizedReader["FirstName"].ToString();
+                newUser.LastName = authorizedReader["LastName"].ToString();
+                authorizedUsers.Add(newUser);
+                newUser = null;
+            }
+            connection.Close();
+        }
 
         internal static List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }
         internal static List<Employee> Employee { get => employee; set => employee = value; }
@@ -473,5 +496,6 @@ namespace Player_Card_System_CIS411
         internal static List<Clusters> Clusters { get => clusters; set => clusters = value; }
         internal static List<Person> Person { get => person; set => person = value; }
         internal static List<GolfRounds> GolfRounds { get => golfRounds; set => golfRounds = value; }
+        internal static List<AdditionalAuthorizedUsers> AuthorizedUsers { get => authorizedUsers; set => authorizedUsers = value; }
     }
 }

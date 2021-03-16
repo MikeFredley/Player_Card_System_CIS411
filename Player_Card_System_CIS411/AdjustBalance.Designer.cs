@@ -162,7 +162,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "AdjustBalance";
-            this.Text = "AdjustBalance";
+            this.Text = "Adjust Balance";
             ((System.ComponentModel.ISupportInitialize)(this.txtNumRounds)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
