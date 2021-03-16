@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditAccount));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnEditInfo = new System.Windows.Forms.Button();
@@ -57,13 +56,11 @@
             this.btnHelp = new System.Windows.Forms.Button();
             this.dgvAuthorizedUsers = new System.Windows.Forms.DataGridView();
             this.btnTransHistory = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtComments = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAdjustBalance = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuthorizedUsers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -265,6 +262,7 @@
             this.btnAddUser.TabIndex = 27;
             this.btnAddUser.Text = "Add User";
             this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // btnExit
             // 
@@ -321,15 +319,6 @@
             this.btnTransHistory.UseVisualStyleBackColor = true;
             this.btnTransHistory.Click += new System.EventHandler(this.btnTransHistory_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(340, 42);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(247, 78);
-            this.pictureBox1.TabIndex = 36;
-            this.pictureBox1.TabStop = false;
-            // 
             // txtComments
             // 
             this.txtComments.Location = new System.Drawing.Point(340, 281);
@@ -375,7 +364,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtComments);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnTransHistory);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnRemoveUser);
@@ -408,7 +396,6 @@
             this.Text = "Edit Account";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditAccount_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuthorizedUsers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,7 +431,6 @@
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.DataGridView dgvAuthorizedUsers;
         private System.Windows.Forms.Button btnTransHistory;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txtComments;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label3;

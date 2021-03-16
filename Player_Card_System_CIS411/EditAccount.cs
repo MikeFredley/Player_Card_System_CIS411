@@ -39,18 +39,20 @@ namespace Player_Card_System_CIS411
                 txtEmail.Text = "";
                 txtPhone.ReadOnly = false;
                 txtPhone.Text = "";
-                txtID.ReadOnly = false;
+              //  txtID.ReadOnly = false;
                 txtID.Text = "";
                 txtAddress.ReadOnly = false;
                 txtAddress.Text = "";
                 btnTransHistory.Visible = false;
                 txtComments.ReadOnly = false;
-                txtComments.Text = "";
-                pictureBox1.Visible = false;
+                txtComments.Text = "";               
                 btnAddRounds.Visible = false;
                 btnEditInfo.Visible = false;
                 chkEmails.Enabled = true;
                 btnSave.Visible = true;
+                btnAdjustBalance.Visible = false;
+                btnAddUser.Visible = false;
+                btnRemoveUser.Visible = false;
             }
             else
             {
@@ -133,7 +135,24 @@ namespace Player_Card_System_CIS411
 
             if (!isEdit)
             {
-                
+                // If it is the add person window then the su
+                ResidentInfo newResident = new ResidentInfo();
+                newResident.FirstName = txtFirstName.Text;
+                newResident.LastName = txtLastName.Text;
+                newResident.ClusterName = cmbCluster.Text;
+                newResident.UnitNumber = int.Parse(txtUnit.Text);
+                newResident.Email = txtEmail.Text;
+                newResident.Phone = txtPhone.Text;
+                newResident.CommentBox = txtComments.Text;
+                newResident.Address = txtAddress.Text;
+                newResident.NoEmail = chkEmails.Checked;
+                int ID = Database.AddResident(newResident);
+                this.EditWindowRefresh(ID);
+                isEdit = true;
+                btnAdjustBalance.Visible = true;
+                btnAddUser.Visible = true;
+                btnRemoveUser.Visible = true;
+                btnAddRounds.Visible = true;
             }
             else
             {
@@ -176,6 +195,11 @@ namespace Player_Card_System_CIS411
         {
             AdjustBalance adjustBalance = new AdjustBalance(Database.ResidentInfo[rowIndexHolder].CurrentRounds, Database.ResidentInfo[rowIndexHolder].ID, IsEmail(), this);
             adjustBalance.Show();
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

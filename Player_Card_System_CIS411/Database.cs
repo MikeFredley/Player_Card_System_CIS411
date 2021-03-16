@@ -119,6 +119,7 @@ namespace Player_Card_System_CIS411
         // Method to read form the Person table
         private static void ReadPerson()
         {
+            person.Clear();
             connection.Open();
             string GetPersonSQL = "SELECT ID, FirstName, LastName FROM Person";
             command = new SqlCommand(GetPersonSQL, connection);
@@ -141,6 +142,7 @@ namespace Player_Card_System_CIS411
         // Method to read of the Resident Table
         private static void ReadResident()
         {
+            resident.Clear();
             connection.Open();
             string GetResidentSQL = "SELECT ID, Address, Email, Phone, CommentBox, NoEmail, ClusterName, UnitNumber FROM Resident";
             command = new SqlCommand(GetResidentSQL, connection);
@@ -198,7 +200,6 @@ namespace Player_Card_System_CIS411
         private static void CreateResidentInfo()
         {
             residentInfo.Clear();
-            // 69420 FUCK-A-SQL-QUERY BLAZE SHIT LMAO
             // Combines the needed information from the 
             // Person and Resident tables into one list
             for (int i = 0; i < person.Count(); i++)
@@ -313,7 +314,7 @@ namespace Player_Card_System_CIS411
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Could Not Insert Data");
+                Console.WriteLine("Could Not Insert Data " + ex.Message);
             }
         }
 
@@ -374,16 +375,95 @@ namespace Player_Card_System_CIS411
             }
             catch(Exception ex)
             {
-                Console.WriteLine("Could Not Update Person Data");
+                Console.WriteLine("Could Not Update Person Data " + ex.Message);
             }
             connection.Close();
         }
 
-        internal static void AddResident()
+        internal static int AddResident(ResidentInfo newResident)
         {
             // Add first name and last name to person table
+            connection.Open();
+            string InsertToPersonSQL = "INSERT INTO Person (FirstName, LastName) " +
+                                       "VALUES (@pFirstName, @pLastName)";
+            command = new SqlCommand(InsertToPersonSQL, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@pFirstName", newResident.FirstName);
+                command.Parameters.AddWithValue("@pLastName", newResident.LastName);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Inserted New Person");
+                }
+                else
+                {
+                    Console.WriteLine("New Person Insert Failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could Not Insert Into Person " + ex.Message);
+            }
+            connection.Close();
+
             // Read from person table to get the new ID where the name was added
+            ReadPerson();
+            int ID = 0;
+            bool canContinue = false;
+            for (int i = 0; i < person.Count; i++)
+            {
+                if (person[i].FirstName == newResident.FirstName && person[i].LastName == newResident.LastName)
+                {
+                    ID = person[i].ID;
+                    canContinue = true;
+                }
+            }
+
             // use that ID and insert rest of information into Resident table
+            if (canContinue)
+            {
+                connection.Open();
+                string InsertToResidentSQL = "INSERT INTO Resident (ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName) " +
+                                             "VALUES (@pID, @pAddress, @pEmail, @pPhone, @pCommentBox, @pUnitNumber, @pNoEmail, @pClusterName) ";
+                                             
+                command = new SqlCommand(InsertToResidentSQL, connection);
+                try
+                {
+                    command.Parameters.AddWithValue("@pID", ID);
+                    command.Parameters.AddWithValue("@pAddress", newResident.Address);
+                    command.Parameters.AddWithValue("@pEmail", newResident.Email);
+                    command.Parameters.AddWithValue("@pPhone", newResident.Phone);
+                    command.Parameters.AddWithValue("@pCommentBox", newResident.CommentBox);
+                    command.Parameters.AddWithValue("@pUnitNumber", newResident.UnitNumber);
+                    command.Parameters.AddWithValue("@pNoEmail", newResident.NoEmail.ToString());
+                    command.Parameters.AddWithValue("@pClusterName", newResident.ClusterName);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Inserted New Resident");
+                        connection.Close();
+                        ReadResident();
+                        CreateResidentInfo();
+                        return ID;
+                    }
+                    else
+                    {
+                        Console.WriteLine("New Resident Insert Failed");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Could Not Insert Into Resident " + ex.Message);
+                    connection.Close();
+                }
+                connection.Close();
+            }
+            else
+            {
+                Console.WriteLine("New ID Does Not Exist In Person");
+            }
+            return 0;
         }
 
         internal static List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }
