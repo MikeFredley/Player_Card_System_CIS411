@@ -95,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 149);
+            this.ClientSize = new System.Drawing.Size(364, 151);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnResetSeason);
             this.Controls.Add(this.btnExportTransactions);

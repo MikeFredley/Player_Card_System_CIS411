@@ -24,6 +24,8 @@ namespace Player_Card_System_CIS411 {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class OceanVillagePlayerCardDataSet : global::System.Data.DataSet {
         
+        private ADDITIONAL_AUTHORIZED_USERSDataTable tableADDITIONAL_AUTHORIZED_USERS;
+        
         private CLUSTERSDataTable tableCLUSTERS;
         
         private EMPLOYEEDataTable tableEMPLOYEE;
@@ -35,6 +37,8 @@ namespace Player_Card_System_CIS411 {
         private RESIDENTDataTable tableRESIDENT;
         
         private TRANS_ACTIONDataTable tableTRANS_ACTION;
+        
+        private global::System.Data.DataRelation relationADDITIONAL_AUTHORIZED_USERS_FK;
         
         private global::System.Data.DataRelation relationEMPLOYEE_PERSON_FK;
         
@@ -74,6 +78,9 @@ namespace Player_Card_System_CIS411 {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
+                if ((ds.Tables["ADDITIONAL_AUTHORIZED_USERS"] != null)) {
+                    base.Tables.Add(new ADDITIONAL_AUTHORIZED_USERSDataTable(ds.Tables["ADDITIONAL_AUTHORIZED_USERS"]));
+                }
                 if ((ds.Tables["CLUSTERS"] != null)) {
                     base.Tables.Add(new CLUSTERSDataTable(ds.Tables["CLUSTERS"]));
                 }
@@ -108,6 +115,16 @@ namespace Player_Card_System_CIS411 {
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
             base.Tables.CollectionChanged += schemaChangedHandler;
             this.Relations.CollectionChanged += schemaChangedHandler;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public ADDITIONAL_AUTHORIZED_USERSDataTable ADDITIONAL_AUTHORIZED_USERS {
+            get {
+                return this.tableADDITIONAL_AUTHORIZED_USERS;
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -237,6 +254,9 @@ namespace Player_Card_System_CIS411 {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
+                if ((ds.Tables["ADDITIONAL_AUTHORIZED_USERS"] != null)) {
+                    base.Tables.Add(new ADDITIONAL_AUTHORIZED_USERSDataTable(ds.Tables["ADDITIONAL_AUTHORIZED_USERS"]));
+                }
                 if ((ds.Tables["CLUSTERS"] != null)) {
                     base.Tables.Add(new CLUSTERSDataTable(ds.Tables["CLUSTERS"]));
                 }
@@ -288,6 +308,12 @@ namespace Player_Card_System_CIS411 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars(bool initTable) {
+            this.tableADDITIONAL_AUTHORIZED_USERS = ((ADDITIONAL_AUTHORIZED_USERSDataTable)(base.Tables["ADDITIONAL_AUTHORIZED_USERS"]));
+            if ((initTable == true)) {
+                if ((this.tableADDITIONAL_AUTHORIZED_USERS != null)) {
+                    this.tableADDITIONAL_AUTHORIZED_USERS.InitVars();
+                }
+            }
             this.tableCLUSTERS = ((CLUSTERSDataTable)(base.Tables["CLUSTERS"]));
             if ((initTable == true)) {
                 if ((this.tableCLUSTERS != null)) {
@@ -324,6 +350,7 @@ namespace Player_Card_System_CIS411 {
                     this.tableTRANS_ACTION.InitVars();
                 }
             }
+            this.relationADDITIONAL_AUTHORIZED_USERS_FK = this.Relations["ADDITIONAL_AUTHORIZED_USERS_FK"];
             this.relationEMPLOYEE_PERSON_FK = this.Relations["EMPLOYEE_PERSON_FK"];
             this.relationRESIDENT_CLUSTERS_FK = this.Relations["RESIDENT_CLUSTERS_FK"];
             this.relationRESIDENT_PERSON_FK = this.Relations["RESIDENT_PERSON_FK"];
@@ -339,6 +366,8 @@ namespace Player_Card_System_CIS411 {
             this.Namespace = "http://tempuri.org/OceanVillagePlayerCardDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
+            this.tableADDITIONAL_AUTHORIZED_USERS = new ADDITIONAL_AUTHORIZED_USERSDataTable();
+            base.Tables.Add(this.tableADDITIONAL_AUTHORIZED_USERS);
             this.tableCLUSTERS = new CLUSTERSDataTable();
             base.Tables.Add(this.tableCLUSTERS);
             this.tableEMPLOYEE = new EMPLOYEEDataTable();
@@ -351,6 +380,10 @@ namespace Player_Card_System_CIS411 {
             base.Tables.Add(this.tableRESIDENT);
             this.tableTRANS_ACTION = new TRANS_ACTIONDataTable();
             base.Tables.Add(this.tableTRANS_ACTION);
+            this.relationADDITIONAL_AUTHORIZED_USERS_FK = new global::System.Data.DataRelation("ADDITIONAL_AUTHORIZED_USERS_FK", new global::System.Data.DataColumn[] {
+                        this.tableRESIDENT.IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableADDITIONAL_AUTHORIZED_USERS.OwnerIDColumn}, false);
+            this.Relations.Add(this.relationADDITIONAL_AUTHORIZED_USERS_FK);
             this.relationEMPLOYEE_PERSON_FK = new global::System.Data.DataRelation("EMPLOYEE_PERSON_FK", new global::System.Data.DataColumn[] {
                         this.tablePERSON.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableEMPLOYEE.IDColumn}, false);
@@ -371,6 +404,12 @@ namespace Player_Card_System_CIS411 {
                         this.tableRESIDENT.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableTRANS_ACTION.ResidentIDColumn}, false);
             this.Relations.Add(this.relationTRANS_ACTION_RESIDENT_FK);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializeADDITIONAL_AUTHORIZED_USERS() {
+            return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -465,6 +504,9 @@ namespace Player_Card_System_CIS411 {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void ADDITIONAL_AUTHORIZED_USERSRowChangeEventHandler(object sender, ADDITIONAL_AUTHORIZED_USERSRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void CLUSTERSRowChangeEventHandler(object sender, CLUSTERSRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -481,6 +523,302 @@ namespace Player_Card_System_CIS411 {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void TRANS_ACTIONRowChangeEventHandler(object sender, TRANS_ACTIONRowChangeEvent e);
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class ADDITIONAL_AUTHORIZED_USERSDataTable : global::System.Data.TypedTableBase<ADDITIONAL_AUTHORIZED_USERSRow> {
+            
+            private global::System.Data.DataColumn columnOwnerID;
+            
+            private global::System.Data.DataColumn columnFirstName;
+            
+            private global::System.Data.DataColumn columnLastName;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ADDITIONAL_AUTHORIZED_USERSDataTable() {
+                this.TableName = "ADDITIONAL_AUTHORIZED_USERS";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal ADDITIONAL_AUTHORIZED_USERSDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected ADDITIONAL_AUTHORIZED_USERSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn OwnerIDColumn {
+                get {
+                    return this.columnOwnerID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn FirstNameColumn {
+                get {
+                    return this.columnFirstName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn LastNameColumn {
+                get {
+                    return this.columnLastName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ADDITIONAL_AUTHORIZED_USERSRow this[int index] {
+                get {
+                    return ((ADDITIONAL_AUTHORIZED_USERSRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event ADDITIONAL_AUTHORIZED_USERSRowChangeEventHandler ADDITIONAL_AUTHORIZED_USERSRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event ADDITIONAL_AUTHORIZED_USERSRowChangeEventHandler ADDITIONAL_AUTHORIZED_USERSRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event ADDITIONAL_AUTHORIZED_USERSRowChangeEventHandler ADDITIONAL_AUTHORIZED_USERSRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event ADDITIONAL_AUTHORIZED_USERSRowChangeEventHandler ADDITIONAL_AUTHORIZED_USERSRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void AddADDITIONAL_AUTHORIZED_USERSRow(ADDITIONAL_AUTHORIZED_USERSRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ADDITIONAL_AUTHORIZED_USERSRow AddADDITIONAL_AUTHORIZED_USERSRow(RESIDENTRow parentRESIDENTRowByADDITIONAL_AUTHORIZED_USERS_FK, string FirstName, string LastName) {
+                ADDITIONAL_AUTHORIZED_USERSRow rowADDITIONAL_AUTHORIZED_USERSRow = ((ADDITIONAL_AUTHORIZED_USERSRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        FirstName,
+                        LastName};
+                if ((parentRESIDENTRowByADDITIONAL_AUTHORIZED_USERS_FK != null)) {
+                    columnValuesArray[0] = parentRESIDENTRowByADDITIONAL_AUTHORIZED_USERS_FK[0];
+                }
+                rowADDITIONAL_AUTHORIZED_USERSRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowADDITIONAL_AUTHORIZED_USERSRow);
+                return rowADDITIONAL_AUTHORIZED_USERSRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ADDITIONAL_AUTHORIZED_USERSRow FindByOwnerIDFirstNameLastName(int OwnerID, string FirstName, string LastName) {
+                return ((ADDITIONAL_AUTHORIZED_USERSRow)(this.Rows.Find(new object[] {
+                            OwnerID,
+                            FirstName,
+                            LastName})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                ADDITIONAL_AUTHORIZED_USERSDataTable cln = ((ADDITIONAL_AUTHORIZED_USERSDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new ADDITIONAL_AUTHORIZED_USERSDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnOwnerID = base.Columns["OwnerID"];
+                this.columnFirstName = base.Columns["FirstName"];
+                this.columnLastName = base.Columns["LastName"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnOwnerID = new global::System.Data.DataColumn("OwnerID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOwnerID);
+                this.columnFirstName = new global::System.Data.DataColumn("FirstName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFirstName);
+                this.columnLastName = new global::System.Data.DataColumn("LastName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLastName);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnOwnerID,
+                                this.columnFirstName,
+                                this.columnLastName}, true));
+                this.columnOwnerID.AllowDBNull = false;
+                this.columnFirstName.AllowDBNull = false;
+                this.columnFirstName.MaxLength = 25;
+                this.columnLastName.AllowDBNull = false;
+                this.columnLastName.MaxLength = 25;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ADDITIONAL_AUTHORIZED_USERSRow NewADDITIONAL_AUTHORIZED_USERSRow() {
+                return ((ADDITIONAL_AUTHORIZED_USERSRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new ADDITIONAL_AUTHORIZED_USERSRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(ADDITIONAL_AUTHORIZED_USERSRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.ADDITIONAL_AUTHORIZED_USERSRowChanged != null)) {
+                    this.ADDITIONAL_AUTHORIZED_USERSRowChanged(this, new ADDITIONAL_AUTHORIZED_USERSRowChangeEvent(((ADDITIONAL_AUTHORIZED_USERSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.ADDITIONAL_AUTHORIZED_USERSRowChanging != null)) {
+                    this.ADDITIONAL_AUTHORIZED_USERSRowChanging(this, new ADDITIONAL_AUTHORIZED_USERSRowChangeEvent(((ADDITIONAL_AUTHORIZED_USERSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.ADDITIONAL_AUTHORIZED_USERSRowDeleted != null)) {
+                    this.ADDITIONAL_AUTHORIZED_USERSRowDeleted(this, new ADDITIONAL_AUTHORIZED_USERSRowChangeEvent(((ADDITIONAL_AUTHORIZED_USERSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.ADDITIONAL_AUTHORIZED_USERSRowDeleting != null)) {
+                    this.ADDITIONAL_AUTHORIZED_USERSRowDeleting(this, new ADDITIONAL_AUTHORIZED_USERSRowChangeEvent(((ADDITIONAL_AUTHORIZED_USERSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void RemoveADDITIONAL_AUTHORIZED_USERSRow(ADDITIONAL_AUTHORIZED_USERSRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                OceanVillagePlayerCardDataSet ds = new OceanVillagePlayerCardDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "ADDITIONAL_AUTHORIZED_USERSDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1679,13 +2017,13 @@ namespace Player_Card_System_CIS411 {
             
             private global::System.Data.DataColumn columnPhone;
             
-            private global::System.Data.DataColumn columnCardRelation;
-            
             private global::System.Data.DataColumn columnCommentBox;
             
-            private global::System.Data.DataColumn columnClusterName;
-            
             private global::System.Data.DataColumn columnUnitNumber;
+            
+            private global::System.Data.DataColumn columnNoEmail;
+            
+            private global::System.Data.DataColumn columnClusterName;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -1754,14 +2092,6 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn CardRelationColumn {
-                get {
-                    return this.columnCardRelation;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn CommentBoxColumn {
                 get {
                     return this.columnCommentBox;
@@ -1770,17 +2100,25 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn ClusterNameColumn {
+            public global::System.Data.DataColumn UnitNumberColumn {
                 get {
-                    return this.columnClusterName;
+                    return this.columnUnitNumber;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn UnitNumberColumn {
+            public global::System.Data.DataColumn NoEmailColumn {
                 get {
-                    return this.columnUnitNumber;
+                    return this.columnNoEmail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn ClusterNameColumn {
+                get {
+                    return this.columnClusterName;
                 }
             }
             
@@ -1821,22 +2159,22 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public RESIDENTRow AddRESIDENTRow(PERSONRow parentPERSONRowByRESIDENT_PERSON_FK, string Address, string Email, string Phone, string CardRelation, string CommentBox, CLUSTERSRow parentCLUSTERSRowByRESIDENT_CLUSTERS_FK, int UnitNumber) {
+            public RESIDENTRow AddRESIDENTRow(PERSONRow parentPERSONRowByRESIDENT_PERSON_FK, string Address, string Email, string Phone, string CommentBox, int UnitNumber, string NoEmail, CLUSTERSRow parentCLUSTERSRowByRESIDENT_CLUSTERS_FK) {
                 RESIDENTRow rowRESIDENTRow = ((RESIDENTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Address,
                         Email,
                         Phone,
-                        CardRelation,
                         CommentBox,
-                        null,
-                        UnitNumber};
+                        UnitNumber,
+                        NoEmail,
+                        null};
                 if ((parentPERSONRowByRESIDENT_PERSON_FK != null)) {
                     columnValuesArray[0] = parentPERSONRowByRESIDENT_PERSON_FK[0];
                 }
                 if ((parentCLUSTERSRowByRESIDENT_CLUSTERS_FK != null)) {
-                    columnValuesArray[6] = parentCLUSTERSRowByRESIDENT_CLUSTERS_FK[0];
+                    columnValuesArray[7] = parentCLUSTERSRowByRESIDENT_CLUSTERS_FK[0];
                 }
                 rowRESIDENTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRESIDENTRow);
@@ -1871,10 +2209,10 @@ namespace Player_Card_System_CIS411 {
                 this.columnAddress = base.Columns["Address"];
                 this.columnEmail = base.Columns["Email"];
                 this.columnPhone = base.Columns["Phone"];
-                this.columnCardRelation = base.Columns["CardRelation"];
                 this.columnCommentBox = base.Columns["CommentBox"];
-                this.columnClusterName = base.Columns["ClusterName"];
                 this.columnUnitNumber = base.Columns["UnitNumber"];
+                this.columnNoEmail = base.Columns["NoEmail"];
+                this.columnClusterName = base.Columns["ClusterName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1888,14 +2226,14 @@ namespace Player_Card_System_CIS411 {
                 base.Columns.Add(this.columnEmail);
                 this.columnPhone = new global::System.Data.DataColumn("Phone", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPhone);
-                this.columnCardRelation = new global::System.Data.DataColumn("CardRelation", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCardRelation);
                 this.columnCommentBox = new global::System.Data.DataColumn("CommentBox", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCommentBox);
-                this.columnClusterName = new global::System.Data.DataColumn("ClusterName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnClusterName);
                 this.columnUnitNumber = new global::System.Data.DataColumn("UnitNumber", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUnitNumber);
+                this.columnNoEmail = new global::System.Data.DataColumn("NoEmail", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNoEmail);
+                this.columnClusterName = new global::System.Data.DataColumn("ClusterName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnClusterName);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AllowDBNull = false;
@@ -1905,9 +2243,9 @@ namespace Player_Card_System_CIS411 {
                 this.columnEmail.MaxLength = 30;
                 this.columnPhone.AllowDBNull = false;
                 this.columnPhone.MaxLength = 12;
-                this.columnCardRelation.AllowDBNull = false;
-                this.columnCardRelation.MaxLength = 1;
                 this.columnCommentBox.MaxLength = 55;
+                this.columnNoEmail.AllowDBNull = false;
+                this.columnNoEmail.MaxLength = 5;
                 this.columnClusterName.AllowDBNull = false;
                 this.columnClusterName.MaxLength = 30;
             }
@@ -2049,13 +2387,11 @@ namespace Player_Card_System_CIS411 {
             
             private global::System.Data.DataColumn columnTypeTrans;
             
-            private global::System.Data.DataColumn columnReason;
-            
             private global::System.Data.DataColumn columnTotalRounds;
             
             private global::System.Data.DataColumn columnComments;
             
-            private global::System.Data.DataColumn columnNoEmail;
+            private global::System.Data.DataColumn columnEmailedTo;
             
             private global::System.Data.DataColumn columnEmployeeID;
             
@@ -2120,14 +2456,6 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn ReasonColumn {
-                get {
-                    return this.columnReason;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn TotalRoundsColumn {
                 get {
                     return this.columnTotalRounds;
@@ -2144,9 +2472,9 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn NoEmailColumn {
+            public global::System.Data.DataColumn EmailedToColumn {
                 get {
-                    return this.columnNoEmail;
+                    return this.columnEmailedTo;
                 }
             }
             
@@ -2203,23 +2531,22 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public TRANS_ACTIONRow AddTRANS_ACTIONRow(System.DateTime DateTime, string TypeTrans, string Reason, int TotalRounds, string Comments, string NoEmail, EMPLOYEERow parentEMPLOYEERowByTRANS_ACTION_EMPLOYEE_FK, RESIDENTRow parentRESIDENTRowByTRANS_ACTION_RESIDENT_FK) {
+            public TRANS_ACTIONRow AddTRANS_ACTIONRow(System.DateTime DateTime, string TypeTrans, int TotalRounds, string Comments, string EmailedTo, EMPLOYEERow parentEMPLOYEERowByTRANS_ACTION_EMPLOYEE_FK, RESIDENTRow parentRESIDENTRowByTRANS_ACTION_RESIDENT_FK) {
                 TRANS_ACTIONRow rowTRANS_ACTIONRow = ((TRANS_ACTIONRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         DateTime,
                         TypeTrans,
-                        Reason,
                         TotalRounds,
                         Comments,
-                        NoEmail,
+                        EmailedTo,
                         null,
                         null};
                 if ((parentEMPLOYEERowByTRANS_ACTION_EMPLOYEE_FK != null)) {
-                    columnValuesArray[7] = parentEMPLOYEERowByTRANS_ACTION_EMPLOYEE_FK[0];
+                    columnValuesArray[6] = parentEMPLOYEERowByTRANS_ACTION_EMPLOYEE_FK[0];
                 }
                 if ((parentRESIDENTRowByTRANS_ACTION_RESIDENT_FK != null)) {
-                    columnValuesArray[8] = parentRESIDENTRowByTRANS_ACTION_RESIDENT_FK[0];
+                    columnValuesArray[7] = parentRESIDENTRowByTRANS_ACTION_RESIDENT_FK[0];
                 }
                 rowTRANS_ACTIONRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTRANS_ACTIONRow);
@@ -2253,10 +2580,9 @@ namespace Player_Card_System_CIS411 {
                 this.columnTransNo = base.Columns["TransNo"];
                 this.columnDateTime = base.Columns["DateTime"];
                 this.columnTypeTrans = base.Columns["TypeTrans"];
-                this.columnReason = base.Columns["Reason"];
                 this.columnTotalRounds = base.Columns["TotalRounds"];
                 this.columnComments = base.Columns["Comments"];
-                this.columnNoEmail = base.Columns["NoEmail"];
+                this.columnEmailedTo = base.Columns["EmailedTo"];
                 this.columnEmployeeID = base.Columns["EmployeeID"];
                 this.columnResidentID = base.Columns["ResidentID"];
             }
@@ -2270,14 +2596,12 @@ namespace Player_Card_System_CIS411 {
                 base.Columns.Add(this.columnDateTime);
                 this.columnTypeTrans = new global::System.Data.DataColumn("TypeTrans", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTypeTrans);
-                this.columnReason = new global::System.Data.DataColumn("Reason", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnReason);
                 this.columnTotalRounds = new global::System.Data.DataColumn("TotalRounds", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalRounds);
                 this.columnComments = new global::System.Data.DataColumn("Comments", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnComments);
-                this.columnNoEmail = new global::System.Data.DataColumn("NoEmail", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNoEmail);
+                this.columnEmailedTo = new global::System.Data.DataColumn("EmailedTo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmailedTo);
                 this.columnEmployeeID = new global::System.Data.DataColumn("EmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmployeeID);
                 this.columnResidentID = new global::System.Data.DataColumn("ResidentID", typeof(int), null, global::System.Data.MappingType.Element);
@@ -2292,9 +2616,8 @@ namespace Player_Card_System_CIS411 {
                 this.columnTransNo.Unique = true;
                 this.columnTypeTrans.AllowDBNull = false;
                 this.columnTypeTrans.MaxLength = 1;
-                this.columnReason.MaxLength = 60;
                 this.columnComments.MaxLength = 60;
-                this.columnNoEmail.MaxLength = 5;
+                this.columnEmailedTo.MaxLength = 30;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2418,6 +2741,65 @@ namespace Player_Card_System_CIS411 {
                 }
                 xs.Add(dsSchema);
                 return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class ADDITIONAL_AUTHORIZED_USERSRow : global::System.Data.DataRow {
+            
+            private ADDITIONAL_AUTHORIZED_USERSDataTable tableADDITIONAL_AUTHORIZED_USERS;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal ADDITIONAL_AUTHORIZED_USERSRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableADDITIONAL_AUTHORIZED_USERS = ((ADDITIONAL_AUTHORIZED_USERSDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int OwnerID {
+                get {
+                    return ((int)(this[this.tableADDITIONAL_AUTHORIZED_USERS.OwnerIDColumn]));
+                }
+                set {
+                    this[this.tableADDITIONAL_AUTHORIZED_USERS.OwnerIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string FirstName {
+                get {
+                    return ((string)(this[this.tableADDITIONAL_AUTHORIZED_USERS.FirstNameColumn]));
+                }
+                set {
+                    this[this.tableADDITIONAL_AUTHORIZED_USERS.FirstNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string LastName {
+                get {
+                    return ((string)(this[this.tableADDITIONAL_AUTHORIZED_USERS.LastNameColumn]));
+                }
+                set {
+                    this[this.tableADDITIONAL_AUTHORIZED_USERS.LastNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public RESIDENTRow RESIDENTRow {
+                get {
+                    return ((RESIDENTRow)(this.GetParentRow(this.Table.ParentRelations["ADDITIONAL_AUTHORIZED_USERS_FK"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["ADDITIONAL_AUTHORIZED_USERS_FK"]);
+                }
             }
         }
         
@@ -2778,17 +3160,6 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string CardRelation {
-                get {
-                    return ((string)(this[this.tableRESIDENT.CardRelationColumn]));
-                }
-                set {
-                    this[this.tableRESIDENT.CardRelationColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string CommentBox {
                 get {
                     try {
@@ -2805,17 +3176,6 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string ClusterName {
-                get {
-                    return ((string)(this[this.tableRESIDENT.ClusterNameColumn]));
-                }
-                set {
-                    this[this.tableRESIDENT.ClusterNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int UnitNumber {
                 get {
                     try {
@@ -2827,6 +3187,28 @@ namespace Player_Card_System_CIS411 {
                 }
                 set {
                     this[this.tableRESIDENT.UnitNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string NoEmail {
+                get {
+                    return ((string)(this[this.tableRESIDENT.NoEmailColumn]));
+                }
+                set {
+                    this[this.tableRESIDENT.NoEmailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string ClusterName {
+                get {
+                    return ((string)(this[this.tableRESIDENT.ClusterNameColumn]));
+                }
+                set {
+                    this[this.tableRESIDENT.ClusterNameColumn] = value;
                 }
             }
             
@@ -2886,6 +3268,17 @@ namespace Player_Card_System_CIS411 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetUnitNumberNull() {
                 this[this.tableRESIDENT.UnitNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ADDITIONAL_AUTHORIZED_USERSRow[] GetADDITIONAL_AUTHORIZED_USERSRows() {
+                if ((this.Table.ChildRelations["ADDITIONAL_AUTHORIZED_USERS_FK"] == null)) {
+                    return new ADDITIONAL_AUTHORIZED_USERSRow[0];
+                }
+                else {
+                    return ((ADDITIONAL_AUTHORIZED_USERSRow[])(base.GetChildRows(this.Table.ChildRelations["ADDITIONAL_AUTHORIZED_USERS_FK"])));
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2954,22 +3347,6 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Reason {
-                get {
-                    try {
-                        return ((string)(this[this.tableTRANS_ACTION.ReasonColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Reason\' in table \'TRANS_ACTION\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTRANS_ACTION.ReasonColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int TotalRounds {
                 get {
                     try {
@@ -3002,17 +3379,17 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string NoEmail {
+            public string EmailedTo {
                 get {
                     try {
-                        return ((string)(this[this.tableTRANS_ACTION.NoEmailColumn]));
+                        return ((string)(this[this.tableTRANS_ACTION.EmailedToColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NoEmail\' in table \'TRANS_ACTION\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'EmailedTo\' in table \'TRANS_ACTION\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTRANS_ACTION.NoEmailColumn] = value;
+                    this[this.tableTRANS_ACTION.EmailedToColumn] = value;
                 }
             }
             
@@ -3084,18 +3461,6 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsReasonNull() {
-                return this.IsNull(this.tableTRANS_ACTION.ReasonColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetReasonNull() {
-                this[this.tableTRANS_ACTION.ReasonColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsTotalRoundsNull() {
                 return this.IsNull(this.tableTRANS_ACTION.TotalRoundsColumn);
             }
@@ -3120,14 +3485,14 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsNoEmailNull() {
-                return this.IsNull(this.tableTRANS_ACTION.NoEmailColumn);
+            public bool IsEmailedToNull() {
+                return this.IsNull(this.tableTRANS_ACTION.EmailedToColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetNoEmailNull() {
-                this[this.tableTRANS_ACTION.NoEmailColumn] = global::System.Convert.DBNull;
+            public void SetEmailedToNull() {
+                this[this.tableTRANS_ACTION.EmailedToColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3152,6 +3517,40 @@ namespace Player_Card_System_CIS411 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetResidentIDNull() {
                 this[this.tableTRANS_ACTION.ResidentIDColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public class ADDITIONAL_AUTHORIZED_USERSRowChangeEvent : global::System.EventArgs {
+            
+            private ADDITIONAL_AUTHORIZED_USERSRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ADDITIONAL_AUTHORIZED_USERSRowChangeEvent(ADDITIONAL_AUTHORIZED_USERSRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ADDITIONAL_AUTHORIZED_USERSRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
             }
         }
         
@@ -3362,6 +3761,355 @@ namespace Player_Card_System_CIS411 {
 }
 namespace Player_Card_System_CIS411.OceanVillagePlayerCardDataSetTableAdapters {
     
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class ADDITIONAL_AUTHORIZED_USERSTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public ADDITIONAL_AUTHORIZED_USERSTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "ADDITIONAL_AUTHORIZED_USERS";
+            tableMapping.ColumnMappings.Add("OwnerID", "OwnerID");
+            tableMapping.ColumnMappings.Add("FirstName", "FirstName");
+            tableMapping.ColumnMappings.Add("LastName", "LastName");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[ADDITIONAL_AUTHORIZED_USERS] WHERE (([OwnerID] = @Original_Own" +
+                "erID) AND ([FirstName] = @Original_FirstName) AND ([LastName] = @Original_LastNa" +
+                "me))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OwnerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FirstName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LastName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[ADDITIONAL_AUTHORIZED_USERS] ([OwnerID], [FirstName], [LastName]) VALUES (@OwnerID, @FirstName, @LastName);
+SELECT OwnerID, FirstName, LastName FROM ADDITIONAL_AUTHORIZED_USERS WHERE (FirstName = @FirstName) AND (LastName = @LastName) AND (OwnerID = @OwnerID)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OwnerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FirstName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LastName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[ADDITIONAL_AUTHORIZED_USERS] SET [OwnerID] = @OwnerID, [FirstName] = @FirstName, [LastName] = @LastName WHERE (([OwnerID] = @Original_OwnerID) AND ([FirstName] = @Original_FirstName) AND ([LastName] = @Original_LastName));
+SELECT OwnerID, FirstName, LastName FROM ADDITIONAL_AUTHORIZED_USERS WHERE (FirstName = @FirstName) AND (LastName = @LastName) AND (OwnerID = @OwnerID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OwnerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FirstName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LastName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OwnerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OwnerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FirstName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LastName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Player_Card_System_CIS411.Properties.Settings.Default.OceanVillagePlayerCardConnectionString1;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT OwnerID, FirstName, LastName FROM dbo.ADDITIONAL_AUTHORIZED_USERS";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(OceanVillagePlayerCardDataSet.ADDITIONAL_AUTHORIZED_USERSDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual OceanVillagePlayerCardDataSet.ADDITIONAL_AUTHORIZED_USERSDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            OceanVillagePlayerCardDataSet.ADDITIONAL_AUTHORIZED_USERSDataTable dataTable = new OceanVillagePlayerCardDataSet.ADDITIONAL_AUTHORIZED_USERSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(OceanVillagePlayerCardDataSet.ADDITIONAL_AUTHORIZED_USERSDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(OceanVillagePlayerCardDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "ADDITIONAL_AUTHORIZED_USERS");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_OwnerID, string Original_FirstName, string Original_LastName) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_OwnerID));
+            if ((Original_FirstName == null)) {
+                throw new global::System.ArgumentNullException("Original_FirstName");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_FirstName));
+            }
+            if ((Original_LastName == null)) {
+                throw new global::System.ArgumentNullException("Original_LastName");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_LastName));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int OwnerID, string FirstName, string LastName) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(OwnerID));
+            if ((FirstName == null)) {
+                throw new global::System.ArgumentNullException("FirstName");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(FirstName));
+            }
+            if ((LastName == null)) {
+                throw new global::System.ArgumentNullException("LastName");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(LastName));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int OwnerID, string FirstName, string LastName, int Original_OwnerID, string Original_FirstName, string Original_LastName) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(OwnerID));
+            if ((FirstName == null)) {
+                throw new global::System.ArgumentNullException("FirstName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(FirstName));
+            }
+            if ((LastName == null)) {
+                throw new global::System.ArgumentNullException("LastName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(LastName));
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_OwnerID));
+            if ((Original_FirstName == null)) {
+                throw new global::System.ArgumentNullException("Original_FirstName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_FirstName));
+            }
+            if ((Original_LastName == null)) {
+                throw new global::System.ArgumentNullException("Original_LastName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_LastName));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int Original_OwnerID, string Original_FirstName, string Original_LastName) {
+            return this.Update(Original_OwnerID, Original_FirstName, Original_LastName, Original_OwnerID, Original_FirstName, Original_LastName);
+        }
+    }
     
     /// <summary>
     ///Represents the connection and commands used to retrieve and save data.
@@ -4942,63 +5690,63 @@ SELECT Years, TotalRounds, PackageType, CostPerRound FROM GOLF_ROUNDS WHERE (Tot
             tableMapping.ColumnMappings.Add("Address", "Address");
             tableMapping.ColumnMappings.Add("Email", "Email");
             tableMapping.ColumnMappings.Add("Phone", "Phone");
-            tableMapping.ColumnMappings.Add("CardRelation", "CardRelation");
             tableMapping.ColumnMappings.Add("CommentBox", "CommentBox");
-            tableMapping.ColumnMappings.Add("ClusterName", "ClusterName");
             tableMapping.ColumnMappings.Add("UnitNumber", "UnitNumber");
+            tableMapping.ColumnMappings.Add("NoEmail", "NoEmail");
+            tableMapping.ColumnMappings.Add("ClusterName", "ClusterName");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[RESIDENT] WHERE (([ID] = @Original_ID) AND ([Address] = @Original_Address) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([Phone] = @Original_Phone) AND ([CardRelation] = @Original_CardRelation) AND ((@IsNull_CommentBox = 1 AND [CommentBox] IS NULL) OR ([CommentBox] = @Original_CommentBox)) AND ([ClusterName] = @Original_ClusterName) AND ((@IsNull_UnitNumber = 1 AND [UnitNumber] IS NULL) OR ([UnitNumber] = @Original_UnitNumber)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[RESIDENT] WHERE (([ID] = @Original_ID) AND ([Address] = @Original_Address) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([Phone] = @Original_Phone) AND ((@IsNull_CommentBox = 1 AND [CommentBox] IS NULL) OR ([CommentBox] = @Original_CommentBox)) AND ((@IsNull_UnitNumber = 1 AND [UnitNumber] IS NULL) OR ([UnitNumber] = @Original_UnitNumber)) AND ([NoEmail] = @Original_NoEmail) AND ([ClusterName] = @Original_ClusterName))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Address", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Email", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Phone", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Phone", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CardRelation", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CardRelation", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CommentBox", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CommentBox", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CommentBox", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CommentBox", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClusterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClusterName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_UnitNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UnitNumber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UnitNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UnitNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClusterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClusterName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[RESIDENT] ([ID], [Address], [Email], [Phone], [CardRelation], [CommentBox], [ClusterName], [UnitNumber]) VALUES (@ID, @Address, @Email, @Phone, @CardRelation, @CommentBox, @ClusterName, @UnitNumber);
-SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNumber FROM RESIDENT WHERE (ID = @ID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[RESIDENT] ([ID], [Address], [Email], [Phone], [CommentBox], [UnitNumber], [NoEmail], [ClusterName]) VALUES (@ID, @Address, @Email, @Phone, @CommentBox, @UnitNumber, @NoEmail, @ClusterName);
+SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName FROM RESIDENT WHERE (ID = @ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Address", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Phone", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Phone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CardRelation", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CardRelation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CommentBox", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CommentBox", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClusterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClusterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UnitNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClusterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClusterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[RESIDENT] SET [ID] = @ID, [Address] = @Address, [Email] = @Email, [Phone] = @Phone, [CardRelation] = @CardRelation, [CommentBox] = @CommentBox, [ClusterName] = @ClusterName, [UnitNumber] = @UnitNumber WHERE (([ID] = @Original_ID) AND ([Address] = @Original_Address) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([Phone] = @Original_Phone) AND ([CardRelation] = @Original_CardRelation) AND ((@IsNull_CommentBox = 1 AND [CommentBox] IS NULL) OR ([CommentBox] = @Original_CommentBox)) AND ([ClusterName] = @Original_ClusterName) AND ((@IsNull_UnitNumber = 1 AND [UnitNumber] IS NULL) OR ([UnitNumber] = @Original_UnitNumber)));
-SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNumber FROM RESIDENT WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[RESIDENT] SET [ID] = @ID, [Address] = @Address, [Email] = @Email, [Phone] = @Phone, [CommentBox] = @CommentBox, [UnitNumber] = @UnitNumber, [NoEmail] = @NoEmail, [ClusterName] = @ClusterName WHERE (([ID] = @Original_ID) AND ([Address] = @Original_Address) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([Phone] = @Original_Phone) AND ((@IsNull_CommentBox = 1 AND [CommentBox] IS NULL) OR ([CommentBox] = @Original_CommentBox)) AND ((@IsNull_UnitNumber = 1 AND [UnitNumber] IS NULL) OR ([UnitNumber] = @Original_UnitNumber)) AND ([NoEmail] = @Original_NoEmail) AND ([ClusterName] = @Original_ClusterName));
+SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName FROM RESIDENT WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Address", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Phone", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Phone", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CardRelation", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CardRelation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CommentBox", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CommentBox", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClusterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClusterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UnitNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClusterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClusterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Address", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Email", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Phone", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Phone", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CardRelation", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CardRelation", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CommentBox", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CommentBox", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CommentBox", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CommentBox", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClusterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClusterName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_UnitNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UnitNumber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UnitNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UnitNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClusterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClusterName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5014,8 +5762,8 @@ SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNum
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNumb" +
-                "er FROM dbo.RESIDENT";
+            this._commandCollection[0].CommandText = "SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName FR" +
+                "OM dbo.RESIDENT";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5076,7 +5824,7 @@ SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNum
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, string Original_Address, string Original_Email, string Original_Phone, string Original_CardRelation, string Original_CommentBox, string Original_ClusterName, global::System.Nullable<int> Original_UnitNumber) {
+        public virtual int Delete(int Original_ID, string Original_Address, string Original_Email, string Original_Phone, string Original_CommentBox, global::System.Nullable<int> Original_UnitNumber, string Original_NoEmail, string Original_ClusterName) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_Address == null)) {
                 throw new global::System.ArgumentNullException("Original_Address");
@@ -5098,33 +5846,33 @@ SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNum
             else {
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Phone));
             }
-            if ((Original_CardRelation == null)) {
-                throw new global::System.ArgumentNullException("Original_CardRelation");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_CardRelation));
-            }
             if ((Original_CommentBox == null)) {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_CommentBox));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_CommentBox));
+            }
+            if ((Original_UnitNumber.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_UnitNumber.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((Original_NoEmail == null)) {
+                throw new global::System.ArgumentNullException("Original_NoEmail");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_NoEmail));
             }
             if ((Original_ClusterName == null)) {
                 throw new global::System.ArgumentNullException("Original_ClusterName");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_ClusterName));
-            }
-            if ((Original_UnitNumber.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_UnitNumber.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_ClusterName));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5146,7 +5894,7 @@ SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNum
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int ID, string Address, string Email, string Phone, string CardRelation, string CommentBox, string ClusterName, global::System.Nullable<int> UnitNumber) {
+        public virtual int Insert(int ID, string Address, string Email, string Phone, string CommentBox, global::System.Nullable<int> UnitNumber, string NoEmail, string ClusterName) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ID));
             if ((Address == null)) {
                 throw new global::System.ArgumentNullException("Address");
@@ -5166,29 +5914,29 @@ SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNum
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Phone));
             }
-            if ((CardRelation == null)) {
-                throw new global::System.ArgumentNullException("CardRelation");
+            if ((CommentBox == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(CardRelation));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(CommentBox));
             }
-            if ((CommentBox == null)) {
+            if ((UnitNumber.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((int)(UnitNumber.Value));
+            }
+            else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
+            if ((NoEmail == null)) {
+                throw new global::System.ArgumentNullException("NoEmail");
+            }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(CommentBox));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(NoEmail));
             }
             if ((ClusterName == null)) {
                 throw new global::System.ArgumentNullException("ClusterName");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(ClusterName));
-            }
-            if ((UnitNumber.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((int)(UnitNumber.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(ClusterName));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5215,18 +5963,18 @@ SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNum
                     string Address, 
                     string Email, 
                     string Phone, 
-                    string CardRelation, 
                     string CommentBox, 
-                    string ClusterName, 
                     global::System.Nullable<int> UnitNumber, 
+                    string NoEmail, 
+                    string ClusterName, 
                     int Original_ID, 
                     string Original_Address, 
                     string Original_Email, 
                     string Original_Phone, 
-                    string Original_CardRelation, 
                     string Original_CommentBox, 
-                    string Original_ClusterName, 
-                    global::System.Nullable<int> Original_UnitNumber) {
+                    global::System.Nullable<int> Original_UnitNumber, 
+                    string Original_NoEmail, 
+                    string Original_ClusterName) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ID));
             if ((Address == null)) {
                 throw new global::System.ArgumentNullException("Address");
@@ -5246,29 +5994,29 @@ SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNum
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Phone));
             }
-            if ((CardRelation == null)) {
-                throw new global::System.ArgumentNullException("CardRelation");
+            if ((CommentBox == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(CardRelation));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(CommentBox));
             }
-            if ((CommentBox == null)) {
+            if ((UnitNumber.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(UnitNumber.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
+            if ((NoEmail == null)) {
+                throw new global::System.ArgumentNullException("NoEmail");
+            }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(CommentBox));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(NoEmail));
             }
             if ((ClusterName == null)) {
                 throw new global::System.ArgumentNullException("ClusterName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(ClusterName));
-            }
-            if ((UnitNumber.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(UnitNumber.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(ClusterName));
             }
             this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_ID));
             if ((Original_Address == null)) {
@@ -5291,33 +6039,33 @@ SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNum
             else {
                 this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_Phone));
             }
-            if ((Original_CardRelation == null)) {
-                throw new global::System.ArgumentNullException("Original_CardRelation");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_CardRelation));
-            }
             if ((Original_CommentBox == null)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_CommentBox));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_CommentBox));
+            }
+            if ((Original_UnitNumber.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_UnitNumber.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            if ((Original_NoEmail == null)) {
+                throw new global::System.ArgumentNullException("Original_NoEmail");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_NoEmail));
             }
             if ((Original_ClusterName == null)) {
                 throw new global::System.ArgumentNullException("Original_ClusterName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_ClusterName));
-            }
-            if ((Original_UnitNumber.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_UnitNumber.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_ClusterName));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5339,8 +6087,8 @@ SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNum
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Address, string Email, string Phone, string CardRelation, string CommentBox, string ClusterName, global::System.Nullable<int> UnitNumber, int Original_ID, string Original_Address, string Original_Email, string Original_Phone, string Original_CardRelation, string Original_CommentBox, string Original_ClusterName, global::System.Nullable<int> Original_UnitNumber) {
-            return this.Update(Original_ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNumber, Original_ID, Original_Address, Original_Email, Original_Phone, Original_CardRelation, Original_CommentBox, Original_ClusterName, Original_UnitNumber);
+        public virtual int Update(string Address, string Email, string Phone, string CommentBox, global::System.Nullable<int> UnitNumber, string NoEmail, string ClusterName, int Original_ID, string Original_Address, string Original_Email, string Original_Phone, string Original_CommentBox, global::System.Nullable<int> Original_UnitNumber, string Original_NoEmail, string Original_ClusterName) {
+            return this.Update(Original_ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName, Original_ID, Original_Address, Original_Email, Original_Phone, Original_CommentBox, Original_UnitNumber, Original_NoEmail, Original_ClusterName);
         }
     }
     
@@ -5468,71 +6216,64 @@ SELECT ID, Address, Email, Phone, CardRelation, CommentBox, ClusterName, UnitNum
             tableMapping.ColumnMappings.Add("TransNo", "TransNo");
             tableMapping.ColumnMappings.Add("DateTime", "DateTime");
             tableMapping.ColumnMappings.Add("TypeTrans", "TypeTrans");
-            tableMapping.ColumnMappings.Add("Reason", "Reason");
             tableMapping.ColumnMappings.Add("TotalRounds", "TotalRounds");
             tableMapping.ColumnMappings.Add("Comments", "Comments");
-            tableMapping.ColumnMappings.Add("NoEmail", "NoEmail");
+            tableMapping.ColumnMappings.Add("EmailedTo", "EmailedTo");
             tableMapping.ColumnMappings.Add("EmployeeID", "EmployeeID");
             tableMapping.ColumnMappings.Add("ResidentID", "ResidentID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[TRANS_ACTION] WHERE (([TransNo] = @Original_TransNo) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ([TypeTrans] = @Original_TypeTrans) AND ((@IsNull_Reason = 1 AND [Reason] IS NULL) OR ([Reason] = @Original_Reason)) AND ((@IsNull_TotalRounds = 1 AND [TotalRounds] IS NULL) OR ([TotalRounds] = @Original_TotalRounds)) AND ((@IsNull_Comments = 1 AND [Comments] IS NULL) OR ([Comments] = @Original_Comments)) AND ((@IsNull_NoEmail = 1 AND [NoEmail] IS NULL) OR ([NoEmail] = @Original_NoEmail)) AND ((@IsNull_EmployeeID = 1 AND [EmployeeID] IS NULL) OR ([EmployeeID] = @Original_EmployeeID)) AND ((@IsNull_ResidentID = 1 AND [ResidentID] IS NULL) OR ([ResidentID] = @Original_ResidentID)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[TRANS_ACTION] WHERE (([TransNo] = @Original_TransNo) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ([TypeTrans] = @Original_TypeTrans) AND ((@IsNull_TotalRounds = 1 AND [TotalRounds] IS NULL) OR ([TotalRounds] = @Original_TotalRounds)) AND ((@IsNull_Comments = 1 AND [Comments] IS NULL) OR ([Comments] = @Original_Comments)) AND ((@IsNull_EmailedTo = 1 AND [EmailedTo] IS NULL) OR ([EmailedTo] = @Original_EmailedTo)) AND ((@IsNull_EmployeeID = 1 AND [EmployeeID] IS NULL) OR ([EmployeeID] = @Original_EmployeeID)) AND ((@IsNull_ResidentID = 1 AND [ResidentID] IS NULL) OR ([ResidentID] = @Original_ResidentID)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TransNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DateTime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateTime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateTime", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TypeTrans", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeTrans", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Reason", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reason", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Reason", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reason", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_TotalRounds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalRounds", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TotalRounds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalRounds", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Comments", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comments", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Comments", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comments", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_NoEmail", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EmailedTo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmailedTo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmailedTo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmailedTo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ResidentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResidentID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResidentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResidentID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[TRANS_ACTION] ([DateTime], [TypeTrans], [Reason], [TotalRounds], [Comments], [NoEmail], [EmployeeID], [ResidentID]) VALUES (@DateTime, @TypeTrans, @Reason, @TotalRounds, @Comments, @NoEmail, @EmployeeID, @ResidentID);
-SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID FROM TRANS_ACTION WHERE (TransNo = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[TRANS_ACTION] ([DateTime], [TypeTrans], [TotalRounds], [Comments], [EmailedTo], [EmployeeID], [ResidentID]) VALUES (@DateTime, @TypeTrans, @TotalRounds, @Comments, @EmailedTo, @EmployeeID, @ResidentID);
+SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID FROM TRANS_ACTION WHERE (TransNo = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateTime", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeTrans", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeTrans", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reason", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reason", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalRounds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalRounds", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Comments", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comments", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmailedTo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmailedTo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResidentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResidentID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[TRANS_ACTION] SET [DateTime] = @DateTime, [TypeTrans] = @TypeTrans, [Reason] = @Reason, [TotalRounds] = @TotalRounds, [Comments] = @Comments, [NoEmail] = @NoEmail, [EmployeeID] = @EmployeeID, [ResidentID] = @ResidentID WHERE (([TransNo] = @Original_TransNo) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ([TypeTrans] = @Original_TypeTrans) AND ((@IsNull_Reason = 1 AND [Reason] IS NULL) OR ([Reason] = @Original_Reason)) AND ((@IsNull_TotalRounds = 1 AND [TotalRounds] IS NULL) OR ([TotalRounds] = @Original_TotalRounds)) AND ((@IsNull_Comments = 1 AND [Comments] IS NULL) OR ([Comments] = @Original_Comments)) AND ((@IsNull_NoEmail = 1 AND [NoEmail] IS NULL) OR ([NoEmail] = @Original_NoEmail)) AND ((@IsNull_EmployeeID = 1 AND [EmployeeID] IS NULL) OR ([EmployeeID] = @Original_EmployeeID)) AND ((@IsNull_ResidentID = 1 AND [ResidentID] IS NULL) OR ([ResidentID] = @Original_ResidentID)));
-SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID FROM TRANS_ACTION WHERE (TransNo = @TransNo)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[TRANS_ACTION] SET [DateTime] = @DateTime, [TypeTrans] = @TypeTrans, [TotalRounds] = @TotalRounds, [Comments] = @Comments, [EmailedTo] = @EmailedTo, [EmployeeID] = @EmployeeID, [ResidentID] = @ResidentID WHERE (([TransNo] = @Original_TransNo) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ([TypeTrans] = @Original_TypeTrans) AND ((@IsNull_TotalRounds = 1 AND [TotalRounds] IS NULL) OR ([TotalRounds] = @Original_TotalRounds)) AND ((@IsNull_Comments = 1 AND [Comments] IS NULL) OR ([Comments] = @Original_Comments)) AND ((@IsNull_EmailedTo = 1 AND [EmailedTo] IS NULL) OR ([EmailedTo] = @Original_EmailedTo)) AND ((@IsNull_EmployeeID = 1 AND [EmployeeID] IS NULL) OR ([EmployeeID] = @Original_EmployeeID)) AND ((@IsNull_ResidentID = 1 AND [ResidentID] IS NULL) OR ([ResidentID] = @Original_ResidentID)));
+SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID FROM TRANS_ACTION WHERE (TransNo = @TransNo)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateTime", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeTrans", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeTrans", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reason", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reason", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalRounds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalRounds", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Comments", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comments", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmailedTo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmailedTo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResidentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResidentID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TransNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DateTime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateTime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateTime", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TypeTrans", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeTrans", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Reason", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reason", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Reason", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reason", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_TotalRounds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalRounds", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TotalRounds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalRounds", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Comments", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comments", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Comments", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comments", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_NoEmail", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EmailedTo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmailedTo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmailedTo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmailedTo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ResidentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResidentID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -5553,8 +6294,8 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Empl" +
-                "oyeeID, ResidentID FROM dbo.TRANS_ACTION";
+            this._commandCollection[0].CommandText = "SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeID" +
+                ", ResidentID FROM dbo.TRANS_ACTION";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5615,7 +6356,7 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_TransNo, global::System.Nullable<global::System.DateTime> Original_DateTime, string Original_TypeTrans, string Original_Reason, global::System.Nullable<int> Original_TotalRounds, string Original_Comments, string Original_NoEmail, global::System.Nullable<int> Original_EmployeeID, global::System.Nullable<int> Original_ResidentID) {
+        public virtual int Delete(int Original_TransNo, global::System.Nullable<global::System.DateTime> Original_DateTime, string Original_TypeTrans, global::System.Nullable<int> Original_TotalRounds, string Original_Comments, string Original_EmailedTo, global::System.Nullable<int> Original_EmployeeID, global::System.Nullable<int> Original_ResidentID) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_TransNo));
             if ((Original_DateTime.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -5631,53 +6372,45 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
             else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_TypeTrans));
             }
-            if ((Original_Reason == null)) {
+            if ((Original_TotalRounds.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_TotalRounds.Value));
+            }
+            else {
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_Reason));
-            }
-            if ((Original_TotalRounds.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_TotalRounds.Value));
-            }
-            else {
+            if ((Original_Comments == null)) {
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((Original_Comments == null)) {
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_Comments));
+            }
+            if ((Original_EmailedTo == null)) {
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_Comments));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_EmailedTo));
             }
-            if ((Original_NoEmail == null)) {
+            if ((Original_EmployeeID.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((int)(Original_EmployeeID.Value));
+            }
+            else {
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_NoEmail));
-            }
-            if ((Original_EmployeeID.HasValue == true)) {
+            if ((Original_ResidentID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((int)(Original_EmployeeID.Value));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((int)(Original_ResidentID.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            if ((Original_ResidentID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[15].Value = ((int)(Original_ResidentID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5699,7 +6432,7 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<global::System.DateTime> DateTime, string TypeTrans, string Reason, global::System.Nullable<int> TotalRounds, string Comments, string NoEmail, global::System.Nullable<int> EmployeeID, global::System.Nullable<int> ResidentID) {
+        public virtual int Insert(global::System.Nullable<global::System.DateTime> DateTime, string TypeTrans, global::System.Nullable<int> TotalRounds, string Comments, string EmailedTo, global::System.Nullable<int> EmployeeID, global::System.Nullable<int> ResidentID) {
             if ((DateTime.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(DateTime.Value));
             }
@@ -5712,41 +6445,35 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(TypeTrans));
             }
-            if ((Reason == null)) {
+            if ((TotalRounds.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(TotalRounds.Value));
+            }
+            else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Reason));
-            }
-            if ((TotalRounds.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(TotalRounds.Value));
-            }
-            else {
+            if ((Comments == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((Comments == null)) {
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Comments));
+            }
+            if ((EmailedTo == null)) {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Comments));
-            }
-            if ((NoEmail == null)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(NoEmail));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(EmailedTo));
             }
             if ((EmployeeID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((int)(EmployeeID.Value));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((int)(EmployeeID.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((ResidentID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((int)(ResidentID.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((ResidentID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((int)(ResidentID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5771,19 +6498,17 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
         public virtual int Update(
                     global::System.Nullable<global::System.DateTime> DateTime, 
                     string TypeTrans, 
-                    string Reason, 
                     global::System.Nullable<int> TotalRounds, 
                     string Comments, 
-                    string NoEmail, 
+                    string EmailedTo, 
                     global::System.Nullable<int> EmployeeID, 
                     global::System.Nullable<int> ResidentID, 
                     int Original_TransNo, 
                     global::System.Nullable<global::System.DateTime> Original_DateTime, 
                     string Original_TypeTrans, 
-                    string Original_Reason, 
                     global::System.Nullable<int> Original_TotalRounds, 
                     string Original_Comments, 
-                    string Original_NoEmail, 
+                    string Original_EmailedTo, 
                     global::System.Nullable<int> Original_EmployeeID, 
                     global::System.Nullable<int> Original_ResidentID, 
                     int TransNo) {
@@ -5799,106 +6524,92 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(TypeTrans));
             }
-            if ((Reason == null)) {
+            if ((TotalRounds.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(TotalRounds.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Reason));
-            }
-            if ((TotalRounds.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(TotalRounds.Value));
-            }
-            else {
+            if ((Comments == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((Comments == null)) {
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Comments));
+            }
+            if ((EmailedTo == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Comments));
-            }
-            if ((NoEmail == null)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(NoEmail));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(EmailedTo));
             }
             if ((EmployeeID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(EmployeeID.Value));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(EmployeeID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((ResidentID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(ResidentID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((ResidentID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(ResidentID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_TransNo));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_TransNo));
             if ((Original_DateTime.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(Original_DateTime.Value));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_DateTime.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             if ((Original_TypeTrans == null)) {
                 throw new global::System.ArgumentNullException("Original_TypeTrans");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_TypeTrans));
-            }
-            if ((Original_Reason == null)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_Reason));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_TypeTrans));
             }
             if ((Original_TotalRounds.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_TotalRounds.Value));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_TotalRounds.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             if ((Original_Comments == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Comments));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_Comments));
             }
-            if ((Original_NoEmail == null)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+            if ((Original_EmailedTo == null)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_NoEmail));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_EmailedTo));
             }
             if ((Original_EmployeeID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(Original_EmployeeID.Value));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_EmployeeID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             if ((Original_ResidentID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_ResidentID.Value));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_ResidentID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(TransNo));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(TransNo));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5919,25 +6630,8 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    global::System.Nullable<global::System.DateTime> DateTime, 
-                    string TypeTrans, 
-                    string Reason, 
-                    global::System.Nullable<int> TotalRounds, 
-                    string Comments, 
-                    string NoEmail, 
-                    global::System.Nullable<int> EmployeeID, 
-                    global::System.Nullable<int> ResidentID, 
-                    int Original_TransNo, 
-                    global::System.Nullable<global::System.DateTime> Original_DateTime, 
-                    string Original_TypeTrans, 
-                    string Original_Reason, 
-                    global::System.Nullable<int> Original_TotalRounds, 
-                    string Original_Comments, 
-                    string Original_NoEmail, 
-                    global::System.Nullable<int> Original_EmployeeID, 
-                    global::System.Nullable<int> Original_ResidentID) {
-            return this.Update(DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID, Original_TransNo, Original_DateTime, Original_TypeTrans, Original_Reason, Original_TotalRounds, Original_Comments, Original_NoEmail, Original_EmployeeID, Original_ResidentID, Original_TransNo);
+        public virtual int Update(global::System.Nullable<global::System.DateTime> DateTime, string TypeTrans, global::System.Nullable<int> TotalRounds, string Comments, string EmailedTo, global::System.Nullable<int> EmployeeID, global::System.Nullable<int> ResidentID, int Original_TransNo, global::System.Nullable<global::System.DateTime> Original_DateTime, string Original_TypeTrans, global::System.Nullable<int> Original_TotalRounds, string Original_Comments, string Original_EmailedTo, global::System.Nullable<int> Original_EmployeeID, global::System.Nullable<int> Original_ResidentID) {
+            return this.Update(DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID, Original_TransNo, Original_DateTime, Original_TypeTrans, Original_TotalRounds, Original_Comments, Original_EmailedTo, Original_EmployeeID, Original_ResidentID, Original_TransNo);
         }
     }
     
@@ -5952,6 +6646,8 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
     public partial class TableAdapterManager : global::System.ComponentModel.Component {
         
         private UpdateOrderOption _updateOrder;
+        
+        private ADDITIONAL_AUTHORIZED_USERSTableAdapter _aDDITIONAL_AUTHORIZED_USERSTableAdapter;
         
         private CLUSTERSTableAdapter _cLUSTERSTableAdapter;
         
@@ -5977,6 +6673,20 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
             }
             set {
                 this._updateOrder = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public ADDITIONAL_AUTHORIZED_USERSTableAdapter ADDITIONAL_AUTHORIZED_USERSTableAdapter {
+            get {
+                return this._aDDITIONAL_AUTHORIZED_USERSTableAdapter;
+            }
+            set {
+                this._aDDITIONAL_AUTHORIZED_USERSTableAdapter = value;
             }
         }
         
@@ -6083,6 +6793,10 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
                 if ((this._connection != null)) {
                     return this._connection;
                 }
+                if (((this._aDDITIONAL_AUTHORIZED_USERSTableAdapter != null) 
+                            && (this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Connection != null))) {
+                    return this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Connection;
+                }
                 if (((this._cLUSTERSTableAdapter != null) 
                             && (this._cLUSTERSTableAdapter.Connection != null))) {
                     return this._cLUSTERSTableAdapter.Connection;
@@ -6120,6 +6834,9 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
+                if ((this._aDDITIONAL_AUTHORIZED_USERSTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 if ((this._cLUSTERSTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -6185,6 +6902,15 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._aDDITIONAL_AUTHORIZED_USERSTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.ADDITIONAL_AUTHORIZED_USERS.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._gOLF_ROUNDSTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.GOLF_ROUNDS.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -6245,6 +6971,14 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._aDDITIONAL_AUTHORIZED_USERSTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.ADDITIONAL_AUTHORIZED_USERS.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._gOLF_ROUNDSTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.GOLF_ROUNDS.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -6284,6 +7018,14 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._gOLF_ROUNDSTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._aDDITIONAL_AUTHORIZED_USERSTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.ADDITIONAL_AUTHORIZED_USERS.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -6358,6 +7100,11 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
+            if (((this._aDDITIONAL_AUTHORIZED_USERSTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             if (((this._cLUSTERSTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._cLUSTERSTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
@@ -6420,6 +7167,15 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
             try {
                 // ---- Prepare for update -----------
                 //
+                if ((this._aDDITIONAL_AUTHORIZED_USERSTableAdapter != null)) {
+                    revertConnections.Add(this._aDDITIONAL_AUTHORIZED_USERSTableAdapter, this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Connection);
+                    this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Adapter);
+                    }
+                }
                 if ((this._cLUSTERSTableAdapter != null)) {
                     revertConnections.Add(this._cLUSTERSTableAdapter, this._cLUSTERSTableAdapter.Connection);
                     this._cLUSTERSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -6531,6 +7287,10 @@ SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, Emp
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
+                }
+                if ((this._aDDITIONAL_AUTHORIZED_USERSTableAdapter != null)) {
+                    this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._aDDITIONAL_AUTHORIZED_USERSTableAdapter]));
+                    this._aDDITIONAL_AUTHORIZED_USERSTableAdapter.Transaction = null;
                 }
                 if ((this._cLUSTERSTableAdapter != null)) {
                     this._cLUSTERSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._cLUSTERSTableAdapter]));

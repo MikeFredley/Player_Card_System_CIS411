@@ -142,7 +142,7 @@ namespace Player_Card_System_CIS411
         private static void ReadResident()
         {
             connection.Open();
-            string GetResidentSQL = "SELECT ID, Address, Email, Phone, CommentBox, CardRelation, ClusterName, UnitNumber FROM Resident";
+            string GetResidentSQL = "SELECT ID, Address, Email, Phone, CommentBox, NoEmail, ClusterName, UnitNumber FROM Resident";
             command = new SqlCommand(GetResidentSQL, connection);
 
             SqlDataReader residentReader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -155,7 +155,7 @@ namespace Player_Card_System_CIS411
                 tempResident.Email = residentReader["Email"].ToString();
                 tempResident.Phone = residentReader["Phone"].ToString();
                 tempResident.CommentBox = residentReader["CommentBox"].ToString();
-                tempResident.CardRelation = residentReader["CardRelation"].ToString();
+                tempResident.NoEmail = Convert.ToBoolean(residentReader["NoEmail"]);
                 tempResident.ClusterName = residentReader["ClusterName"].ToString();
                 tempResident.UnitNumber = int.Parse(residentReader["UnitNumber"].ToString());
                 resident.Add(tempResident);
@@ -168,8 +168,9 @@ namespace Player_Card_System_CIS411
         // Method to read from the Transaction table
         private static void ReadTransaction()
         {
+            transaction.Clear();
             connection.Open();
-            string GetTransactionSQL = "SELECT TransNo, DateTime, TypeTrans, Reason, TotalRounds, Comments, NoEmail, EmployeeID, ResidentID FROM Trans_Action";
+            string GetTransactionSQL = "SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID FROM Trans_Action";
             command = new SqlCommand(GetTransactionSQL, connection);
 
             SqlDataReader transactionReader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -180,10 +181,9 @@ namespace Player_Card_System_CIS411
                 tempTransaction.TransNo = int.Parse(transactionReader["TransNo"].ToString());
                 tempTransaction.DateTime = transactionReader["DateTime"].ToString();
                 tempTransaction.TypeTrans = transactionReader["TypeTrans"].ToString();
-                tempTransaction.Reason = transactionReader["Reason"].ToString();
                 tempTransaction.TotalRounds = int.Parse(transactionReader["TotalRounds"].ToString());
                 tempTransaction.Comments = transactionReader["Comments"].ToString();
-                tempTransaction.NoEmail = Convert.ToBoolean(transactionReader["NoEmail"]);
+                tempTransaction.EmailedTo = transactionReader["EmailedTo"].ToString();
                 tempTransaction.EmployeeID = int.Parse(transactionReader["EmployeeID"].ToString());
                 tempTransaction.ResidentID = int.Parse(transactionReader["ResidentID"].ToString());
                 transaction.Add(tempTransaction);
@@ -216,7 +216,7 @@ namespace Player_Card_System_CIS411
                         tempResInfo.Email = resident[j].Email;
                         tempResInfo.Phone = resident[j].Phone;
                         tempResInfo.CommentBox = resident[j].CommentBox;
-                        tempResInfo.CardRelation = resident[j].CardRelation;
+                        tempResInfo.NoEmail = resident[j].NoEmail;
                         tempResInfo.Address = resident[j].Address;
 
                         residentInfo.Add(tempResInfo);
@@ -283,8 +283,8 @@ namespace Player_Card_System_CIS411
         internal static void SubmitTransaction(Transaction newTransaction)
         {
             connection.Open();
-            string InsertTransactionSQL = "INSERT INTO Trans_Action (DateTime, TypeTrans, Reason, TotalRounds, NoEmail, Comments, EmployeeID, ResidentID) " +
-                                          "VALUES (@pDateTime, @pTypeTrans, @pReason, @pTotalRounds, @pNoEmail, @pComments, @pEmployeeID, @pResidentID)";
+            string InsertTransactionSQL = "INSERT INTO Trans_Action (DateTime, TypeTrans, TotalRounds, EmailedTo, Comments, EmployeeID, ResidentID) " +
+                                          "VALUES (@pDateTime, @pTypeTrans, @pTotalRounds, @pEmailedTo, @pComments, @pEmployeeID, @pResidentID)";
             command = new SqlCommand(InsertTransactionSQL, connection);
 
             try
@@ -292,23 +292,23 @@ namespace Player_Card_System_CIS411
                 DateTime date = DateTime.Now;
                 command.Parameters.AddWithValue("@pDateTime", date);
                 command.Parameters.AddWithValue("@pTypeTrans", newTransaction.TypeTrans);
-                command.Parameters.AddWithValue("@pReason", newTransaction.Reason);
                 command.Parameters.AddWithValue("@pTotalRounds", newTransaction.TotalRounds);
-                command.Parameters.AddWithValue("@pNoEmail", "false");
-                command.Parameters.AddWithValue("@pComments", "");
+                command.Parameters.AddWithValue("@pEmailedTo", newTransaction.EmailedTo);
+                command.Parameters.AddWithValue("@pComments", newTransaction.Comments);
                 command.Parameters.AddWithValue("@pEmployeeID", newTransaction.EmployeeID);
                 command.Parameters.AddWithValue("@pResidentID", newTransaction.ResidentID);
 
                 int rowsAffected = command.ExecuteNonQuery();
                 if(rowsAffected > 0)
                 {
-                    Console.WriteLine("Transaction Added");
+                    Console.WriteLine("Transaction Added");                   
                 }
                 else
                 {
                     Console.WriteLine("Transaction Failed");
                 }
                 connection.Close();
+                ReadTransaction();
                 CreateResidentInfo();
             }
             catch (Exception ex)
@@ -323,8 +323,8 @@ namespace Player_Card_System_CIS411
         {
             connection.Open();
             string UpdateResidentSQL = "UPDATE Resident " +
-                                       "SET Address = @pAddress, Email = @pEmail, Phone = @pPhone, CardRelation = @pCardRelation, CommentBox = @pCommentBox, " +
-   /*ClusterName = @pClusterName,*/    "UnitNumber = @pUnitNumber " + 
+                                       "SET Address = @pAddress, Email = @pEmail, Phone = @pPhone, NoEmail = @pNoEmail, CommentBox = @pCommentBox, " +
+                                       "ClusterName = @pClusterName, UnitNumber = @pUnitNumber " + 
                                        "WHERE ID = @pID";
             command = new SqlCommand(UpdateResidentSQL, connection);
             try
@@ -333,9 +333,9 @@ namespace Player_Card_System_CIS411
                 command.Parameters.AddWithValue("@pAddress", residentInfo[resIndex].Address);
                 command.Parameters.AddWithValue("@pEmail", residentInfo[resIndex].Email);
                 command.Parameters.AddWithValue("@pPhone", residentInfo[resIndex].Phone);
-                command.Parameters.AddWithValue("@pCardRelation", ResidentInfo[resIndex].CardRelation);
+                command.Parameters.AddWithValue("@pNoEmail", ResidentInfo[resIndex].NoEmail.ToString());
                 command.Parameters.AddWithValue("@pCommentBox", residentInfo[resIndex].CommentBox);
-         //       command.Parameters.AddWithValue("@pClusterName", residentInfo[resIndex].ClusterName);
+                command.Parameters.AddWithValue("@pClusterName", residentInfo[resIndex].ClusterName);
                 command.Parameters.AddWithValue("@pUnitNumber", residentInfo[resIndex].UnitNumber);
 
                 int rowsAffected = command.ExecuteNonQuery(); 

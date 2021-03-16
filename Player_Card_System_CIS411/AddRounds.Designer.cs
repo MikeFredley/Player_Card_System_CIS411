@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dgvAddRounds = new System.Windows.Forms.DataGridView();
-            this.btnTransactionHistory = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddRounds)).BeginInit();
             this.SuspendLayout();
@@ -43,19 +42,9 @@
             this.dgvAddRounds.TabIndex = 0;
             this.dgvAddRounds.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAddRounds_CellClick);
             // 
-            // btnTransactionHistory
-            // 
-            this.btnTransactionHistory.Location = new System.Drawing.Point(12, 233);
-            this.btnTransactionHistory.Name = "btnTransactionHistory";
-            this.btnTransactionHistory.Size = new System.Drawing.Size(115, 29);
-            this.btnTransactionHistory.TabIndex = 1;
-            this.btnTransactionHistory.Text = "Transaction History";
-            this.btnTransactionHistory.UseVisualStyleBackColor = true;
-            this.btnTransactionHistory.Click += new System.EventHandler(this.btnTransactionHistory_Click);
-            // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(536, 233);
+            this.btnExit.Location = new System.Drawing.Point(266, 233);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(115, 29);
             this.btnExit.TabIndex = 2;
@@ -69,7 +58,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(663, 274);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnTransactionHistory);
             this.Controls.Add(this.dgvAddRounds);
             this.Name = "AddRounds";
             this.Text = "AddRounds";
@@ -81,7 +69,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvAddRounds;
-        private System.Windows.Forms.Button btnTransactionHistory;
         private System.Windows.Forms.Button btnExit;
     }
 }

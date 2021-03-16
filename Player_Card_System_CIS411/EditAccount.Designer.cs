@@ -61,6 +61,7 @@
             this.txtComments = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnAdjustBalance = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuthorizedUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -228,6 +229,7 @@
             this.chkEmails.AutoSize = true;
             this.chkEmails.Checked = true;
             this.chkEmails.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkEmails.Enabled = false;
             this.chkEmails.Location = new System.Drawing.Point(15, 324);
             this.chkEmails.Name = "chkEmails";
             this.chkEmails.Size = new System.Drawing.Size(99, 17);
@@ -294,7 +296,7 @@
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(216, 406);
+            this.btnHelp.Location = new System.Drawing.Point(417, 460);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(79, 28);
             this.btnHelp.TabIndex = 33;
@@ -354,11 +356,22 @@
             this.label3.TabIndex = 39;
             this.label3.Text = "Address:";
             // 
+            // btnAdjustBalance
+            // 
+            this.btnAdjustBalance.Location = new System.Drawing.Point(213, 406);
+            this.btnAdjustBalance.Name = "btnAdjustBalance";
+            this.btnAdjustBalance.Size = new System.Drawing.Size(86, 28);
+            this.btnAdjustBalance.TabIndex = 40;
+            this.btnAdjustBalance.Text = "Adjust Balance";
+            this.btnAdjustBalance.UseVisualStyleBackColor = true;
+            this.btnAdjustBalance.Click += new System.EventHandler(this.btnAdjustBalance_Click);
+            // 
             // EditAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 497);
+            this.Controls.Add(this.btnAdjustBalance);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtComments);
@@ -435,5 +448,6 @@
         private System.Windows.Forms.TextBox txtComments;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnAdjustBalance;
     }
 }

@@ -33,10 +33,23 @@ namespace Player_Card_System_CIS411
             employeeScreen = new EmployeeWindow(this);
             employeeScreen.Visible = true;
             this.Hide();
-            if ((txtUsername.Text == "Employee") && (txtPassword.Text == "Employee"))
+
+
+          /*  string userName = txtUsername.Text;
+            string passWord = txtPassword.Text;
+
+            foreach (Employee emp in Database.Employee)
             {
-                
-            }
+                if(userName == emp.Username && passWord == emp.Password)
+                {
+                    
+                    break;
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect Username or Password.", "Error");
+                }
+            } */
         }
 
         private void WelcomeWindow_FormClosing(object sender, FormClosingEventArgs e)

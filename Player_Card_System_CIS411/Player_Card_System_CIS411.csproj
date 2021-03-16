@@ -54,6 +54,12 @@
     <Compile Include="AddRounds.Designer.cs">
       <DependentUpon>AddRounds.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdjustBalance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustBalance.Designer.cs">
+      <DependentUpon>AdjustBalance.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddRounds.resx">
       <DependentUpon>AddRounds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdjustBalance.resx">
+      <DependentUpon>AdjustBalance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminWindow.resx">
       <DependentUpon>AdminWindow.cs</DependentUpon>

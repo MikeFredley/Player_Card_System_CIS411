@@ -13,7 +13,7 @@ namespace Player_Card_System_CIS411
         private string email;
         private string phone;
         private string commentBox;
-        private string cardRelation;
+        private bool noEmail;
         private string clusterName;
         private int unitNumber;
 
@@ -24,19 +24,19 @@ namespace Player_Card_System_CIS411
             email = "";
             phone = "";
             commentBox = "";
-            cardRelation = "";
+            noEmail = true;
             clusterName = "";
             unitNumber = 0;
         }
 
-        public Resident(int pId, string pAddress, string pEmail, string pPhone, string pCommentBox, string pCardRelation, string pClusterName, int pUnitNumber)
+        public Resident(int pId, string pAddress, string pEmail, string pPhone, string pCommentBox, bool pNoEmail, string pClusterName, int pUnitNumber)
         {
             Id = pId;
             address = pAddress;
             email = pEmail;
             phone = pPhone;
             commentBox = pCommentBox;
-            cardRelation = pCardRelation;
+            noEmail= pNoEmail;
             clusterName = pClusterName;
             unitNumber = pUnitNumber;
         }
@@ -46,7 +46,7 @@ namespace Player_Card_System_CIS411
         public string Email { get => email; set => email = value; }
         public string Phone { get => phone; set => phone = value; }
         public string CommentBox { get => commentBox; set => commentBox = value; }
-        public string CardRelation { get => cardRelation; set => cardRelation = value; }
+        public bool NoEmail { get => noEmail; set => noEmail = value; }
         public string ClusterName { get => clusterName; set => clusterName = value; }
         public int UnitNumber { get => unitNumber; set => unitNumber = value; }
     }

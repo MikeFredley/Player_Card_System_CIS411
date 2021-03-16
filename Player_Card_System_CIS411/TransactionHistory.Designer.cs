@@ -39,7 +39,7 @@
             this.dgvTransactionHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTransactionHistory.Location = new System.Drawing.Point(13, 13);
             this.dgvTransactionHistory.Name = "dgvTransactionHistory";
-            this.dgvTransactionHistory.Size = new System.Drawing.Size(666, 294);
+            this.dgvTransactionHistory.Size = new System.Drawing.Size(778, 294);
             this.dgvTransactionHistory.TabIndex = 0;
             // 
             // btnEmail
@@ -53,7 +53,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(604, 313);
+            this.btnExit.Location = new System.Drawing.Point(716, 313);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 2;
@@ -65,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 344);
+            this.ClientSize = new System.Drawing.Size(803, 344);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnEmail);
             this.Controls.Add(this.dgvTransactionHistory);

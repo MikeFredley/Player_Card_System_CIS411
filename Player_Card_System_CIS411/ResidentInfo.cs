@@ -17,7 +17,7 @@ namespace Player_Card_System_CIS411
         private string phone;
         private int currentRounds;
         private string commentBox;
-        private string cardRelation;
+        private bool noEmail;
         private string address;
 
         public ResidentInfo()
@@ -31,7 +31,7 @@ namespace Player_Card_System_CIS411
             phone = "";
             currentRounds = 0;
             commentBox = "";
-            cardRelation = "";
+            noEmail = true;
             address = "";
         }
 
@@ -44,7 +44,7 @@ namespace Player_Card_System_CIS411
         public string Phone { get => phone; set => phone = value; }
         public int CurrentRounds { get => currentRounds; set => currentRounds = value; }
         public string CommentBox { get =>  commentBox; set => commentBox = value; }
-        public string CardRelation { get => cardRelation; set => cardRelation = value; }
+        public bool NoEmail { get => noEmail; set => noEmail = value; }
         public string Address { get => address; set => address = value; }
     }
 }

@@ -30,13 +30,14 @@ namespace Player_Card_System_CIS411
             dt.Columns.Add(new DataColumn("Emailed", typeof(string)));
             dt.Columns.Add(new DataColumn("Employee ID", typeof(int)));
             dt.Columns.Add(new DataColumn("Resident ID", typeof(int)));
+            dt.Columns.Add(new DataColumn("Comments", typeof(string)));
 
             for (int i = 0; i < Database.Transaction.Count; i++)
             {
                 if (Database.Transaction[i].ResidentID == ID)
                 {
-                    dt.Rows.Add(Database.Transaction[i].DateTime, Database.Transaction[i].TypeTrans, Database.Transaction[i].TotalRounds, Database.Transaction[i].NoEmail,
-                    Database.Transaction[i].EmployeeID, Database.Transaction[i].ResidentID);
+                    dt.Rows.Add(Database.Transaction[i].DateTime, Database.Transaction[i].TypeTrans, Database.Transaction[i].TotalRounds, Database.Transaction[i].EmailedTo,
+                    Database.Transaction[i].EmployeeID, Database.Transaction[i].ResidentID, Database.Transaction[i].Comments);
                 }          
             }
 

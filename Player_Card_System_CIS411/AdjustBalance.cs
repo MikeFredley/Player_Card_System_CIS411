@@ -10,26 +10,19 @@ using System.Windows.Forms;
 
 namespace Player_Card_System_CIS411
 {
-    public partial class DeductRounds : Form
+    public partial class AdjustBalance : Form
     {
-        int resIndex;
-        int newRounds;
-        Transaction newTransaction;
-        EmployeeWindow employeeWindow;
-        public DeductRounds(int ID, EmployeeWindow pEmployeeWindow)
+        int newRounds, currentRounds, ID;
+        string email;
+        EditAccount editAccount;
+        public AdjustBalance(int pCurrentRounds, int pID, string pEmail, EditAccount pEditAccount)
         {
             InitializeComponent();
-            employeeWindow = pEmployeeWindow;
-            // Grabs the residents current rounds
-            for (int i = 0; i < Database.ResidentInfo.Count; i++)
-            {
-                if (Database.ResidentInfo[i].ID == ID)
-                {
-                    lblCurrenRounds.Text = Database.ResidentInfo[i].CurrentRounds + "";
-                    resIndex = i;
-                }
-            }          
-
+            lblRounds.Text = pCurrentRounds.ToString();
+            currentRounds = pCurrentRounds;
+            email = pEmail;
+            ID = pID;
+            editAccount = pEditAccount;
 
             // Adds each employee name into the combo box for selecting the transaction employee
             foreach (Employee employee in Database.Employee)
@@ -44,21 +37,23 @@ namespace Player_Card_System_CIS411
             }
         }
 
+        private void btnAddRounds_Click(object sender, EventArgs e)
+        {
+            // Adds rounds entered to the current amount of rounds
+            newRounds = currentRounds + int.Parse(txtNumRounds.Value.ToString());
+            CreateNewTransaction();
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void DeductRounds_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
-
-        private void btnSubmit_Click(object sender, EventArgs e)
+        private void btnSubtractRounds_Click(object sender, EventArgs e)
         {
             // Calculates the new amount of rounds for deducting them
-            newRounds = Database.ResidentInfo[resIndex].CurrentRounds - int.Parse(txtNumRounds.Value.ToString());
-            if(newRounds < 0)
+            newRounds = currentRounds - int.Parse(txtNumRounds.Value.ToString());
+            if (newRounds < 0)
             {
                 DialogResult dialogResult = MessageBox.Show("Users Number of Rounds Will go Negative. \n\nDo You Wish to Proceed?", "Warning", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
@@ -76,18 +71,12 @@ namespace Player_Card_System_CIS411
 
         private void CreateNewTransaction()
         {
-            string email;
-            if (Database.ResidentInfo[resIndex].NoEmail)
-            {
-                email = Database.ResidentInfo[resIndex].Email;
-            }
-            else
-            {
-                email = "";
-            }
-            newTransaction = new Transaction("U", newRounds, email, 101, Database.ResidentInfo[resIndex].ID, "");
+            // Creates a new transaction object then sends it to the database
+            // class to be added to the list and the database
+            Transaction newTransaction = new Transaction("A", newRounds, email, 101, ID, txtReason.Text);
             Database.SubmitTransaction(newTransaction);
-            employeeWindow.RefreshDataTable();
+            // Refreshes to the new values on the details window and the main screen
+            editAccount.EditWindowRefresh(ID);
         }
     }
 }

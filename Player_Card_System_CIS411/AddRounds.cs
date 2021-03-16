@@ -14,7 +14,8 @@ namespace Player_Card_System_CIS411
     {
         DataTable dt;
         Transaction newTransaction;
-        int currentRounds, ID, newRounds, saveIndex;
+        int currentRounds, ID, newRounds;
+        string email;
         EditAccount editAccount;
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -28,15 +29,17 @@ namespace Player_Card_System_CIS411
             transactionWindow.Show();
         }
 
-        public AddRounds(int pCurrentRounds, int pID, EditAccount pEditAccount)
+        public AddRounds(int pCurrentRounds, int pID, string pEmail, EditAccount pEditAccount)
         {
             currentRounds = pCurrentRounds;
             ID = pID;
             editAccount = pEditAccount;
+            email = pEmail;
             InitializeComponent();
             InitializeDataGridView();
         }
 
+        // Adds the golf rounds to the datagridview
         private void InitializeDataGridView()
         {
             decimal totalCost;
@@ -72,8 +75,10 @@ namespace Player_Card_System_CIS411
             {
                 if (e.RowIndex >= 0)
                 {
+                    // If the button is clicked it creates a new transaction object
+                    // and adds it to the transaction table
                     newRounds = currentRounds + Database.GolfRounds[e.RowIndex].TotalRounds;
-                    newTransaction = new Transaction("P", "Purchase", newRounds, 101, ID);
+                    newTransaction = new Transaction("P", newRounds, email, 101, ID, "");
                     Database.SubmitTransaction(newTransaction);
                     editAccount.EditWindowRefresh(ID);
                     MessageBox.Show("Rounds Added");
