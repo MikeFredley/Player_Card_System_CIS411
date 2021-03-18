@@ -502,13 +502,14 @@ namespace Player_Card_System_CIS411
 
         private static void ReadAdditionalAuthorizedUsers()
         {
+            
             connection.Open();
             string ReadAuthorizedUsersSQL = "SELECT OwnerID, FirstName, LastName FROM Additional_Authorized_Users";
 
             command = new SqlCommand(ReadAuthorizedUsersSQL, connection);
 
             SqlDataReader authorizedReader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
+            authorizedUsers.Clear();
             while (authorizedReader.Read())
             {
                 AdditionalAuthorizedUsers newUser = new AdditionalAuthorizedUsers();
@@ -517,6 +518,66 @@ namespace Player_Card_System_CIS411
                 newUser.LastName = authorizedReader["LastName"].ToString();
                 authorizedUsers.Add(newUser);
                 newUser = null;
+            }
+            connection.Close();
+        }
+
+        internal static void AddAuthorizedUser(AdditionalAuthorizedUsers newAuthorizedUser)
+        {
+            connection.Open();
+            string InsertAuthorizedUserSQL = "INSERT INTO Additional_Authorized_Users (OwnerID, FirstName, LastName) " +
+                                             "VALUES (@pOwnerID, @pFirstName, @pLastName)";
+            command = new SqlCommand(InsertAuthorizedUserSQL, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@pOwnerID", newAuthorizedUser.OwnerID);
+                command.Parameters.AddWithValue("@pFirstName", newAuthorizedUser.FirstName);
+                command.Parameters.AddWithValue("@pLastName", newAuthorizedUser.LastName);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Inserted New Authorized User");
+                    connection.Close();
+                    ReadAdditionalAuthorizedUsers();                   
+                }
+                else
+                {
+                    Console.WriteLine("New Authorized User Insert Failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could Not Insert Into Authorized User " + ex.Message);
+            }
+            connection.Close();
+        }
+
+        internal static void DeleteAuthorizedUser(int pID, string pFirstName, string pLastName)
+        {
+            connection.Open();
+            string DeleteAuthorizedUserSQL = "DELETE FROM ADDITIONAL_AUTHORIZED_USERS " + 
+                                             "WHERE OwnerID = @pOwnerID AND FirstName = @pFirstName AND LastName = @pLastName";
+            command = new SqlCommand(DeleteAuthorizedUserSQL, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@pOwnerID", pID);
+                command.Parameters.AddWithValue("@pFirstName", pFirstName);
+                command.Parameters.AddWithValue("@pLastName", pLastName);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Deleted Authorized User");
+                    connection.Close();
+                    ReadAdditionalAuthorizedUsers();
+                }
+                else
+                {
+                    Console.WriteLine("Delete Authorized User Failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could Not Delete Authorized User " + ex.Message);
             }
             connection.Close();
         }

@@ -12,9 +12,13 @@ namespace Player_Card_System_CIS411
 {
     public partial class AddAuthorizedUser : Form
     {
-        public AddAuthorizedUser()
+        int ID;
+        EditAccount editAccount;
+        public AddAuthorizedUser(int pID, EditAccount pEditAccount)
         {
             InitializeComponent();
+            ID = pID;
+            editAccount = pEditAccount;
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -24,7 +28,14 @@ namespace Player_Card_System_CIS411
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-
+            AdditionalAuthorizedUsers newAuthorizedUser = new AdditionalAuthorizedUsers();
+            newAuthorizedUser.OwnerID = ID;
+            newAuthorizedUser.FirstName = txtFirstName.Text;
+            newAuthorizedUser.LastName = txtLastName.Text;
+            Database.AddAuthorizedUser(newAuthorizedUser);           
+            editAccount.RefreshDataGridView();
+            MessageBox.Show("New Authorized User Added.");
+            this.Close();
         }
     }
 }

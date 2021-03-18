@@ -15,10 +15,12 @@ namespace Player_Card_System_CIS411
         int rowIndexHolder;
         EmployeeWindow employeeWindow;
         bool isEdit;
+        DataTable dt;
+        int rowIndex;
         public EditAccount(bool pIsEdit, int ID, EmployeeWindow pEmployeeWindow)
         {
             isEdit = pIsEdit;
-            InitializeComponent();
+            InitializeComponent();            
             // Adds every cluster name to the dropdown list
             foreach (Clusters cluster in Database.Clusters)
             {
@@ -58,6 +60,7 @@ namespace Player_Card_System_CIS411
             {
                 EditWindowRefresh(ID);
             }
+            InitializeDataGridView();
         }
 
         public void EditWindowRefresh(int ID)
@@ -153,6 +156,7 @@ namespace Player_Card_System_CIS411
                 btnAddUser.Visible = true;
                 btnRemoveUser.Visible = true;
                 btnAddRounds.Visible = true;
+                InitializeDataGridView();
             }
             else
             {
@@ -199,7 +203,55 @@ namespace Player_Card_System_CIS411
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
+            AddAuthorizedUser authorizedUser = new AddAuthorizedUser(Database.ResidentInfo[rowIndexHolder].ID, this);
+            authorizedUser.Show();
+        }
 
+        private void InitializeDataGridView()
+        {
+            if (isEdit)
+            {
+                dt = new DataTable();
+                dt.Columns.Add(new DataColumn("First Name", typeof(string)));
+                dt.Columns.Add(new DataColumn("Last Name", typeof(string)));
+
+                RefreshDataGridView();
+
+                dgvAuthorizedUsers.DataSource = dt;
+                dgvAuthorizedUsers.ReadOnly = true;
+            }            
+        }
+
+        public void RefreshDataGridView()
+        {
+            dt.Rows.Clear();
+            foreach (AdditionalAuthorizedUsers user in Database.AuthorizedUsers)
+            {
+                if (user.OwnerID == Database.ResidentInfo[rowIndexHolder].ID)
+                {
+                    dt.Rows.Add(user.FirstName, user.LastName);
+                }
+            }
+        }
+
+        private void btnRemoveUser_Click(object sender, EventArgs e)
+        {
+            foreach (AdditionalAuthorizedUsers user in Database.AuthorizedUsers)
+            {
+                if (user.FirstName == dgvAuthorizedUsers.Rows[rowIndex].Cells[0].Value.ToString() &&
+                    user.LastName == dgvAuthorizedUsers.Rows[rowIndex].Cells[1].Value.ToString())
+                {
+                    Database.DeleteAuthorizedUser(user.OwnerID, user.FirstName, user.LastName);
+                    break;
+                }
+            }
+            RefreshDataGridView();
+            MessageBox.Show("Authorized User Deleted");
+        }
+
+        private void dgvAuthorizedUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            rowIndex = e.RowIndex;
         }
     }
 }

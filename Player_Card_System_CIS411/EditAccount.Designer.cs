@@ -291,6 +291,7 @@
             this.btnRemoveUser.TabIndex = 32;
             this.btnRemoveUser.Text = "Remove User";
             this.btnRemoveUser.UseVisualStyleBackColor = true;
+            this.btnRemoveUser.Click += new System.EventHandler(this.btnRemoveUser_Click);
             // 
             // btnHelp
             // 
@@ -308,6 +309,7 @@
             this.dgvAuthorizedUsers.Name = "dgvAuthorizedUsers";
             this.dgvAuthorizedUsers.Size = new System.Drawing.Size(247, 183);
             this.dgvAuthorizedUsers.TabIndex = 34;
+            this.dgvAuthorizedUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAuthorizedUsers_CellClick);
             // 
             // btnTransHistory
             // 
