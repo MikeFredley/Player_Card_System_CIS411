@@ -78,7 +78,7 @@ namespace Player_Card_System_CIS411
                     // If the button is clicked it creates a new transaction object
                     // and adds it to the transaction table
                     newRounds = currentRounds + Database.GolfRounds[e.RowIndex].TotalRounds;
-                    newTransaction = new Transaction("P", newRounds, email, 101, ID, "");
+                    newTransaction = new Transaction("P", newRounds, email, Database.LoggedInEmployee.ID, ID, "");
                     Database.SubmitTransaction(newTransaction);
                     editAccount.EditWindowRefresh(ID);
                     MessageBox.Show("Rounds Added");

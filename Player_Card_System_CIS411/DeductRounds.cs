@@ -32,7 +32,7 @@ namespace Player_Card_System_CIS411
 
 
             // Adds each employee name into the combo box for selecting the transaction employee
-            foreach (Employee employee in Database.Employee)
+         /*   foreach (Employee employee in Database.Employee)
             {
                 for (int i = 0; i < Database.Person.Count; i++)
                 {
@@ -41,7 +41,17 @@ namespace Player_Card_System_CIS411
                         cmbEmployee.Items.Add(Database.Person[i].FirstName + " " + Database.Person[i].LastName);
                     }
                 }
+            } */
+
+            foreach (EmployeeInfo employee in Database.EmployeeInfo)
+            {
+                if (employee.IsCurrent)
+                {
+                    cmbEmployee.Items.Add(employee.FirstName + " " + employee.LastName);
+                }                
             }
+
+            cmbEmployee.Text = Database.LoggedInEmployee.FirstName + " " + Database.LoggedInEmployee.LastName;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -77,6 +87,8 @@ namespace Player_Card_System_CIS411
         private void CreateNewTransaction()
         {
             string email;
+            int empID = 0;
+
             if (Database.ResidentInfo[resIndex].NoEmail)
             {
                 email = Database.ResidentInfo[resIndex].Email;
@@ -85,7 +97,17 @@ namespace Player_Card_System_CIS411
             {
                 email = "";
             }
-            newTransaction = new Transaction("U", newRounds, email, 101, Database.ResidentInfo[resIndex].ID, "");
+
+            for (int i = 0; i < Database.EmployeeInfo.Count; i++)
+            {
+                if (cmbEmployee.Text == (Database.EmployeeInfo[i].FirstName + " " + Database.EmployeeInfo[i].LastName))
+                {
+                    empID = Database.EmployeeInfo[i].ID;
+                }
+            }
+
+
+            newTransaction = new Transaction("U", newRounds, email, empID, Database.ResidentInfo[resIndex].ID, "");
             Database.SubmitTransaction(newTransaction);
             employeeWindow.RefreshDataTable();
         }

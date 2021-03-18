@@ -25,16 +25,15 @@ namespace Player_Card_System_CIS411
             editAccount = pEditAccount;
 
             // Adds each employee name into the combo box for selecting the transaction employee
-            foreach (Employee employee in Database.Employee)
+            foreach (EmployeeInfo employee in Database.EmployeeInfo)
             {
-                for (int i = 0; i < Database.Person.Count; i++)
+                if (employee.IsCurrent)
                 {
-                    if (employee.ID == Database.Person[i].ID && employee.IsCurrent)
-                    {
-                        cmbEmployee.Items.Add(Database.Person[i].FirstName + " " + Database.Person[i].LastName);
-                    }
+                    cmbEmployee.Items.Add(employee.FirstName + " " + employee.LastName);
                 }
             }
+
+            cmbEmployee.Text = Database.LoggedInEmployee.FirstName + " " + Database.LoggedInEmployee.LastName;
         }
 
         private void btnAddRounds_Click(object sender, EventArgs e)
@@ -71,9 +70,18 @@ namespace Player_Card_System_CIS411
 
         private void CreateNewTransaction()
         {
+            int empID = 0;
+            for (int i = 0; i < Database.EmployeeInfo.Count; i++)
+            {
+                if (cmbEmployee.Text == (Database.EmployeeInfo[i].FirstName + " " + Database.EmployeeInfo[i].LastName))
+                {
+                    empID = Database.EmployeeInfo[i].ID;
+                }
+            }
+
             // Creates a new transaction object then sends it to the database
             // class to be added to the list and the database
-            Transaction newTransaction = new Transaction("A", newRounds, email, 101, ID, txtReason.Text);
+            Transaction newTransaction = new Transaction("A", newRounds, email, empID, ID, txtReason.Text);
             Database.SubmitTransaction(newTransaction);
             // Refreshes to the new values on the details window and the main screen
             editAccount.EditWindowRefresh(ID);

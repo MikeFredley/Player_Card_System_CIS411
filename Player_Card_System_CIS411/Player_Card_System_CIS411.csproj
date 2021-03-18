@@ -94,6 +94,7 @@
       <DependentUpon>EditAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeInfo.cs" />
     <Compile Include="EmployeeViewer.cs">
       <SubType>Form</SubType>
     </Compile>

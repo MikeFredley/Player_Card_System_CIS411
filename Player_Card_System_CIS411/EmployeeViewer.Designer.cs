@@ -39,7 +39,7 @@
             this.dgvViewEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvViewEmployees.Location = new System.Drawing.Point(12, 12);
             this.dgvViewEmployees.Name = "dgvViewEmployees";
-            this.dgvViewEmployees.Size = new System.Drawing.Size(746, 321);
+            this.dgvViewEmployees.Size = new System.Drawing.Size(561, 321);
             this.dgvViewEmployees.TabIndex = 0;
             // 
             // btnAddEmployee
@@ -54,7 +54,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(631, 339);
+            this.btnExit.Location = new System.Drawing.Point(446, 339);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(127, 44);
             this.btnExit.TabIndex = 2;
@@ -66,12 +66,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 395);
+            this.ClientSize = new System.Drawing.Size(585, 395);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnAddEmployee);
             this.Controls.Add(this.dgvViewEmployees);
             this.Name = "EmployeeViewer";
-            this.Text = "EmployeeViewer";
+            this.Text = "Employee Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewEmployees)).EndInit();
             this.ResumeLayout(false);
 

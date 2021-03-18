@@ -21,6 +21,8 @@ namespace Player_Card_System_CIS411
         private static List<Clusters> clusters;
         private static List<GolfRounds> golfRounds;
         private static List<AdditionalAuthorizedUsers> authorizedUsers;
+        private static EmployeeInfo loggedInEmployee;
+        private static List<EmployeeInfo> employeeInfo;
 
         static Database()
         {
@@ -33,6 +35,7 @@ namespace Player_Card_System_CIS411
             clusters = new List<Clusters>();
             golfRounds = new List<GolfRounds>();
             authorizedUsers = new List<AdditionalAuthorizedUsers>();
+            employeeInfo = new List<EmployeeInfo>();
             try
             {
                 connection = new SqlConnection(connectionString);
@@ -45,6 +48,7 @@ namespace Player_Card_System_CIS411
                 ReadClusters();
                 ReadGolf_Rounds();
                 ReadAdditionalAuthorizedUsers();
+                CreateEmployeeInfo();
             }
             catch(Exception ex)
             {
@@ -283,6 +287,33 @@ namespace Player_Card_System_CIS411
             connection.Close();
         }
 
+        private static void CreateEmployeeInfo()
+        {
+            // Does the same thing as residentInfo
+            // just for the employees
+            employeeInfo.Clear();
+            for (int i = 0; i < person.Count; i++)
+            {
+                for (int j = 0; j < employee.Count; j++)
+                {
+                    if (person[i].ID == employee[j].ID)
+                    {
+                        EmployeeInfo tempEmployeeInfo = new EmployeeInfo();
+                        tempEmployeeInfo.ID = employee[j].ID;
+                        tempEmployeeInfo.FirstName = person[i].FirstName;
+                        tempEmployeeInfo.LastName = person[i].LastName;
+                        tempEmployeeInfo.IsAdmin = employee[j].IsAdmin;
+                        tempEmployeeInfo.UserName = employee[j].Username;
+                        tempEmployeeInfo.Password = employee[j].Password;
+                        tempEmployeeInfo.IsCurrent = employee[j].IsCurrent;
+
+                        employeeInfo.Add(tempEmployeeInfo);
+                        tempEmployeeInfo = null;
+                    }
+                }
+            }
+        }
+
         // Method to write new lines to the Transaction database
         internal static void SubmitTransaction(Transaction newTransaction)
         {
@@ -490,6 +521,7 @@ namespace Player_Card_System_CIS411
             connection.Close();
         }
 
+        // Everything that has to do with logging in
         internal static bool Login(string pUserName, string pPassword)
         {
             SqlCommand command = connection.CreateCommand();
@@ -503,12 +535,20 @@ namespace Player_Card_System_CIS411
             if (result != null)
             {
                 connection.Open();
-                command.CommandText = "SELECT ID FROM EMPLOYEE WHERE ID=@ID";
-                command.Parameters.AddWithValue("@ID", result.ToString());
+                command.CommandText = "SELECT ID FROM EMPLOYEE WHERE ID=@pID AND IsCurrent = @pIsCurrent";
+                command.Parameters.AddWithValue("@pID", result.ToString());
+                command.Parameters.AddWithValue("@pIsCurrent", "True");
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
                     connection.Close();
+                    for (int i = 0; i < employeeInfo.Count; i++)
+                    {
+                        if (employeeInfo[i].ID == int.Parse(result.ToString()))
+                        {
+                            loggedInEmployee = employeeInfo[i];
+                        }
+                    }
                     return true;
                 }
                 else
@@ -522,9 +562,8 @@ namespace Player_Card_System_CIS411
             }
         }
 
-        internal static void AddNewEmployee(Person newPerson, Employee newEmployee)
+        internal static void AddNewEmployee(EmployeeInfo newEmployee)
         {
-
             // Add new Person
             connection.Open();
             string InsertToPersonSQL = "INSERT INTO Person (FirstName, LastName) " +
@@ -532,8 +571,8 @@ namespace Player_Card_System_CIS411
             command = new SqlCommand(InsertToPersonSQL, connection);
             try
             {
-                command.Parameters.AddWithValue("@pFirstName", newPerson.FirstName);
-                command.Parameters.AddWithValue("@pLastName", newPerson.LastName);
+                command.Parameters.AddWithValue("@pFirstName", newEmployee.FirstName);
+                command.Parameters.AddWithValue("@pLastName", newEmployee.LastName);
                 int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
@@ -555,7 +594,7 @@ namespace Player_Card_System_CIS411
             bool canContinue = false;
             for (int i = 0; i < person.Count; i++)
             {
-                if (person[i].FirstName == newPerson.FirstName && person[i].LastName == newPerson.LastName)
+                if (person[i].FirstName == newEmployee.FirstName && person[i].LastName == newEmployee.LastName)
                 {
                     ID = person[i].ID;
                     canContinue = true;
@@ -567,7 +606,7 @@ namespace Player_Card_System_CIS411
                 command = connection.CreateCommand();
                 command.CommandText = "INSERT INTO EMPLOYEE (ID, UserName, Password, IsAdmin, IsCurrent) VALUES (@pID, @pUserName, @pPassword, @pIsAdmin, @pIsCurrent)";
                 command.Parameters.AddWithValue("@pID", ID);
-                command.Parameters.AddWithValue("@pUserName", newEmployee.Username);
+                command.Parameters.AddWithValue("@pUserName", newEmployee.UserName);
                 command.Parameters.AddWithValue("@pPassword", PasswordEncrypt.hash(newEmployee.Password));
                 command.Parameters.AddWithValue("@pIsAdmin", newEmployee.IsAdmin.ToString());
                 command.Parameters.AddWithValue("@pIsCurrent", newEmployee.IsCurrent.ToString());
@@ -576,6 +615,7 @@ namespace Player_Card_System_CIS411
                 if (command.ExecuteNonQuery() > 0)
                 {
                     Console.WriteLine("Employee Inserted");
+                    CreateEmployeeInfo();
                 }
                 else
                 {
@@ -597,5 +637,7 @@ namespace Player_Card_System_CIS411
         internal static List<Person> Person { get => person; set => person = value; }
         internal static List<GolfRounds> GolfRounds { get => golfRounds; set => golfRounds = value; }
         internal static List<AdditionalAuthorizedUsers> AuthorizedUsers { get => authorizedUsers; set => authorizedUsers = value; }
+        internal static EmployeeInfo LoggedInEmployee { get => loggedInEmployee; set => loggedInEmployee = value; }
+        internal static List<EmployeeInfo> EmployeeInfo { get => employeeInfo; set => employeeInfo = value; }
     }
 }

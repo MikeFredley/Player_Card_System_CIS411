@@ -18,6 +18,11 @@ namespace Player_Card_System_CIS411
         public EmployeeWindow(WelcomeWindow welcome)
         {
             InitializeComponent();
+            lblLoggedInEmployee.Text = "Logged In: " + Database.LoggedInEmployee.FirstName + " " + Database.LoggedInEmployee.LastName;
+            if (!Database.LoggedInEmployee.IsAdmin)
+            {
+                btnAdmin.Visible = false;
+            }
             welcomeWindow = welcome;
         }
 

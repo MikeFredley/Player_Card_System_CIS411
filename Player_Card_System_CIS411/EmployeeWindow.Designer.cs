@@ -33,7 +33,7 @@ namespace Player_Card_System_CIS411
             this.btnSearch = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblLoggedInEmployee = new System.Windows.Forms.Label();
             this.dgvResidentInfo = new System.Windows.Forms.DataGridView();
             this.btnAddAccount = new System.Windows.Forms.Button();
             this.btnAdmin = new System.Windows.Forms.Button();
@@ -77,14 +77,14 @@ namespace Player_Card_System_CIS411
             this.txtSearch.TabIndex = 21;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // label2
+            // lblLoggedInEmployee
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(805, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 13);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Logged In: Employee Name";
+            this.lblLoggedInEmployee.AutoSize = true;
+            this.lblLoggedInEmployee.Location = new System.Drawing.Point(805, 6);
+            this.lblLoggedInEmployee.Name = "lblLoggedInEmployee";
+            this.lblLoggedInEmployee.Size = new System.Drawing.Size(138, 13);
+            this.lblLoggedInEmployee.TabIndex = 19;
+            this.lblLoggedInEmployee.Text = "Logged In: Employee Name";
             // 
             // dgvResidentInfo
             // 
@@ -126,7 +126,7 @@ namespace Player_Card_System_CIS411
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblLoggedInEmployee);
             this.Controls.Add(this.btnLogout);
             this.Name = "EmployeeWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -144,7 +144,7 @@ namespace Player_Card_System_CIS411
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblLoggedInEmployee;
         private System.Windows.Forms.DataGridView dgvResidentInfo;
         private System.Windows.Forms.Button btnAddAccount;
         private System.Windows.Forms.Button btnAdmin;

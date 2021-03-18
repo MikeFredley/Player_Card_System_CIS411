@@ -30,22 +30,24 @@ namespace Player_Card_System_CIS411
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           /* employeeScreen = new EmployeeWindow(this);
+         /*   employeeScreen = new EmployeeWindow(this);
             employeeScreen.Visible = true;
-            this.Hide();
-           */
+            this.Hide(); */
+           
 
             bool login = Database.Login(txtUsername.Text, txtPassword.Text);
             if (login)
             {
                 employeeScreen = new EmployeeWindow(this);
                 employeeScreen.Visible = true;
+                txtUsername.Text = "";
+                txtPassword.Text = "";
                 this.Hide();
             }
             else
             {
                 MessageBox.Show("Wrong Username or password");
-            } 
+            }  
         }
 
         private void WelcomeWindow_FormClosing(object sender, FormClosingEventArgs e)

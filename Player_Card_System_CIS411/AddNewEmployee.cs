@@ -12,23 +12,31 @@ namespace Player_Card_System_CIS411
 {
     public partial class AddNewEmployee : Form
     {
-        public AddNewEmployee()
+        EmployeeViewer employeeViewer;
+        public AddNewEmployee(EmployeeViewer pEmployeeViewer)
         {
             InitializeComponent();
+            employeeViewer = pEmployeeViewer;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Person newPerson = new Person();
-            newPerson.FirstName = txtFirstName.Text;
-            newPerson.LastName = txtLastName.Text;
-
-            Employee newEmployee = new Employee();
+            EmployeeInfo newEmployee = new EmployeeInfo();
+            newEmployee.FirstName = txtFirstName.Text;
+            newEmployee.LastName = txtLastName.Text;
             newEmployee.IsAdmin = chkIsAdmin.Checked;
-            newEmployee.Username = txtUserName.Text;
+            newEmployee.UserName = txtUserName.Text;
             newEmployee.Password = txtPassword.Text;
             newEmployee.IsCurrent = true;
-            Database.AddNewEmployee(newPerson, newEmployee);
+            Database.AddNewEmployee(newEmployee);
+            employeeViewer.RefreshDataGridView();
+            MessageBox.Show("New Employee Added");
+            this.Close();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
