@@ -54,6 +54,7 @@
             this.btnExportAccounts.TabIndex = 0;
             this.btnExportAccounts.Text = "Export Accounts";
             this.btnExportAccounts.UseVisualStyleBackColor = true;
+            this.btnExportAccounts.Click += new System.EventHandler(this.btnExportAccounts_Click);
             // 
             // btnRestore
             // 

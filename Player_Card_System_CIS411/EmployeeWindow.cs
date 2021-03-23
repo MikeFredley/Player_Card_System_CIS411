@@ -81,10 +81,9 @@ namespace Player_Card_System_CIS411
 
         private void AddDataGridRows()
         {
-            for (int i = 0; i < Database.ResidentInfo.Count(); i++)
+            foreach (ResidentInfo resident in Database.ResidentInfo)
             {
-                dt.Rows.Add(Database.ResidentInfo[i].FirstName, Database.ResidentInfo[i].LastName, Database.ResidentInfo[i].ClusterName, Database.ResidentInfo[i].UnitNumber,
-                    Database.ResidentInfo[i].Email, Database.ResidentInfo[i].Phone, Database.ResidentInfo[i].CurrentRounds);
+                dt.Rows.Add(resident.FirstName, resident.LastName, resident.ClusterName, resident.UnitNumber, resident.Email, resident.Phone, resident.CurrentRounds);
             }
         }
 
@@ -123,7 +122,7 @@ namespace Player_Card_System_CIS411
             }
         }
 
-        public int GetIDFromRow(DataGridViewCellEventArgs e)
+        private int GetIDFromRow(DataGridViewCellEventArgs e)
         {
             for (int i = 0; i < Database.ResidentInfo.Count; i++)
             {

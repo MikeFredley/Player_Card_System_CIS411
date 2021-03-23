@@ -100,6 +100,7 @@
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.txtFirstName);
             this.Name = "AddAuthorizedUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddAuthorizedUser";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -601,8 +601,7 @@ namespace Player_Card_System_CIS411
                 command.Parameters.AddWithValue("@pIsCurrent", "True");
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
-                {
-                    connection.Close();
+                {                   
                     for (int i = 0; i < employeeInfo.Count; i++)
                     {
                         if (employeeInfo[i].ID == int.Parse(result.ToString()))
@@ -610,17 +609,21 @@ namespace Player_Card_System_CIS411
                             loggedInEmployee = employeeInfo[i];
                         }
                     }
+                    connection.Close();
                     return true;
                 }
                 else
                 {
+                    connection.Close();
                     return false;
                 }
             }
             else
             {
+                connection.Close();
                 return false;
             }
+            
         }
 
         internal static void AddNewEmployee(EmployeeInfo newEmployee)
@@ -688,6 +691,91 @@ namespace Player_Card_System_CIS411
             {
                 Console.WriteLine("New ID Does Not Exist In Person");
             }
+        }
+
+        internal static void UpdateEmployee(int empIndex)
+        {
+            connection.Open();
+            string UpdateEmployeeSQL = "UPDATE Employee " +
+                                       "SET IsAdmin = @pIsAdmin, UserName = @pUserName, IsCurrent = @pIsCurrent " +
+                                       "WHERE ID = @pID";
+            command = new SqlCommand(UpdateEmployeeSQL, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@pID", employeeInfo[empIndex].ID);
+                command.Parameters.AddWithValue("@pIsAdmin", employeeInfo[empIndex].IsAdmin.ToString());
+                command.Parameters.AddWithValue("@pUserName", employeeInfo[empIndex].UserName);
+                command.Parameters.AddWithValue("@pIsCurrent", employeeInfo[empIndex].IsCurrent.ToString());
+
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Employee Updated");
+                }
+                else
+                {
+                    Console.WriteLine("Employee Update Failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could Not Update Employee Data" + ex.Message);
+            }
+
+
+            string UpdatePersonSQL = "UPDATE Person " +
+                                     "SET FirstName = @pFirstName, LastName = @pLastName " +
+                                     "WHERE ID = @pID";
+            command = new SqlCommand(UpdatePersonSQL, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@pID", employeeInfo[empIndex].ID);
+                command.Parameters.AddWithValue("@pFirstName", employeeInfo[empIndex].FirstName);
+                command.Parameters.AddWithValue("@pLastName", employeeInfo[empIndex].LastName);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Person Updated");
+                }
+                else
+                {
+                    Console.WriteLine("Person Update Failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could Not Update Person Data " + ex.Message);
+            }
+            connection.Close();
+        }
+
+        internal static void ChangePassword(int empIndex, string newPassword)
+        {
+            connection.Open();
+            string UpdateEmployeeSQL = "UPDATE Employee " +
+                                       "SET Password = @pPassword " +
+                                       "WHERE ID = @pID";
+            command = new SqlCommand(UpdateEmployeeSQL, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@pID", employeeInfo[empIndex].ID);
+                command.Parameters.AddWithValue("@pPassword", PasswordEncrypt.hash(newPassword));
+
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Password Changed");
+                }
+                else
+                {
+                    Console.WriteLine("Password Change Failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could Not Change Password" + ex.Message);
+            }
+            connection.Close();
         }
 
         internal static List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }

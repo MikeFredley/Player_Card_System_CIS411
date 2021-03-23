@@ -32,5 +32,11 @@ namespace Player_Card_System_CIS411
             EmployeeViewer employeeViewer = new EmployeeViewer();
             employeeViewer.Show();
         }
+
+        private void btnExportAccounts_Click(object sender, EventArgs e)
+        {
+            ExportInfo export = new ExportInfo();
+            export.ExportTest();
+        }
     }
 }

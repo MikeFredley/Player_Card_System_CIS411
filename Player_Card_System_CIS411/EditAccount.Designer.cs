@@ -395,6 +395,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dgvAuthorizedUsers);
             this.Name = "EditAccount";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Account Details";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditAccount_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuthorizedUsers)).EndInit();

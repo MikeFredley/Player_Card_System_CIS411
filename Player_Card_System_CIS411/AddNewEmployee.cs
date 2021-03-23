@@ -21,22 +21,38 @@ namespace Player_Card_System_CIS411
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            EmployeeInfo newEmployee = new EmployeeInfo();
-            newEmployee.FirstName = txtFirstName.Text;
-            newEmployee.LastName = txtLastName.Text;
-            newEmployee.IsAdmin = chkIsAdmin.Checked;
-            newEmployee.UserName = txtUserName.Text;
-            newEmployee.Password = txtPassword.Text;
-            newEmployee.IsCurrent = true;
-            Database.AddNewEmployee(newEmployee);
-            employeeViewer.RefreshDataGridView();
-            MessageBox.Show("New Employee Added");
-            this.Close();
+            if (CheckPassword())
+            {
+                EmployeeInfo newEmployee = new EmployeeInfo();
+                newEmployee.FirstName = txtFirstName.Text;
+                newEmployee.LastName = txtLastName.Text;
+                newEmployee.IsAdmin = chkIsAdmin.Checked;
+                newEmployee.UserName = txtUserName.Text;
+                newEmployee.Password = txtPassword.Text;
+                newEmployee.IsCurrent = true;
+                Database.AddNewEmployee(newEmployee);
+                employeeViewer.RefreshDataGridView();
+                MessageBox.Show("New Employee Added");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Passwords Do Not Match!");
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private bool CheckPassword()
+        {
+            if (txtPassword.Text == txtConfirmPassword.Text)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

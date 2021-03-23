@@ -60,6 +60,7 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.dgvAddRounds);
             this.Name = "AddRounds";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddRounds";
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddRounds)).EndInit();
             this.ResumeLayout(false);
