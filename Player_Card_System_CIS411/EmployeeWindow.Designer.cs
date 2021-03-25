@@ -42,7 +42,7 @@ namespace Player_Card_System_CIS411
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(860, 22);
+            this.btnLogout.Location = new System.Drawing.Point(884, 23);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(83, 23);
             this.btnLogout.TabIndex = 6;
@@ -80,7 +80,7 @@ namespace Player_Card_System_CIS411
             // lblLoggedInEmployee
             // 
             this.lblLoggedInEmployee.AutoSize = true;
-            this.lblLoggedInEmployee.Location = new System.Drawing.Point(805, 6);
+            this.lblLoggedInEmployee.Location = new System.Drawing.Point(829, 7);
             this.lblLoggedInEmployee.Name = "lblLoggedInEmployee";
             this.lblLoggedInEmployee.Size = new System.Drawing.Size(138, 13);
             this.lblLoggedInEmployee.TabIndex = 19;
@@ -91,7 +91,7 @@ namespace Player_Card_System_CIS411
             this.dgvResidentInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvResidentInfo.Location = new System.Drawing.Point(9, 51);
             this.dgvResidentInfo.Name = "dgvResidentInfo";
-            this.dgvResidentInfo.Size = new System.Drawing.Size(934, 355);
+            this.dgvResidentInfo.Size = new System.Drawing.Size(958, 355);
             this.dgvResidentInfo.TabIndex = 23;
             this.dgvResidentInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvResidentInfo_CellClick);
             // 
@@ -119,7 +119,7 @@ namespace Player_Card_System_CIS411
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(955, 414);
+            this.ClientSize = new System.Drawing.Size(979, 414);
             this.Controls.Add(this.btnAdmin);
             this.Controls.Add(this.btnAddAccount);
             this.Controls.Add(this.dgvResidentInfo);

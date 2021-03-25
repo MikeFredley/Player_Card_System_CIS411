@@ -36,7 +36,25 @@ namespace Player_Card_System_CIS411
         private void btnExportAccounts_Click(object sender, EventArgs e)
         {
             ExportInfo export = new ExportInfo();
-            export.ExportTest();
+            export.ExportAccounts();
+        }
+
+        private void btnExportTransactions_Click(object sender, EventArgs e)
+        {
+            ExportInfo export = new ExportInfo();
+            export.ExportTransactions();
+        }
+
+        private void btnBackup_Click(object sender, EventArgs e)
+        {
+            ExportInfo export = new ExportInfo();
+            export.FullBackup();
+        }
+
+        private void btnNewDeals_Click(object sender, EventArgs e)
+        {
+            ViewGolfRounds viewRounds = new ViewGolfRounds();
+            viewRounds.Show();
         }
     }
 }

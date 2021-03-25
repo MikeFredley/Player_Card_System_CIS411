@@ -102,6 +102,7 @@ namespace Player_Card_System_CIS411
 
         private static void ReadGolf_Rounds()
         {
+            golfRounds.Clear();
             connection.Open();
             string GetGolfRoundsSQL = "SELECT Years, TotalRounds, PackageType, CostPerRound FROM Golf_Rounds";
             command = new SqlCommand(GetGolfRoundsSQL, connection);
@@ -776,6 +777,73 @@ namespace Player_Card_System_CIS411
                 Console.WriteLine("Could Not Change Password" + ex.Message);
             }
             connection.Close();
+        }
+
+        internal static bool AddGolfRounds(GolfRounds golfRounds)
+        {
+            connection.Open();
+            string AddGolfRoundsSQL = "INSERT INTO Golf_Rounds " +
+                                      "(Years, TotalRounds, PackageType, CostPerRound) " +
+                                      "VALUES (@pYears, @pTotalRounds, @pPackageType, @pCostPerRound)";
+            command = new SqlCommand(AddGolfRoundsSQL, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@pYears", golfRounds.Year);
+                command.Parameters.AddWithValue("@pTotalRounds", golfRounds.TotalRounds);
+                command.Parameters.AddWithValue("@pPackageType", golfRounds.PackageType);
+                command.Parameters.AddWithValue("@pCostPerRound", Convert.ToDecimal(golfRounds.CostPerRound));
+
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Golf Rounds Added");
+                    connection.Close();
+                    ReadGolf_Rounds();
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Failed to Add Golf Rounds");
+                    connection.Close();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could Not Add Golf Rounds" + ex.Message);
+                connection.Close();
+                return false;
+            }       
+        }
+
+        internal static void DeleteGolfRounds(string pYears, int pTotalRounds, string pPackageType, decimal pCostPerRound)
+        {
+            connection.Open();
+            string DeleteGolfRoundSQL = "DELETE FROM Golf_Rounds " +
+                                             "WHERE Years = @pYears AND TotalRounds = @pTotalRounds AND PackageType = @pPackageType AND CostPerRound = @pCostPerRound";
+            command = new SqlCommand(DeleteGolfRoundSQL, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@pYears", pYears);
+                command.Parameters.AddWithValue("@pTotalRounds", pTotalRounds);
+                command.Parameters.AddWithValue("@pPackageType", pPackageType);
+                command.Parameters.AddWithValue("@pCostPerRound", pCostPerRound);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Deleted Golf Rounds");
+                    connection.Close();
+                    ReadGolf_Rounds();
+                }
+                else
+                {
+                    Console.WriteLine("Delete Golf Rounds Failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could Not Delete Golf Rounds " + ex.Message);
+            }
         }
 
         internal static List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }

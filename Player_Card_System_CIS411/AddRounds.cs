@@ -70,20 +70,20 @@ namespace Player_Card_System_CIS411
 
         private void dgvAddRounds_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-          //  Console.WriteLine(e.ColumnIndex.ToString());
             if (e.ColumnIndex == 0)
             {
                 if (e.RowIndex >= 0)
                 {
-                    // If the button is clicked it creates a new transaction object
-                    // and adds it to the transaction table
-                    newRounds = currentRounds + Database.GolfRounds[e.RowIndex].TotalRounds;
-                    newTransaction = new Transaction("P", newRounds, email, Database.LoggedInEmployee.ID, ID, "");
-                    Database.SubmitTransaction(newTransaction);
-                    editAccount.EditWindowRefresh(ID);
-                    MessageBox.Show("Rounds Added");
+                        // If the button is clicked it creates a new transaction object
+                        // and adds it to the transaction table
+                        newRounds = currentRounds + Database.GolfRounds[e.RowIndex].TotalRounds;
+                        newTransaction = new Transaction("P", newRounds, email, Database.LoggedInEmployee.ID, ID, "");
+                        Database.SubmitTransaction(newTransaction);
+                        editAccount.EditWindowRefresh(ID);
+                        MessageBox.Show("Rounds Added");
                 }
-            } 
+            }
+       
         }
     }
 }

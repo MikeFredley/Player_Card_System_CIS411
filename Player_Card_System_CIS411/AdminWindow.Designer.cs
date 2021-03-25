@@ -35,6 +35,7 @@
             this.btnResetSeason = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnViewEmployees = new System.Windows.Forms.Button();
+            this.btnNewDeals = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBackup
@@ -45,6 +46,7 @@
             this.btnBackup.TabIndex = 0;
             this.btnBackup.Text = "Backup";
             this.btnBackup.UseVisualStyleBackColor = true;
+            this.btnBackup.Click += new System.EventHandler(this.btnBackup_Click);
             // 
             // btnExportAccounts
             // 
@@ -73,6 +75,7 @@
             this.btnExportTransactions.TabIndex = 0;
             this.btnExportTransactions.Text = "Export Transactions";
             this.btnExportTransactions.UseVisualStyleBackColor = true;
+            this.btnExportTransactions.Click += new System.EventHandler(this.btnExportTransactions_Click);
             // 
             // btnResetSeason
             // 
@@ -85,7 +88,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(250, 88);
+            this.btnExit.Location = new System.Drawing.Point(250, 163);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(83, 49);
             this.btnExit.TabIndex = 1;
@@ -95,7 +98,7 @@
             // 
             // btnViewEmployees
             // 
-            this.btnViewEmployees.Location = new System.Drawing.Point(40, 163);
+            this.btnViewEmployees.Location = new System.Drawing.Point(250, 88);
             this.btnViewEmployees.Name = "btnViewEmployees";
             this.btnViewEmployees.Size = new System.Drawing.Size(83, 49);
             this.btnViewEmployees.TabIndex = 2;
@@ -103,11 +106,22 @@
             this.btnViewEmployees.UseVisualStyleBackColor = true;
             this.btnViewEmployees.Click += new System.EventHandler(this.btnViewEmployees_Click);
             // 
+            // btnNewDeals
+            // 
+            this.btnNewDeals.Location = new System.Drawing.Point(40, 163);
+            this.btnNewDeals.Name = "btnNewDeals";
+            this.btnNewDeals.Size = new System.Drawing.Size(83, 49);
+            this.btnNewDeals.TabIndex = 3;
+            this.btnNewDeals.Text = "View Golf Deals";
+            this.btnNewDeals.UseVisualStyleBackColor = true;
+            this.btnNewDeals.Click += new System.EventHandler(this.btnNewDeals_Click);
+            // 
             // AdminWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(364, 224);
+            this.Controls.Add(this.btnNewDeals);
             this.Controls.Add(this.btnViewEmployees);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnResetSeason);
@@ -132,5 +146,6 @@
         private System.Windows.Forms.Button btnResetSeason;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnViewEmployees;
+        private System.Windows.Forms.Button btnNewDeals;
     }
 }

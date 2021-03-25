@@ -32,13 +32,12 @@ namespace Player_Card_System_CIS411
             dt.Columns.Add(new DataColumn("Resident ID", typeof(int)));
             dt.Columns.Add(new DataColumn("Comments", typeof(string)));
 
-            for (int i = 0; i < Database.Transaction.Count; i++)
+            foreach (Transaction trans in Database.Transaction)
             {
-                if (Database.Transaction[i].ResidentID == ID)
+                if (trans.ResidentID == ID)
                 {
-                    dt.Rows.Add(Database.Transaction[i].DateTime, Database.Transaction[i].TypeTrans, Database.Transaction[i].TotalRounds, Database.Transaction[i].EmailedTo,
-                    Database.Transaction[i].EmployeeID, Database.Transaction[i].ResidentID, Database.Transaction[i].Comments);
-                }          
+                    dt.Rows.Add(trans.DateTime, trans.TypeTrans, trans.TotalRounds, trans.EmailedTo, trans.EmployeeID, trans.ResidentID, trans.Comments);
+                }
             }
 
             dgvTransactionHistory.DataSource = dt;

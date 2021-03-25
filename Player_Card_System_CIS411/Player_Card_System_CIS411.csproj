@@ -73,6 +73,12 @@
       <DependentUpon>AddAuthorizedUser.cs</DependentUpon>
     </Compile>
     <Compile Include="AdditionalAuthorizedUsers.cs" />
+    <Compile Include="AddNewDeals.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewDeals.Designer.cs">
+      <DependentUpon>AddNewDeals.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddNewEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,12 @@
     <Compile Include="TransactionHistory.Designer.cs">
       <DependentUpon>TransactionHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewGolfRounds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewGolfRounds.Designer.cs">
+      <DependentUpon>ViewGolfRounds.cs</DependentUpon>
+    </Compile>
     <Compile Include="WelcomeWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +179,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddAuthorizedUser.resx">
       <DependentUpon>AddAuthorizedUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddNewDeals.resx">
+      <DependentUpon>AddNewDeals.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddNewEmployee.resx">
       <DependentUpon>AddNewEmployee.cs</DependentUpon>
@@ -200,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TransactionHistory.resx">
       <DependentUpon>TransactionHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewGolfRounds.resx">
+      <DependentUpon>ViewGolfRounds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeWindow.resx">
       <DependentUpon>WelcomeWindow.cs</DependentUpon>
