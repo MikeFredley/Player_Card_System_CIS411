@@ -85,6 +85,10 @@ namespace Player_Card_System_CIS411
             Database.SubmitTransaction(newTransaction);
             // Refreshes to the new values on the details window and the main screen
             editAccount.EditWindowRefresh(ID);
+            if (email != "")
+            {
+                Email.RoundsAdjustedEmail(int.Parse(txtNumRounds.Value.ToString()), newRounds, email, txtReason.Text);
+            }           
         }
     }
 }

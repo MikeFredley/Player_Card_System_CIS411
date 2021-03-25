@@ -30,19 +30,6 @@ namespace Player_Card_System_CIS411
                 }
             }          
 
-
-            // Adds each employee name into the combo box for selecting the transaction employee
-         /*   foreach (Employee employee in Database.Employee)
-            {
-                for (int i = 0; i < Database.Person.Count; i++)
-                {
-                    if (employee.ID == Database.Person[i].ID && employee.IsCurrent)
-                    {
-                        cmbEmployee.Items.Add(Database.Person[i].FirstName + " " + Database.Person[i].LastName);
-                    }
-                }
-            } */
-
             foreach (EmployeeInfo employee in Database.EmployeeInfo)
             {
                 if (employee.IsCurrent)
@@ -110,6 +97,11 @@ namespace Player_Card_System_CIS411
             newTransaction = new Transaction("U", newRounds, email, empID, Database.ResidentInfo[resIndex].ID, "");
             Database.SubmitTransaction(newTransaction);
             employeeWindow.RefreshDataTable();
+
+            if (email != "")
+            {
+                Email.RoundsDeductedEmail(int.Parse(txtNumRounds.Value.ToString()), newRounds, email);
+            }
         }
     }
 }
