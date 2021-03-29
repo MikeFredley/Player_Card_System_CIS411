@@ -41,6 +41,7 @@
             this.dgvTransactionHistory.Name = "dgvTransactionHistory";
             this.dgvTransactionHistory.Size = new System.Drawing.Size(778, 294);
             this.dgvTransactionHistory.TabIndex = 0;
+            this.dgvTransactionHistory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactionHistory_CellClick);
             // 
             // btnEmail
             // 
@@ -50,6 +51,7 @@
             this.btnEmail.TabIndex = 1;
             this.btnEmail.Text = "Email";
             this.btnEmail.UseVisualStyleBackColor = true;
+            this.btnEmail.Click += new System.EventHandler(this.btnEmail_Click);
             // 
             // btnExit
             // 

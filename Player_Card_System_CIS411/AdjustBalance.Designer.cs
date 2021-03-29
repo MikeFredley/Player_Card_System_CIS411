@@ -74,6 +74,7 @@
             // txtReason
             // 
             this.txtReason.Location = new System.Drawing.Point(169, 121);
+            this.txtReason.MaxLength = 180;
             this.txtReason.Name = "txtReason";
             this.txtReason.Size = new System.Drawing.Size(167, 20);
             this.txtReason.TabIndex = 28;

@@ -669,6 +669,7 @@ namespace Player_Card_System_CIS411
                 }
             }    
             // Use new ID to add to Employee
+            // if adding the person somehow failed then there is no need to attempt adding to the employee table
             if (canContinue)
             {
                 command = connection.CreateCommand();
@@ -875,9 +876,10 @@ namespace Player_Card_System_CIS411
 
         internal static void RestoreDatabase(DataTable dt, string dtName)
         {
-            //WipeDatabase();
             connection.Open();
 
+            // Depending which datatable it is
+            // it will run its corresponding database commands
             if (dtName == "Person")
             {
                 string RestorePersonSQL = "SET IDENTITY_INSERT Person ON; INSERT INTO Person (ID, FirstName, LastName) " +
@@ -1104,6 +1106,8 @@ namespace Player_Card_System_CIS411
                     Console.WriteLine("Could Not Insert Data " + ex.Message);
                 }
             }
+            // recreates the residentinfo and employeeinfo
+            // lists in order for the program to run correctly
             connection.Close();
             CreateEmployeeInfo();
             CreateResidentInfo();

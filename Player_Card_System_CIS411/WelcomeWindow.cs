@@ -13,6 +13,7 @@ namespace Player_Card_System_CIS411
     public partial class WelcomeWindow : Form
     {
         EmployeeWindow employeeScreen;
+        EmployeeInfo employee;
         public WelcomeWindow()
         {
             bool exists = false;
@@ -28,7 +29,7 @@ namespace Player_Card_System_CIS411
 
             if (!exists)
             {
-                EmployeeInfo employee = new EmployeeInfo();
+                employee = new EmployeeInfo();
                 employee.FirstName = "Default";
                 employee.LastName = "Default";
                 employee.UserName = "Default";
