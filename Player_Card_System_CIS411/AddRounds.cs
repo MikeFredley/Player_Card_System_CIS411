@@ -23,12 +23,6 @@ namespace Player_Card_System_CIS411
             this.Close();
         }
 
-        private void btnTransactionHistory_Click(object sender, EventArgs e)
-        {
-            TransactionHistory transactionWindow = new TransactionHistory(ID);
-            transactionWindow.Show();
-        }
-
         public AddRounds(int pCurrentRounds, int pID, string pEmail, EditAccount pEditAccount)
         {
             currentRounds = pCurrentRounds;
@@ -37,6 +31,13 @@ namespace Player_Card_System_CIS411
             email = pEmail;
             InitializeComponent();
             InitializeDataGridView();
+        }
+
+        private void AddRounds_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            editAccount.OpenWindow = false;
+            editAccount.SetExitButton(true);
+            editAccount.SetEditButton(true);
         }
 
         // Adds the golf rounds to the datagridview

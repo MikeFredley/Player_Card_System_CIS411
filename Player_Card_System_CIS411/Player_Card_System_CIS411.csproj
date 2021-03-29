@@ -147,6 +147,7 @@
     <Compile Include="ExportInfo.cs" />
     <Compile Include="GetRounds.cs" />
     <Compile Include="GolfRounds.cs" />
+    <Compile Include="ImportInfo.cs" />
     <Compile Include="OceanVillagePlayerCardDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

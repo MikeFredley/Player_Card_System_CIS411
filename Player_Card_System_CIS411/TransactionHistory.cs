@@ -14,11 +14,13 @@ namespace Player_Card_System_CIS411
     {
         DataTable dt;
         int ID;
-        public TransactionHistory(int pID)
+        EditAccount editAccount;
+        public TransactionHistory(int pID, EditAccount pEditAccount)
         {
             ID = pID;
             InitializeComponent();
             InitializeDataGridView();
+            editAccount = pEditAccount;
         }
 
         private void InitializeDataGridView()
@@ -47,6 +49,13 @@ namespace Player_Card_System_CIS411
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void TransactionHistory_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            editAccount.OpenWindow = false;
+            editAccount.SetExitButton(true);
+            editAccount.SetEditButton(true);
         }
     }
 }

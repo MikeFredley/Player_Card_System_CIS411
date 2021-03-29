@@ -142,6 +142,7 @@
             this.Name = "AddNewDeals";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddNewDeals";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddNewDeals_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

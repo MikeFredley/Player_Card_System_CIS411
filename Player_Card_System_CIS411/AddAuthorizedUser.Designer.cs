@@ -102,6 +102,7 @@
             this.Name = "AddAuthorizedUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddAuthorizedUser";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddAuthorizedUser_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

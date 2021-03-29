@@ -45,18 +45,21 @@ namespace Player_Card_System_CIS411
         {
             dataTables.Clear();
             bookNames.Clear();
-            dataTables.Add(CreateAuthorizedUsersDataTable());
+
             dataTables.Add(CreateClustersDataTable());
-            dataTables.Add(CreateEmployeesDataTable());
-            dataTables.Add(CreateGolfRoundsDataTable());
+            dataTables.Add(CreatePersonDataTable());
             dataTables.Add(CreateResidentsDataTable());
+            dataTables.Add(CreateEmployeesDataTable());
+            dataTables.Add(CreateAuthorizedUsersDataTable());                   
+            dataTables.Add(CreateGolfRoundsDataTable());           
             dataTables.Add(CreateTransactionsDataTable());
 
-            bookNames.Add("Authorized Users");
             bookNames.Add("Clusters");
-            bookNames.Add("Employees");
-            bookNames.Add("Golf Rounds");
+            bookNames.Add("Person");
             bookNames.Add("Residents");
+            bookNames.Add("Employees");
+            bookNames.Add("Authorized Users");   
+            bookNames.Add("Golf Rounds");
             bookNames.Add("Transactions");
 
             Export();
@@ -187,6 +190,20 @@ namespace Player_Card_System_CIS411
             foreach (GolfRounds round in Database.GolfRounds)
             {
                 dt.Rows.Add(round.Year, round.TotalRounds, round.PackageType, round.CostPerRound);
+            }
+            return dt;
+        }
+
+        private DataTable CreatePersonDataTable()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add(new DataColumn("ID", typeof(int)));
+            dt.Columns.Add(new DataColumn("FirstName", typeof(string)));
+            dt.Columns.Add(new DataColumn("LastName", typeof(string)));
+
+            foreach (Person person in Database.Person)
+            {
+                dt.Rows.Add(person.ID, person.FirstName, person.LastName);
             }
             return dt;
         }

@@ -17,10 +17,16 @@ namespace Player_Card_System_CIS411
         bool isEdit;
         DataTable dt;
         int rowIndex;
+        bool openWindow;
+
+        public bool OpenWindow { get => openWindow; set => openWindow = value; }
+        public void SetExitButton(bool isEnabled) { btnExit.Enabled = isEnabled; }
+        public void SetEditButton(bool isEnabled) { btnEditInfo.Enabled = isEnabled; }
         public EditAccount(bool pIsEdit, int ID, EmployeeWindow pEmployeeWindow)
         {
             isEdit = pIsEdit;
-            InitializeComponent();            
+            InitializeComponent();
+            openWindow = false;
             // Adds every cluster name to the dropdown list
             foreach (Clusters cluster in Database.Clusters)
             {
@@ -94,13 +100,33 @@ namespace Player_Card_System_CIS411
 
         private void EditAccount_FormClosing(object sender, FormClosingEventArgs e)
         {
-            employeeWindow.RefreshDataTable();
+            if (!openWindow)
+            {
+                employeeWindow.RefreshDataTable();
+                employeeWindow.OpenWindow = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+            
         }
 
         private void btnAddRounds_Click(object sender, EventArgs e)
         {
-            AddRounds addRoundWindow = new AddRounds(Database.ResidentInfo[rowIndexHolder].CurrentRounds, Database.ResidentInfo[rowIndexHolder].ID, IsEmail(), this);
-            addRoundWindow.Show();
+            if (!openWindow)
+            {
+                openWindow = true;
+                btnExit.Enabled = false;
+                btnEditInfo.Enabled = false;
+                AddRounds addRoundWindow = new AddRounds(Database.ResidentInfo[rowIndexHolder].CurrentRounds, Database.ResidentInfo[rowIndexHolder].ID, IsEmail(), this);
+                addRoundWindow.Show();
+            }
+            else
+            {
+                //MessageBox.Show("Close other windows before opening another.");
+            }
+
         }
 
         private void btnEditInfo_Click(object sender, EventArgs e)
@@ -118,6 +144,7 @@ namespace Player_Card_System_CIS411
             btnEditInfo.Visible = false;
             chkEmails.Enabled = true;
             btnSave.Visible = true;
+            openWindow = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -135,6 +162,7 @@ namespace Player_Card_System_CIS411
             btnEditInfo.Visible = true;
             btnSave.Visible = false;
             chkEmails.Enabled = false;
+            openWindow = false;
 
             if (!isEdit)
             {
@@ -191,20 +219,53 @@ namespace Player_Card_System_CIS411
 
         private void btnTransHistory_Click(object sender, EventArgs e)
         {
-            TransactionHistory transactionWindow = new TransactionHistory(Database.ResidentInfo[rowIndexHolder].ID);
-            transactionWindow.Show();
+            if (!openWindow)
+            {
+                openWindow = true;
+                btnExit.Enabled = false;
+                btnEditInfo.Enabled = false;
+                TransactionHistory transactionWindow = new TransactionHistory(Database.ResidentInfo[rowIndexHolder].ID, this);
+                transactionWindow.Show();
+            }
+            else
+            {
+                //MessageBox.Show("Close other windows before opening another.");
+            }
+
         }
 
         private void btnAdjustBalance_Click(object sender, EventArgs e)
         {
-            AdjustBalance adjustBalance = new AdjustBalance(Database.ResidentInfo[rowIndexHolder].CurrentRounds, Database.ResidentInfo[rowIndexHolder].ID, IsEmail(), this);
-            adjustBalance.Show();
+            if (!openWindow)
+            {
+                openWindow = true;
+                btnExit.Enabled = false;
+                btnEditInfo.Enabled = false;
+                AdjustBalance adjustBalance = new AdjustBalance(Database.ResidentInfo[rowIndexHolder].CurrentRounds, Database.ResidentInfo[rowIndexHolder].ID, IsEmail(), this);
+                adjustBalance.Show();
+            }
+            else
+            {
+                //MessageBox.Show("Close other windows before opening another.");
+            }
+
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            AddAuthorizedUser authorizedUser = new AddAuthorizedUser(Database.ResidentInfo[rowIndexHolder].ID, this);
-            authorizedUser.Show();
+            if (!openWindow)
+            {
+                openWindow = true;
+                btnExit.Enabled = false;
+                btnEditInfo.Enabled = false;
+                AddAuthorizedUser authorizedUser = new AddAuthorizedUser(Database.ResidentInfo[rowIndexHolder].ID, this);
+                authorizedUser.Show();
+            }
+            else
+            {
+                //MessageBox.Show("Close other windows before opening another.");
+            }
+
         }
 
         private void InitializeDataGridView()

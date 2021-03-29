@@ -44,6 +44,7 @@ namespace Player_Card_System_CIS411
                 ReadResident();              
                 ReadTransaction();             
                 CreateResidentInfo();
+                connection.Close();
                 ReadEmployee();
                 ReadClusters();
                 ReadGolf_Rounds();
@@ -79,6 +80,8 @@ namespace Player_Card_System_CIS411
         // Method to read from the Employee table
         private static void ReadEmployee()
         {
+            connection.Close();
+            employee.Clear();
             connection.Open();
             string GetEmployeeSQL = "SELECT ID, IsAdmin, UserName, Password, IsCurrent FROM Employee";
             command = new SqlCommand(GetEmployeeSQL, connection);
@@ -680,17 +683,21 @@ namespace Player_Card_System_CIS411
                 if (command.ExecuteNonQuery() > 0)
                 {
                     Console.WriteLine("Employee Inserted");
+                    ReadEmployee();
                     CreateEmployeeInfo();
+                    connection.Close();
                 }
                 else
                 {
                     Console.WriteLine("Error Adding to Employee");
+                    connection.Close();
                 }
                 connection.Close();
             }
             else
             {
                 Console.WriteLine("New ID Does Not Exist In Person");
+                connection.Close();
             }
         }
 
@@ -838,12 +845,268 @@ namespace Player_Card_System_CIS411
                 else
                 {
                     Console.WriteLine("Delete Golf Rounds Failed");
+                    connection.Close();
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Could Not Delete Golf Rounds " + ex.Message);
+                connection.Close();
             }
+        }
+
+        internal static void WipeDatabase()
+        {
+            connection.Open();
+            string WipeDatabaseSQL = "DELETE FROM Trans_Action DELETE FROM ADDITIONAL_AUTHORIZED_USERS DELETE FROM Employee DELETE FROM Resident DELETE FROM Person DELETE FROM GOLF_ROUNDS DELETE FROM Clusters";
+            command = new SqlCommand(WipeDatabaseSQL, connection);
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                Console.WriteLine("Database Wiped");
+                connection.Close();
+            }
+            else
+            {
+                Console.WriteLine("Delete Golf Rounds Failed");
+            }
+            connection.Close();
+        }
+
+        internal static void RestoreDatabase(DataTable dt, string dtName)
+        {
+            //WipeDatabase();
+            connection.Open();
+
+            if (dtName == "Person")
+            {
+                string RestorePersonSQL = "SET IDENTITY_INSERT Person ON; INSERT INTO Person (ID, FirstName, LastName) " +
+                                      "VALUES (@pID, @pFirstName, @pLastName)";
+                
+                try
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        command = new SqlCommand(RestorePersonSQL, connection);
+                        command.Parameters.AddWithValue("@pID", row["ID"]);
+                        command.Parameters.AddWithValue("@pFirstName", row["FirstName"]);
+                        command.Parameters.AddWithValue("@pLastName", row["LastName"]);
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("Inserted New Person");
+                        }
+                        else
+                        {
+                            Console.WriteLine("New Person Insert Failed");
+                        }
+                    }
+                    connection.Close();
+                    ReadPerson();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Could Not Insert Into Person " + ex.Message);
+                }
+            }
+            else if(dtName == "Authorized Users")
+            {
+                string RestoreAuthorizedUserSQL = "INSERT INTO Additional_Authorized_Users (OwnerID, FirstName, LastName) " +
+                                 "VALUES (@pOwnerID, @pFirstName, @pLastName)";
+                
+                try
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        command = new SqlCommand(RestoreAuthorizedUserSQL, connection);
+                        command.Parameters.AddWithValue("@pOwnerID", row["OwnerID"]);
+                        command.Parameters.AddWithValue("@pFirstName", row["FirstName"]);
+                        command.Parameters.AddWithValue("@pLastName", row["LastName"]);
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("Inserted New Authorized User");                          
+                        }
+                        else
+                        {
+                            Console.WriteLine("New Authorized User Insert Failed");
+                        }
+                    }
+                    connection.Close();
+                    ReadAdditionalAuthorizedUsers();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Could Not Insert Into Authorized User " + ex.Message);
+                }
+            }
+            else if (dtName == "Clusters")
+            {
+                string RestoreClustersSQL = "INSERT INTO Clusters (ClusterName) VALUES (@pClusterName)";
+                
+
+                try
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        command = new SqlCommand(RestoreClustersSQL, connection);
+                        command.Parameters.AddWithValue("@pClusterName", row["ClusterName"]);
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("Inserted New Cluster");
+                        }
+                        else
+                        {
+                            Console.WriteLine("New Cluster Insert Failed");
+                        }
+                    }
+                    connection.Close();
+                    ReadClusters();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Could Not Insert Into Clusters " + ex.Message);
+                }
+            }
+            else if(dtName == "Employees")
+            {             
+                string RestoreEmployeeSQL = "INSERT INTO EMPLOYEE (ID, UserName, Password, IsAdmin, IsCurrent) VALUES (@pID, @pUserName, @pPassword, @pIsAdmin, @pIsCurrent)";
+                
+                try
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        command = new SqlCommand(RestoreEmployeeSQL, connection);
+                        command.Parameters.AddWithValue("@pID", row["ID"]);
+                        command.Parameters.AddWithValue("@pUserName", row["Username"]);
+                        command.Parameters.AddWithValue("@pPassword", row["Password"]);
+                        command.Parameters.AddWithValue("@pIsAdmin", row["Is Admin"]);
+                        command.Parameters.AddWithValue("@pIsCurrent", row["Is Current"]);
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            Console.WriteLine("Employee Inserted");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error Adding to Employee");
+                        }
+                    }
+                    connection.Close();
+                    ReadEmployee();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("Could Not Insert Into Employee " + ex.Message);
+                }               
+            }
+            else if(dtName == "Golf Rounds")
+            {
+                string AddGolfRoundsSQL = "INSERT INTO Golf_Rounds " +
+                          "(Years, TotalRounds, PackageType, CostPerRound) " +
+                          "VALUES (@pYears, @pTotalRounds, @pPackageType, @pCostPerRound)";
+                
+                try
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        command = new SqlCommand(AddGolfRoundsSQL, connection);
+                        command.Parameters.AddWithValue("@pYears", row["Years"]);
+                        command.Parameters.AddWithValue("@pTotalRounds", row["TotalRounds"]);
+                        command.Parameters.AddWithValue("@pPackageType", row["PackageType"]);
+                        command.Parameters.AddWithValue("@pCostPerRound", row["CostPerRound"]);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("Golf Rounds Added");                         
+                        }
+                        else
+                        {
+                            Console.WriteLine("Failed to Add Golf Rounds");
+                        }
+                    }
+                    connection.Close();
+                    ReadGolf_Rounds();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Could Not Add Golf Rounds" + ex.Message);
+                }
+            }
+            else if(dtName == "Residents")
+            {
+                string InsertToResidentSQL = "INSERT INTO Resident (ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName) " +
+                                             "VALUES (@pID, @pAddress, @pEmail, @pPhone, @pCommentBox, @pUnitNumber, @pNoEmail, @pClusterName) "; 
+                try
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        command = new SqlCommand(InsertToResidentSQL, connection);
+                        command.Parameters.AddWithValue("@pID", row["ID"]);
+                        command.Parameters.AddWithValue("@pAddress", row["Address"]);
+                        command.Parameters.AddWithValue("@pEmail", row["Email"]);
+                        command.Parameters.AddWithValue("@pPhone", row["Phone Number"]);
+                        command.Parameters.AddWithValue("@pCommentBox", row["CommentBox"]);
+                        command.Parameters.AddWithValue("@pUnitNumber", row["Unit Number"]);
+                        command.Parameters.AddWithValue("@pNoEmail", row["NoEmail"]);
+                        command.Parameters.AddWithValue("@pClusterName", row["Cluster"]);
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("Inserted New Resident");
+                        }
+                        else
+                        {
+                            Console.WriteLine("New Resident Insert Failed");
+                        }
+                    }
+                    connection.Close();
+                    ReadResident();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Could Not Insert Into Resident " + ex.Message);
+                }
+            }
+            else if (dtName == "Transactions")
+            {
+                string InsertTransactionSQL = "INSERT INTO Trans_Action (DateTime, TypeTrans, TotalRounds, EmailedTo, Comments, EmployeeID, ResidentID) " +
+                              "VALUES (@pDateTime, @pTypeTrans, @pTotalRounds, @pEmailedTo, @pComments, @pEmployeeID, @pResidentID)";
+                try
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        command = new SqlCommand(InsertTransactionSQL, connection);
+                        command.Parameters.AddWithValue("@pDateTime", row["Date"]);
+                        command.Parameters.AddWithValue("@pTypeTrans", row["Transaction Type"]);
+                        command.Parameters.AddWithValue("@pTotalRounds", row["Total Rounds"]);
+                        command.Parameters.AddWithValue("@pEmailedTo", row["Emailed"]);
+                        command.Parameters.AddWithValue("@pComments", row["Comments"]);
+                        command.Parameters.AddWithValue("@pEmployeeID", row["Employee ID"]);
+                        command.Parameters.AddWithValue("@pResidentID", row["Resident ID"]);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("Transaction Added");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Transaction Failed");
+                        }
+                    }
+                    connection.Close();
+                    ReadTransaction();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Could Not Insert Data " + ex.Message);
+                }
+            }
+            connection.Close();
+            CreateEmployeeInfo();
+            CreateResidentInfo();
         }
 
         internal static List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }

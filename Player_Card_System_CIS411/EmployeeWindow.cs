@@ -14,11 +14,13 @@ namespace Player_Card_System_CIS411
     {
         WelcomeWindow welcomeWindow;
         DataTable dt;
-        //  Database data;
+        bool openWindow;
+        public bool OpenWindow { get => openWindow; set => openWindow = value; }
         public EmployeeWindow(WelcomeWindow welcome)
         {
             InitializeComponent();
             lblLoggedInEmployee.Text = "Logged In: " + Database.LoggedInEmployee.FirstName + " " + Database.LoggedInEmployee.LastName;
+            openWindow = false;
             if (!Database.LoggedInEmployee.IsAdmin)
             {
                 btnAdmin.Visible = false;
@@ -41,11 +43,19 @@ namespace Player_Card_System_CIS411
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
+           
         }
 
         private void EmployeeWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            welcomeWindow.Show();
+            if(!openWindow)
+            {
+                welcomeWindow.Show();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         private void InitializeDataGridView()
@@ -89,14 +99,30 @@ namespace Player_Card_System_CIS411
 
         private void btnAdmin_Click(object sender, EventArgs e)
         {
-            AdminWindow adminWindow = new AdminWindow();
-            adminWindow.Show();
+            if (!openWindow)
+            {
+                openWindow = true;
+                AdminWindow adminWindow = new AdminWindow(this);
+                adminWindow.Show();
+            }
+            else
+            {
+                //MessageBox.Show("Close other windows before opening another.");
+            }           
         }
 
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
-            EditAccount addAccount = new EditAccount(false, 0, this);
-            addAccount.Show();
+            if (!openWindow)
+            {
+                openWindow = true;
+                EditAccount addAccount = new EditAccount(false, 0, this);
+                addAccount.Show();
+            }
+            else
+            {
+               // MessageBox.Show("Close other windows before opening another.");
+            }
         }
 
         private void dgvResidentInfo_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -106,8 +132,16 @@ namespace Player_Card_System_CIS411
             {
                 if (e.RowIndex >= 0)
                 {
-                    DeductRounds deductRounds = new DeductRounds(GetIDFromRow(e), this);
-                    deductRounds.Show();
+                    if (!openWindow)
+                    {
+                        openWindow = true;
+                        DeductRounds deductRounds = new DeductRounds(GetIDFromRow(e), this);
+                        deductRounds.Show();
+                    }
+                    else
+                    {
+                       // MessageBox.Show("Close other windows before opening another.");
+                    }
                 }
             }
 
@@ -116,8 +150,16 @@ namespace Player_Card_System_CIS411
             {
                 if (e.RowIndex >= 0)
                 {
-                    EditAccount editScreen = new EditAccount(true, GetIDFromRow(e), this);
-                    editScreen.Show();
+                    if (!openWindow)
+                    {
+                        openWindow = true;
+                        EditAccount editScreen = new EditAccount(true, GetIDFromRow(e), this);
+                        editScreen.Show();
+                    }
+                    else
+                    {
+                      //  MessageBox.Show("Close other windows before opening another.");
+                    }
                 }
             }
         }

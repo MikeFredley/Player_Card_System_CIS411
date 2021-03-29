@@ -72,6 +72,7 @@
             this.Name = "TransactionHistory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Transaction History";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TransactionHistory_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactionHistory)).EndInit();
             this.ResumeLayout(false);
 

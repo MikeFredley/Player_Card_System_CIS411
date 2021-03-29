@@ -83,7 +83,7 @@
             this.chkIsAdmin.Location = new System.Drawing.Point(70, 169);
             this.chkIsAdmin.Name = "chkIsAdmin";
             this.chkIsAdmin.Size = new System.Drawing.Size(66, 17);
-            this.chkIsAdmin.TabIndex = 4;
+            this.chkIsAdmin.TabIndex = 5;
             this.chkIsAdmin.Text = "Is Admin";
             this.chkIsAdmin.UseVisualStyleBackColor = true;
             // 
@@ -92,7 +92,7 @@
             this.btnAdd.Location = new System.Drawing.Point(12, 192);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 5;
+            this.btnAdd.TabIndex = 6;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -102,7 +102,7 @@
             this.btnExit.Location = new System.Drawing.Point(125, 192);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 6;
+            this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -130,14 +130,14 @@
             this.txtFirstName.Location = new System.Drawing.Point(84, 8);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(100, 20);
-            this.txtFirstName.TabIndex = 9;
+            this.txtFirstName.TabIndex = 0;
             // 
             // txtLastName
             // 
             this.txtLastName.Location = new System.Drawing.Point(84, 40);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(100, 20);
-            this.txtLastName.TabIndex = 10;
+            this.txtLastName.TabIndex = 1;
             // 
             // label5
             // 
@@ -163,7 +163,7 @@
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.PasswordChar = '*';
             this.txtConfirmPassword.Size = new System.Drawing.Size(100, 20);
-            this.txtConfirmPassword.TabIndex = 13;
+            this.txtConfirmPassword.TabIndex = 4;
             // 
             // AddNewEmployee
             // 
@@ -187,6 +187,7 @@
             this.Name = "AddNewEmployee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Employee";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddNewEmployee_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

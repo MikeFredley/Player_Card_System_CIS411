@@ -39,16 +39,6 @@ namespace Player_Card_System_CIS411
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {         
             bool login = Database.Login(txtUsername.Text, txtPassword.Text);

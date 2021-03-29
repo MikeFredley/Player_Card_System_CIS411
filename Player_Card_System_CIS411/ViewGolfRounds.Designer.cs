@@ -86,6 +86,7 @@
             this.Name = "ViewGolfRounds";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "View Golf Rounds";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ViewGolfRounds_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewRounds)).EndInit();
             this.ResumeLayout(false);
 

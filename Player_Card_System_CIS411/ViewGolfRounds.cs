@@ -14,10 +14,17 @@ namespace Player_Card_System_CIS411
     {
         DataTable dt;
         int rowIndex;
-        public ViewGolfRounds()
+        AdminWindow adminWindow;
+        bool openWindow;
+
+        public bool OpenWindow { get => openWindow; set => openWindow = value; }
+        public void SetRemoveButton(bool isEnabled) { btnRemove.Enabled = isEnabled; }
+        public ViewGolfRounds(AdminWindow pAdminWindow)
         {
             InitializeComponent();
             InitializeDataGridView();
+            adminWindow = pAdminWindow;
+            openWindow = false;
         }
 
         private void InitializeDataGridView()
@@ -70,13 +77,30 @@ namespace Player_Card_System_CIS411
 
         private void btnAddDeal_Click(object sender, EventArgs e)
         {
-            AddNewDeals newDeals = new AddNewDeals(this);
-            newDeals.Show();
+            if (!openWindow)
+            {
+                openWindow = true;
+                btnRemove.Enabled = false;
+                AddNewDeals newDeals = new AddNewDeals(this);
+                newDeals.Show();
+            }           
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ViewGolfRounds_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!openWindow)
+            {
+                adminWindow.OpenWindow = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

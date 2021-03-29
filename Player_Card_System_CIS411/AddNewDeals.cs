@@ -50,5 +50,11 @@ namespace Player_Card_System_CIS411
         {
             this.Close();
         }
+
+        private void AddNewDeals_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            viewRounds.OpenWindow = false;
+            viewRounds.SetRemoveButton(true);
+        }
     }
 }

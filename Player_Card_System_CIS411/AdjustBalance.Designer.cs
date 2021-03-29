@@ -164,6 +164,7 @@
             this.Name = "AdjustBalance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adjust Balance";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdjustBalance_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.txtNumRounds)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

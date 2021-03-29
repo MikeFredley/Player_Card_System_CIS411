@@ -48,6 +48,13 @@ namespace Player_Card_System_CIS411
             this.Close();
         }
 
+        private void AdjustBalance_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            editAccount.OpenWindow = false;
+            editAccount.SetExitButton(true);
+            editAccount.SetEditButton(true);
+        }
+
         private void btnSubtractRounds_Click(object sender, EventArgs e)
         {
             // Calculates the new amount of rounds for deducting them

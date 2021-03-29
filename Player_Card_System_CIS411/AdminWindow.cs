@@ -12,9 +12,15 @@ namespace Player_Card_System_CIS411
 {
     public partial class AdminWindow : Form
     {
-        public AdminWindow()
+        EmployeeWindow employeeWindow;
+        bool openWindow;
+
+        public bool OpenWindow { get => openWindow; set => openWindow = value; }
+        public AdminWindow(EmployeeWindow pEmployeeWindow)
         {
             InitializeComponent();
+            employeeWindow = pEmployeeWindow;
+            openWindow = false;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -24,37 +30,100 @@ namespace Player_Card_System_CIS411
 
         private void AdminWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (!openWindow)
+            {
+                openWindow = true;
+                employeeWindow.OpenWindow = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         private void btnViewEmployees_Click(object sender, EventArgs e)
         {
-            EmployeeViewer employeeViewer = new EmployeeViewer();
-            employeeViewer.Show();
+            if (!openWindow)
+            {
+                openWindow = true;
+                EmployeeViewer employeeViewer = new EmployeeViewer(this);
+                employeeViewer.Show();
+            }
+            else
+            {
+
+            }
+
         }
 
         private void btnExportAccounts_Click(object sender, EventArgs e)
         {
-            ExportInfo export = new ExportInfo();
-            export.ExportAccounts();
+            if (!openWindow)
+            {
+                ExportInfo export = new ExportInfo();
+                export.ExportAccounts();
+            }
+            else
+            {
+                // MessageBox.Show("Close other windows before opening another.");
+            }
+
         }
 
         private void btnExportTransactions_Click(object sender, EventArgs e)
         {
-            ExportInfo export = new ExportInfo();
-            export.ExportTransactions();
+            if (!openWindow)
+            {
+                ExportInfo export = new ExportInfo();
+                export.ExportTransactions();
+            }
+            else
+            {
+                // MessageBox.Show("Close other windows before opening another.");
+            }
+
         }
 
         private void btnBackup_Click(object sender, EventArgs e)
         {
-            ExportInfo export = new ExportInfo();
-            export.FullBackup();
+            if (!openWindow)
+            {
+                ExportInfo export = new ExportInfo();
+                export.FullBackup();
+            }
+            else
+            {
+                // MessageBox.Show("Close other windows before opening another.");
+            }
+
         }
 
         private void btnNewDeals_Click(object sender, EventArgs e)
         {
-            ViewGolfRounds viewRounds = new ViewGolfRounds();
-            viewRounds.Show();
+            if (!openWindow)
+            {
+                openWindow = true;
+                ViewGolfRounds viewRounds = new ViewGolfRounds(this);
+                viewRounds.Show();
+            }
+            else
+            {
+                // MessageBox.Show("Close other windows before opening another.");
+            }
+            
+        }
+
+        private void btnRestore_Click(object sender, EventArgs e)
+        {
+            if (!openWindow)
+            {
+                ImportInfo import = new ImportInfo();
+            }
+            else
+            {
+                // MessageBox.Show("Close other windows before opening another.");
+            }
+
         }
     }
 }

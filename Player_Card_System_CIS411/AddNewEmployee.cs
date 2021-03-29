@@ -54,5 +54,10 @@ namespace Player_Card_System_CIS411
             }
             return false;
         }
+
+        private void AddNewEmployee_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            employeeViewer.OpenWindow = false;
+        }
     }
 }

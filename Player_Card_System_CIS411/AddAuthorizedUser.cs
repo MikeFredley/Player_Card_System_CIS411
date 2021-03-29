@@ -37,5 +37,11 @@ namespace Player_Card_System_CIS411
             MessageBox.Show("New Authorized User Added.");
             this.Close();
         }
+
+        private void AddAuthorizedUser_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            editAccount.OpenWindow = false;
+            editAccount.SetEditButton(true);
+        }
     }
 }

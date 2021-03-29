@@ -36,6 +36,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnViewEmployees = new System.Windows.Forms.Button();
             this.btnNewDeals = new System.Windows.Forms.Button();
+            this.btnChangeEmailPassword = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBackup
@@ -66,6 +67,7 @@
             this.btnRestore.TabIndex = 0;
             this.btnRestore.Text = "Restore";
             this.btnRestore.UseVisualStyleBackColor = true;
+            this.btnRestore.Click += new System.EventHandler(this.btnRestore_Click);
             // 
             // btnExportTransactions
             // 
@@ -116,11 +118,21 @@
             this.btnNewDeals.UseVisualStyleBackColor = true;
             this.btnNewDeals.Click += new System.EventHandler(this.btnNewDeals_Click);
             // 
+            // btnChangeEmailPassword
+            // 
+            this.btnChangeEmailPassword.Location = new System.Drawing.Point(145, 163);
+            this.btnChangeEmailPassword.Name = "btnChangeEmailPassword";
+            this.btnChangeEmailPassword.Size = new System.Drawing.Size(83, 49);
+            this.btnChangeEmailPassword.TabIndex = 4;
+            this.btnChangeEmailPassword.Text = "Change Email Password";
+            this.btnChangeEmailPassword.UseVisualStyleBackColor = true;
+            // 
             // AdminWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(364, 224);
+            this.Controls.Add(this.btnChangeEmailPassword);
             this.Controls.Add(this.btnNewDeals);
             this.Controls.Add(this.btnViewEmployees);
             this.Controls.Add(this.btnExit);
@@ -147,5 +159,6 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnViewEmployees;
         private System.Windows.Forms.Button btnNewDeals;
+        private System.Windows.Forms.Button btnChangeEmailPassword;
     }
 }

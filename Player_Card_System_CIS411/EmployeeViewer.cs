@@ -13,16 +13,26 @@ namespace Player_Card_System_CIS411
     public partial class EmployeeViewer : Form
     {
         DataTable dt;
-        public EmployeeViewer()
+        AdminWindow adminWindow;
+        bool openWindow;
+
+        public bool OpenWindow { get => openWindow; set => openWindow = value; }
+        public EmployeeViewer(AdminWindow pAdminWindow)
         {
             InitializeComponent();
             InitializeDataGridView();
+            adminWindow = pAdminWindow;
+            openWindow = false;
         }
 
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            AddNewEmployee addEmployee = new AddNewEmployee(this);
-            addEmployee.Show();
+            if (!openWindow)
+            {
+                openWindow = true;
+                AddNewEmployee addEmployee = new AddNewEmployee(this);
+                addEmployee.Show();
+            }           
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -88,6 +98,18 @@ namespace Player_Card_System_CIS411
                 }
             }
             return 0;
+        }
+
+        private void EmployeeViewer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!openWindow)
+            {
+                adminWindow.OpenWindow = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

@@ -48,7 +48,7 @@ namespace Player_Card_System_CIS411
 
         private void DeductRounds_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            employeeWindow.OpenWindow = false;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
