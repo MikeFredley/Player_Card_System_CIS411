@@ -10,15 +10,13 @@ namespace Player_Card_System_CIS411
 {
     public static class Email
     {
-        private static string emailAddress;
-        private static string password;
+
         private static string userEmail;
         private static string subject;
         private static string body;
         static Email()
         {
-            emailAddress = "oceanvillagegolfreceipt@gmail.com";
-            password = "oceanvillage123";
+
         }
 
         internal static void SetUserEmail(string pUserEmail)
@@ -62,14 +60,15 @@ namespace Player_Card_System_CIS411
 
         private static void SendEmail()
         {
-            MailMessage mailDetails = new MailMessage(emailAddress, userEmail);
+            MailMessage mailDetails = new MailMessage(Database.OutGoingEmail.EmailAddress, userEmail);
             mailDetails.Subject = subject;
             mailDetails.Body = body;
 
             SmtpClient clientDetails = new SmtpClient();
             clientDetails.Host = "smtp.gmail.com";
             clientDetails.Port = 587;
-            System.Net.NetworkCredential nc = new NetworkCredential(emailAddress, password);
+            string password = PasswordEncrypt.hash(Database.OutGoingEmail.EmailPassword);
+            System.Net.NetworkCredential nc = new NetworkCredential(Database.OutGoingEmail.EmailAddress, "oceanvillage123");
             clientDetails.Credentials = nc;
             clientDetails.EnableSsl = true;
             clientDetails.Send(mailDetails);

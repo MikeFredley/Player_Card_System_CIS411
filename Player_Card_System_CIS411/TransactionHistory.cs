@@ -57,5 +57,13 @@ namespace Player_Card_System_CIS411
             editAccount.SetExitButton(true);
             editAccount.SetEditButton(true);
         }
+
+        private void btnEmail_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvTransactionHistory.SelectedRows)
+            {
+                Console.WriteLine(row.Index.ToString());
+            }
+        }
     }
 }

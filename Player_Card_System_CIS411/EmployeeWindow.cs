@@ -28,11 +28,6 @@ namespace Player_Card_System_CIS411
             welcomeWindow = welcome;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Employee_Load(object sender, EventArgs e)
         {
             // data = new Database();

@@ -37,6 +37,11 @@ namespace Player_Card_System_CIS411
                 employee.IsCurrent = true;
                 Database.AddNewEmployee(employee);
             }
+
+            if (Database.OutGoingEmail.EmailAddress == "")
+            {
+                Database.SetOutGoingEmail("oceanvillagegolfreceipt@gmail.com", "oceanvillage123");
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

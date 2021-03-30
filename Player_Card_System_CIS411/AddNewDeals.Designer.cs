@@ -63,9 +63,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 81);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(142, 13);
+            this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Package Type (Single Digit):";
+            this.label3.Text = "Package Type:";
             // 
             // label4
             // 
@@ -92,9 +92,10 @@
             // 
             // txtPackageType
             // 
-            this.txtPackageType.Location = new System.Drawing.Point(181, 78);
+            this.txtPackageType.Location = new System.Drawing.Point(103, 78);
+            this.txtPackageType.MaxLength = 15;
             this.txtPackageType.Name = "txtPackageType";
-            this.txtPackageType.Size = new System.Drawing.Size(22, 20);
+            this.txtPackageType.Size = new System.Drawing.Size(100, 20);
             this.txtPackageType.TabIndex = 6;
             // 
             // txtCostPerRound

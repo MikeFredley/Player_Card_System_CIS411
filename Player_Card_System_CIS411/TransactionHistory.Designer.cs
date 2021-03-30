@@ -50,6 +50,7 @@
             this.btnEmail.TabIndex = 1;
             this.btnEmail.Text = "Email";
             this.btnEmail.UseVisualStyleBackColor = true;
+            this.btnEmail.Click += new System.EventHandler(this.btnEmail_Click);
             // 
             // btnExit
             // 
