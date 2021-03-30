@@ -39,8 +39,6 @@ namespace Player_Card_System_CIS411
             emailedTo = pEmailedTo;
             employeeID = pEmployeeID;
             residentID = pResidentID;
-
-
         }
 
         public int TransNo { get => transNo; set => transNo = value; }

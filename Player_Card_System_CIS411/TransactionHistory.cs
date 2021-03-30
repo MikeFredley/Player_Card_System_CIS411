@@ -58,11 +58,6 @@ namespace Player_Card_System_CIS411
             editAccount.SetEditButton(true);
         }
 
-        private void dgvTransactionHistory_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-          //  MessageBox.Show(e.RowIndex.ToString());
-        }
-
         private void btnEmail_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dgvTransactionHistory.SelectedRows)

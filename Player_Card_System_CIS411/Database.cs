@@ -23,6 +23,7 @@ namespace Player_Card_System_CIS411
         private static List<AdditionalAuthorizedUsers> authorizedUsers;
         private static EmployeeInfo loggedInEmployee;
         private static List<EmployeeInfo> employeeInfo;
+        private static OutGoingEmail outGoingEmail;
 
         static Database()
         {
@@ -36,10 +37,12 @@ namespace Player_Card_System_CIS411
             golfRounds = new List<GolfRounds>();
             authorizedUsers = new List<AdditionalAuthorizedUsers>();
             employeeInfo = new List<EmployeeInfo>();
+            outGoingEmail = new OutGoingEmail();
             try
             {
                 connection = new SqlConnection(connectionString);
-                
+
+                ReadOutGoingEmail();
                 ReadPerson();              
                 ReadResident();              
                 ReadTransaction();             
@@ -57,9 +60,26 @@ namespace Player_Card_System_CIS411
             }
         }
 
+        private static void ReadOutGoingEmail()
+        {       
+            connection.Open();
+            string GetEmailSQL = "SELECT EmailAddress, EmailPassword FROM Outgoing_Email";
+            command = new SqlCommand(GetEmailSQL, connection);
+
+            SqlDataReader emailReader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            while (emailReader.Read())
+            {
+                outGoingEmail.EmailAddress = emailReader["EmailAddress"].ToString();
+                outGoingEmail.EmailPassword = emailReader["EmailPassword"].ToString();
+            }
+            connection.Close();
+        }
+
         // Method to read from the Clusters Table
         private static void ReadClusters()
         {
+            clusters.Clear();
             connection.Open();
             string GetClustersSQL = "Select ClusterName FROM Clusters";
             command = new SqlCommand(GetClustersSQL, connection);
@@ -316,6 +336,67 @@ namespace Player_Card_System_CIS411
                     }
                 }
             }
+        }
+
+        internal static void SetOutGoingEmail(string emailAddress, string emailPassword)
+        {
+            connection.Open();
+            string InsertEmailSQL = "INSERT INTO Outgoing_Email (EmailAddress, EmailPassword) " +
+                                    "VALUES (@pEmailAddress, @pEmailPassword)";
+            command = new SqlCommand(InsertEmailSQL, connection);
+
+            try
+            {
+                command.Parameters.AddWithValue("@pEmailAddress", emailAddress);
+                command.Parameters.AddWithValue("@pEmailPassword", PasswordEncrypt.hash(emailPassword));
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Outgoing Email Added");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to Add Outgoing Email");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could Not Insert Outgoing Email " + ex.Message);
+            }
+            connection.Close();
+            ReadOutGoingEmail();
+        }
+
+        internal static void ChangeOutGoingEmailPassword(string newPassword)
+        {
+            connection.Open();
+            string updateEmailPasswordSQL = "UPDATE OutGoing_Email " +
+                                            "SET EmailPassword = @pEmailPassword " +
+                                            "WHERE EmailAddress = @pEmailAddress";
+            command = new SqlCommand(updateEmailPasswordSQL, connection);
+
+            try
+            {
+                command.Parameters.AddWithValue("@pEmailAddress", outGoingEmail.EmailAddress);
+                command.Parameters.AddWithValue("@pEmailPassword", PasswordEncrypt.hash(newPassword));
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Outgoing Email Password Changed!");
+                    connection.Close();
+                    ReadOutGoingEmail();
+                }
+                else
+                {
+                    Console.WriteLine("Failed to Change Outgoing Email Password");
+                }
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to Change Outgoing Email Password " + ex.Message);
+            }
+            connection.Close();
         }
 
         // Method to write new lines to the Transaction database
@@ -1123,5 +1204,6 @@ namespace Player_Card_System_CIS411
         internal static List<AdditionalAuthorizedUsers> AuthorizedUsers { get => authorizedUsers; set => authorizedUsers = value; }
         internal static EmployeeInfo LoggedInEmployee { get => loggedInEmployee; set => loggedInEmployee = value; }
         internal static List<EmployeeInfo> EmployeeInfo { get => employeeInfo; set => employeeInfo = value; }
+        internal static OutGoingEmail OutGoingEmail { get => outGoingEmail; set => outGoingEmail = value; }
     }
 }

@@ -16,7 +16,7 @@ namespace Player_Card_System_CIS411
         EmployeeWindow employeeWindow;
         bool isEdit;
         DataTable dt;
-        int rowIndex;
+        int rowDGVIndex;
         bool openWindow;
 
         public bool OpenWindow { get => openWindow; set => openWindow = value; }
@@ -299,8 +299,8 @@ namespace Player_Card_System_CIS411
         {
             foreach (AdditionalAuthorizedUsers user in Database.AuthorizedUsers)
             {
-                if (user.FirstName == dgvAuthorizedUsers.Rows[rowIndex].Cells[0].Value.ToString() &&
-                    user.LastName == dgvAuthorizedUsers.Rows[rowIndex].Cells[1].Value.ToString())
+                if (user.FirstName == dgvAuthorizedUsers.Rows[rowDGVIndex].Cells[0].Value.ToString() &&
+                    user.LastName == dgvAuthorizedUsers.Rows[rowDGVIndex].Cells[1].Value.ToString())
                 {
                     Database.DeleteAuthorizedUser(user.OwnerID, user.FirstName, user.LastName);
                     break;
@@ -312,7 +312,7 @@ namespace Player_Card_System_CIS411
 
         private void dgvAuthorizedUsers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            rowIndex = e.RowIndex;
+            rowDGVIndex = e.RowIndex;
         }
     }
 }

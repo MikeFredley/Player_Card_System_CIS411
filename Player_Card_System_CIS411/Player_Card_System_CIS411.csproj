@@ -187,6 +187,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OceanVillagePlayerCardDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="OutGoingEmail.cs" />
     <Compile Include="PasswordEncrypt.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Resident.cs" />
