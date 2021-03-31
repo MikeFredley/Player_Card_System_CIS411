@@ -143,6 +143,21 @@
     <Compile Include="EditAccount.Designer.cs">
       <DependentUpon>EditAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Email.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeDetails.Designer.cs">
+      <DependentUpon>EmployeeDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeInfo.cs" />
+    <Compile Include="EmployeeViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeViewer.Designer.cs">
+      <DependentUpon>EmployeeViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,9 +211,6 @@
     <EmbeddedResource Include="EditAccount.resx">
       <DependentUpon>EditAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmailTransHistory.resx">
-      <DependentUpon>EmailTransHistory.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EmployeeDetails.resx">
       <DependentUpon>EmployeeDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -238,7 +250,6 @@
       <DependentUpon>OceanVillagePlayerCardDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Player_Card_System_CIS411_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -295,15 +306,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="OceanVillagePlayerCard.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="OceanVillagePlayerCard_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>OceanVillagePlayerCard.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
