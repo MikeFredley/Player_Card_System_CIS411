@@ -131,14 +131,6 @@
     <Compile Include="AdminWindow.Designer.cs">
       <DependentUpon>AdminWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChangePassword.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChangePassword.Designer.cs">
-      <DependentUpon>ChangePassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Clusters.cs" />
-    <Compile Include="Database.cs" />
     <Compile Include="DeductRounds.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,27 +143,6 @@
     <Compile Include="EditAccount.Designer.cs">
       <DependentUpon>EditAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Email.cs" />
-    <Compile Include="EmailTransHistory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EmailTransHistory.Designer.cs">
-      <DependentUpon>EmailTransHistory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Employee.cs" />
-    <Compile Include="EmployeeDetails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EmployeeDetails.Designer.cs">
-      <DependentUpon>EmployeeDetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeeInfo.cs" />
-    <Compile Include="EmployeeViewer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EmployeeViewer.Designer.cs">
-      <DependentUpon>EmployeeViewer.cs</DependentUpon>
-    </Compile>
     <Compile Include="EmployeeWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,37 +150,22 @@
       <DependentUpon>EmployeeWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="ExportInfo.cs" />
-    <Compile Include="GetRounds.cs" />
-    <Compile Include="GolfRounds.cs" />
-    <Compile Include="ImportInfo.cs" />
     <Compile Include="OceanVillagePlayerCardDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OceanVillagePlayerCardDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="OutGoingEmail.cs" />
-    <Compile Include="PasswordEncrypt.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="Resident.cs" />
-    <Compile Include="ResidentInfo.cs" />
-    <Compile Include="Transaction.cs" />
-    <Compile Include="TransactionHistory.cs">
-      <SubType>Form</SubType>
+    <Compile Include="OceanVillagePlayerCardDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OceanVillagePlayerCardDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="TransactionHistory.Designer.cs">
-      <DependentUpon>TransactionHistory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewGolfRounds.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ViewGolfRounds.Designer.cs">
-      <DependentUpon>ViewGolfRounds.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Receipt.cs" />
     <Compile Include="WelcomeWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="WelcomeWindow.Designer.cs">
+      <DependentUpon>WelcomeWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
