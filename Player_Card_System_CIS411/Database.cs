@@ -24,6 +24,7 @@ namespace Player_Card_System_CIS411
         private static EmployeeInfo loggedInEmployee;
         private static List<EmployeeInfo> employeeInfo;
         private static OutGoingEmail outGoingEmail;
+        private static List<Transaction> residentTransactions;
 
         static Database()
         {
@@ -38,14 +39,15 @@ namespace Player_Card_System_CIS411
             authorizedUsers = new List<AdditionalAuthorizedUsers>();
             employeeInfo = new List<EmployeeInfo>();
             outGoingEmail = new OutGoingEmail();
+            residentTransactions = new List<Transaction>();
             try
             {
                 connection = new SqlConnection(connectionString);
 
                 ReadOutGoingEmail();
-                ReadPerson();              
-                ReadResident();              
-                ReadTransaction();             
+                ReadPerson();
+                ReadResident();
+                ReadTransaction();
                 CreateResidentInfo();
                 connection.Close();
                 ReadEmployee();
@@ -54,14 +56,27 @@ namespace Player_Card_System_CIS411
                 ReadAdditionalAuthorizedUsers();
                 CreateEmployeeInfo();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
         }
 
+        internal static List<Transaction> ResidentTransactions(int ID)
+        {
+            residentTransactions.Clear();
+            foreach (Transaction trans in transaction)
+            {
+                if (trans.ResidentID == ID)
+                {
+                    residentTransactions.Add(trans);
+                }
+            }
+            return residentTransactions;
+        }
+
         private static void ReadOutGoingEmail()
-        {       
+        {
             connection.Open();
             string GetEmailSQL = "SELECT EmailAddress, EmailPassword FROM Outgoing_Email";
             command = new SqlCommand(GetEmailSQL, connection);
@@ -203,7 +218,7 @@ namespace Player_Card_System_CIS411
         {
             transaction.Clear();
             connection.Open();
-            string GetTransactionSQL = "SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID FROM Trans_Action";
+            string GetTransactionSQL = "SELECT TransNo, DateTime, TypeTrans, RoundsChanged, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID FROM Trans_Action";
             command = new SqlCommand(GetTransactionSQL, connection);
 
             SqlDataReader transactionReader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -212,8 +227,9 @@ namespace Player_Card_System_CIS411
             {
                 Transaction tempTransaction = new Transaction();
                 tempTransaction.TransNo = int.Parse(transactionReader["TransNo"].ToString());
-                tempTransaction.DateTime = transactionReader["DateTime"].ToString();
+                tempTransaction.DateTime = transactionReader["DateTime"].ToString();              
                 tempTransaction.TypeTrans = transactionReader["TypeTrans"].ToString();
+                tempTransaction.RoundsChanged = int.Parse(transactionReader["RoundsChanged"].ToString());
                 tempTransaction.TotalRounds = int.Parse(transactionReader["TotalRounds"].ToString());
                 tempTransaction.Comments = transactionReader["Comments"].ToString();
                 tempTransaction.EmailedTo = transactionReader["EmailedTo"].ToString();
@@ -294,7 +310,7 @@ namespace Player_Card_System_CIS411
 
                 getRounds.Add(tempRounds);
                 tempRounds = null;
-            } 
+            }
 
             // Compares new list by ID with the residentInfo list to get the correct
             // number of rounds for that resident
@@ -348,7 +364,7 @@ namespace Player_Card_System_CIS411
             try
             {
                 command.Parameters.AddWithValue("@pEmailAddress", emailAddress);
-                command.Parameters.AddWithValue("@pEmailPassword", PasswordEncrypt.hash(emailPassword));
+                command.Parameters.AddWithValue("@pEmailPassword", emailPassword);
                 int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
@@ -378,7 +394,7 @@ namespace Player_Card_System_CIS411
             try
             {
                 command.Parameters.AddWithValue("@pEmailAddress", outGoingEmail.EmailAddress);
-                command.Parameters.AddWithValue("@pEmailPassword", PasswordEncrypt.hash(newPassword));
+                command.Parameters.AddWithValue("@pEmailPassword", newPassword);
                 int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
@@ -403,8 +419,8 @@ namespace Player_Card_System_CIS411
         internal static void SubmitTransaction(Transaction newTransaction)
         {
             connection.Open();
-            string InsertTransactionSQL = "INSERT INTO Trans_Action (DateTime, TypeTrans, TotalRounds, EmailedTo, Comments, EmployeeID, ResidentID) " +
-                                          "VALUES (@pDateTime, @pTypeTrans, @pTotalRounds, @pEmailedTo, @pComments, @pEmployeeID, @pResidentID)";
+            string InsertTransactionSQL = "INSERT INTO Trans_Action (DateTime, TypeTrans, RoundsChanged, TotalRounds, EmailedTo, Comments, EmployeeID, ResidentID) " +
+                                          "VALUES (@pDateTime, @pTypeTrans, @pRoundsChanged, @pTotalRounds, @pEmailedTo, @pComments, @pEmployeeID, @pResidentID)";
             command = new SqlCommand(InsertTransactionSQL, connection);
 
             try
@@ -412,6 +428,7 @@ namespace Player_Card_System_CIS411
                 DateTime date = DateTime.Now;
                 command.Parameters.AddWithValue("@pDateTime", date);
                 command.Parameters.AddWithValue("@pTypeTrans", newTransaction.TypeTrans);
+                command.Parameters.AddWithValue("@pRoundsChanged", newTransaction.RoundsChanged);
                 command.Parameters.AddWithValue("@pTotalRounds", newTransaction.TotalRounds);
                 command.Parameters.AddWithValue("@pEmailedTo", newTransaction.EmailedTo);
                 command.Parameters.AddWithValue("@pComments", newTransaction.Comments);
@@ -419,9 +436,9 @@ namespace Player_Card_System_CIS411
                 command.Parameters.AddWithValue("@pResidentID", newTransaction.ResidentID);
 
                 int rowsAffected = command.ExecuteNonQuery();
-                if(rowsAffected > 0)
+                if (rowsAffected > 0)
                 {
-                    Console.WriteLine("Transaction Added");                   
+                    Console.WriteLine("Transaction Added");
                 }
                 else
                 {
@@ -444,7 +461,7 @@ namespace Player_Card_System_CIS411
             connection.Open();
             string UpdateResidentSQL = "UPDATE Resident " +
                                        "SET Address = @pAddress, Email = @pEmail, Phone = @pPhone, NoEmail = @pNoEmail, CommentBox = @pCommentBox, " +
-                                       "ClusterName = @pClusterName, UnitNumber = @pUnitNumber " + 
+                                       "ClusterName = @pClusterName, UnitNumber = @pUnitNumber " +
                                        "WHERE ID = @pID";
             command = new SqlCommand(UpdateResidentSQL, connection);
             try
@@ -458,7 +475,7 @@ namespace Player_Card_System_CIS411
                 command.Parameters.AddWithValue("@pClusterName", residentInfo[resIndex].ClusterName);
                 command.Parameters.AddWithValue("@pUnitNumber", residentInfo[resIndex].UnitNumber);
 
-                int rowsAffected = command.ExecuteNonQuery(); 
+                int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
                     Console.WriteLine("Resident Updated");
@@ -466,9 +483,9 @@ namespace Player_Card_System_CIS411
                 else
                 {
                     Console.WriteLine("Resident Update Failed");
-                }              
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Could Not Update Resident Data" + ex.Message);
             }
@@ -492,7 +509,7 @@ namespace Player_Card_System_CIS411
                     Console.WriteLine("Person Update Failed");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Could Not Update Person Data " + ex.Message);
             }
@@ -545,7 +562,7 @@ namespace Player_Card_System_CIS411
                 connection.Open();
                 string InsertToResidentSQL = "INSERT INTO Resident (ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName) " +
                                              "VALUES (@pID, @pAddress, @pEmail, @pPhone, @pCommentBox, @pUnitNumber, @pNoEmail, @pClusterName) ";
-                                             
+
                 command = new SqlCommand(InsertToResidentSQL, connection);
                 try
                 {
@@ -587,7 +604,7 @@ namespace Player_Card_System_CIS411
 
         private static void ReadAdditionalAuthorizedUsers()
         {
-            
+
             connection.Open();
             string ReadAuthorizedUsersSQL = "SELECT OwnerID, FirstName, LastName FROM Additional_Authorized_Users";
 
@@ -623,7 +640,7 @@ namespace Player_Card_System_CIS411
                 {
                     Console.WriteLine("Inserted New Authorized User");
                     connection.Close();
-                    ReadAdditionalAuthorizedUsers();                   
+                    ReadAdditionalAuthorizedUsers();
                 }
                 else
                 {
@@ -640,7 +657,7 @@ namespace Player_Card_System_CIS411
         internal static void DeleteAuthorizedUser(int pID, string pFirstName, string pLastName)
         {
             connection.Open();
-            string DeleteAuthorizedUserSQL = "DELETE FROM ADDITIONAL_AUTHORIZED_USERS " + 
+            string DeleteAuthorizedUserSQL = "DELETE FROM ADDITIONAL_AUTHORIZED_USERS " +
                                              "WHERE OwnerID = @pOwnerID AND FirstName = @pFirstName AND LastName = @pLastName";
             command = new SqlCommand(DeleteAuthorizedUserSQL, connection);
             try
@@ -686,7 +703,7 @@ namespace Player_Card_System_CIS411
                 command.Parameters.AddWithValue("@pIsCurrent", "True");
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
-                {                   
+                {
                     for (int i = 0; i < employeeInfo.Count; i++)
                     {
                         if (employeeInfo[i].ID == int.Parse(result.ToString()))
@@ -708,12 +725,13 @@ namespace Player_Card_System_CIS411
                 connection.Close();
                 return false;
             }
-            
+
         }
 
         internal static void AddNewEmployee(EmployeeInfo newEmployee)
         {
             // Add new Person
+            connection.Close();
             connection.Open();
             string InsertToPersonSQL = "INSERT INTO Person (FirstName, LastName) " +
                                        "VALUES (@pFirstName, @pLastName)";
@@ -748,7 +766,7 @@ namespace Player_Card_System_CIS411
                     ID = person[i].ID;
                     canContinue = true;
                 }
-            }    
+            }
             // Use new ID to add to Employee
             // if adding the person somehow failed then there is no need to attempt adding to the employee table
             if (canContinue)
@@ -902,7 +920,7 @@ namespace Player_Card_System_CIS411
                 Console.WriteLine("Could Not Add Golf Rounds" + ex.Message);
                 connection.Close();
                 return false;
-            }       
+            }
         }
 
         internal static void DeleteGolfRounds(string pYears, int pTotalRounds, string pPackageType, decimal pCostPerRound)
@@ -953,6 +971,26 @@ namespace Player_Card_System_CIS411
                 Console.WriteLine("Delete Golf Rounds Failed");
             }
             connection.Close();
+        }
+
+        internal static void WipeTransactions()
+        {
+            connection.Open();
+
+            string WipeTransactionsSQL = "DELETE FROM Trans_Action";
+            command = new SqlCommand(WipeTransactionsSQL, connection);
+            int rowsAffected = command.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                Console.WriteLine("Transactions Wiped");
+                connection.Close();
+            }
+            else
+            {
+                Console.WriteLine("Transaction Wipe Failed");
+            }
+            connection.Close();
+            ReadTransaction();
         }
 
         internal static void RestoreDatabase(DataTable dt, string dtName)
@@ -1154,8 +1192,8 @@ namespace Player_Card_System_CIS411
             }
             else if (dtName == "Transactions")
             {
-                string InsertTransactionSQL = "INSERT INTO Trans_Action (DateTime, TypeTrans, TotalRounds, EmailedTo, Comments, EmployeeID, ResidentID) " +
-                              "VALUES (@pDateTime, @pTypeTrans, @pTotalRounds, @pEmailedTo, @pComments, @pEmployeeID, @pResidentID)";
+                string InsertTransactionSQL = "INSERT INTO Trans_Action (DateTime, TypeTrans, RoundsChanged, TotalRounds, EmailedTo, EmployeeID, ResidentID, Comments) " +
+                              "VALUES (@pDateTime, @pTypeTrans, @pRoundsChanged, @pTotalRounds, @pEmailedTo,  @pEmployeeID, @pResidentID, @pComments)";
                 try
                 {
                     foreach (DataRow row in dt.Rows)
@@ -1163,11 +1201,12 @@ namespace Player_Card_System_CIS411
                         command = new SqlCommand(InsertTransactionSQL, connection);
                         command.Parameters.AddWithValue("@pDateTime", row["Date"]);
                         command.Parameters.AddWithValue("@pTypeTrans", row["Transaction Type"]);
+                        command.Parameters.AddWithValue("@pRoundsChanged", row["Rounds Changed"]);
                         command.Parameters.AddWithValue("@pTotalRounds", row["Total Rounds"]);
-                        command.Parameters.AddWithValue("@pEmailedTo", row["Emailed"]);
-                        command.Parameters.AddWithValue("@pComments", row["Comments"]);
+                        command.Parameters.AddWithValue("@pEmailedTo", row["Emailed"]);                       
                         command.Parameters.AddWithValue("@pEmployeeID", row["Employee ID"]);
                         command.Parameters.AddWithValue("@pResidentID", row["Resident ID"]);
+                        command.Parameters.AddWithValue("@pComments", row["Comments"]);
 
                         int rowsAffected = command.ExecuteNonQuery();
                         if (rowsAffected > 0)

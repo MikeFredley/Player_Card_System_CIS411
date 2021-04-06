@@ -28,14 +28,22 @@ namespace Player_Card_System_CIS411
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            AdditionalAuthorizedUsers newAuthorizedUser = new AdditionalAuthorizedUsers();
-            newAuthorizedUser.OwnerID = ID;
-            newAuthorizedUser.FirstName = txtFirstName.Text;
-            newAuthorizedUser.LastName = txtLastName.Text;
-            Database.AddAuthorizedUser(newAuthorizedUser);           
-            editAccount.RefreshDataGridView();
-            MessageBox.Show("New Authorized User Added.");
-            this.Close();
+            if (txtFirstName.Text == "" || txtLastName.Text == "")
+            {
+                MessageBox.Show("Please fill in both fields.");
+            }
+            else
+            {
+                AdditionalAuthorizedUsers newAuthorizedUser = new AdditionalAuthorizedUsers();
+                newAuthorizedUser.OwnerID = ID;
+                newAuthorizedUser.FirstName = txtFirstName.Text;
+                newAuthorizedUser.LastName = txtLastName.Text;
+                Database.AddAuthorizedUser(newAuthorizedUser);
+                editAccount.RefreshDataGridView();
+                MessageBox.Show("New Authorized User Added.");
+                this.Close();
+            }
+
         }
 
         private void AddAuthorizedUser_FormClosing(object sender, FormClosingEventArgs e)

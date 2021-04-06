@@ -87,6 +87,7 @@
             this.btnResetSeason.TabIndex = 0;
             this.btnResetSeason.Text = "Reset Season";
             this.btnResetSeason.UseVisualStyleBackColor = true;
+            this.btnResetSeason.Click += new System.EventHandler(this.btnResetSeason_Click);
             // 
             // btnExit
             // 

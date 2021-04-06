@@ -117,8 +117,8 @@ namespace Player_Card_System_CIS411
             if (!openWindow)
             {
                 openWindow = true;
-                btnExit.Enabled = false;
-                btnEditInfo.Enabled = false;
+            //    btnExit.Enabled = false;
+            //    btnEditInfo.Enabled = false;
                 AddRounds addRoundWindow = new AddRounds(Database.ResidentInfo[rowIndexHolder].CurrentRounds, Database.ResidentInfo[rowIndexHolder].ID, IsEmail(), this);
                 addRoundWindow.Show();
             }
@@ -132,7 +132,7 @@ namespace Player_Card_System_CIS411
         private void btnEditInfo_Click(object sender, EventArgs e)
         {
             // Allows you to edit stuff in the textboxes
-            txtID.ReadOnly = false;
+         //   txtID.ReadOnly = false;
             txtFirstName.ReadOnly = false;
             txtLastName.ReadOnly = false;
             cmbCluster.Enabled = true;
@@ -149,59 +149,77 @@ namespace Player_Card_System_CIS411
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Disables you from being able to edit stuff in the textboxes
-            txtID.ReadOnly = true;
-            txtFirstName.ReadOnly = true;
-            txtLastName.ReadOnly = true;
-            cmbCluster.Enabled = false;
-            txtUnit.ReadOnly = true;
-            txtEmail.ReadOnly = true;
-            txtPhone.ReadOnly = true;
-            txtComments.ReadOnly = true;
-            txtAddress.ReadOnly = true;
-            btnEditInfo.Visible = true;
-            btnSave.Visible = false;
-            chkEmails.Enabled = false;
-            openWindow = false;
-
-            if (!isEdit)
+            // If any textbox is empty is throws and error
+            if (txtFirstName.Text == "" || txtLastName.Text == "" || cmbCluster.Text == "" || txtUnit.Text == "" || txtEmail.Text == ""
+                                || txtPhone.Text =="" || txtAddress.Text == "")
             {
-                // If it is the add person window then the su
-                ResidentInfo newResident = new ResidentInfo();
-                newResident.FirstName = txtFirstName.Text;
-                newResident.LastName = txtLastName.Text;
-                newResident.ClusterName = cmbCluster.Text;
-                newResident.UnitNumber = int.Parse(txtUnit.Text);
-                newResident.Email = txtEmail.Text;
-                newResident.Phone = txtPhone.Text;
-                newResident.CommentBox = txtComments.Text;
-                newResident.Address = txtAddress.Text;
-                newResident.NoEmail = chkEmails.Checked;
-                int ID = Database.AddResident(newResident);
-                this.EditWindowRefresh(ID);
-                isEdit = true;
-                btnAdjustBalance.Visible = true;
-                btnAddUser.Visible = true;
-                btnRemoveUser.Visible = true;
-                btnAddRounds.Visible = true;
-                InitializeDataGridView();
+                MessageBox.Show("Please fill in all fields");
             }
             else
             {
-                // If its the edit window then it calls the method to update the tables
-                // instead of adding to them
-                Database.ResidentInfo[rowIndexHolder].FirstName = txtFirstName.Text;
-                Database.ResidentInfo[rowIndexHolder].LastName = txtLastName.Text;
-                Database.ResidentInfo[rowIndexHolder].ClusterName = cmbCluster.Text;
-                Database.ResidentInfo[rowIndexHolder].UnitNumber = int.Parse(txtUnit.Text);
-                Database.ResidentInfo[rowIndexHolder].Email = txtEmail.Text;
-                Database.ResidentInfo[rowIndexHolder].Phone = txtPhone.Text;
-                Database.ResidentInfo[rowIndexHolder].CommentBox = txtComments.Text;
-                Database.ResidentInfo[rowIndexHolder].Address = txtAddress.Text;
-                Database.ResidentInfo[rowIndexHolder].NoEmail = chkEmails.Checked;
-                Database.UpdateResidentPersonTable(rowIndexHolder);
-                employeeWindow.RefreshDataTable();
-            } 
+                try
+                {
+                    if (!isEdit)
+                    {
+                        // If youre adding a resident with the addperson button it runs this code
+                        ResidentInfo newResident = new ResidentInfo();
+                        newResident.FirstName = txtFirstName.Text;
+                        newResident.LastName = txtLastName.Text;
+                        newResident.ClusterName = cmbCluster.Text;
+                        newResident.UnitNumber = int.Parse(txtUnit.Text);
+                        newResident.Email = txtEmail.Text;
+                        newResident.Phone = txtPhone.Text;
+                        newResident.CommentBox = txtComments.Text;
+                        newResident.Address = txtAddress.Text;
+                        newResident.NoEmail = chkEmails.Checked;
+                        int ID = Database.AddResident(newResident);
+                        this.EditWindowRefresh(ID);
+                        isEdit = true;
+                        btnAdjustBalance.Visible = true;
+                        btnAddUser.Visible = true;
+                        btnRemoveUser.Visible = true;
+                        btnAddRounds.Visible = true;
+                        InitializeDataGridView();
+                    }
+                    else
+                    {
+                        // If its the edit window then it calls the method to update the tables
+                        // instead of adding to them
+                        Database.ResidentInfo[rowIndexHolder].FirstName = txtFirstName.Text;
+                        Database.ResidentInfo[rowIndexHolder].LastName = txtLastName.Text;
+                        Database.ResidentInfo[rowIndexHolder].ClusterName = cmbCluster.Text;
+                        Database.ResidentInfo[rowIndexHolder].UnitNumber = int.Parse(txtUnit.Text);
+                        Database.ResidentInfo[rowIndexHolder].Email = txtEmail.Text;
+                        Database.ResidentInfo[rowIndexHolder].Phone = txtPhone.Text;
+                        Database.ResidentInfo[rowIndexHolder].CommentBox = txtComments.Text;
+                        Database.ResidentInfo[rowIndexHolder].Address = txtAddress.Text;
+                        Database.ResidentInfo[rowIndexHolder].NoEmail = chkEmails.Checked;
+                        Database.UpdateResidentPersonTable(rowIndexHolder);
+                        employeeWindow.RefreshDataTable();
+                    }
+
+                    // Disables you from being able to edit stuff in the textboxes
+                    //  txtID.ReadOnly = true;
+                    txtFirstName.ReadOnly = true;
+                    txtLastName.ReadOnly = true;
+                    cmbCluster.Enabled = false;
+                    txtUnit.ReadOnly = true;
+                    txtEmail.ReadOnly = true;
+                    txtPhone.ReadOnly = true;
+                    txtComments.ReadOnly = true;
+                    txtAddress.ReadOnly = true;
+                    btnEditInfo.Visible = true;
+                    btnSave.Visible = false;
+                    chkEmails.Enabled = false;
+                    openWindow = false;
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error With Existing Information");
+                }
+            }
         }
 
         // If the person chooses to be emailed then it will use their email in the transaction for adding rounds
@@ -213,7 +231,7 @@ namespace Player_Card_System_CIS411
             }
             else
             {
-                return "";
+                return " ";
             }
         }
 
@@ -222,9 +240,9 @@ namespace Player_Card_System_CIS411
             if (!openWindow)
             {
                 openWindow = true;
-                btnExit.Enabled = false;
-                btnEditInfo.Enabled = false;
-                TransactionHistory transactionWindow = new TransactionHistory(Database.ResidentInfo[rowIndexHolder].ID, this);
+             //   btnExit.Enabled = false;
+              //  btnEditInfo.Enabled = false;
+                TransactionHistory transactionWindow = new TransactionHistory(Database.ResidentInfo[rowIndexHolder].ID, this, Database.ResidentInfo[rowIndexHolder].Email);
                 transactionWindow.Show();
             }
             else
@@ -239,8 +257,8 @@ namespace Player_Card_System_CIS411
             if (!openWindow)
             {
                 openWindow = true;
-                btnExit.Enabled = false;
-                btnEditInfo.Enabled = false;
+            //    btnExit.Enabled = false;
+          //      btnEditInfo.Enabled = false;
                 AdjustBalance adjustBalance = new AdjustBalance(Database.ResidentInfo[rowIndexHolder].CurrentRounds, Database.ResidentInfo[rowIndexHolder].ID, IsEmail(), this);
                 adjustBalance.Show();
             }
@@ -256,8 +274,8 @@ namespace Player_Card_System_CIS411
             if (!openWindow)
             {
                 openWindow = true;
-                btnExit.Enabled = false;
-                btnEditInfo.Enabled = false;
+             //   btnExit.Enabled = false;
+             //   btnEditInfo.Enabled = false;
                 AddAuthorizedUser authorizedUser = new AddAuthorizedUser(Database.ResidentInfo[rowIndexHolder].ID, this);
                 authorizedUser.Show();
             }

@@ -109,8 +109,17 @@ namespace Player_Card_System_CIS411
 
             foreach (ResidentInfo resident in Database.ResidentInfo)
             {
+                string comments;
+                if (resident.CommentBox == "")
+                {
+                    comments = " ";
+                }
+                else
+                {
+                    comments = resident.CommentBox;
+                }
                 dt.Rows.Add(resident.ID, resident.FirstName, resident.LastName, resident.Address, resident.ClusterName, resident.UnitNumber, resident.Email,
-                            resident.NoEmail, resident.Phone, resident.CommentBox);
+                            resident.NoEmail, resident.Phone, comments);
             }
             return dt;
         }
@@ -140,6 +149,7 @@ namespace Player_Card_System_CIS411
             dt.Columns.Add(new DataColumn("TransNo", typeof(int)));
             dt.Columns.Add(new DataColumn("Date", typeof(DateTime)));
             dt.Columns.Add(new DataColumn("Transaction Type", typeof(string)));
+            dt.Columns.Add(new DataColumn("Rounds Changed", typeof(int)));
             dt.Columns.Add(new DataColumn("Total Rounds", typeof(int)));
             dt.Columns.Add(new DataColumn("Emailed", typeof(string)));
             dt.Columns.Add(new DataColumn("Employee ID", typeof(int)));
@@ -148,7 +158,7 @@ namespace Player_Card_System_CIS411
 
             foreach (Transaction trans in Database.Transaction)
             {
-                dt.Rows.Add(trans.TransNo, trans.DateTime, trans.TypeTrans, trans.TotalRounds, trans.EmailedTo, trans.EmployeeID, trans.ResidentID, trans.Comments);
+                dt.Rows.Add(trans.TransNo, trans.DateTime, trans.TypeTrans, trans.RoundsChanged, trans.TotalRounds, trans.EmailedTo, trans.EmployeeID, trans.ResidentID, trans.Comments);
             }
             return dt;
         }

@@ -44,7 +44,6 @@
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.txtUnit = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtID = new System.Windows.Forms.TextBox();
             this.chkEmails = new System.Windows.Forms.CheckBox();
             this.cmbCluster = new System.Windows.Forms.ComboBox();
@@ -60,6 +59,7 @@
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAdjustBalance = new System.Windows.Forms.Button();
+            this.txtPhone = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuthorizedUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -205,14 +205,6 @@
             this.txtEmail.Size = new System.Drawing.Size(215, 20);
             this.txtEmail.TabIndex = 21;
             // 
-            // txtPhone
-            // 
-            this.txtPhone.Location = new System.Drawing.Point(98, 281);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.ReadOnly = true;
-            this.txtPhone.Size = new System.Drawing.Size(215, 20);
-            this.txtPhone.TabIndex = 22;
-            // 
             // txtID
             // 
             this.txtID.Location = new System.Drawing.Point(98, 42);
@@ -329,6 +321,7 @@
             this.txtComments.ReadOnly = true;
             this.txtComments.Size = new System.Drawing.Size(247, 173);
             this.txtComments.TabIndex = 37;
+            this.txtComments.Text = "None";
             // 
             // txtAddress
             // 
@@ -357,11 +350,21 @@
             this.btnAdjustBalance.UseVisualStyleBackColor = true;
             this.btnAdjustBalance.Click += new System.EventHandler(this.btnAdjustBalance_Click);
             // 
+            // txtPhone
+            // 
+            this.txtPhone.Location = new System.Drawing.Point(98, 280);
+            this.txtPhone.Mask = "999-000-0000";
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.ReadOnly = true;
+            this.txtPhone.Size = new System.Drawing.Size(215, 20);
+            this.txtPhone.TabIndex = 41;
+            // 
             // EditAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 497);
+            this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.btnAdjustBalance);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtAddress);
@@ -375,7 +378,6 @@
             this.Controls.Add(this.cmbCluster);
             this.Controls.Add(this.chkEmails);
             this.Controls.Add(this.txtID);
-            this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtUnit);
             this.Controls.Add(this.txtLastName);
@@ -422,7 +424,6 @@
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.TextBox txtUnit;
         private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.CheckBox chkEmails;
         private System.Windows.Forms.ComboBox cmbCluster;
@@ -438,5 +439,6 @@
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAdjustBalance;
+        private System.Windows.Forms.MaskedTextBox txtPhone;
     }
 }

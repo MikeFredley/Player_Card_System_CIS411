@@ -20,6 +20,10 @@ namespace Player_Card_System_CIS411
             {
                 ReadFile();
             }
+            else
+            {
+                MessageBox.Show("Error With File");
+            }
             
         }
 
@@ -54,7 +58,15 @@ namespace Player_Card_System_CIS411
                             int i = 0;
                             foreach (IXLCell cell in row.Cells())
                             {
-                                dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                if (cell.IsEmpty())
+                                {
+                                    dt.Rows[dt.Rows.Count - 1][i] = "";
+                                }
+                                else
+                                {
+                                    dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                }
+                                
                                 i++;
                             }
                         }
@@ -74,12 +86,21 @@ namespace Player_Card_System_CIS411
             fdlg.Filter = "Excel Sheet (*.xlsx)|*.xlsx|All Files(*.*)|*.*";
             fdlg.FilterIndex = 1;
             fdlg.RestoreDirectory = true;
+
+            
             if (fdlg.ShowDialog() == DialogResult.OK)
 
             {
-                fileName = fdlg.FileName;
-                Console.WriteLine(fileName);
-                return true;
+                string fileExt = System.IO.Path.GetExtension(fdlg.FileName);
+                MessageBox.Show(fileExt);
+                if (fileExt == ".xlsx")
+                {
+                    fileName = fdlg.FileName;
+                    Console.WriteLine(fileName);
+                    return true;
+                }
+
+
             }
             return false;
         }

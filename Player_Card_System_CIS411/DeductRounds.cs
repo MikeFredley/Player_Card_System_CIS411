@@ -16,14 +16,14 @@ namespace Player_Card_System_CIS411
         int newRounds;
         Transaction newTransaction;
         EmployeeWindow employeeWindow;
-        public DeductRounds(int ID, EmployeeWindow pEmployeeWindow)
+        public DeductRounds(int pID, EmployeeWindow pEmployeeWindow)
         {
             InitializeComponent();
             employeeWindow = pEmployeeWindow;
             // Grabs the residents current rounds
             for (int i = 0; i < Database.ResidentInfo.Count; i++)
             {
-                if (Database.ResidentInfo[i].ID == ID)
+                if (Database.ResidentInfo[i].ID == pID)
                 {
                     lblCurrenRounds.Text = Database.ResidentInfo[i].CurrentRounds + "";
                     resIndex = i;
@@ -82,7 +82,7 @@ namespace Player_Card_System_CIS411
             }
             else
             {
-                email = "";
+                email = " ";
             }
 
             for (int i = 0; i < Database.EmployeeInfo.Count; i++)
@@ -94,14 +94,17 @@ namespace Player_Card_System_CIS411
             }
 
 
-            newTransaction = new Transaction("U", newRounds, email, empID, Database.ResidentInfo[resIndex].ID, "");
-            Database.SubmitTransaction(newTransaction);
-            employeeWindow.RefreshDataTable();
+            newTransaction = new Transaction("Used", int.Parse(txtNumRounds.Value.ToString()), newRounds, email, empID, Database.ResidentInfo[resIndex].ID, " ");
 
             if (email != "")
             {
-                Email.RoundsDeductedEmail(int.Parse(txtNumRounds.Value.ToString()), newRounds, email);
+                Email.SendEmail(newTransaction, Database.ResidentTransactions(Database.ResidentInfo[resIndex].ID));
             }
+
+            Database.SubmitTransaction(newTransaction);
+            employeeWindow.RefreshDataTable();
+
+
         }
     }
 }

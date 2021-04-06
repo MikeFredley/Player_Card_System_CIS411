@@ -16,6 +16,7 @@ namespace Player_Card_System_CIS411
         private string emailedTo;
         private int employeeID;
         private int residentID;
+        private int roundsChanged;
 
         public Transaction()
         {
@@ -27,10 +28,10 @@ namespace Player_Card_System_CIS411
             emailedTo = "";
             employeeID = 0;
             residentID = 0;
-
+            roundsChanged = 0;
         }
 
-        public Transaction(string pTypeTrans, int pTotalRounds, string pEmailedTo, int pEmployeeID, int pResidentID, string pComments)
+        public Transaction(string pTypeTrans,int pRoundsChanged, int pTotalRounds, string pEmailedTo, int pEmployeeID, int pResidentID, string pComments)
         {
            // dateTime =DateTime.Now
             typeTrans = pTypeTrans;
@@ -39,11 +40,13 @@ namespace Player_Card_System_CIS411
             emailedTo = pEmailedTo;
             employeeID = pEmployeeID;
             residentID = pResidentID;
+            roundsChanged = pRoundsChanged;
         }
 
         public int TransNo { get => transNo; set => transNo = value; }
         public string DateTime { get => dateTime; set => dateTime = value; }
         public string TypeTrans { get => typeTrans; set => typeTrans = value; }
+        public int RoundsChanged { get => roundsChanged; set => roundsChanged = value; }
         public int TotalRounds { get => totalRounds; set => totalRounds = value; }
         public string Comments { get => comments; set => comments = value; }
         public string EmailedTo { get => emailedTo; set => emailedTo = value; }

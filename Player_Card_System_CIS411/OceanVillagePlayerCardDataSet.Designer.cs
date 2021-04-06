@@ -2333,6 +2333,8 @@ namespace Player_Card_System_CIS411 {
             
             private global::System.Data.DataColumn columnNoEmail;
             
+            private global::System.Data.DataColumn columnLastTransDate;
+            
             private global::System.Data.DataColumn columnClusterName;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2426,6 +2428,14 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn LastTransDateColumn {
+                get {
+                    return this.columnLastTransDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn ClusterNameColumn {
                 get {
                     return this.columnClusterName;
@@ -2469,7 +2479,7 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public RESIDENTRow AddRESIDENTRow(PERSONRow parentPERSONRowByRESIDENT_PERSON_FK, string Address, string Email, string Phone, string CommentBox, int UnitNumber, string NoEmail, CLUSTERSRow parentCLUSTERSRowByRESIDENT_CLUSTERS_FK) {
+            public RESIDENTRow AddRESIDENTRow(PERSONRow parentPERSONRowByRESIDENT_PERSON_FK, string Address, string Email, string Phone, string CommentBox, int UnitNumber, string NoEmail, System.DateTime LastTransDate, CLUSTERSRow parentCLUSTERSRowByRESIDENT_CLUSTERS_FK) {
                 RESIDENTRow rowRESIDENTRow = ((RESIDENTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2479,12 +2489,13 @@ namespace Player_Card_System_CIS411 {
                         CommentBox,
                         UnitNumber,
                         NoEmail,
+                        LastTransDate,
                         null};
                 if ((parentPERSONRowByRESIDENT_PERSON_FK != null)) {
                     columnValuesArray[0] = parentPERSONRowByRESIDENT_PERSON_FK[0];
                 }
                 if ((parentCLUSTERSRowByRESIDENT_CLUSTERS_FK != null)) {
-                    columnValuesArray[7] = parentCLUSTERSRowByRESIDENT_CLUSTERS_FK[0];
+                    columnValuesArray[8] = parentCLUSTERSRowByRESIDENT_CLUSTERS_FK[0];
                 }
                 rowRESIDENTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRESIDENTRow);
@@ -2522,6 +2533,7 @@ namespace Player_Card_System_CIS411 {
                 this.columnCommentBox = base.Columns["CommentBox"];
                 this.columnUnitNumber = base.Columns["UnitNumber"];
                 this.columnNoEmail = base.Columns["NoEmail"];
+                this.columnLastTransDate = base.Columns["LastTransDate"];
                 this.columnClusterName = base.Columns["ClusterName"];
             }
             
@@ -2542,6 +2554,8 @@ namespace Player_Card_System_CIS411 {
                 base.Columns.Add(this.columnUnitNumber);
                 this.columnNoEmail = new global::System.Data.DataColumn("NoEmail", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNoEmail);
+                this.columnLastTransDate = new global::System.Data.DataColumn("LastTransDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLastTransDate);
                 this.columnClusterName = new global::System.Data.DataColumn("ClusterName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnClusterName);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -2699,6 +2713,8 @@ namespace Player_Card_System_CIS411 {
             
             private global::System.Data.DataColumn columnTotalRounds;
             
+            private global::System.Data.DataColumn columnRoundsChanged;
+            
             private global::System.Data.DataColumn columnComments;
             
             private global::System.Data.DataColumn columnEmailedTo;
@@ -2774,6 +2790,14 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn RoundsChangedColumn {
+                get {
+                    return this.columnRoundsChanged;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn CommentsColumn {
                 get {
                     return this.columnComments;
@@ -2841,22 +2865,23 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public TRANS_ACTIONRow AddTRANS_ACTIONRow(System.DateTime DateTime, string TypeTrans, int TotalRounds, string Comments, string EmailedTo, EMPLOYEERow parentEMPLOYEERowByTRANS_ACTION_EMPLOYEE_FK, RESIDENTRow parentRESIDENTRowByTRANS_ACTION_RESIDENT_FK) {
+            public TRANS_ACTIONRow AddTRANS_ACTIONRow(System.DateTime DateTime, string TypeTrans, int TotalRounds, int RoundsChanged, string Comments, string EmailedTo, EMPLOYEERow parentEMPLOYEERowByTRANS_ACTION_EMPLOYEE_FK, RESIDENTRow parentRESIDENTRowByTRANS_ACTION_RESIDENT_FK) {
                 TRANS_ACTIONRow rowTRANS_ACTIONRow = ((TRANS_ACTIONRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         DateTime,
                         TypeTrans,
                         TotalRounds,
+                        RoundsChanged,
                         Comments,
                         EmailedTo,
                         null,
                         null};
                 if ((parentEMPLOYEERowByTRANS_ACTION_EMPLOYEE_FK != null)) {
-                    columnValuesArray[6] = parentEMPLOYEERowByTRANS_ACTION_EMPLOYEE_FK[0];
+                    columnValuesArray[7] = parentEMPLOYEERowByTRANS_ACTION_EMPLOYEE_FK[0];
                 }
                 if ((parentRESIDENTRowByTRANS_ACTION_RESIDENT_FK != null)) {
-                    columnValuesArray[7] = parentRESIDENTRowByTRANS_ACTION_RESIDENT_FK[0];
+                    columnValuesArray[8] = parentRESIDENTRowByTRANS_ACTION_RESIDENT_FK[0];
                 }
                 rowTRANS_ACTIONRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTRANS_ACTIONRow);
@@ -2891,6 +2916,7 @@ namespace Player_Card_System_CIS411 {
                 this.columnDateTime = base.Columns["DateTime"];
                 this.columnTypeTrans = base.Columns["TypeTrans"];
                 this.columnTotalRounds = base.Columns["TotalRounds"];
+                this.columnRoundsChanged = base.Columns["RoundsChanged"];
                 this.columnComments = base.Columns["Comments"];
                 this.columnEmailedTo = base.Columns["EmailedTo"];
                 this.columnEmployeeID = base.Columns["EmployeeID"];
@@ -2908,6 +2934,8 @@ namespace Player_Card_System_CIS411 {
                 base.Columns.Add(this.columnTypeTrans);
                 this.columnTotalRounds = new global::System.Data.DataColumn("TotalRounds", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalRounds);
+                this.columnRoundsChanged = new global::System.Data.DataColumn("RoundsChanged", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRoundsChanged);
                 this.columnComments = new global::System.Data.DataColumn("Comments", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnComments);
                 this.columnEmailedTo = new global::System.Data.DataColumn("EmailedTo", typeof(string), null, global::System.Data.MappingType.Element);
@@ -2925,7 +2953,7 @@ namespace Player_Card_System_CIS411 {
                 this.columnTransNo.ReadOnly = true;
                 this.columnTransNo.Unique = true;
                 this.columnTypeTrans.AllowDBNull = false;
-                this.columnTypeTrans.MaxLength = 1;
+                this.columnTypeTrans.MaxLength = 10;
                 this.columnComments.MaxLength = 180;
                 this.columnEmailedTo.MaxLength = 30;
             }
@@ -3550,6 +3578,22 @@ namespace Player_Card_System_CIS411 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime LastTransDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableRESIDENT.LastTransDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LastTransDate\' in table \'RESIDENT\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRESIDENT.LastTransDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string ClusterName {
                 get {
                     return ((string)(this[this.tableRESIDENT.ClusterNameColumn]));
@@ -3615,6 +3659,18 @@ namespace Player_Card_System_CIS411 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetUnitNumberNull() {
                 this[this.tableRESIDENT.UnitNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsLastTransDateNull() {
+                return this.IsNull(this.tableRESIDENT.LastTransDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetLastTransDateNull() {
+                this[this.tableRESIDENT.LastTransDateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3705,6 +3761,22 @@ namespace Player_Card_System_CIS411 {
                 }
                 set {
                     this[this.tableTRANS_ACTION.TotalRoundsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int RoundsChanged {
+                get {
+                    try {
+                        return ((int)(this[this.tableTRANS_ACTION.RoundsChangedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RoundsChanged\' in table \'TRANS_ACTION\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTRANS_ACTION.RoundsChangedColumn] = value;
                 }
             }
             
@@ -3816,6 +3888,18 @@ namespace Player_Card_System_CIS411 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetTotalRoundsNull() {
                 this[this.tableTRANS_ACTION.TotalRoundsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsRoundsChangedNull() {
+                return this.IsNull(this.tableTRANS_ACTION.RoundsChangedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetRoundsChangedNull() {
+                this[this.tableTRANS_ACTION.RoundsChangedColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6414,11 +6498,12 @@ SELECT EmailAddress, EmailPassword FROM OUTGOING_EMAIL WHERE (EmailAddress = @Em
             tableMapping.ColumnMappings.Add("CommentBox", "CommentBox");
             tableMapping.ColumnMappings.Add("UnitNumber", "UnitNumber");
             tableMapping.ColumnMappings.Add("NoEmail", "NoEmail");
+            tableMapping.ColumnMappings.Add("LastTransDate", "LastTransDate");
             tableMapping.ColumnMappings.Add("ClusterName", "ClusterName");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[RESIDENT] WHERE (([ID] = @Original_ID) AND ([Address] = @Original_Address) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([Phone] = @Original_Phone) AND ((@IsNull_CommentBox = 1 AND [CommentBox] IS NULL) OR ([CommentBox] = @Original_CommentBox)) AND ((@IsNull_UnitNumber = 1 AND [UnitNumber] IS NULL) OR ([UnitNumber] = @Original_UnitNumber)) AND ([NoEmail] = @Original_NoEmail) AND ([ClusterName] = @Original_ClusterName))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[RESIDENT] WHERE (([ID] = @Original_ID) AND ([Address] = @Original_Address) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([Phone] = @Original_Phone) AND ((@IsNull_CommentBox = 1 AND [CommentBox] IS NULL) OR ([CommentBox] = @Original_CommentBox)) AND ((@IsNull_UnitNumber = 1 AND [UnitNumber] IS NULL) OR ([UnitNumber] = @Original_UnitNumber)) AND ([NoEmail] = @Original_NoEmail) AND ((@IsNull_LastTransDate = 1 AND [LastTransDate] IS NULL) OR ([LastTransDate] = @Original_LastTransDate)) AND ([ClusterName] = @Original_ClusterName))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Address", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -6430,11 +6515,13 @@ SELECT EmailAddress, EmailPassword FROM OUTGOING_EMAIL WHERE (EmailAddress = @Em
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_UnitNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UnitNumber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UnitNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UnitNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LastTransDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastTransDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LastTransDate", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastTransDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClusterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClusterName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[RESIDENT] ([ID], [Address], [Email], [Phone], [CommentBox], [UnitNumber], [NoEmail], [ClusterName]) VALUES (@ID, @Address, @Email, @Phone, @CommentBox, @UnitNumber, @NoEmail, @ClusterName);
-SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName FROM RESIDENT WHERE (ID = @ID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[RESIDENT] ([ID], [Address], [Email], [Phone], [CommentBox], [UnitNumber], [NoEmail], [LastTransDate], [ClusterName]) VALUES (@ID, @Address, @Email, @Phone, @CommentBox, @UnitNumber, @NoEmail, @LastTransDate, @ClusterName);
+SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, LastTransDate, ClusterName FROM RESIDENT WHERE (ID = @ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Address", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6443,11 +6530,12 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CommentBox", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CommentBox", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UnitNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LastTransDate", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastTransDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClusterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClusterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[RESIDENT] SET [ID] = @ID, [Address] = @Address, [Email] = @Email, [Phone] = @Phone, [CommentBox] = @CommentBox, [UnitNumber] = @UnitNumber, [NoEmail] = @NoEmail, [ClusterName] = @ClusterName WHERE (([ID] = @Original_ID) AND ([Address] = @Original_Address) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([Phone] = @Original_Phone) AND ((@IsNull_CommentBox = 1 AND [CommentBox] IS NULL) OR ([CommentBox] = @Original_CommentBox)) AND ((@IsNull_UnitNumber = 1 AND [UnitNumber] IS NULL) OR ([UnitNumber] = @Original_UnitNumber)) AND ([NoEmail] = @Original_NoEmail) AND ([ClusterName] = @Original_ClusterName));
-SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName FROM RESIDENT WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[RESIDENT] SET [ID] = @ID, [Address] = @Address, [Email] = @Email, [Phone] = @Phone, [CommentBox] = @CommentBox, [UnitNumber] = @UnitNumber, [NoEmail] = @NoEmail, [LastTransDate] = @LastTransDate, [ClusterName] = @ClusterName WHERE (([ID] = @Original_ID) AND ([Address] = @Original_Address) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([Phone] = @Original_Phone) AND ((@IsNull_CommentBox = 1 AND [CommentBox] IS NULL) OR ([CommentBox] = @Original_CommentBox)) AND ((@IsNull_UnitNumber = 1 AND [UnitNumber] IS NULL) OR ([UnitNumber] = @Original_UnitNumber)) AND ([NoEmail] = @Original_NoEmail) AND ((@IsNull_LastTransDate = 1 AND [LastTransDate] IS NULL) OR ([LastTransDate] = @Original_LastTransDate)) AND ([ClusterName] = @Original_ClusterName));
+SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, LastTransDate, ClusterName FROM RESIDENT WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Address", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6456,6 +6544,7 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CommentBox", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CommentBox", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UnitNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LastTransDate", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastTransDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClusterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClusterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Address", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -6467,6 +6556,8 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_UnitNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UnitNumber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UnitNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UnitNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoEmail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LastTransDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastTransDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LastTransDate", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastTransDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClusterName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClusterName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -6483,8 +6574,8 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName FR" +
-                "OM dbo.RESIDENT";
+            this._commandCollection[0].CommandText = "SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, LastTransDate," +
+                " ClusterName FROM dbo.RESIDENT";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -6545,7 +6636,7 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, string Original_Address, string Original_Email, string Original_Phone, string Original_CommentBox, global::System.Nullable<int> Original_UnitNumber, string Original_NoEmail, string Original_ClusterName) {
+        public virtual int Delete(int Original_ID, string Original_Address, string Original_Email, string Original_Phone, string Original_CommentBox, global::System.Nullable<int> Original_UnitNumber, string Original_NoEmail, global::System.Nullable<global::System.DateTime> Original_LastTransDate, string Original_ClusterName) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_Address == null)) {
                 throw new global::System.ArgumentNullException("Original_Address");
@@ -6589,11 +6680,19 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
             else {
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_NoEmail));
             }
+            if ((Original_LastTransDate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((System.DateTime)(Original_LastTransDate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
             if ((Original_ClusterName == null)) {
                 throw new global::System.ArgumentNullException("Original_ClusterName");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_ClusterName));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_ClusterName));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -6615,7 +6714,7 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int ID, string Address, string Email, string Phone, string CommentBox, global::System.Nullable<int> UnitNumber, string NoEmail, string ClusterName) {
+        public virtual int Insert(int ID, string Address, string Email, string Phone, string CommentBox, global::System.Nullable<int> UnitNumber, string NoEmail, global::System.Nullable<global::System.DateTime> LastTransDate, string ClusterName) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ID));
             if ((Address == null)) {
                 throw new global::System.ArgumentNullException("Address");
@@ -6653,11 +6752,17 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = ((string)(NoEmail));
             }
+            if ((LastTransDate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(LastTransDate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
             if ((ClusterName == null)) {
                 throw new global::System.ArgumentNullException("ClusterName");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(ClusterName));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(ClusterName));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -6687,6 +6792,7 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
                     string CommentBox, 
                     global::System.Nullable<int> UnitNumber, 
                     string NoEmail, 
+                    global::System.Nullable<global::System.DateTime> LastTransDate, 
                     string ClusterName, 
                     int Original_ID, 
                     string Original_Address, 
@@ -6695,6 +6801,7 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
                     string Original_CommentBox, 
                     global::System.Nullable<int> Original_UnitNumber, 
                     string Original_NoEmail, 
+                    global::System.Nullable<global::System.DateTime> Original_LastTransDate, 
                     string Original_ClusterName) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ID));
             if ((Address == null)) {
@@ -6733,60 +6840,74 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(NoEmail));
             }
+            if ((LastTransDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(LastTransDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
             if ((ClusterName == null)) {
                 throw new global::System.ArgumentNullException("ClusterName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(ClusterName));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(ClusterName));
             }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_ID));
             if ((Original_Address == null)) {
                 throw new global::System.ArgumentNullException("Original_Address");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Address));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Address));
             }
             if ((Original_Email == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_Email));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_Email));
             }
             if ((Original_Phone == null)) {
                 throw new global::System.ArgumentNullException("Original_Phone");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_Phone));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_Phone));
             }
             if ((Original_CommentBox == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_CommentBox));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_CommentBox));
             }
             if ((Original_UnitNumber.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_UnitNumber.Value));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_UnitNumber.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             if ((Original_NoEmail == null)) {
                 throw new global::System.ArgumentNullException("Original_NoEmail");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_NoEmail));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_NoEmail));
+            }
+            if ((Original_LastTransDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((System.DateTime)(Original_LastTransDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             if ((Original_ClusterName == null)) {
                 throw new global::System.ArgumentNullException("Original_ClusterName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_ClusterName));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_ClusterName));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -6808,8 +6929,25 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Address, string Email, string Phone, string CommentBox, global::System.Nullable<int> UnitNumber, string NoEmail, string ClusterName, int Original_ID, string Original_Address, string Original_Email, string Original_Phone, string Original_CommentBox, global::System.Nullable<int> Original_UnitNumber, string Original_NoEmail, string Original_ClusterName) {
-            return this.Update(Original_ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName, Original_ID, Original_Address, Original_Email, Original_Phone, Original_CommentBox, Original_UnitNumber, Original_NoEmail, Original_ClusterName);
+        public virtual int Update(
+                    string Address, 
+                    string Email, 
+                    string Phone, 
+                    string CommentBox, 
+                    global::System.Nullable<int> UnitNumber, 
+                    string NoEmail, 
+                    global::System.Nullable<global::System.DateTime> LastTransDate, 
+                    string ClusterName, 
+                    int Original_ID, 
+                    string Original_Address, 
+                    string Original_Email, 
+                    string Original_Phone, 
+                    string Original_CommentBox, 
+                    global::System.Nullable<int> Original_UnitNumber, 
+                    string Original_NoEmail, 
+                    global::System.Nullable<global::System.DateTime> Original_LastTransDate, 
+                    string Original_ClusterName) {
+            return this.Update(Original_ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, LastTransDate, ClusterName, Original_ID, Original_Address, Original_Email, Original_Phone, Original_CommentBox, Original_UnitNumber, Original_NoEmail, Original_LastTransDate, Original_ClusterName);
         }
     }
     
@@ -6938,6 +7076,7 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
             tableMapping.ColumnMappings.Add("DateTime", "DateTime");
             tableMapping.ColumnMappings.Add("TypeTrans", "TypeTrans");
             tableMapping.ColumnMappings.Add("TotalRounds", "TotalRounds");
+            tableMapping.ColumnMappings.Add("RoundsChanged", "RoundsChanged");
             tableMapping.ColumnMappings.Add("Comments", "Comments");
             tableMapping.ColumnMappings.Add("EmailedTo", "EmailedTo");
             tableMapping.ColumnMappings.Add("EmployeeID", "EmployeeID");
@@ -6945,7 +7084,7 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[TRANS_ACTION] WHERE (([TransNo] = @Original_TransNo) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ([TypeTrans] = @Original_TypeTrans) AND ((@IsNull_TotalRounds = 1 AND [TotalRounds] IS NULL) OR ([TotalRounds] = @Original_TotalRounds)) AND ((@IsNull_Comments = 1 AND [Comments] IS NULL) OR ([Comments] = @Original_Comments)) AND ((@IsNull_EmailedTo = 1 AND [EmailedTo] IS NULL) OR ([EmailedTo] = @Original_EmailedTo)) AND ((@IsNull_EmployeeID = 1 AND [EmployeeID] IS NULL) OR ([EmployeeID] = @Original_EmployeeID)) AND ((@IsNull_ResidentID = 1 AND [ResidentID] IS NULL) OR ([ResidentID] = @Original_ResidentID)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[TRANS_ACTION] WHERE (([TransNo] = @Original_TransNo) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ([TypeTrans] = @Original_TypeTrans) AND ((@IsNull_TotalRounds = 1 AND [TotalRounds] IS NULL) OR ([TotalRounds] = @Original_TotalRounds)) AND ((@IsNull_RoundsChanged = 1 AND [RoundsChanged] IS NULL) OR ([RoundsChanged] = @Original_RoundsChanged)) AND ((@IsNull_Comments = 1 AND [Comments] IS NULL) OR ([Comments] = @Original_Comments)) AND ((@IsNull_EmailedTo = 1 AND [EmailedTo] IS NULL) OR ([EmailedTo] = @Original_EmailedTo)) AND ((@IsNull_EmployeeID = 1 AND [EmployeeID] IS NULL) OR ([EmployeeID] = @Original_EmployeeID)) AND ((@IsNull_ResidentID = 1 AND [ResidentID] IS NULL) OR ([ResidentID] = @Original_ResidentID)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TransNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DateTime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateTime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -6953,6 +7092,8 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TypeTrans", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeTrans", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_TotalRounds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalRounds", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TotalRounds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalRounds", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_RoundsChanged", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoundsChanged", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoundsChanged", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoundsChanged", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Comments", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comments", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Comments", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comments", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EmailedTo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmailedTo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -6963,24 +7104,26 @@ SELECT ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName F
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResidentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResidentID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[TRANS_ACTION] ([DateTime], [TypeTrans], [TotalRounds], [Comments], [EmailedTo], [EmployeeID], [ResidentID]) VALUES (@DateTime, @TypeTrans, @TotalRounds, @Comments, @EmailedTo, @EmployeeID, @ResidentID);
-SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID FROM TRANS_ACTION WHERE (TransNo = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[TRANS_ACTION] ([DateTime], [TypeTrans], [TotalRounds], [RoundsChanged], [Comments], [EmailedTo], [EmployeeID], [ResidentID]) VALUES (@DateTime, @TypeTrans, @TotalRounds, @RoundsChanged, @Comments, @EmailedTo, @EmployeeID, @ResidentID);
+SELECT TransNo, DateTime, TypeTrans, TotalRounds, RoundsChanged, Comments, EmailedTo, EmployeeID, ResidentID FROM TRANS_ACTION WHERE (TransNo = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateTime", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeTrans", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeTrans", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalRounds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalRounds", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoundsChanged", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoundsChanged", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Comments", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comments", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmailedTo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmailedTo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResidentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResidentID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[TRANS_ACTION] SET [DateTime] = @DateTime, [TypeTrans] = @TypeTrans, [TotalRounds] = @TotalRounds, [Comments] = @Comments, [EmailedTo] = @EmailedTo, [EmployeeID] = @EmployeeID, [ResidentID] = @ResidentID WHERE (([TransNo] = @Original_TransNo) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ([TypeTrans] = @Original_TypeTrans) AND ((@IsNull_TotalRounds = 1 AND [TotalRounds] IS NULL) OR ([TotalRounds] = @Original_TotalRounds)) AND ((@IsNull_Comments = 1 AND [Comments] IS NULL) OR ([Comments] = @Original_Comments)) AND ((@IsNull_EmailedTo = 1 AND [EmailedTo] IS NULL) OR ([EmailedTo] = @Original_EmailedTo)) AND ((@IsNull_EmployeeID = 1 AND [EmployeeID] IS NULL) OR ([EmployeeID] = @Original_EmployeeID)) AND ((@IsNull_ResidentID = 1 AND [ResidentID] IS NULL) OR ([ResidentID] = @Original_ResidentID)));
-SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID FROM TRANS_ACTION WHERE (TransNo = @TransNo)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[TRANS_ACTION] SET [DateTime] = @DateTime, [TypeTrans] = @TypeTrans, [TotalRounds] = @TotalRounds, [RoundsChanged] = @RoundsChanged, [Comments] = @Comments, [EmailedTo] = @EmailedTo, [EmployeeID] = @EmployeeID, [ResidentID] = @ResidentID WHERE (([TransNo] = @Original_TransNo) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ([TypeTrans] = @Original_TypeTrans) AND ((@IsNull_TotalRounds = 1 AND [TotalRounds] IS NULL) OR ([TotalRounds] = @Original_TotalRounds)) AND ((@IsNull_RoundsChanged = 1 AND [RoundsChanged] IS NULL) OR ([RoundsChanged] = @Original_RoundsChanged)) AND ((@IsNull_Comments = 1 AND [Comments] IS NULL) OR ([Comments] = @Original_Comments)) AND ((@IsNull_EmailedTo = 1 AND [EmailedTo] IS NULL) OR ([EmailedTo] = @Original_EmailedTo)) AND ((@IsNull_EmployeeID = 1 AND [EmployeeID] IS NULL) OR ([EmployeeID] = @Original_EmployeeID)) AND ((@IsNull_ResidentID = 1 AND [ResidentID] IS NULL) OR ([ResidentID] = @Original_ResidentID)));
+SELECT TransNo, DateTime, TypeTrans, TotalRounds, RoundsChanged, Comments, EmailedTo, EmployeeID, ResidentID FROM TRANS_ACTION WHERE (TransNo = @TransNo)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateTime", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeTrans", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeTrans", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalRounds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalRounds", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoundsChanged", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoundsChanged", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Comments", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comments", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmailedTo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmailedTo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6991,6 +7134,8 @@ SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeI
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TypeTrans", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeTrans", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_TotalRounds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalRounds", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TotalRounds", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalRounds", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_RoundsChanged", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoundsChanged", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoundsChanged", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoundsChanged", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Comments", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comments", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Comments", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Comments", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EmailedTo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmailedTo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -7015,8 +7160,8 @@ SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeI
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeID" +
-                ", ResidentID FROM dbo.TRANS_ACTION";
+            this._commandCollection[0].CommandText = "SELECT TransNo, DateTime, TypeTrans, TotalRounds, RoundsChanged, Comments, Emaile" +
+                "dTo, EmployeeID, ResidentID FROM dbo.TRANS_ACTION";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7077,7 +7222,7 @@ SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_TransNo, global::System.Nullable<global::System.DateTime> Original_DateTime, string Original_TypeTrans, global::System.Nullable<int> Original_TotalRounds, string Original_Comments, string Original_EmailedTo, global::System.Nullable<int> Original_EmployeeID, global::System.Nullable<int> Original_ResidentID) {
+        public virtual int Delete(int Original_TransNo, global::System.Nullable<global::System.DateTime> Original_DateTime, string Original_TypeTrans, global::System.Nullable<int> Original_TotalRounds, global::System.Nullable<int> Original_RoundsChanged, string Original_Comments, string Original_EmailedTo, global::System.Nullable<int> Original_EmployeeID, global::System.Nullable<int> Original_ResidentID) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_TransNo));
             if ((Original_DateTime.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -7101,37 +7246,45 @@ SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeI
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((Original_Comments == null)) {
+            if ((Original_RoundsChanged.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(Original_RoundsChanged.Value));
+            }
+            else {
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_Comments));
-            }
-            if ((Original_EmailedTo == null)) {
+            if ((Original_Comments == null)) {
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_EmailedTo));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_Comments));
             }
-            if ((Original_EmployeeID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((int)(Original_EmployeeID.Value));
-            }
-            else {
+            if ((Original_EmailedTo == null)) {
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((Original_ResidentID.HasValue == true)) {
+            else {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_EmailedTo));
+            }
+            if ((Original_EmployeeID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((int)(Original_ResidentID.Value));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((int)(Original_EmployeeID.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((Original_ResidentID.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((int)(Original_ResidentID.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -7153,7 +7306,7 @@ SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<global::System.DateTime> DateTime, string TypeTrans, global::System.Nullable<int> TotalRounds, string Comments, string EmailedTo, global::System.Nullable<int> EmployeeID, global::System.Nullable<int> ResidentID) {
+        public virtual int Insert(global::System.Nullable<global::System.DateTime> DateTime, string TypeTrans, global::System.Nullable<int> TotalRounds, global::System.Nullable<int> RoundsChanged, string Comments, string EmailedTo, global::System.Nullable<int> EmployeeID, global::System.Nullable<int> ResidentID) {
             if ((DateTime.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(DateTime.Value));
             }
@@ -7172,29 +7325,35 @@ SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeI
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((Comments == null)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            if ((RoundsChanged.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(RoundsChanged.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Comments));
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((EmailedTo == null)) {
+            if ((Comments == null)) {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(EmailedTo));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Comments));
             }
-            if ((EmployeeID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((int)(EmployeeID.Value));
-            }
-            else {
+            if ((EmailedTo == null)) {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((ResidentID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((int)(ResidentID.Value));
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(EmailedTo));
+            }
+            if ((EmployeeID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((int)(EmployeeID.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((ResidentID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((int)(ResidentID.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -7220,6 +7379,7 @@ SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeI
                     global::System.Nullable<global::System.DateTime> DateTime, 
                     string TypeTrans, 
                     global::System.Nullable<int> TotalRounds, 
+                    global::System.Nullable<int> RoundsChanged, 
                     string Comments, 
                     string EmailedTo, 
                     global::System.Nullable<int> EmployeeID, 
@@ -7228,6 +7388,7 @@ SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeI
                     global::System.Nullable<global::System.DateTime> Original_DateTime, 
                     string Original_TypeTrans, 
                     global::System.Nullable<int> Original_TotalRounds, 
+                    global::System.Nullable<int> Original_RoundsChanged, 
                     string Original_Comments, 
                     string Original_EmailedTo, 
                     global::System.Nullable<int> Original_EmployeeID, 
@@ -7251,86 +7412,100 @@ SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeI
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((Comments == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            if ((RoundsChanged.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(RoundsChanged.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Comments));
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((EmailedTo == null)) {
+            if ((Comments == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(EmailedTo));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Comments));
             }
-            if ((EmployeeID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(EmployeeID.Value));
-            }
-            else {
+            if ((EmailedTo == null)) {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((ResidentID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(ResidentID.Value));
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(EmailedTo));
+            }
+            if ((EmployeeID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(EmployeeID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_TransNo));
-            if ((Original_DateTime.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_DateTime.Value));
+            if ((ResidentID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(ResidentID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_TransNo));
+            if ((Original_DateTime.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(Original_DateTime.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             if ((Original_TypeTrans == null)) {
                 throw new global::System.ArgumentNullException("Original_TypeTrans");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_TypeTrans));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_TypeTrans));
             }
             if ((Original_TotalRounds.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_TotalRounds.Value));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_TotalRounds.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((Original_RoundsChanged.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_RoundsChanged.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             if ((Original_Comments == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_Comments));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Comments));
             }
             if ((Original_EmailedTo == null)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_EmailedTo));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_EmailedTo));
             }
             if ((Original_EmployeeID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_EmployeeID.Value));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(Original_EmployeeID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             if ((Original_ResidentID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_ResidentID.Value));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_ResidentID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(TransNo));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(TransNo));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7351,8 +7526,25 @@ SELECT TransNo, DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<global::System.DateTime> DateTime, string TypeTrans, global::System.Nullable<int> TotalRounds, string Comments, string EmailedTo, global::System.Nullable<int> EmployeeID, global::System.Nullable<int> ResidentID, int Original_TransNo, global::System.Nullable<global::System.DateTime> Original_DateTime, string Original_TypeTrans, global::System.Nullable<int> Original_TotalRounds, string Original_Comments, string Original_EmailedTo, global::System.Nullable<int> Original_EmployeeID, global::System.Nullable<int> Original_ResidentID) {
-            return this.Update(DateTime, TypeTrans, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID, Original_TransNo, Original_DateTime, Original_TypeTrans, Original_TotalRounds, Original_Comments, Original_EmailedTo, Original_EmployeeID, Original_ResidentID, Original_TransNo);
+        public virtual int Update(
+                    global::System.Nullable<global::System.DateTime> DateTime, 
+                    string TypeTrans, 
+                    global::System.Nullable<int> TotalRounds, 
+                    global::System.Nullable<int> RoundsChanged, 
+                    string Comments, 
+                    string EmailedTo, 
+                    global::System.Nullable<int> EmployeeID, 
+                    global::System.Nullable<int> ResidentID, 
+                    int Original_TransNo, 
+                    global::System.Nullable<global::System.DateTime> Original_DateTime, 
+                    string Original_TypeTrans, 
+                    global::System.Nullable<int> Original_TotalRounds, 
+                    global::System.Nullable<int> Original_RoundsChanged, 
+                    string Original_Comments, 
+                    string Original_EmailedTo, 
+                    global::System.Nullable<int> Original_EmployeeID, 
+                    global::System.Nullable<int> Original_ResidentID) {
+            return this.Update(DateTime, TypeTrans, TotalRounds, RoundsChanged, Comments, EmailedTo, EmployeeID, ResidentID, Original_TransNo, Original_DateTime, Original_TypeTrans, Original_TotalRounds, Original_RoundsChanged, Original_Comments, Original_EmailedTo, Original_EmployeeID, Original_ResidentID, Original_TransNo);
         }
     }
     

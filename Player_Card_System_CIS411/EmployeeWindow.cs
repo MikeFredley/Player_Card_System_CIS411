@@ -56,6 +56,7 @@ namespace Player_Card_System_CIS411
         private void InitializeDataGridView()
         {
             dt = new DataTable();
+            dt.Columns.Add(new DataColumn("ID", typeof(int)));
             dt.Columns.Add(new DataColumn("First Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Last Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Cluster", typeof(string)));
@@ -81,6 +82,7 @@ namespace Player_Card_System_CIS411
             dgvResidentInfo.DataSource = dt;
             dgvResidentInfo.Columns.Add(deductRoundButton);
             dgvResidentInfo.Columns.Add(editAccountButton);
+            dgvResidentInfo.Columns["ID"].Visible = false;
             dgvResidentInfo.ReadOnly = true;
         }
 
@@ -88,7 +90,7 @@ namespace Player_Card_System_CIS411
         {
             foreach (ResidentInfo resident in Database.ResidentInfo)
             {
-                dt.Rows.Add(resident.FirstName, resident.LastName, resident.ClusterName, resident.UnitNumber, resident.Email, resident.Phone, resident.CurrentRounds);
+                dt.Rows.Add(resident.ID, resident.FirstName, resident.LastName, resident.ClusterName, resident.UnitNumber, resident.Email, resident.Phone, resident.CurrentRounds);
             }
         }
 
@@ -123,7 +125,7 @@ namespace Player_Card_System_CIS411
         private void dgvResidentInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // If the deduct rounds button is clicked
-            if (e.ColumnIndex == 7)
+            if (e.ColumnIndex == 8)
             {
                 if (e.RowIndex >= 0)
                 {
@@ -141,7 +143,7 @@ namespace Player_Card_System_CIS411
             }
 
             // If the Edit account button is clicked
-            if (e.ColumnIndex == 8)
+            if (e.ColumnIndex == 9)
             {
                 if (e.RowIndex >= 0)
                 {
@@ -167,11 +169,17 @@ namespace Player_Card_System_CIS411
                 // it then searches through the residentinfo list and matches up the firstnames and last names
                 // using those it gets the correct ID for that row, which will be used to pass into the
                 // appropriate window
-                if (dgvResidentInfo.Rows[e.RowIndex].Cells[0].Value.ToString() == Database.ResidentInfo[i].FirstName &&
-                    dgvResidentInfo.Rows[e.RowIndex].Cells[1].Value.ToString() == Database.ResidentInfo[i].LastName)
+
+                if (int.Parse(dgvResidentInfo.Rows[e.RowIndex].Cells[0].Value.ToString()) == Database.ResidentInfo[i].ID)
                 {
                     return Database.ResidentInfo[i].ID;
                 }
+
+          /*      if (dgvResidentInfo.Rows[e.RowIndex].Cells[0].Value.ToString() == Database.ResidentInfo[i].FirstName &&
+                    dgvResidentInfo.Rows[e.RowIndex].Cells[1].Value.ToString() == Database.ResidentInfo[i].LastName)
+                {
+                    return Database.ResidentInfo[i].ID;
+                }*/
             }
             return 0;
         }

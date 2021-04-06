@@ -15,12 +15,14 @@ namespace Player_Card_System_CIS411
         DataTable dt;
         int ID;
         EditAccount editAccount;
-        public TransactionHistory(int pID, EditAccount pEditAccount)
-        {
-            ID = pID;
+        string email;
+        public TransactionHistory(int pID, EditAccount pEditAccount, string pEmail)
+        {           
             InitializeComponent();
-            InitializeDataGridView();
+            ID = pID;
             editAccount = pEditAccount;
+            email = pEmail;
+            InitializeDataGridView();
         }
 
         private void InitializeDataGridView()
@@ -28,18 +30,32 @@ namespace Player_Card_System_CIS411
             dt = new DataTable();
             dt.Columns.Add(new DataColumn("Date", typeof(DateTime)));
             dt.Columns.Add(new DataColumn("Transaction Type", typeof(string)));
+            dt.Columns.Add(new DataColumn("Rounds Changed", typeof(int)));
             dt.Columns.Add(new DataColumn("Total Rounds", typeof(int)));
             dt.Columns.Add(new DataColumn("Emailed", typeof(string)));
-            dt.Columns.Add(new DataColumn("Employee ID", typeof(int)));
-            dt.Columns.Add(new DataColumn("Resident ID", typeof(int)));
+            dt.Columns.Add(new DataColumn("Employee Name", typeof(string)));
+            dt.Columns.Add(new DataColumn("Resident Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Comments", typeof(string)));
 
-            foreach (Transaction trans in Database.Transaction)
+            string residentName = "";
+            foreach (ResidentInfo res in Database.ResidentInfo)
             {
-                if (trans.ResidentID == ID)
+                if (res.ID == ID)
                 {
-                    dt.Rows.Add(trans.DateTime, trans.TypeTrans, trans.TotalRounds, trans.EmailedTo, trans.EmployeeID, trans.ResidentID, trans.Comments);
+                    residentName = res.FirstName + " " + res.LastName;
                 }
+            }
+
+            foreach (Transaction trans in Database.ResidentTransactions(ID))
+            {
+                foreach (EmployeeInfo emp in Database.EmployeeInfo)
+                {
+                    if (emp.ID == trans.EmployeeID)
+                    {
+                        dt.Rows.Add(trans.DateTime, trans.TypeTrans, trans.RoundsChanged, trans.TotalRounds, trans.EmailedTo, emp.FirstName + " " + emp.LastName, residentName, trans.Comments);
+                    }
+                }
+                
             }
 
             dgvTransactionHistory.DataSource = dt;
@@ -60,10 +76,7 @@ namespace Player_Card_System_CIS411
 
         private void btnEmail_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dgvTransactionHistory.SelectedRows)
-            {
-                Console.WriteLine(row.Index.ToString());
-            }
+            Email.EmailTransactionHistory(Database.ResidentTransactions(ID), email);
         }
     }
 }

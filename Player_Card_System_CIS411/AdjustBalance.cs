@@ -41,6 +41,7 @@ namespace Player_Card_System_CIS411
             // Adds rounds entered to the current amount of rounds
             newRounds = currentRounds + int.Parse(txtNumRounds.Value.ToString());
             CreateNewTransaction();
+            this.Close();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -51,8 +52,8 @@ namespace Player_Card_System_CIS411
         private void AdjustBalance_FormClosing(object sender, FormClosingEventArgs e)
         {
             editAccount.OpenWindow = false;
-            editAccount.SetExitButton(true);
-            editAccount.SetEditButton(true);
+        //    editAccount.SetExitButton(true);
+        //    editAccount.SetEditButton(true);
         }
 
         private void btnSubtractRounds_Click(object sender, EventArgs e)
@@ -86,16 +87,27 @@ namespace Player_Card_System_CIS411
                 }
             }
 
+            string reason;
+            if (txtReason.Text =="")
+            {
+                reason = " ";
+            }
+            else
+            {
+                reason = txtReason.Text;
+            }
             // Creates a new transaction object then sends it to the database
             // class to be added to the list and the database
-            Transaction newTransaction = new Transaction("A", newRounds, email, empID, ID, txtReason.Text);
-            Database.SubmitTransaction(newTransaction);
+            Transaction newTransaction = new Transaction("Adjusted", int.Parse(txtNumRounds.Value.ToString()), newRounds, email, empID, ID, reason);
+            
             // Refreshes to the new values on the details window and the main screen
             editAccount.EditWindowRefresh(ID);
-            if (email != "")
+            if (email != " ")
             {
-                Email.RoundsAdjustedEmail(int.Parse(txtNumRounds.Value.ToString()), newRounds, email, txtReason.Text);
-            }           
+                Email.SendEmail(newTransaction, Database.ResidentTransactions(ID));
+               // Email.RoundsAdjustedEmail(int.Parse(txtNumRounds.Value.ToString()), newRounds, email, txtReason.Text);
+            }
+            Database.SubmitTransaction(newTransaction);
         }
     }
 }

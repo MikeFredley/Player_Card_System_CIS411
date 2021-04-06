@@ -78,14 +78,15 @@ namespace Player_Card_System_CIS411
                     // If the button is clicked it creates a new transaction object
                     // and adds it to the transaction table
                     newRounds = currentRounds + Database.GolfRounds[e.RowIndex].TotalRounds;
-                    newTransaction = new Transaction("P", newRounds, email, Database.LoggedInEmployee.ID, ID, "");
+                    newTransaction = new Transaction("Purchased", Database.GolfRounds[e.RowIndex].TotalRounds, newRounds, email, Database.LoggedInEmployee.ID, ID, " ");
+                    
+                    if (email != " ")
+                    {
+                        Email.SendEmail(newTransaction, Database.ResidentTransactions(ID));
+                    }
+
                     Database.SubmitTransaction(newTransaction);
                     editAccount.EditWindowRefresh(ID);
-                    if (email != "")
-                    {
-                        Email.RoundsPurchasedEmail(Database.GolfRounds[e.RowIndex].TotalRounds, newRounds, email);
-                    }
-                        
                     MessageBox.Show("Rounds Added");
                 }
             }

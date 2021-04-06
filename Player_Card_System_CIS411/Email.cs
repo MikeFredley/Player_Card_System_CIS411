@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Mail;
+using System.Windows.Forms;
 
 namespace Player_Card_System_CIS411
 {
@@ -24,56 +25,75 @@ namespace Player_Card_System_CIS411
             userEmail = pUserEmail;
         }
 
-        internal static void RoundsPurchasedEmail(int pRoundsPurchased, int pNewRounds, string pUserEmail)
+        internal static void EmailTransactionHistory(List<Transaction> transactions, string pUserEmail)
         {
             userEmail = pUserEmail;
-            DateTime date = DateTime.Now;
-            subject = "Rounds Purchased";
-            body = "Amount of Rounds Purchased: " + pRoundsPurchased + "\n"
-                 + "New Amount of Rounds: " + pNewRounds + "\n"
-                 + "Date: " + date;
-            SendEmail();
+            subject = "Transaction History";
+            body = "Transaction History\n";
+            string.Format("<b>" + body + "</b>");
+
+            AppendTransactions(transactions);
+
+            Send();
         }
 
-        internal static void RoundsDeductedEmail(int pRoundsDeducted, int pNewRounds, string pUserEmail)
+        internal static void EmailTransactionHistory(List<Transaction> transactions)
         {
-            userEmail = pUserEmail;
-            DateTime date = DateTime.Now;
-            subject = "Rounds Used";
-            body = "Amount of Rounds Used: " + pRoundsDeducted + "\n"
-                 + "New Amount of Rounds: " + pNewRounds + "\n"
-                 + "Date: " + date;
-            SendEmail();
+            body += "\n\n\nTransaction History\n";
+
+            AppendTransactions(transactions);
         }
 
-        internal static void RoundsAdjustedEmail(int pRoundsAdjusted, int pNewRounds, string pUserEmail, string pReason)
+        private static void AppendTransactions(List<Transaction> transactions)
         {
-            userEmail = pUserEmail;
-            DateTime date = DateTime.Now;
-            subject = "Rounds Adjusted";
-            body = "Amount of Rounds Adjusted: " + pRoundsAdjusted + "\n"
-                 + "New Amount of Rounds: " + pNewRounds + "\n"
-                 + "For Reason: " + pReason + "\n"
-                 + "Date: " + date;
-            SendEmail();
+            for (int i = transactions.Count - 1; i >= 0; i--)
+            {
+                body += "\nDate: " + transactions[i].DateTime + "\n"
+                         + "Transaction Type: " + transactions[i].TypeTrans + "\n"
+                         + "Rounds Changed: " + transactions[i].RoundsChanged + "\n"
+                         + "Total Rounds: " + transactions[i].TotalRounds + "\n"
+                         + "Reason: " + transactions[i].Comments + "\n--------------------------------------";
+            }
         }
 
-        private static void SendEmail()
+        internal static void SendEmail(Transaction transaction, List<Transaction> resTransactions)
         {
-            MailMessage mailDetails = new MailMessage(Database.OutGoingEmail.EmailAddress, userEmail);
-            mailDetails.Subject = subject;
-            mailDetails.Body = body;
+            DateTime date = DateTime.Now;
+            userEmail = transaction.EmailedTo;
+            subject = "New Transaction";
+            body = "A new transaction has occured on your golf account.\n"
+                 + "Amount of Rounds " + transaction.TypeTrans +": " + transaction.RoundsChanged + "\n"
+                 + "New Amount of Rounds: " + transaction.TotalRounds + "\n"
+                 + "Date: " + date + "\n"
+                 + "Reason: " + transaction.Comments;
 
-            SmtpClient clientDetails = new SmtpClient();
-            clientDetails.Host = "smtp.gmail.com";
-            clientDetails.Port = 587;
-            string password = PasswordEncrypt.hash(Database.OutGoingEmail.EmailPassword);
-            System.Net.NetworkCredential nc = new NetworkCredential(Database.OutGoingEmail.EmailAddress, "oceanvillage123");
-            clientDetails.Credentials = nc;
-            clientDetails.EnableSsl = true;
-            clientDetails.Send(mailDetails);
+            EmailTransactionHistory(resTransactions);
 
-            Console.WriteLine("Email Sent");
+            Send();
+        }
+
+        private static void Send()
+        {
+            try
+            {
+                MailMessage mailDetails = new MailMessage(Database.OutGoingEmail.EmailAddress, userEmail);
+                mailDetails.Subject = subject;
+                mailDetails.Body = body;
+
+                SmtpClient clientDetails = new SmtpClient();
+                clientDetails.Host = "smtp.gmail.com";
+                clientDetails.Port = 587;
+                System.Net.NetworkCredential nc = new NetworkCredential(Database.OutGoingEmail.EmailAddress, Database.OutGoingEmail.EmailPassword);
+                clientDetails.Credentials = nc;
+                clientDetails.EnableSsl = true;
+                clientDetails.Send(mailDetails);
+
+                MessageBox.Show("Email Sent!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed To Send Email " + ex.Message);
+            }
         }
     }
 }

@@ -125,5 +125,10 @@ namespace Player_Card_System_CIS411
             }
 
         }
+
+        private void btnResetSeason_Click(object sender, EventArgs e)
+        {
+            Database.WipeTransactions();
+        }
     }
 }
