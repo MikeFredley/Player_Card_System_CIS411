@@ -130,5 +130,19 @@ namespace Player_Card_System_CIS411
         {
             Database.WipeTransactions();
         }
+
+        private void btnDeleteAccounts_Click(object sender, EventArgs e)
+        {
+            if (!openWindow)
+            {
+                openWindow = true;
+                DeleteResidentAccounts delResAccounts = new DeleteResidentAccounts(this);
+                delResAccounts.Show();
+            }
+            else
+            {
+                // MessageBox.Show("Close other windows before opening another.");
+            }
+        }
     }
 }

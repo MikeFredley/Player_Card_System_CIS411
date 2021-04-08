@@ -41,7 +41,7 @@ namespace Player_Card_System_CIS411.Properties {
             "ed Security=True")]
         public string OceanVillagePlayerCardConnectionString {
             get {
-                return ((string)(this["OceanVillagePlayerCardConnectionString"]));
+                return ((string)(this["OceanVillagePlayerCardConnectionString1"]));
             }
         }
         
@@ -52,7 +52,7 @@ namespace Player_Card_System_CIS411.Properties {
             "mdf;Integrated Security=True;Connect Timeout=30;User Instance=True")]
         public string OceanVillagePlayerCardConnectionString2 {
             get {
-                return ((string)(this["OceanVillagePlayerCardConnectionString2"]));
+                return ((string)(this["OceanVillagePlayerCardConnectionString1"]));
             }
         }
     }

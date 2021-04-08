@@ -80,7 +80,7 @@ namespace Player_Card_System_CIS411
                     newRounds = currentRounds + Database.GolfRounds[e.RowIndex].TotalRounds;
                     newTransaction = new Transaction("Purchased", Database.GolfRounds[e.RowIndex].TotalRounds, newRounds, email, Database.LoggedInEmployee.ID, ID, " ");
                     
-                    if (email != " ")
+                    if (email != " " || email != "")
                     {
                         Email.SendEmail(newTransaction, Database.ResidentTransactions(ID));
                     }

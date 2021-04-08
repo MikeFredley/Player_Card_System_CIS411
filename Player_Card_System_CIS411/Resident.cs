@@ -16,6 +16,7 @@ namespace Player_Card_System_CIS411
         private bool noEmail;
         private string clusterName;
         private int unitNumber;
+        private string lastTransDate;
 
         public Resident()
         {
@@ -27,9 +28,10 @@ namespace Player_Card_System_CIS411
             noEmail = true;
             clusterName = "";
             unitNumber = 0;
+            lastTransDate = "";
         }
 
-        public Resident(int pId, string pAddress, string pEmail, string pPhone, string pCommentBox, bool pNoEmail, string pClusterName, int pUnitNumber)
+        public Resident(int pId, string pAddress, string pEmail, string pPhone, string pCommentBox, bool pNoEmail, string pClusterName, int pUnitNumber, string pLastTransDate)
         {
             Id = pId;
             address = pAddress;
@@ -39,6 +41,7 @@ namespace Player_Card_System_CIS411
             noEmail= pNoEmail;
             clusterName = pClusterName;
             unitNumber = pUnitNumber;
+            lastTransDate = pLastTransDate;
         }
 
         public int ID { get => Id; set => Id = value; }
@@ -49,5 +52,6 @@ namespace Player_Card_System_CIS411
         public bool NoEmail { get => noEmail; set => noEmail = value; }
         public string ClusterName { get => clusterName; set => clusterName = value; }
         public int UnitNumber { get => unitNumber; set => unitNumber = value; }
+        public string LastTransDate { get =>lastTransDate; set => lastTransDate = value; }
     }
 }

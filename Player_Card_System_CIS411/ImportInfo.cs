@@ -29,52 +29,59 @@ namespace Player_Card_System_CIS411
 
         private void ReadFile()
         {
-            Database.WipeDatabase();
-            //Open the Excel file using ClosedXML.
-            using (XLWorkbook workBook = new XLWorkbook(fileName))
+            try
             {
-                // Reads through every worksheet in the excel file
-                foreach (IXLWorksheet workSheet in workBook.Worksheets)
+                Database.WipeDatabase();
+                //Open the Excel file using ClosedXML.
+                using (XLWorkbook workBook = new XLWorkbook(fileName))
                 {
-                    //Create a new DataTable.
-                    DataTable dt = new DataTable();
-                    //Loop through the Worksheet rows.
-                    bool firstRow = true;
-                    foreach (IXLRow row in workSheet.Rows())
+                    // Reads through every worksheet in the excel file
+                    foreach (IXLWorksheet workSheet in workBook.Worksheets)
                     {
-                        //Use the first row to add columns to DataTable.
-                        if (firstRow)
+                        //Create a new DataTable.
+                        DataTable dt = new DataTable();
+                        //Loop through the Worksheet rows.
+                        bool firstRow = true;
+                        foreach (IXLRow row in workSheet.Rows())
                         {
-                            foreach (IXLCell cell in row.Cells())
+                            //Use the first row to add columns to DataTable.
+                            if (firstRow)
                             {
-                                dt.Columns.Add(cell.Value.ToString());
+                                foreach (IXLCell cell in row.Cells())
+                                {
+                                    dt.Columns.Add(cell.Value.ToString());
+                                }
+                                firstRow = false;
                             }
-                            firstRow = false;
-                        }
-                        else
-                        {
-                            //Add rows to DataTable.
-                            dt.Rows.Add();
-                            int i = 0;
-                            foreach (IXLCell cell in row.Cells())
+                            else
                             {
-                                if (cell.IsEmpty())
+                                //Add rows to DataTable.
+                                dt.Rows.Add();
+                                int i = 0;
+                                foreach (IXLCell cell in row.Cells())
                                 {
-                                    dt.Rows[dt.Rows.Count - 1][i] = "";
+                                    if (cell.IsEmpty())
+                                    {
+                                        dt.Rows[dt.Rows.Count - 1][i] = "";
+                                    }
+                                    else
+                                    {
+                                        dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                    }
+
+                                    i++;
                                 }
-                                else
-                                {
-                                    dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
-                                }
-                                
-                                i++;
                             }
                         }
+                        Database.RestoreDatabase(dt, workSheet.Name);
+                        //  dataTables.Add(dt);
                     }
-                    Database.RestoreDatabase(dt, workSheet.Name);
-                  //  dataTables.Add(dt);
+                    MessageBox.Show("Restore Complete");
                 }
-                Console.WriteLine("Restore Complete");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Restoring Database " + ex.Message);
             }
         }
 
@@ -92,7 +99,7 @@ namespace Player_Card_System_CIS411
 
             {
                 string fileExt = System.IO.Path.GetExtension(fdlg.FileName);
-                MessageBox.Show(fileExt);
+               // MessageBox.Show(fileExt);
                 if (fileExt == ".xlsx")
                 {
                     fileName = fdlg.FileName;

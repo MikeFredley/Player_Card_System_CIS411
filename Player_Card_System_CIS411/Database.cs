@@ -28,7 +28,8 @@ namespace Player_Card_System_CIS411
 
         static Database()
         {
-            connectionString = Properties.Settings.Default.OceanVillagePlayerCardConnectionString;
+            //connectionString = Properties.Settings.Default.OceanVillagePlayerCardConnectionString;
+            connectionString = Properties.Settings.Default.OceanVillagePlayerCardConnectionString1;
             person = new List<Person>();
             resident = new List<Resident>();
             transaction = new List<Transaction>();
@@ -190,7 +191,7 @@ namespace Player_Card_System_CIS411
         {
             resident.Clear();
             connection.Open();
-            string GetResidentSQL = "SELECT ID, Address, Email, Phone, CommentBox, NoEmail, ClusterName, UnitNumber FROM Resident";
+            string GetResidentSQL = "SELECT ID, Address, Email, Phone, CommentBox, NoEmail, ClusterName, UnitNumber, LastTransDate FROM Resident";
             command = new SqlCommand(GetResidentSQL, connection);
 
             SqlDataReader residentReader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -206,6 +207,7 @@ namespace Player_Card_System_CIS411
                 tempResident.NoEmail = Convert.ToBoolean(residentReader["NoEmail"]);
                 tempResident.ClusterName = residentReader["ClusterName"].ToString();
                 tempResident.UnitNumber = int.Parse(residentReader["UnitNumber"].ToString());
+                tempResident.LastTransDate = residentReader["LastTransDate"].ToString();
                 resident.Add(tempResident);
 
                 tempResident = null;
@@ -266,6 +268,7 @@ namespace Player_Card_System_CIS411
                         tempResInfo.CommentBox = resident[j].CommentBox;
                         tempResInfo.NoEmail = resident[j].NoEmail;
                         tempResInfo.Address = resident[j].Address;
+                        tempResInfo.LastTransDate = resident[j].LastTransDate;
 
                         residentInfo.Add(tempResInfo);
                         tempResInfo = null;
@@ -321,6 +324,7 @@ namespace Player_Card_System_CIS411
                     if (res.ID == getRounds[i].ID)
                     {
                         res.CurrentRounds = getRounds[i].Rounds;
+                        res.LastTransDate = getRounds[i].DateTime;
                     }
                 }
             }
@@ -1231,6 +1235,137 @@ namespace Player_Card_System_CIS411
             connection.Close();
             CreateEmployeeInfo();
             CreateResidentInfo();
+        }
+
+        internal static void DeleteResidentAccounts(List<ResidentInfo> resToDelete)
+        {
+            connection.Open();
+            foreach(ResidentInfo res in resToDelete)
+            {
+                DeleteAccounts(res);
+            }
+            connection.Close();
+            ReadPerson();
+            ReadResident();
+            ReadTransaction();
+            CreateResidentInfo();
+            ReadAdditionalAuthorizedUsers();
+        }
+
+        internal static void DeleteResidentAccounts(ResidentInfo resToDelete)
+        {
+            connection.Open();
+            DeleteAccounts(resToDelete);
+            connection.Close();
+            ReadPerson();
+            ReadResident();
+            ReadTransaction();
+            CreateResidentInfo();
+            ReadAdditionalAuthorizedUsers();
+        }
+
+        private static void DeleteAccounts(ResidentInfo resident)
+        {
+            try
+            {
+                string DeleteTransactionsSQL = "DELETE FROM Trans_Action WHERE ResidentID = @pID";               
+                command = new SqlCommand(DeleteTransactionsSQL, connection);
+                command.Parameters.AddWithValue("@pID", resident.ID);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Transactions Deleted");
+                }
+                else
+                {
+                    Console.WriteLine("Transaction Delete Failed");
+                }
+
+                string DeleteFromAuthorizedUsers = "DELETE FROM Additional_Authorized_Users WHERE OwnerID = @pID";
+                command = new SqlCommand(DeleteFromAuthorizedUsers, connection);
+                command.Parameters.AddWithValue("@pID", resident.ID);
+                int rowsAffected3 = command.ExecuteNonQuery();
+                if (rowsAffected3 > 0)
+                {
+                    Console.WriteLine("Authorized Users Deleted");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to Delete Authorized Users");
+                }
+
+                string DeleteFromResident = "DELETE FROM Resident WHERE ID = @pID";
+                command = new SqlCommand(DeleteFromResident, connection);
+                command.Parameters.AddWithValue("@pID", resident.ID);
+                int rowsAffected2 = command.ExecuteNonQuery();
+                if (rowsAffected2 > 0)
+                {
+                    Console.WriteLine("Resident Deleted");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to Delete Resident");
+                }
+
+                string DeleteFromPerson = "DELETE FROM Person WHERE ID = @pID";
+                command = new SqlCommand(DeleteFromPerson, connection);
+                command.Parameters.AddWithValue("@pID", resident.ID);
+                int rowsAffected1 = command.ExecuteNonQuery();
+                if (rowsAffected1 > 0)
+                {
+                    Console.WriteLine("Person Deleted");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to Delete Person");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed Resident Deletion " + ex.Message);
+            }
+
+        }
+
+        internal static void DeleteEmployee(EmployeeInfo employee)
+        {
+            connection.Open();
+            try
+            {
+                string DeleteEmployeeSQL = "DELETE FROM Employee WHERE ID = @pID";
+                command = new SqlCommand(DeleteEmployeeSQL, connection);
+                command.Parameters.AddWithValue("@pID", employee.ID);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Employee Deleted");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to Delete Employee");
+                }
+
+                string DeleteFromPerson = "DELETE FROM Person WHERE ID = @pID";
+                command = new SqlCommand(DeleteFromPerson, connection);
+                command.Parameters.AddWithValue("@pID", employee.ID);
+                int rowsAffected1 = command.ExecuteNonQuery();
+                if (rowsAffected1 > 0)
+                {
+                    Console.WriteLine("Person Deleted");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to Delete Person");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed Employee Deletion " + ex.Message);
+            }
+            connection.Close();
+            ReadPerson();
+            ReadEmployee();
+            CreateEmployeeInfo();
         }
 
         internal static List<ResidentInfo> ResidentInfo { get => residentInfo; set => residentInfo = value; }

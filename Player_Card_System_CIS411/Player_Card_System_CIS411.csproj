@@ -145,6 +145,12 @@
     <Compile Include="DeductRounds.Designer.cs">
       <DependentUpon>DeductRounds.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeleteResidentAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteResidentAccounts.Designer.cs">
+      <DependentUpon>DeleteResidentAccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DeductRounds.resx">
       <DependentUpon>DeductRounds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteResidentAccounts.resx">
+      <DependentUpon>DeleteResidentAccounts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditAccount.resx">
       <DependentUpon>EditAccount.cs</DependentUpon>

@@ -106,6 +106,7 @@ namespace Player_Card_System_CIS411
             dt.Columns.Add(new DataColumn("NoEmail", typeof(string)));
             dt.Columns.Add(new DataColumn("Phone Number", typeof(string)));
             dt.Columns.Add(new DataColumn("CommentBox", typeof(string)));
+            dt.Columns.Add(new DataColumn("LastTransDate", typeof(string)));
 
             foreach (ResidentInfo resident in Database.ResidentInfo)
             {
@@ -118,8 +119,17 @@ namespace Player_Card_System_CIS411
                 {
                     comments = resident.CommentBox;
                 }
+                string lastTransDate;
+                if (resident.LastTransDate == "")
+                {
+                    lastTransDate = " ";
+                }
+                else
+                {
+                    lastTransDate = resident.LastTransDate;
+                }
                 dt.Rows.Add(resident.ID, resident.FirstName, resident.LastName, resident.Address, resident.ClusterName, resident.UnitNumber, resident.Email,
-                            resident.NoEmail, resident.Phone, comments);
+                            resident.NoEmail, resident.Phone, lastTransDate);
             }
             return dt;
         }

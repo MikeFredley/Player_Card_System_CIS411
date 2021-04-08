@@ -19,6 +19,7 @@ namespace Player_Card_System_CIS411
         private string commentBox;
         private bool noEmail;
         private string address;
+        private string lastTransDate;
 
         public ResidentInfo()
         {
@@ -33,6 +34,7 @@ namespace Player_Card_System_CIS411
             commentBox = "";
             noEmail = true;
             address = "";
+            lastTransDate = "";
         }
 
         public int ID { get => id; set => id = value; }
@@ -46,5 +48,6 @@ namespace Player_Card_System_CIS411
         public string CommentBox { get =>  commentBox; set => commentBox = value; }
         public bool NoEmail { get => noEmail; set => noEmail = value; }
         public string Address { get => address; set => address = value; }
+        public string LastTransDate { get => lastTransDate; set => lastTransDate = value; }
     }
 }

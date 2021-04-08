@@ -60,6 +60,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnAdjustBalance = new System.Windows.Forms.Button();
             this.txtPhone = new System.Windows.Forms.MaskedTextBox();
+            this.btnDeleteAccount = new System.Windows.Forms.Button();
+            this.txtLastTransDate = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuthorizedUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,9 +86,9 @@
             // 
             // btnEditInfo
             // 
-            this.btnEditInfo.Location = new System.Drawing.Point(128, 406);
+            this.btnEditInfo.Location = new System.Drawing.Point(182, 448);
             this.btnEditInfo.Name = "btnEditInfo";
-            this.btnEditInfo.Size = new System.Drawing.Size(79, 28);
+            this.btnEditInfo.Size = new System.Drawing.Size(122, 37);
             this.btnEditInfo.TabIndex = 4;
             this.btnEditInfo.Text = "Edit Info";
             this.btnEditInfo.UseVisualStyleBackColor = true;
@@ -95,7 +98,7 @@
             // 
             this.btnAddRounds.Location = new System.Drawing.Point(40, 406);
             this.btnAddRounds.Name = "btnAddRounds";
-            this.btnAddRounds.Size = new System.Drawing.Size(79, 28);
+            this.btnAddRounds.Size = new System.Drawing.Size(86, 36);
             this.btnAddRounds.TabIndex = 5;
             this.btnAddRounds.Text = "Add Rounds";
             this.btnAddRounds.UseVisualStyleBackColor = true;
@@ -104,7 +107,7 @@
             // lblCurrentBalance
             // 
             this.lblCurrentBalance.AutoSize = true;
-            this.lblCurrentBalance.Location = new System.Drawing.Point(12, 364);
+            this.lblCurrentBalance.Location = new System.Drawing.Point(9, 375);
             this.lblCurrentBalance.Name = "lblCurrentBalance";
             this.lblCurrentBalance.Size = new System.Drawing.Size(105, 13);
             this.lblCurrentBalance.TabIndex = 6;
@@ -175,7 +178,7 @@
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(98, 76);
+            this.txtFirstName.Location = new System.Drawing.Point(108, 76);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.ReadOnly = true;
             this.txtFirstName.Size = new System.Drawing.Size(215, 20);
@@ -183,7 +186,7 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(98, 110);
+            this.txtLastName.Location = new System.Drawing.Point(108, 110);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.ReadOnly = true;
             this.txtLastName.Size = new System.Drawing.Size(215, 20);
@@ -191,7 +194,7 @@
             // 
             // txtUnit
             // 
-            this.txtUnit.Location = new System.Drawing.Point(98, 179);
+            this.txtUnit.Location = new System.Drawing.Point(108, 179);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.ReadOnly = true;
             this.txtUnit.Size = new System.Drawing.Size(215, 20);
@@ -199,7 +202,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(98, 247);
+            this.txtEmail.Location = new System.Drawing.Point(108, 247);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ReadOnly = true;
             this.txtEmail.Size = new System.Drawing.Size(215, 20);
@@ -207,7 +210,7 @@
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(98, 42);
+            this.txtID.Location = new System.Drawing.Point(108, 42);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(215, 20);
@@ -219,7 +222,7 @@
             this.chkEmails.Checked = true;
             this.chkEmails.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkEmails.Enabled = false;
-            this.chkEmails.Location = new System.Drawing.Point(15, 324);
+            this.chkEmails.Location = new System.Drawing.Point(16, 345);
             this.chkEmails.Name = "chkEmails";
             this.chkEmails.Size = new System.Drawing.Size(99, 17);
             this.chkEmails.TabIndex = 24;
@@ -230,16 +233,16 @@
             // 
             this.cmbCluster.Enabled = false;
             this.cmbCluster.FormattingEnabled = true;
-            this.cmbCluster.Location = new System.Drawing.Point(98, 144);
+            this.cmbCluster.Location = new System.Drawing.Point(108, 144);
             this.cmbCluster.Name = "cmbCluster";
             this.cmbCluster.Size = new System.Drawing.Size(215, 21);
             this.cmbCluster.TabIndex = 25;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(128, 406);
+            this.btnSave.Location = new System.Drawing.Point(182, 448);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(79, 28);
+            this.btnSave.Size = new System.Drawing.Size(122, 37);
             this.btnSave.TabIndex = 26;
             this.btnSave.Text = "Save Info";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -305,9 +308,9 @@
             // 
             // btnTransHistory
             // 
-            this.btnTransHistory.Location = new System.Drawing.Point(81, 448);
+            this.btnTransHistory.Location = new System.Drawing.Point(40, 448);
             this.btnTransHistory.Name = "btnTransHistory";
-            this.btnTransHistory.Size = new System.Drawing.Size(169, 37);
+            this.btnTransHistory.Size = new System.Drawing.Size(122, 37);
             this.btnTransHistory.TabIndex = 35;
             this.btnTransHistory.Text = "View Transaction History";
             this.btnTransHistory.UseVisualStyleBackColor = true;
@@ -325,7 +328,7 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(98, 213);
+            this.txtAddress.Location = new System.Drawing.Point(108, 213);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ReadOnly = true;
             this.txtAddress.Size = new System.Drawing.Size(215, 20);
@@ -342,9 +345,9 @@
             // 
             // btnAdjustBalance
             // 
-            this.btnAdjustBalance.Location = new System.Drawing.Point(213, 406);
+            this.btnAdjustBalance.Location = new System.Drawing.Point(129, 406);
             this.btnAdjustBalance.Name = "btnAdjustBalance";
-            this.btnAdjustBalance.Size = new System.Drawing.Size(86, 28);
+            this.btnAdjustBalance.Size = new System.Drawing.Size(86, 36);
             this.btnAdjustBalance.TabIndex = 40;
             this.btnAdjustBalance.Text = "Adjust Balance";
             this.btnAdjustBalance.UseVisualStyleBackColor = true;
@@ -352,18 +355,48 @@
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(98, 280);
+            this.txtPhone.Location = new System.Drawing.Point(108, 280);
             this.txtPhone.Mask = "999-000-0000";
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.ReadOnly = true;
             this.txtPhone.Size = new System.Drawing.Size(215, 20);
             this.txtPhone.TabIndex = 41;
             // 
+            // btnDeleteAccount
+            // 
+            this.btnDeleteAccount.Location = new System.Drawing.Point(218, 406);
+            this.btnDeleteAccount.Name = "btnDeleteAccount";
+            this.btnDeleteAccount.Size = new System.Drawing.Size(86, 36);
+            this.btnDeleteAccount.TabIndex = 42;
+            this.btnDeleteAccount.Text = "Delete Account";
+            this.btnDeleteAccount.UseVisualStyleBackColor = true;
+            this.btnDeleteAccount.Click += new System.EventHandler(this.btnDeleteAccount_Click);
+            // 
+            // txtLastTransDate
+            // 
+            this.txtLastTransDate.Location = new System.Drawing.Point(108, 314);
+            this.txtLastTransDate.Name = "txtLastTransDate";
+            this.txtLastTransDate.ReadOnly = true;
+            this.txtLastTransDate.Size = new System.Drawing.Size(215, 20);
+            this.txtLastTransDate.TabIndex = 43;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 317);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 13);
+            this.label4.TabIndex = 44;
+            this.label4.Text = "Last Transaction:";
+            // 
             // EditAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 497);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtLastTransDate);
+            this.Controls.Add(this.btnDeleteAccount);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.btnAdjustBalance);
             this.Controls.Add(this.label3);
@@ -440,5 +473,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAdjustBalance;
         private System.Windows.Forms.MaskedTextBox txtPhone;
+        private System.Windows.Forms.Button btnDeleteAccount;
+        private System.Windows.Forms.TextBox txtLastTransDate;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -102,7 +102,7 @@ namespace Player_Card_System_CIS411
             
             // Refreshes to the new values on the details window and the main screen
             editAccount.EditWindowRefresh(ID);
-            if (email != " ")
+            if (email != " " || email != "")
             {
                 Email.SendEmail(newTransaction, Database.ResidentTransactions(ID));
                // Email.RoundsAdjustedEmail(int.Parse(txtNumRounds.Value.ToString()), newRounds, email, txtReason.Text);

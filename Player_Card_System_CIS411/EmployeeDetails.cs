@@ -56,6 +56,16 @@ namespace Player_Card_System_CIS411
             changePassword.Show();
         }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("Are you sure you want to delete this user?", "Delete Account", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
+            {
+                Database.DeleteEmployee(Database.EmployeeInfo[rowIndexHolder]);
+                this.Close();
+            }
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             btnSave.Visible = false;

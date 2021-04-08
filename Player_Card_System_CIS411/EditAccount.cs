@@ -86,6 +86,7 @@ namespace Player_Card_System_CIS411
                     txtAddress.Text = Database.ResidentInfo[i].Address;
                     txtComments.Text = Database.ResidentInfo[i].CommentBox;
                     chkEmails.Checked = Database.ResidentInfo[i].NoEmail;
+                    txtLastTransDate.Text = Database.ResidentInfo[i].LastTransDate;
                     lblCurrentBalance.Text = "Current Rounds: " + Database.ResidentInfo[i].CurrentRounds;                  
                     rowIndexHolder = i;
                 }
@@ -331,6 +332,16 @@ namespace Player_Card_System_CIS411
         private void dgvAuthorizedUsers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             rowDGVIndex = e.RowIndex;
+        }
+
+        private void btnDeleteAccount_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("Are you sure you want to delete this user?", "Delete Account", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
+            {
+                Database.DeleteResidentAccounts(Database.ResidentInfo[rowIndexHolder]);
+                this.Close();
+            }
         }
     }
 }

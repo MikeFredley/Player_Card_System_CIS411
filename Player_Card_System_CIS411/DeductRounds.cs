@@ -96,7 +96,7 @@ namespace Player_Card_System_CIS411
 
             newTransaction = new Transaction("Used", int.Parse(txtNumRounds.Value.ToString()), newRounds, email, empID, Database.ResidentInfo[resIndex].ID, " ");
 
-            if (email != "")
+            if (email != "" || email != " ")
             {
                 Email.SendEmail(newTransaction, Database.ResidentTransactions(Database.ResidentInfo[resIndex].ID));
             }
