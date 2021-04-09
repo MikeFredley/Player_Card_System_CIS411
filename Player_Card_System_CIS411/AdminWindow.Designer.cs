@@ -128,6 +128,7 @@
             this.btnChangeEmailPassword.TabIndex = 4;
             this.btnChangeEmailPassword.Text = "Change Email Password";
             this.btnChangeEmailPassword.UseVisualStyleBackColor = true;
+            this.btnChangeEmailPassword.Click += new System.EventHandler(this.btnChangeEmailPassword_Click);
             // 
             // btnDeleteAccounts
             // 

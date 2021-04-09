@@ -128,7 +128,15 @@ namespace Player_Card_System_CIS411
 
         private void btnResetSeason_Click(object sender, EventArgs e)
         {
-            Database.WipeTransactions();
+            if (!openWindow)
+            {
+                DialogResult dialog = MessageBox.Show("This will clear ALL existing transactions within the system.\nIt is recommended to take a full backup before clicking 'Yes'.", "Warning", MessageBoxButtons.YesNo);
+                if (dialog == DialogResult.Yes)
+                {
+                    Database.WipeTransactions();
+                }
+
+            }
         }
 
         private void btnDeleteAccounts_Click(object sender, EventArgs e)
@@ -143,6 +151,21 @@ namespace Player_Card_System_CIS411
             {
                 // MessageBox.Show("Close other windows before opening another.");
             }
+        }
+
+        private void btnChangeEmailPassword_Click(object sender, EventArgs e)
+        {
+            if (!openWindow)
+            {
+                openWindow = true;
+                ChangePassword changePassword = new ChangePassword(true, this);
+                changePassword.Show();
+            }
+            else
+            {
+                // MessageBox.Show("Close other windows before opening another.");
+            }
+
         }
     }
 }
