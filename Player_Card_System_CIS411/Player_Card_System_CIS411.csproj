@@ -181,6 +181,12 @@
     <Compile Include="ExportInfo.cs" />
     <Compile Include="GetRounds.cs" />
     <Compile Include="GolfRounds.cs" />
+    <Compile Include="HelpWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpWindow.Designer.cs">
+      <DependentUpon>HelpWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImportInfo.cs" />
     <Compile Include="OceanVillagePlayerCardDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -251,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeWindow.resx">
       <DependentUpon>EmployeeWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpWindow.resx">
+      <DependentUpon>HelpWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TransactionHistory.resx">
       <DependentUpon>TransactionHistory.cs</DependentUpon>

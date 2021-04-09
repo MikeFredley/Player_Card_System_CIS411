@@ -133,24 +133,27 @@ namespace Player_Card_System_CIS411
 
         private void btnEditInfo_Click(object sender, EventArgs e)
         {
-            // Allows you to edit stuff in the textboxes
-         //   txtID.ReadOnly = false;
-            txtFirstName.ReadOnly = false;
-            txtLastName.ReadOnly = false;
-            cmbCluster.Enabled = true;
-            txtUnit.ReadOnly = false;
-            txtEmail.ReadOnly = false;
-            txtPhone.ReadOnly = false;
-            txtComments.ReadOnly = false;
-            txtAddress.ReadOnly = false;
-            btnEditInfo.Visible = false;
-            chkEmails.Enabled = true;
-            btnSave.Visible = true;
-            openWindow = true;
+            if (!openWindow)
+            {
+                // Allows you to edit stuff in the textboxes
+                //   txtID.ReadOnly = false;
+                txtFirstName.ReadOnly = false;
+                txtLastName.ReadOnly = false;
+                cmbCluster.Enabled = true;
+                txtUnit.ReadOnly = false;
+                txtEmail.ReadOnly = false;
+                txtPhone.ReadOnly = false;
+                txtComments.ReadOnly = false;
+                txtAddress.ReadOnly = false;
+                btnEditInfo.Visible = false;
+                chkEmails.Enabled = true;
+                btnSave.Visible = true;
+                openWindow = true;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {
+        {         
             // If any textbox is empty is throws and error
             if (txtFirstName.Text == "" || txtLastName.Text == "" || cmbCluster.Text == "" || txtUnit.Text == "" || txtEmail.Text == ""
                                 || txtPhone.Text =="" || txtAddress.Text == "")
@@ -346,17 +349,27 @@ namespace Player_Card_System_CIS411
 
         private void btnRemoveUser_Click(object sender, EventArgs e)
         {
-            foreach (AdditionalAuthorizedUsers user in Database.AuthorizedUsers)
+            if(!openWindow)
             {
-                if (user.FirstName == dgvAuthorizedUsers.Rows[rowDGVIndex].Cells[0].Value.ToString() &&
-                    user.LastName == dgvAuthorizedUsers.Rows[rowDGVIndex].Cells[1].Value.ToString())
+                if (dgvAuthorizedUsers.Rows[rowDGVIndex].Cells[0].Value == null)
                 {
-                    Database.DeleteAuthorizedUser(user.OwnerID, user.FirstName, user.LastName);
-                    break;
+                    MessageBox.Show("No Users to delete.");
+                }
+                else
+                {
+                    foreach (AdditionalAuthorizedUsers user in Database.AuthorizedUsers)
+                    {
+                        if (user.FirstName == dgvAuthorizedUsers.Rows[rowDGVIndex].Cells[0].Value.ToString() &&
+                            user.LastName == dgvAuthorizedUsers.Rows[rowDGVIndex].Cells[1].Value.ToString())
+                        {
+                            Database.DeleteAuthorizedUser(user.OwnerID, user.FirstName, user.LastName);
+                            break;
+                        }
+                    }
+                    RefreshDataGridView();
+                    MessageBox.Show("Authorized User Deleted");
                 }
             }
-            RefreshDataGridView();
-            MessageBox.Show("Authorized User Deleted");
         }
 
         private void dgvAuthorizedUsers_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -366,11 +379,24 @@ namespace Player_Card_System_CIS411
 
         private void btnDeleteAccount_Click(object sender, EventArgs e)
         {
-            DialogResult dialog = MessageBox.Show("Are you sure you want to delete this user?", "Delete Account", MessageBoxButtons.YesNo);
-            if (dialog == DialogResult.Yes)
+            if (!openWindow)
             {
-                Database.DeleteResidentAccounts(Database.ResidentInfo[rowIndexHolder]);
-                this.Close();
+                DialogResult dialog = MessageBox.Show("Are you sure you want to delete this user?", "Delete Account", MessageBoxButtons.YesNo);
+                if (dialog == DialogResult.Yes)
+                {
+                    Database.DeleteResidentAccounts(Database.ResidentInfo[rowIndexHolder]);
+                    this.Close();
+                }
+            }
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            if (!openWindow)
+            {
+                openWindow = true;
+                HelpWindow help = new HelpWindow(this);
+                help.Show();
             }
         }
     }
