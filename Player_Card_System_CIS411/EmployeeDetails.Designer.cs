@@ -45,6 +45,7 @@
             // txtLastName
             // 
             this.txtLastName.Location = new System.Drawing.Point(84, 45);
+            this.txtLastName.MaxLength = 25;
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.ReadOnly = true;
             this.txtLastName.Size = new System.Drawing.Size(100, 20);
@@ -53,6 +54,7 @@
             // txtFirstName
             // 
             this.txtFirstName.Location = new System.Drawing.Point(84, 13);
+            this.txtFirstName.MaxLength = 25;
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.ReadOnly = true;
             this.txtFirstName.Size = new System.Drawing.Size(100, 20);
@@ -79,6 +81,7 @@
             // txtUserName
             // 
             this.txtUserName.Location = new System.Drawing.Point(84, 76);
+            this.txtUserName.MaxLength = 30;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.ReadOnly = true;
             this.txtUserName.Size = new System.Drawing.Size(100, 20);

@@ -40,6 +40,7 @@
             // txtConfirmPassword
             // 
             this.txtConfirmPassword.Location = new System.Drawing.Point(91, 52);
+            this.txtConfirmPassword.MaxLength = 30;
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.PasswordChar = '*';
             this.txtConfirmPassword.Size = new System.Drawing.Size(100, 20);
@@ -66,6 +67,7 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(91, 19);
+            this.txtPassword.MaxLength = 30;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(100, 20);

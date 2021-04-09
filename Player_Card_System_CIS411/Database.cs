@@ -191,7 +191,7 @@ namespace Player_Card_System_CIS411
         {
             resident.Clear();
             connection.Open();
-            string GetResidentSQL = "SELECT ID, Address, Email, Phone, CommentBox, NoEmail, ClusterName, UnitNumber, LastTransDate FROM Resident";
+            string GetResidentSQL = "SELECT ID, Address, Email, Phone, CommentBox, NoEmail, ClusterName, UnitNumber FROM Resident";
             command = new SqlCommand(GetResidentSQL, connection);
 
             SqlDataReader residentReader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -207,7 +207,6 @@ namespace Player_Card_System_CIS411
                 tempResident.NoEmail = Convert.ToBoolean(residentReader["NoEmail"]);
                 tempResident.ClusterName = residentReader["ClusterName"].ToString();
                 tempResident.UnitNumber = int.Parse(residentReader["UnitNumber"].ToString());
-                tempResident.LastTransDate = residentReader["LastTransDate"].ToString();
                 resident.Add(tempResident);
 
                 tempResident = null;
@@ -268,7 +267,6 @@ namespace Player_Card_System_CIS411
                         tempResInfo.CommentBox = resident[j].CommentBox;
                         tempResInfo.NoEmail = resident[j].NoEmail;
                         tempResInfo.Address = resident[j].Address;
-                        tempResInfo.LastTransDate = resident[j].LastTransDate;
 
                         residentInfo.Add(tempResInfo);
                         tempResInfo = null;

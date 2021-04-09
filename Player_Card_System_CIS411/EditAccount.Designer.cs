@@ -89,7 +89,7 @@
             this.btnEditInfo.Location = new System.Drawing.Point(182, 448);
             this.btnEditInfo.Name = "btnEditInfo";
             this.btnEditInfo.Size = new System.Drawing.Size(122, 37);
-            this.btnEditInfo.TabIndex = 4;
+            this.btnEditInfo.TabIndex = 13;
             this.btnEditInfo.Text = "Edit Info";
             this.btnEditInfo.UseVisualStyleBackColor = true;
             this.btnEditInfo.Click += new System.EventHandler(this.btnEditInfo_Click);
@@ -99,7 +99,7 @@
             this.btnAddRounds.Location = new System.Drawing.Point(40, 406);
             this.btnAddRounds.Name = "btnAddRounds";
             this.btnAddRounds.Size = new System.Drawing.Size(86, 36);
-            this.btnAddRounds.TabIndex = 5;
+            this.btnAddRounds.TabIndex = 10;
             this.btnAddRounds.Text = "Add Rounds";
             this.btnAddRounds.UseVisualStyleBackColor = true;
             this.btnAddRounds.Click += new System.EventHandler(this.btnAddRounds_Click);
@@ -179,18 +179,20 @@
             // txtFirstName
             // 
             this.txtFirstName.Location = new System.Drawing.Point(108, 76);
+            this.txtFirstName.MaxLength = 25;
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.ReadOnly = true;
             this.txtFirstName.Size = new System.Drawing.Size(215, 20);
-            this.txtFirstName.TabIndex = 17;
+            this.txtFirstName.TabIndex = 1;
             // 
             // txtLastName
             // 
             this.txtLastName.Location = new System.Drawing.Point(108, 110);
+            this.txtLastName.MaxLength = 25;
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.ReadOnly = true;
             this.txtLastName.Size = new System.Drawing.Size(215, 20);
-            this.txtLastName.TabIndex = 18;
+            this.txtLastName.TabIndex = 2;
             // 
             // txtUnit
             // 
@@ -198,15 +200,16 @@
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.ReadOnly = true;
             this.txtUnit.Size = new System.Drawing.Size(215, 20);
-            this.txtUnit.TabIndex = 20;
+            this.txtUnit.TabIndex = 4;
             // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(108, 247);
+            this.txtEmail.MaxLength = 30;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ReadOnly = true;
             this.txtEmail.Size = new System.Drawing.Size(215, 20);
-            this.txtEmail.TabIndex = 21;
+            this.txtEmail.TabIndex = 6;
             // 
             // txtID
             // 
@@ -214,7 +217,7 @@
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(215, 20);
-            this.txtID.TabIndex = 23;
+            this.txtID.TabIndex = 0;
             // 
             // chkEmails
             // 
@@ -225,7 +228,7 @@
             this.chkEmails.Location = new System.Drawing.Point(16, 345);
             this.chkEmails.Name = "chkEmails";
             this.chkEmails.Size = new System.Drawing.Size(99, 17);
-            this.chkEmails.TabIndex = 24;
+            this.chkEmails.TabIndex = 9;
             this.chkEmails.Text = "Receive Emails";
             this.chkEmails.UseVisualStyleBackColor = true;
             // 
@@ -234,9 +237,10 @@
             this.cmbCluster.Enabled = false;
             this.cmbCluster.FormattingEnabled = true;
             this.cmbCluster.Location = new System.Drawing.Point(108, 144);
+            this.cmbCluster.MaxLength = 30;
             this.cmbCluster.Name = "cmbCluster";
             this.cmbCluster.Size = new System.Drawing.Size(215, 21);
-            this.cmbCluster.TabIndex = 25;
+            this.cmbCluster.TabIndex = 3;
             // 
             // btnSave
             // 
@@ -254,7 +258,7 @@
             this.btnAddUser.Location = new System.Drawing.Point(340, 232);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(88, 23);
-            this.btnAddUser.TabIndex = 27;
+            this.btnAddUser.TabIndex = 15;
             this.btnAddUser.Text = "Add User";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
@@ -264,7 +268,7 @@
             this.btnExit.Location = new System.Drawing.Point(508, 460);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(79, 28);
-            this.btnExit.TabIndex = 28;
+            this.btnExit.TabIndex = 18;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -283,7 +287,7 @@
             this.btnRemoveUser.Location = new System.Drawing.Point(499, 232);
             this.btnRemoveUser.Name = "btnRemoveUser";
             this.btnRemoveUser.Size = new System.Drawing.Size(88, 23);
-            this.btnRemoveUser.TabIndex = 32;
+            this.btnRemoveUser.TabIndex = 16;
             this.btnRemoveUser.Text = "Remove User";
             this.btnRemoveUser.UseVisualStyleBackColor = true;
             this.btnRemoveUser.Click += new System.EventHandler(this.btnRemoveUser_Click);
@@ -293,7 +297,7 @@
             this.btnHelp.Location = new System.Drawing.Point(417, 460);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(79, 28);
-            this.btnHelp.TabIndex = 33;
+            this.btnHelp.TabIndex = 17;
             this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = true;
             // 
@@ -311,7 +315,7 @@
             this.btnTransHistory.Location = new System.Drawing.Point(40, 448);
             this.btnTransHistory.Name = "btnTransHistory";
             this.btnTransHistory.Size = new System.Drawing.Size(122, 37);
-            this.btnTransHistory.TabIndex = 35;
+            this.btnTransHistory.TabIndex = 12;
             this.btnTransHistory.Text = "View Transaction History";
             this.btnTransHistory.UseVisualStyleBackColor = true;
             this.btnTransHistory.Click += new System.EventHandler(this.btnTransHistory_Click);
@@ -329,10 +333,11 @@
             // txtAddress
             // 
             this.txtAddress.Location = new System.Drawing.Point(108, 213);
+            this.txtAddress.MaxLength = 35;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ReadOnly = true;
             this.txtAddress.Size = new System.Drawing.Size(215, 20);
-            this.txtAddress.TabIndex = 38;
+            this.txtAddress.TabIndex = 5;
             // 
             // label3
             // 
@@ -348,7 +353,7 @@
             this.btnAdjustBalance.Location = new System.Drawing.Point(129, 406);
             this.btnAdjustBalance.Name = "btnAdjustBalance";
             this.btnAdjustBalance.Size = new System.Drawing.Size(86, 36);
-            this.btnAdjustBalance.TabIndex = 40;
+            this.btnAdjustBalance.TabIndex = 11;
             this.btnAdjustBalance.Text = "Adjust Balance";
             this.btnAdjustBalance.UseVisualStyleBackColor = true;
             this.btnAdjustBalance.Click += new System.EventHandler(this.btnAdjustBalance_Click);
@@ -360,14 +365,14 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.ReadOnly = true;
             this.txtPhone.Size = new System.Drawing.Size(215, 20);
-            this.txtPhone.TabIndex = 41;
+            this.txtPhone.TabIndex = 7;
             // 
             // btnDeleteAccount
             // 
             this.btnDeleteAccount.Location = new System.Drawing.Point(218, 406);
             this.btnDeleteAccount.Name = "btnDeleteAccount";
             this.btnDeleteAccount.Size = new System.Drawing.Size(86, 36);
-            this.btnDeleteAccount.TabIndex = 42;
+            this.btnDeleteAccount.TabIndex = 14;
             this.btnDeleteAccount.Text = "Delete Account";
             this.btnDeleteAccount.UseVisualStyleBackColor = true;
             this.btnDeleteAccount.Click += new System.EventHandler(this.btnDeleteAccount_Click);
@@ -378,7 +383,7 @@
             this.txtLastTransDate.Name = "txtLastTransDate";
             this.txtLastTransDate.ReadOnly = true;
             this.txtLastTransDate.Size = new System.Drawing.Size(215, 20);
-            this.txtLastTransDate.TabIndex = 43;
+            this.txtLastTransDate.TabIndex = 8;
             // 
             // label4
             // 
