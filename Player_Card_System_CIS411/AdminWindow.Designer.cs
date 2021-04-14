@@ -38,11 +38,12 @@
             this.btnNewDeals = new System.Windows.Forms.Button();
             this.btnChangeEmailPassword = new System.Windows.Forms.Button();
             this.btnDeleteAccounts = new System.Windows.Forms.Button();
+            this.btnManageClusters = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnBackup
             // 
-            this.btnBackup.Location = new System.Drawing.Point(40, 83);
+            this.btnBackup.Location = new System.Drawing.Point(40, 12);
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.Size = new System.Drawing.Size(83, 52);
             this.btnBackup.TabIndex = 0;
@@ -62,7 +63,7 @@
             // 
             // btnRestore
             // 
-            this.btnRestore.Location = new System.Drawing.Point(40, 155);
+            this.btnRestore.Location = new System.Drawing.Point(40, 84);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(83, 49);
             this.btnRestore.TabIndex = 0;
@@ -82,7 +83,7 @@
             // 
             // btnResetSeason
             // 
-            this.btnResetSeason.Location = new System.Drawing.Point(250, 82);
+            this.btnResetSeason.Location = new System.Drawing.Point(250, 12);
             this.btnResetSeason.Name = "btnResetSeason";
             this.btnResetSeason.Size = new System.Drawing.Size(83, 52);
             this.btnResetSeason.TabIndex = 0;
@@ -132,7 +133,7 @@
             // 
             // btnDeleteAccounts
             // 
-            this.btnDeleteAccounts.Location = new System.Drawing.Point(145, 225);
+            this.btnDeleteAccounts.Location = new System.Drawing.Point(250, 84);
             this.btnDeleteAccounts.Name = "btnDeleteAccounts";
             this.btnDeleteAccounts.Size = new System.Drawing.Size(83, 49);
             this.btnDeleteAccounts.TabIndex = 5;
@@ -140,11 +141,22 @@
             this.btnDeleteAccounts.UseVisualStyleBackColor = true;
             this.btnDeleteAccounts.Click += new System.EventHandler(this.btnDeleteAccounts_Click);
             // 
+            // btnManageClusters
+            // 
+            this.btnManageClusters.Location = new System.Drawing.Point(40, 155);
+            this.btnManageClusters.Name = "btnManageClusters";
+            this.btnManageClusters.Size = new System.Drawing.Size(83, 49);
+            this.btnManageClusters.TabIndex = 6;
+            this.btnManageClusters.Text = "Manage Clusters";
+            this.btnManageClusters.UseVisualStyleBackColor = true;
+            this.btnManageClusters.Click += new System.EventHandler(this.btnManageClusters_Click);
+            // 
             // AdminWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(364, 291);
+            this.Controls.Add(this.btnManageClusters);
             this.Controls.Add(this.btnDeleteAccounts);
             this.Controls.Add(this.btnChangeEmailPassword);
             this.Controls.Add(this.btnNewDeals);
@@ -175,5 +187,6 @@
         private System.Windows.Forms.Button btnNewDeals;
         private System.Windows.Forms.Button btnChangeEmailPassword;
         private System.Windows.Forms.Button btnDeleteAccounts;
+        private System.Windows.Forms.Button btnManageClusters;
     }
 }

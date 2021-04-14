@@ -97,7 +97,7 @@ namespace Player_Card_System_CIS411
         {
             clusters.Clear();
             connection.Open();
-            string GetClustersSQL = "Select ClusterName FROM Clusters";
+            string GetClustersSQL = "Select ClusterName, IsDeleted FROM Clusters";
             command = new SqlCommand(GetClustersSQL, connection);
 
             SqlDataReader clustersReader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -106,11 +106,78 @@ namespace Player_Card_System_CIS411
             {
                 Clusters tempCluster = new Clusters();
                 tempCluster.ClusterName = clustersReader["ClusterName"].ToString();
+                tempCluster.IsDeleted = Convert.ToBoolean(clustersReader["IsDeleted"]);
                 clusters.Add(tempCluster);
 
                 tempCluster = null;
             }
             connection.Close();
+        }
+
+        internal static void UpdateClusters(string clusterName, bool isDeleted)
+        {
+            connection.Open();
+            string UpdateClustersSQL = "UPDATE CLUSTERS SET IsDeleted = @pIsDeleted WHERE ClusterName = @pClusterName";
+            command = new SqlCommand(UpdateClustersSQL, connection);
+
+            try
+            {
+                command.Parameters.AddWithValue("@pClusterName", clusterName);
+                command.Parameters.AddWithValue("@pIsDeleted", isDeleted.ToString());
+                
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Clusters Updated");
+                    connection.Close();
+                    ReadClusters();
+                }
+                else
+                {
+                    Console.WriteLine("Failed to Update Clusters");
+                }
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to Update Clusters " + ex.Message);
+                connection.Close();
+            }
+            connection.Close();
+
+        }
+
+        internal static bool AddCluster(string clusterName, bool isDeleted)
+        {
+            connection.Open();
+            string InsertClustersSQL = "INSERT INTO Clusters (ClusterName, IsDeleted) " +
+                        "VALUES (@pClusterName, @pIsDeleted)";
+            command = new SqlCommand(InsertClustersSQL, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@pClusterName", clusterName);
+                command.Parameters.AddWithValue("@pIsDeleted", isDeleted.ToString());
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine("Cluster Added");
+                    connection.Close();
+                    ReadClusters();
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Failed to Add Cluster");
+                    connection.Close();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could Not Insert Cluster " + ex.Message);
+                connection.Close();
+                return false;
+            }          
         }
 
         // Method to read from the Employee table
@@ -191,7 +258,7 @@ namespace Player_Card_System_CIS411
         {
             resident.Clear();
             connection.Open();
-            string GetResidentSQL = "SELECT ID, Address, Email, Phone, CommentBox, NoEmail, ClusterName, UnitNumber FROM Resident";
+            string GetResidentSQL = "SELECT ID, Email, Phone, CommentBox, NoEmail, ClusterName, UnitNumber FROM Resident";
             command = new SqlCommand(GetResidentSQL, connection);
 
             SqlDataReader residentReader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -200,7 +267,6 @@ namespace Player_Card_System_CIS411
             {
                 Resident tempResident = new Resident();
                 tempResident.ID = int.Parse(residentReader["ID"].ToString());
-                tempResident.Address = residentReader["Address"].ToString();
                 tempResident.Email = residentReader["Email"].ToString();
                 tempResident.Phone = residentReader["Phone"].ToString();
                 tempResident.CommentBox = residentReader["CommentBox"].ToString();
@@ -266,7 +332,6 @@ namespace Player_Card_System_CIS411
                         tempResInfo.Phone = resident[j].Phone;
                         tempResInfo.CommentBox = resident[j].CommentBox;
                         tempResInfo.NoEmail = resident[j].NoEmail;
-                        tempResInfo.Address = resident[j].Address;
 
                         residentInfo.Add(tempResInfo);
                         tempResInfo = null;
@@ -462,14 +527,13 @@ namespace Player_Card_System_CIS411
         {
             connection.Open();
             string UpdateResidentSQL = "UPDATE Resident " +
-                                       "SET Address = @pAddress, Email = @pEmail, Phone = @pPhone, NoEmail = @pNoEmail, CommentBox = @pCommentBox, " +
+                                       "SET Email = @pEmail, Phone = @pPhone, NoEmail = @pNoEmail, CommentBox = @pCommentBox, " +
                                        "ClusterName = @pClusterName, UnitNumber = @pUnitNumber " +
                                        "WHERE ID = @pID";
             command = new SqlCommand(UpdateResidentSQL, connection);
             try
             {
                 command.Parameters.AddWithValue("@pID", residentInfo[resIndex].ID);
-                command.Parameters.AddWithValue("@pAddress", residentInfo[resIndex].Address);
                 command.Parameters.AddWithValue("@pEmail", residentInfo[resIndex].Email);
                 command.Parameters.AddWithValue("@pPhone", residentInfo[resIndex].Phone);
                 command.Parameters.AddWithValue("@pNoEmail", ResidentInfo[resIndex].NoEmail.ToString());
@@ -562,14 +626,13 @@ namespace Player_Card_System_CIS411
             if (canContinue)
             {
                 connection.Open();
-                string InsertToResidentSQL = "INSERT INTO Resident (ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName) " +
-                                             "VALUES (@pID, @pAddress, @pEmail, @pPhone, @pCommentBox, @pUnitNumber, @pNoEmail, @pClusterName) ";
+                string InsertToResidentSQL = "INSERT INTO Resident (ID, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName) " +
+                                             "VALUES (@pID, @pEmail, @pPhone, @pCommentBox, @pUnitNumber, @pNoEmail, @pClusterName) ";
 
                 command = new SqlCommand(InsertToResidentSQL, connection);
                 try
                 {
                     command.Parameters.AddWithValue("@pID", ID);
-                    command.Parameters.AddWithValue("@pAddress", newResident.Address);
                     command.Parameters.AddWithValue("@pEmail", newResident.Email);
                     command.Parameters.AddWithValue("@pPhone", newResident.Phone);
                     command.Parameters.AddWithValue("@pCommentBox", newResident.CommentBox);
@@ -1159,15 +1222,14 @@ namespace Player_Card_System_CIS411
             }
             else if(dtName == "Residents")
             {
-                string InsertToResidentSQL = "INSERT INTO Resident (ID, Address, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName) " +
-                                             "VALUES (@pID, @pAddress, @pEmail, @pPhone, @pCommentBox, @pUnitNumber, @pNoEmail, @pClusterName) "; 
+                string InsertToResidentSQL = "INSERT INTO Resident (ID, Email, Phone, CommentBox, UnitNumber, NoEmail, ClusterName) " +
+                                             "VALUES (@pID, @pEmail, @pPhone, @pCommentBox, @pUnitNumber, @pNoEmail, @pClusterName) "; 
                 try
                 {
                     foreach (DataRow row in dt.Rows)
                     {
                         command = new SqlCommand(InsertToResidentSQL, connection);
                         command.Parameters.AddWithValue("@pID", row["ID"]);
-                        command.Parameters.AddWithValue("@pAddress", row["Address"]);
                         command.Parameters.AddWithValue("@pEmail", row["Email"]);
                         command.Parameters.AddWithValue("@pPhone", row["Phone Number"]);
                         command.Parameters.AddWithValue("@pCommentBox", row["CommentBox"]);

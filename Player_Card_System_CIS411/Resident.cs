@@ -9,7 +9,6 @@ namespace Player_Card_System_CIS411
     class Resident
     {
         private int Id;
-        private string address;
         private string email;
         private string phone;
         private string commentBox;
@@ -21,7 +20,7 @@ namespace Player_Card_System_CIS411
         public Resident()
         {
             Id = 0;
-            address = "";
+
             email = "";
             phone = "";
             commentBox = "";
@@ -31,10 +30,9 @@ namespace Player_Card_System_CIS411
             lastTransDate = "";
         }
 
-        public Resident(int pId, string pAddress, string pEmail, string pPhone, string pCommentBox, bool pNoEmail, string pClusterName, int pUnitNumber, string pLastTransDate)
+        public Resident(int pId, string pEmail, string pPhone, string pCommentBox, bool pNoEmail, string pClusterName, int pUnitNumber, string pLastTransDate)
         {
             Id = pId;
-            address = pAddress;
             email = pEmail;
             phone = pPhone;
             commentBox = pCommentBox;
@@ -45,7 +43,6 @@ namespace Player_Card_System_CIS411
         }
 
         public int ID { get => Id; set => Id = value; }
-        public string Address { get => address; set => address = value; }
         public string Email { get => email; set => email = value; }
         public string Phone { get => phone; set => phone = value; }
         public string CommentBox { get => commentBox; set => commentBox = value; }

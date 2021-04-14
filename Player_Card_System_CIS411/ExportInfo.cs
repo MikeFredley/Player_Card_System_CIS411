@@ -99,7 +99,6 @@ namespace Player_Card_System_CIS411
             dt.Columns.Add(new DataColumn("ID", typeof(string)));
             dt.Columns.Add(new DataColumn("First Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Last Name", typeof(string)));
-            dt.Columns.Add(new DataColumn("Address", typeof(string)));
             dt.Columns.Add(new DataColumn("Cluster", typeof(string)));
             dt.Columns.Add(new DataColumn("Unit Number", typeof(int)));
             dt.Columns.Add(new DataColumn("Email", typeof(string)));
@@ -118,7 +117,7 @@ namespace Player_Card_System_CIS411
                 {
                     comments = resident.CommentBox;
                 }
-                dt.Rows.Add(resident.ID, resident.FirstName, resident.LastName, resident.Address, resident.ClusterName, resident.UnitNumber, resident.Email,
+                dt.Rows.Add(resident.ID, resident.FirstName, resident.LastName, resident.ClusterName, resident.UnitNumber, resident.Email,
                             resident.NoEmail, resident.Phone);
             }
             return dt;

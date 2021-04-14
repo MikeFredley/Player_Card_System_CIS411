@@ -245,7 +245,7 @@ namespace Player_Card_System_CIS411
                     dt.Rows.Clear();
                     for (int i = 0; i < saveIndex.Count(); i++)
                     {
-                        dt.Rows.Add(Database.ResidentInfo[saveIndex[i]].FirstName, Database.ResidentInfo[saveIndex[i]].LastName, Database.ResidentInfo[saveIndex[i]].ClusterName, Database.ResidentInfo[saveIndex[i]].UnitNumber,
+                        dt.Rows.Add(Database.ResidentInfo[saveIndex[i]].ID, Database.ResidentInfo[saveIndex[i]].FirstName, Database.ResidentInfo[saveIndex[i]].LastName, Database.ResidentInfo[saveIndex[i]].ClusterName, Database.ResidentInfo[saveIndex[i]].UnitNumber,
                             Database.ResidentInfo[saveIndex[i]].Email, Database.ResidentInfo[saveIndex[i]].Phone, Database.ResidentInfo[saveIndex[i]].CurrentRounds);
                     }
                 }

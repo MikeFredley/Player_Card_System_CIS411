@@ -130,7 +130,7 @@ namespace Player_Card_System_CIS411
             this.Controls.Add(this.btnLogout);
             this.Name = "EmployeeWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Residents";
+            this.Text = "Accounts";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeeWindow_FormClosing);
             this.Load += new System.EventHandler(this.Employee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvResidentInfo)).EndInit();

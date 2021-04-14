@@ -100,6 +100,12 @@
     <Compile Include="AddAuthorizedUser.Designer.cs">
       <DependentUpon>AddAuthorizedUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddCluster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCluster.Designer.cs">
+      <DependentUpon>AddCluster.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdditionalAuthorizedUsers.cs" />
     <Compile Include="AddNewDeals.cs">
       <SubType>Form</SubType>
@@ -188,6 +194,12 @@
       <DependentUpon>HelpWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="ImportInfo.cs" />
+    <Compile Include="ManageClusters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageClusters.Designer.cs">
+      <DependentUpon>ManageClusters.cs</DependentUpon>
+    </Compile>
     <Compile Include="OceanVillagePlayerCardDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -221,6 +233,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddAuthorizedUser.resx">
       <DependentUpon>AddAuthorizedUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddCluster.resx">
+      <DependentUpon>AddCluster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddNewDeals.resx">
       <DependentUpon>AddNewDeals.cs</DependentUpon>
@@ -260,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HelpWindow.resx">
       <DependentUpon>HelpWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageClusters.resx">
+      <DependentUpon>ManageClusters.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TransactionHistory.resx">
       <DependentUpon>TransactionHistory.cs</DependentUpon>

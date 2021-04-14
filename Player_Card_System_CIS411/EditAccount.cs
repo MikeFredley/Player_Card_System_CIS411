@@ -30,11 +30,15 @@ namespace Player_Card_System_CIS411
             // Adds every cluster name to the dropdown list
             foreach (Clusters cluster in Database.Clusters)
             {
-                cmbCluster.Items.Add(cluster.ClusterName);
+                if (!cluster.IsDeleted)
+                {
+                    cmbCluster.Items.Add(cluster.ClusterName);
+                }            
             }
             employeeWindow = pEmployeeWindow;
             if (!isEdit)
             {
+
                 this.Text = "Add Account";
                 txtFirstName.ReadOnly = false;
                 txtFirstName.Text = "";
@@ -49,8 +53,6 @@ namespace Player_Card_System_CIS411
                 txtPhone.Text = "";
               //  txtID.ReadOnly = false;
                 txtID.Text = "";
-                txtAddress.ReadOnly = false;
-                txtAddress.Text = "";
                 btnTransHistory.Visible = false;
                 txtComments.ReadOnly = false;
                 txtComments.Text = "";               
@@ -62,6 +64,13 @@ namespace Player_Card_System_CIS411
                 btnAddUser.Visible = false;
                 btnRemoveUser.Visible = false;
                 btnDeleteAccount.Visible = false;
+                txtID.Visible = false;
+                lblID.Visible = false;
+                txtLastTransDate.Visible = false;
+                lblLastTrans.Visible = false;
+                lblCurrentBalance.Visible = false;
+                lblAuthorizedUsers.Visible = false;
+                dgvAuthorizedUsers.Visible = false;
             }
             else
             {
@@ -84,7 +93,6 @@ namespace Player_Card_System_CIS411
                     txtUnit.Text = Database.ResidentInfo[i].UnitNumber.ToString();
                     txtEmail.Text = Database.ResidentInfo[i].Email;
                     txtPhone.Text = Database.ResidentInfo[i].Phone;
-                    txtAddress.Text = Database.ResidentInfo[i].Address;
                     txtComments.Text = Database.ResidentInfo[i].CommentBox;
                     chkEmails.Checked = Database.ResidentInfo[i].NoEmail;
                     txtLastTransDate.Text = Database.ResidentInfo[i].LastTransDate;
@@ -144,7 +152,6 @@ namespace Player_Card_System_CIS411
                 txtEmail.ReadOnly = false;
                 txtPhone.ReadOnly = false;
                 txtComments.ReadOnly = false;
-                txtAddress.ReadOnly = false;
                 btnEditInfo.Visible = false;
                 chkEmails.Enabled = true;
                 btnSave.Visible = true;
@@ -153,12 +160,12 @@ namespace Player_Card_System_CIS411
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {         
+        {
+            string email;
             // If any textbox is empty is throws and error
-            if (txtFirstName.Text == "" || txtLastName.Text == "" || cmbCluster.Text == "" || txtUnit.Text == "" || txtEmail.Text == ""
-                                || txtPhone.Text =="" || txtAddress.Text == "")
+            if (txtFirstName.Text == "" || txtLastName.Text == "" || cmbCluster.Text == "" || txtUnit.Text == "")
             {
-                MessageBox.Show("Please fill in all fields");
+                MessageBox.Show("Please fill in the required fields");
             }
             else
             {
@@ -168,17 +175,26 @@ namespace Player_Card_System_CIS411
                     {
                         if (!isEdit)
                         {
-
+                            // this will prevent the backup/restore stuff from messing up
+                            // later down the road   
+                            if (txtEmail.Text == "")
+                            {
+                                email = " ";
+                                chkEmails.Checked = false;
+                            }
+                            else
+                            {
+                                email = txtEmail.Text;
+                            }
                             // If youre adding a resident with the addperson button it runs this code
                             ResidentInfo newResident = new ResidentInfo();
                             newResident.FirstName = txtFirstName.Text;
                             newResident.LastName = txtLastName.Text;
                             newResident.ClusterName = cmbCluster.Text;
                             newResident.UnitNumber = int.Parse(txtUnit.Text);
-                            newResident.Email = txtEmail.Text;
+                            newResident.Email = email;
                             newResident.Phone = txtPhone.Text;
                             newResident.CommentBox = txtComments.Text;
-                            newResident.Address = txtAddress.Text;
                             newResident.NoEmail = chkEmails.Checked;
                             int ID = Database.AddResident(newResident);
                             this.EditWindowRefresh(ID);
@@ -188,27 +204,45 @@ namespace Player_Card_System_CIS411
                             btnRemoveUser.Visible = true;
                             btnAddRounds.Visible = true;
                             btnDeleteAccount.Visible = true;
+                            txtID.Visible = true;
+                            lblID.Visible = true;
+                            txtLastTransDate.Visible = true;
+                            lblLastTrans.Visible = true;
+                            lblCurrentBalance.Visible = true;
+                            lblAuthorizedUsers.Visible = true;
+                            dgvAuthorizedUsers.Visible = true;
+                            btnTransHistory.Visible = true;
+                            this.Text = "Account Details";
                             InitializeDataGridView();
                             
                             
                         }
                         else
                         {
-
+                            // this will prevent the backup/restore stuff from messing up
+                            // later down the road
+                            if (txtEmail.Text == "")
+                            {
+                                email = " ";
+                                chkEmails.Checked = false;
+                            }
+                            else
+                            {
+                                email = txtEmail.Text;
+                            }
                             // If its the edit window then it calls the method to update the tables
                             // instead of adding to them
                             Database.ResidentInfo[rowIndexHolder].FirstName = txtFirstName.Text;
                             Database.ResidentInfo[rowIndexHolder].LastName = txtLastName.Text;
                             Database.ResidentInfo[rowIndexHolder].ClusterName = cmbCluster.Text;
                             Database.ResidentInfo[rowIndexHolder].UnitNumber = int.Parse(txtUnit.Text);
-                            Database.ResidentInfo[rowIndexHolder].Email = txtEmail.Text;
+                            Database.ResidentInfo[rowIndexHolder].Email = email;
                             Database.ResidentInfo[rowIndexHolder].Phone = txtPhone.Text;
                             Database.ResidentInfo[rowIndexHolder].CommentBox = txtComments.Text;
-                            Database.ResidentInfo[rowIndexHolder].Address = txtAddress.Text;
                             Database.ResidentInfo[rowIndexHolder].NoEmail = chkEmails.Checked;
                             Database.UpdateResidentPersonTable(rowIndexHolder);
                             employeeWindow.RefreshDataTable();
-
+                            
                         }
 
                         // Disables you from being able to edit stuff in the textboxes
@@ -220,12 +254,11 @@ namespace Player_Card_System_CIS411
                         txtEmail.ReadOnly = true;
                         txtPhone.ReadOnly = true;
                         txtComments.ReadOnly = true;
-                        txtAddress.ReadOnly = true;
                         btnEditInfo.Visible = true;
                         btnSave.Visible = false;
                         chkEmails.Enabled = false;
                         openWindow = false;
-
+                        btnAddRounds.Focus();
                     }
                     else
                     {
@@ -332,7 +365,7 @@ namespace Player_Card_System_CIS411
 
                 dgvAuthorizedUsers.DataSource = dt;
                 dgvAuthorizedUsers.ReadOnly = true;
-            }            
+            }         
         }
 
         public void RefreshDataGridView()

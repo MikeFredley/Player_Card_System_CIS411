@@ -167,5 +167,15 @@ namespace Player_Card_System_CIS411
             }
 
         }
+
+        private void btnManageClusters_Click(object sender, EventArgs e)
+        {
+            if (!openWindow)
+            {
+                openWindow = true;
+                ManageClusters manage = new ManageClusters(this);
+                manage.Show();
+            }
+        }
     }
 }
