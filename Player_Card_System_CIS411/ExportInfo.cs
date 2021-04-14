@@ -180,10 +180,11 @@ namespace Player_Card_System_CIS411
         {
             DataTable dt = new DataTable();
             dt.Columns.Add(new DataColumn("ClusterName", typeof(string)));
+            dt.Columns.Add(new DataColumn("IsDeleted", typeof(string)));
 
             foreach (Clusters cluster in Database.Clusters)
             {
-                dt.Rows.Add(cluster.ClusterName);
+                dt.Rows.Add(cluster.ClusterName, cluster.IsDeleted);
             }
             return dt;
         }

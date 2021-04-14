@@ -1128,7 +1128,7 @@ namespace Player_Card_System_CIS411
             }
             else if (dtName == "Clusters")
             {
-                string RestoreClustersSQL = "INSERT INTO Clusters (ClusterName) VALUES (@pClusterName)";
+                string RestoreClustersSQL = "INSERT INTO Clusters (ClusterName, IsDeleted) VALUES (@pClusterName, @pIsDeleted)";
                 
 
                 try
@@ -1137,6 +1137,7 @@ namespace Player_Card_System_CIS411
                     {
                         command = new SqlCommand(RestoreClustersSQL, connection);
                         command.Parameters.AddWithValue("@pClusterName", row["ClusterName"]);
+                        command.Parameters.AddWithValue("@pIsDeleted", row["IsDeleted"]);
                         int rowsAffected = command.ExecuteNonQuery();
                         if (rowsAffected > 0)
                         {
