@@ -167,9 +167,11 @@
             this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.btnExportAccounts);
             this.Controls.Add(this.btnBackup);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "AdminWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AdminWindow";
+            this.Text = "Admin Window";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminWindow_FormClosing);
             this.ResumeLayout(false);
 

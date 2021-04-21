@@ -61,6 +61,7 @@
             this.btnDeleteAccount = new System.Windows.Forms.Button();
             this.txtLastTransDate = new System.Windows.Forms.TextBox();
             this.lblLastTrans = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuthorizedUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -376,11 +377,23 @@
             this.lblLastTrans.TabIndex = 44;
             this.lblLastTrans.Text = "Last Transaction:";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(40, 448);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(122, 37);
+            this.btnCancel.TabIndex = 45;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Visible = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // EditAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 497);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblLastTrans);
             this.Controls.Add(this.txtLastTransDate);
             this.Controls.Add(this.btnDeleteAccount);
@@ -414,6 +427,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dgvAuthorizedUsers);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "EditAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Account Details";
@@ -459,5 +474,6 @@
         private System.Windows.Forms.Button btnDeleteAccount;
         private System.Windows.Forms.TextBox txtLastTransDate;
         private System.Windows.Forms.Label lblLastTrans;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

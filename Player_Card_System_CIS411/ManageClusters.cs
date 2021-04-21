@@ -25,11 +25,13 @@ namespace Player_Card_System_CIS411
         {
             DataTable dt = new DataTable();
             dt.Columns.Add(new DataColumn("Cluster Name", typeof(string)));
-            dt.Columns.Add(new DataColumn("Is Deleted", typeof(string)));
             
             foreach (Clusters cluster in Database.Clusters)
             {
-                dt.Rows.Add(cluster.ClusterName, cluster.IsDeleted);
+                if (!cluster.IsDeleted)
+                {
+                    dt.Rows.Add(cluster.ClusterName);
+                }             
             }
 
             dgvClusters.DataSource = dt;
@@ -48,8 +50,7 @@ namespace Player_Card_System_CIS411
             {
                 foreach (Clusters cluster in Database.Clusters)
                 {
-                    if (cluster.ClusterName == dgvClusters.Rows[dgvIndex].Cells[0].Value.ToString() &&
-                        cluster.IsDeleted == Convert.ToBoolean(dgvClusters.Rows[dgvIndex].Cells[1].Value))
+                    if (cluster.ClusterName == dgvClusters.Rows[dgvIndex].Cells[0].Value.ToString())
                     {
                         Database.UpdateClusters(cluster.ClusterName, true);
                         break;
@@ -68,30 +69,13 @@ namespace Player_Card_System_CIS411
         private void ManageClusters_FormClosing(object sender, FormClosingEventArgs e)
         {
             adminWindow.OpenWindow = false;
+            adminWindow.Visible = true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             AddCluster add = new AddCluster(this);
             add.Show();
-        }
-
-        private void btnReAdd_Click(object sender, EventArgs e)
-        {
-            DialogResult dialog = MessageBox.Show("Are you sure you want to re-add the selected cluster?", "Warning", MessageBoxButtons.YesNo);
-            if (dialog == DialogResult.Yes)
-            {
-                foreach (Clusters cluster in Database.Clusters)
-                {
-                    if (cluster.ClusterName == dgvClusters.Rows[dgvIndex].Cells[0].Value.ToString() &&
-                        cluster.IsDeleted == Convert.ToBoolean(dgvClusters.Rows[dgvIndex].Cells[1].Value))
-                    {
-                        Database.UpdateClusters(cluster.ClusterName, false);
-                        break;
-                    }
-                }
-                InitializeDataGridView();
-            }
         }
     }
 }

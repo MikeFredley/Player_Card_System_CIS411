@@ -28,6 +28,7 @@ namespace Player_Card_System_CIS411
             InitializeComponent();
             emailPassword = pEmailPassword;
             adminWindow = pAdminWindow;
+            emailPassword = true;
         }
 
         private void btnChange_Click(object sender, EventArgs e)
@@ -70,6 +71,14 @@ namespace Player_Card_System_CIS411
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ChangePassword_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (emailPassword)
+            {
+                adminWindow.OpenWindow = false;
+            }            
         }
     }
 }

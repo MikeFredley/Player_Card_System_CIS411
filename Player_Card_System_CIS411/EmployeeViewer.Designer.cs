@@ -71,6 +71,8 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnAddEmployee);
             this.Controls.Add(this.dgvViewEmployees);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "EmployeeViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee Viewer";

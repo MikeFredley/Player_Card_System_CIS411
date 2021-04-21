@@ -88,7 +88,6 @@ namespace Player_Card_System_CIS411
                         MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-
             }
         }
 
@@ -149,6 +148,7 @@ namespace Player_Card_System_CIS411
             dt.Columns.Add(new DataColumn("Date", typeof(DateTime)));
             dt.Columns.Add(new DataColumn("Transaction Type", typeof(string)));
             dt.Columns.Add(new DataColumn("Rounds Changed", typeof(int)));
+            dt.Columns.Add(new DataColumn("Old Balance", typeof(int)));
             dt.Columns.Add(new DataColumn("Total Rounds", typeof(int)));
             dt.Columns.Add(new DataColumn("Emailed", typeof(string)));
             dt.Columns.Add(new DataColumn("Employee ID", typeof(int)));
@@ -157,7 +157,7 @@ namespace Player_Card_System_CIS411
 
             foreach (Transaction trans in Database.Transaction)
             {
-                dt.Rows.Add(trans.TransNo, trans.DateTime, trans.TypeTrans, trans.RoundsChanged, trans.TotalRounds, trans.EmailedTo, trans.EmployeeID, trans.ResidentID, trans.Comments);
+                dt.Rows.Add(trans.TransNo, trans.DateTime, trans.TypeTrans, trans.RoundsChanged, trans.OldBalance, trans.TotalRounds, trans.EmailedTo, trans.EmployeeID, trans.ResidentID, trans.Comments);
             }
             return dt;
         }
@@ -195,11 +195,11 @@ namespace Player_Card_System_CIS411
             dt.Columns.Add(new DataColumn("Years", typeof(int)));
             dt.Columns.Add(new DataColumn("TotalRounds", typeof(int)));
             dt.Columns.Add(new DataColumn("PackageType", typeof(string)));
-            dt.Columns.Add(new DataColumn("CostPerRound", typeof(decimal)));
+            dt.Columns.Add(new DataColumn("TotalCost", typeof(decimal)));
 
             foreach (GolfRounds round in Database.GolfRounds)
             {
-                dt.Rows.Add(round.Year, round.TotalRounds, round.PackageType, round.CostPerRound);
+                dt.Rows.Add(round.Year, round.TotalRounds, round.PackageType, round.TotalCost);
             }
             return dt;
         }

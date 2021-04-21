@@ -45,6 +45,7 @@ namespace Player_Card_System_CIS411
                 {
                     Database.DeleteResidentAccounts(resToDelete);
                     MessageBox.Show(count + " Residents Deleted!");
+                    this.Close();
                 }
                 else
                 {

@@ -83,6 +83,8 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.dgvViewRounds);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ViewGolfRounds";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "View Golf Rounds";

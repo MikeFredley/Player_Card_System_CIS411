@@ -79,6 +79,8 @@
             this.Controls.Add(this.txtAddCluster);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnAdd);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "AddCluster";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Cluster";

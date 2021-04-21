@@ -64,6 +64,7 @@ namespace Player_Card_System_CIS411
             dt.Columns.Add(new DataColumn("Email", typeof(string)));
             dt.Columns.Add(new DataColumn("Phone Number", typeof(string)));
             dt.Columns.Add(new DataColumn("Current Rounds", typeof(string)));
+            dt.Columns.Add(new DataColumn("Last Transaction", typeof(string)));
 
             DataGridViewButtonColumn deductRoundButton = new DataGridViewButtonColumn();
             deductRoundButton.HeaderText = "Deduct Rounds";
@@ -78,8 +79,9 @@ namespace Player_Card_System_CIS411
             editAccountButton.UseColumnTextForButtonValue = true;
 
             AddDataGridRows();
-
+          
             dgvResidentInfo.DataSource = dt;
+            dgvResidentInfo.Columns[8].Width = 110;
             dgvResidentInfo.Columns.Add(deductRoundButton);
             dgvResidentInfo.Columns.Add(editAccountButton);
             dgvResidentInfo.Columns["ID"].Visible = false;
@@ -90,7 +92,7 @@ namespace Player_Card_System_CIS411
         {
             foreach (ResidentInfo resident in Database.ResidentInfo)
             {
-                dt.Rows.Add(resident.ID, resident.FirstName, resident.LastName, resident.ClusterName, resident.UnitNumber, resident.Email, resident.Phone, resident.CurrentRounds);
+                dt.Rows.Add(resident.ID, resident.FirstName, resident.LastName, resident.ClusterName, resident.UnitNumber, resident.Email, resident.Phone, resident.CurrentRounds, resident.LastTransDate);
             }
         }
 
@@ -101,6 +103,7 @@ namespace Player_Card_System_CIS411
                 openWindow = true;
                 AdminWindow adminWindow = new AdminWindow(this);
                 adminWindow.Show();
+                this.Visible = false;
             }
             else
             {
@@ -115,6 +118,7 @@ namespace Player_Card_System_CIS411
                 openWindow = true;
                 EditAccount addAccount = new EditAccount(false, 0, this);
                 addAccount.Show();
+                this.Visible = false;
             }
             else
             {
@@ -125,7 +129,7 @@ namespace Player_Card_System_CIS411
         private void dgvResidentInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // If the deduct rounds button is clicked
-            if (e.ColumnIndex == 8)
+            if (e.ColumnIndex == 9)
             {
                 if (e.RowIndex >= 0)
                 {
@@ -143,7 +147,7 @@ namespace Player_Card_System_CIS411
             }
 
             // If the Edit account button is clicked
-            if (e.ColumnIndex == 9)
+            if (e.ColumnIndex == 10)
             {
                 if (e.RowIndex >= 0)
                 {
@@ -152,6 +156,7 @@ namespace Player_Card_System_CIS411
                         openWindow = true;
                         EditAccount editScreen = new EditAccount(true, GetIDFromRow(e), this);
                         editScreen.Show();
+                        this.Visible = false;
                     }
                     else
                     {

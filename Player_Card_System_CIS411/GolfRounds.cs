@@ -11,20 +11,20 @@ namespace Player_Card_System_CIS411
         string year;
         int totalRounds;
         string packageType;
-        decimal costPerRound;
+        decimal totalCost;
 
         public GolfRounds()
         {
             year = "";
             totalRounds = 0;
             packageType = "";
-            costPerRound = 0;
+            totalCost = 0;
         }
 
         public string Year { get => year; set => year = value; }
         public int TotalRounds { get => totalRounds; set => totalRounds = value; }
         public string PackageType { get => packageType; set => packageType = value; }
-        public decimal CostPerRound { get => costPerRound; set => costPerRound = value; }
+        public decimal TotalCost { get => totalCost; set => totalCost = value; }
 
 
 

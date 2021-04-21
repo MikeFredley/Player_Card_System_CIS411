@@ -28,15 +28,24 @@ namespace Player_Card_System_CIS411
         {
             if (txtAddCluster.Text != "")
             {
-                if(Database.AddCluster(txtAddCluster.Text, false))
+                foreach (Clusters cluster in Database.Clusters)
                 {
-                    MessageBox.Show("Cluster Added!");
-                    manageClusters.InitializeDataGridView();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Failed to add cluster");
+                    if(cluster.ClusterName == txtAddCluster.Text)
+                    {
+                        Database.UpdateClusters(cluster.ClusterName, false);
+                        manageClusters.InitializeDataGridView();
+                        MessageBox.Show("Cluster Added!");
+                        this.Close();
+                        break;
+                    }
+                    else
+                    {
+                        Database.AddCluster(txtAddCluster.Text, false);
+                        manageClusters.InitializeDataGridView();
+                        MessageBox.Show("Cluster Added!");
+                        this.Close();
+                        break;
+                    }
                 }
             }
             else

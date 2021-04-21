@@ -32,6 +32,7 @@ namespace Player_Card_System_CIS411
                 openWindow = true;
                 AddNewEmployee addEmployee = new AddNewEmployee(this);
                 addEmployee.Show();
+                this.Visible = false;
             }           
         }
 
@@ -43,8 +44,8 @@ namespace Player_Card_System_CIS411
         private void InitializeDataGridView()
         {
             dt = new DataTable();
-            dt.Columns.Add(new DataColumn("First Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Last Name", typeof(string)));
+            dt.Columns.Add(new DataColumn("First Name", typeof(string)));           
             dt.Columns.Add(new DataColumn("Is Admin", typeof(string)));
             dt.Columns.Add(new DataColumn("Username", typeof(string)));
             dt.Columns.Add(new DataColumn("Is Current", typeof(string)));
@@ -67,7 +68,7 @@ namespace Player_Card_System_CIS411
             dt.Rows.Clear();
             foreach (EmployeeInfo employee in Database.EmployeeInfo)
             {
-                dt.Rows.Add(employee.FirstName, employee.LastName, employee.IsAdmin, employee.UserName, employee.IsCurrent);
+                dt.Rows.Add(employee.LastName, employee.FirstName, employee.IsAdmin, employee.UserName, employee.IsCurrent);
             }
         }
 
@@ -91,8 +92,8 @@ namespace Player_Card_System_CIS411
                 // it then searches through the residentinfo list and matches up the firstnames and last names
                 // using those it gets the correct ID for that row, which will be used to pass into the
                 // appropriate window
-                if (dgvViewEmployees.Rows[e.RowIndex].Cells[1].Value.ToString() == Database.EmployeeInfo[i].FirstName &&
-                    dgvViewEmployees.Rows[e.RowIndex].Cells[2].Value.ToString() == Database.EmployeeInfo[i].LastName)
+                if (dgvViewEmployees.Rows[e.RowIndex].Cells[1].Value.ToString() == Database.EmployeeInfo[i].LastName && 
+                    dgvViewEmployees.Rows[e.RowIndex].Cells[2].Value.ToString() == Database.EmployeeInfo[i].FirstName)
                 {
                     return Database.EmployeeInfo[i].ID;
                 }
@@ -105,6 +106,7 @@ namespace Player_Card_System_CIS411
             if (!openWindow)
             {
                 adminWindow.OpenWindow = false;
+                adminWindow.Visible = true;
             }
             else
             {

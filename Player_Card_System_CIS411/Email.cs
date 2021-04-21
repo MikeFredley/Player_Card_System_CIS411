@@ -48,11 +48,12 @@ namespace Player_Card_System_CIS411
         {
             for (int i = transactions.Count - 1; i >= 0; i--)
             {
-                body += "\nDate: " + transactions[i].DateTime + "\n"
-                         + "Transaction Type: " + transactions[i].TypeTrans + "\n"
-                         + "Rounds Changed: " + transactions[i].RoundsChanged + "\n"
-                         + "Total Rounds: " + transactions[i].TotalRounds + "\n"
-                         + "Reason: " + transactions[i].Comments + "\n--------------------------------------";
+                body += "\nDate: " + transactions[i].DateTime + ", "
+                         + "Transaction Type: " + transactions[i].TypeTrans + ", "
+                         + "Rounds Changed: " + transactions[i].RoundsChanged + ", "
+                         + "Old Balance: " + transactions[i].OldBalance + ", "
+                         + "New Balance: " + transactions[i].TotalRounds + ", "
+                         + "Reason: " + transactions[i].Comments + "\n---------------------------------------------------------------------------------------------------------------------------------------------------";
             }
         }
 
@@ -61,9 +62,10 @@ namespace Player_Card_System_CIS411
             DateTime date = DateTime.Now;
             userEmail = transaction.EmailedTo;
             subject = "New Transaction";
-            body = "A new transaction has occured on your golf account.\n"
-                 + "Amount of Rounds " + transaction.TypeTrans +": " + transaction.RoundsChanged + "\n"
-                 + "New Amount of Rounds: " + transaction.TotalRounds + "\n"
+            body = "A new transaction has occurred on your golf account.\n"
+                 + "Number of Rounds " + transaction.TypeTrans +": " + transaction.RoundsChanged + "\n"
+                 + "Old Balance of Rounds: " + transaction.OldBalance + "\n"
+                 + "New Balance of Rounds: " + transaction.TotalRounds + "\n"
                  + "Date: " + date + "\n"
                  + "Reason: " + transaction.Comments;
 
@@ -88,7 +90,7 @@ namespace Player_Card_System_CIS411
                 clientDetails.EnableSsl = true;
                 clientDetails.Send(mailDetails);
 
-                MessageBox.Show("Email Sent!");
+              //  MessageBox.Show("Email Sent!");
             }
             catch (Exception ex)
             {

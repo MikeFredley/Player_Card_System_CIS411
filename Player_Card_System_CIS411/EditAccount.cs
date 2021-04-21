@@ -114,6 +114,7 @@ namespace Player_Card_System_CIS411
             {
                 employeeWindow.RefreshDataTable();
                 employeeWindow.OpenWindow = false;
+                employeeWindow.Visible = true;
             }
             else
             {
@@ -129,7 +130,7 @@ namespace Player_Card_System_CIS411
                 openWindow = true;
             //    btnExit.Enabled = false;
             //    btnEditInfo.Enabled = false;
-                AddRounds addRoundWindow = new AddRounds(Database.ResidentInfo[rowIndexHolder].CurrentRounds, Database.ResidentInfo[rowIndexHolder].ID, IsEmail(), this);
+                AddRounds addRoundWindow = new AddRounds(Database.ResidentInfo[rowIndexHolder].CurrentRounds, Database.ResidentInfo[rowIndexHolder].ID, IsEmail(), Database.ResidentInfo[rowIndexHolder].NoEmail, this);
                 addRoundWindow.Show();
             }
             else
@@ -156,6 +157,17 @@ namespace Player_Card_System_CIS411
                 chkEmails.Enabled = true;
                 btnSave.Visible = true;
                 openWindow = true;
+                btnAddRounds.Visible = false;
+                btnAdjustBalance.Visible = false;
+                btnDeleteAccount.Visible = false;
+                btnTransHistory.Visible = false;
+                btnAddUser.Visible = false;
+                btnRemoveUser.Visible = false;
+                btnCancel.Visible = true;
+                if (txtEmail.Text == " ")
+                {
+                    txtEmail.Text = "";
+                }               
             }
         }
 
@@ -175,6 +187,22 @@ namespace Player_Card_System_CIS411
                     {
                         if (!isEdit)
                         {
+                         /*   foreach (ResidentInfo res in Database.ResidentInfo)
+                            {
+                                if (res.FirstName == txtFirstName.Text && res.LastName == txtLastName.Text ||
+                                    res.Email == txtEmail.Text && res.Phone == txtPhone.Text)
+                                {
+                                    DialogResult dialog = MessageBox.Show("There is already an account with similiar information.\nDo you wish to proceed?", "Warning", MessageBoxButtons.YesNo);
+                                    if (dialog == DialogResult.Yes)
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                       // this.Close();
+                                    }
+                                }
+                            } */
                             // this will prevent the backup/restore stuff from messing up
                             // later down the road   
                             if (txtEmail.Text == "")
@@ -199,11 +227,7 @@ namespace Player_Card_System_CIS411
                             int ID = Database.AddResident(newResident);
                             this.EditWindowRefresh(ID);
                             isEdit = true;
-                            btnAdjustBalance.Visible = true;
-                            btnAddUser.Visible = true;
-                            btnRemoveUser.Visible = true;
-                            btnAddRounds.Visible = true;
-                            btnDeleteAccount.Visible = true;
+
                             txtID.Visible = true;
                             lblID.Visible = true;
                             txtLastTransDate.Visible = true;
@@ -214,8 +238,6 @@ namespace Player_Card_System_CIS411
                             btnTransHistory.Visible = true;
                             this.Text = "Account Details";
                             InitializeDataGridView();
-                            
-                            
                         }
                         else
                         {
@@ -247,6 +269,15 @@ namespace Player_Card_System_CIS411
 
                         // Disables you from being able to edit stuff in the textboxes
                         //  txtID.ReadOnly = true;
+
+                        btnAdjustBalance.Visible = true;
+                        btnAddUser.Visible = true;
+                        btnRemoveUser.Visible = true;
+                        btnAddRounds.Visible = true;
+                        btnDeleteAccount.Visible = true;
+                        btnTransHistory.Visible = true;
+                        btnCancel.Visible = false;
+
                         txtFirstName.ReadOnly = true;
                         txtLastName.ReadOnly = true;
                         cmbCluster.Enabled = false;
@@ -311,6 +342,7 @@ namespace Player_Card_System_CIS411
               //  btnEditInfo.Enabled = false;
                 TransactionHistory transactionWindow = new TransactionHistory(Database.ResidentInfo[rowIndexHolder].ID, this, Database.ResidentInfo[rowIndexHolder].Email);
                 transactionWindow.Show();
+                this.Visible = false;
             }
             else
             {
@@ -326,7 +358,7 @@ namespace Player_Card_System_CIS411
                 openWindow = true;
             //    btnExit.Enabled = false;
           //      btnEditInfo.Enabled = false;
-                AdjustBalance adjustBalance = new AdjustBalance(Database.ResidentInfo[rowIndexHolder].CurrentRounds, Database.ResidentInfo[rowIndexHolder].ID, IsEmail(), this);
+                AdjustBalance adjustBalance = new AdjustBalance(Database.ResidentInfo[rowIndexHolder].CurrentRounds, Database.ResidentInfo[rowIndexHolder].ID, IsEmail(), Database.ResidentInfo[rowIndexHolder].NoEmail, this);
                 adjustBalance.Show();
             }
             else
@@ -431,6 +463,30 @@ namespace Player_Card_System_CIS411
                 HelpWindow help = new HelpWindow(this);
                 help.Show();
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            btnAdjustBalance.Visible = true;
+            btnAddUser.Visible = true;
+            btnRemoveUser.Visible = true;
+            btnAddRounds.Visible = true;
+            btnDeleteAccount.Visible = true;
+            btnTransHistory.Visible = true;
+            btnCancel.Visible = false;
+
+            txtFirstName.ReadOnly = true;
+            txtLastName.ReadOnly = true;
+            cmbCluster.Enabled = false;
+            txtUnit.ReadOnly = true;
+            txtEmail.ReadOnly = true;
+            txtPhone.ReadOnly = true;
+            txtComments.ReadOnly = true;
+            btnEditInfo.Visible = true;
+            btnSave.Visible = false;
+            chkEmails.Enabled = false;
+            openWindow = false;
+            btnAddRounds.Focus();
         }
     }
 }

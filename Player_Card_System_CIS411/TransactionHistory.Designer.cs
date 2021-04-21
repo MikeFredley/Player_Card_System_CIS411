@@ -36,17 +36,22 @@
             // 
             // dgvTransactionHistory
             // 
+            this.dgvTransactionHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTransactionHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTransactionHistory.Location = new System.Drawing.Point(13, 13);
             this.dgvTransactionHistory.Name = "dgvTransactionHistory";
-            this.dgvTransactionHistory.Size = new System.Drawing.Size(778, 294);
+            this.dgvTransactionHistory.Size = new System.Drawing.Size(945, 294);
             this.dgvTransactionHistory.TabIndex = 0;
             // 
             // btnEmail
             // 
+            this.btnEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEmail.Location = new System.Drawing.Point(13, 313);
             this.btnEmail.Name = "btnEmail";
-            this.btnEmail.Size = new System.Drawing.Size(75, 23);
+            this.btnEmail.Size = new System.Drawing.Size(242, 23);
             this.btnEmail.TabIndex = 1;
             this.btnEmail.Text = "Email";
             this.btnEmail.UseVisualStyleBackColor = true;
@@ -54,9 +59,11 @@
             // 
             // btnExit
             // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.Location = new System.Drawing.Point(716, 313);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.Size = new System.Drawing.Size(242, 23);
             this.btnExit.TabIndex = 2;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -66,10 +73,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(803, 344);
+            this.ClientSize = new System.Drawing.Size(970, 344);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnEmail);
             this.Controls.Add(this.dgvTransactionHistory);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "TransactionHistory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Transaction History";
