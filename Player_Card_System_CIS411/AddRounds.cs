@@ -16,6 +16,7 @@ namespace Player_Card_System_CIS411
         Transaction newTransaction;
         int currentRounds, ID, newRounds;
         string email;
+        bool noEmail;
         EditAccount editAccount;
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -23,12 +24,13 @@ namespace Player_Card_System_CIS411
             this.Close();
         }
 
-        public AddRounds(int pCurrentRounds, int pID, string pEmail, EditAccount pEditAccount)
+        public AddRounds(int pCurrentRounds, int pID, string pEmail, bool pNoEmail, EditAccount pEditAccount)
         {
             currentRounds = pCurrentRounds;
             ID = pID;
             editAccount = pEditAccount;
             email = pEmail;
+            noEmail = pNoEmail;
             InitializeComponent();
             InitializeDataGridView();
         }
@@ -43,12 +45,12 @@ namespace Player_Card_System_CIS411
         // Adds the golf rounds to the datagridview
         private void InitializeDataGridView()
         {
-            decimal totalCost;
+            decimal costPerRound;
 
             dt = new DataTable();
             dt.Columns.Add(new DataColumn("Year", typeof(string)));
             dt.Columns.Add(new DataColumn("Total Rounds", typeof(int)));
-            dt.Columns.Add(new DataColumn("Package Type", typeof(string)));
+            dt.Columns.Add(new DataColumn("Package Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Cost Per Round", typeof(decimal)));
             dt.Columns.Add(new DataColumn("Total Cost", typeof(decimal)));
 
@@ -60,8 +62,8 @@ namespace Player_Card_System_CIS411
 
             for (int i = 0; i < Database.GolfRounds.Count; i++)
             {
-                totalCost = Database.GolfRounds[i].TotalRounds * Database.GolfRounds[i].CostPerRound;
-                dt.Rows.Add(Database.GolfRounds[i].Year, Database.GolfRounds[i].TotalRounds, Database.GolfRounds[i].PackageType, Database.GolfRounds[i].CostPerRound, totalCost);
+                costPerRound = Database.GolfRounds[i].TotalCost / Database.GolfRounds[i].TotalRounds;
+                dt.Rows.Add(Database.GolfRounds[i].Year, Database.GolfRounds[i].TotalRounds, Database.GolfRounds[i].PackageType, costPerRound, Database.GolfRounds[i].TotalCost);
             }
 
             dgvAddRounds.DataSource = dt;
@@ -78,16 +80,17 @@ namespace Player_Card_System_CIS411
                     // If the button is clicked it creates a new transaction object
                     // and adds it to the transaction table
                     newRounds = currentRounds + Database.GolfRounds[e.RowIndex].TotalRounds;
-                    newTransaction = new Transaction("Purchased", Database.GolfRounds[e.RowIndex].TotalRounds, newRounds, email, Database.LoggedInEmployee.ID, ID, " ");
+                    newTransaction = new Transaction("Purchased", Database.GolfRounds[e.RowIndex].TotalRounds, currentRounds, newRounds, email, Database.LoggedInEmployee.ID, ID, " ");
                     
-                    if (email != " " || email != "")
+                    if (noEmail)
                     {
                         Email.SendEmail(newTransaction, Database.ResidentTransactions(ID));
                     }
 
                     Database.SubmitTransaction(newTransaction);
                     editAccount.EditWindowRefresh(ID);
-                    MessageBox.Show("Rounds Added");
+                    this.Close();
+                   // MessageBox.Show("Rounds Added");
                 }
             }
        

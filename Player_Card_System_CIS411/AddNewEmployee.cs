@@ -34,7 +34,7 @@ namespace Player_Card_System_CIS411
                     newEmployee.IsCurrent = true;
                     Database.AddNewEmployee(newEmployee);
                     employeeViewer.RefreshDataGridView();
-                    MessageBox.Show("New Employee Added");
+               //     MessageBox.Show("New Employee Added");
                     this.Close();
                 }
                 else
@@ -78,6 +78,7 @@ namespace Player_Card_System_CIS411
         private void AddNewEmployee_FormClosing(object sender, FormClosingEventArgs e)
         {
             employeeViewer.OpenWindow = false;
+            employeeViewer.Visible = true;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace Player_Card_System_CIS411
 {
@@ -29,7 +30,21 @@ namespace Player_Card_System_CIS411
         static Database()
         {
             //connectionString = Properties.Settings.Default.OceanVillagePlayerCardConnectionString;
-            connectionString = Properties.Settings.Default.OceanVillagePlayerCardConnectionString1;
+            try
+            {
+                connectionString = Properties.Settings.Default.OceanVillagePlayerCardConnectionString1;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Could not make connection to the database: " + ex.Message + "\n\nCheck your connection string.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not make connection to the database: " + ex.Message + "\n\nCheck your connection string.");
+            }
             person = new List<Person>();
             resident = new List<Resident>();
             transaction = new List<Transaction>();
@@ -42,9 +57,7 @@ namespace Player_Card_System_CIS411
             outGoingEmail = new OutGoingEmail();
             residentTransactions = new List<Transaction>();
             try
-            {
-                connection = new SqlConnection(connectionString);
-
+            {              
                 ReadOutGoingEmail();
                 ReadPerson();
                 ReadResident();
@@ -147,7 +160,7 @@ namespace Player_Card_System_CIS411
 
         }
 
-        internal static bool AddCluster(string clusterName, bool isDeleted)
+        internal static void AddCluster(string clusterName, bool isDeleted)
         {
             connection.Open();
             string InsertClustersSQL = "INSERT INTO Clusters (ClusterName, IsDeleted) " +
@@ -163,20 +176,17 @@ namespace Player_Card_System_CIS411
                     Console.WriteLine("Cluster Added");
                     connection.Close();
                     ReadClusters();
-                    return true;
                 }
                 else
                 {
                     Console.WriteLine("Failed to Add Cluster");
                     connection.Close();
-                    return false;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Could Not Insert Cluster " + ex.Message);
                 connection.Close();
-                return false;
             }          
         }
 
@@ -210,7 +220,7 @@ namespace Player_Card_System_CIS411
         {
             golfRounds.Clear();
             connection.Open();
-            string GetGolfRoundsSQL = "SELECT Years, TotalRounds, PackageType, CostPerRound FROM Golf_Rounds";
+            string GetGolfRoundsSQL = "SELECT Years, TotalRounds, PackageType, TotalCost FROM Golf_Rounds";
             command = new SqlCommand(GetGolfRoundsSQL, connection);
 
             SqlDataReader golfRoundsReader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -221,7 +231,7 @@ namespace Player_Card_System_CIS411
                 tempRounds.Year = golfRoundsReader["Years"].ToString();
                 tempRounds.TotalRounds = int.Parse(golfRoundsReader["TotalRounds"].ToString());
                 tempRounds.PackageType = golfRoundsReader["PackageType"].ToString();
-                tempRounds.CostPerRound = Convert.ToDecimal(golfRoundsReader["CostPerRound"].ToString());
+                tempRounds.TotalCost = Convert.ToDecimal(golfRoundsReader["TotalCost"].ToString());
                 golfRounds.Add(tempRounds);
 
                 tempRounds = null;
@@ -285,7 +295,11 @@ namespace Player_Card_System_CIS411
         {
             transaction.Clear();
             connection.Open();
-            string GetTransactionSQL = "SELECT TransNo, DateTime, TypeTrans, RoundsChanged, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID FROM Trans_Action";
+            string GetTransactionSQL = "SELECT TransNo, DateTime, TypeTrans, RoundsChanged, OldBalance, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID," +
+                " E.FirstName as EmpFirstName, E.LastName as EmpLastName, R.FirstName as ResFirstName, R.LastName as ResLastName" +
+                " FROM Trans_Action TA" +
+                " INNER JOIN PERSON E on TA.EmployeeID = E.ID" +
+                " INNER JOIN PERSON R on R.ID = TA.ResidentID";
             command = new SqlCommand(GetTransactionSQL, connection);
 
             SqlDataReader transactionReader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -297,11 +311,16 @@ namespace Player_Card_System_CIS411
                 tempTransaction.DateTime = transactionReader["DateTime"].ToString();              
                 tempTransaction.TypeTrans = transactionReader["TypeTrans"].ToString();
                 tempTransaction.RoundsChanged = int.Parse(transactionReader["RoundsChanged"].ToString());
+                tempTransaction.OldBalance = int.Parse(transactionReader["OldBalance"].ToString());
                 tempTransaction.TotalRounds = int.Parse(transactionReader["TotalRounds"].ToString());
                 tempTransaction.Comments = transactionReader["Comments"].ToString();
                 tempTransaction.EmailedTo = transactionReader["EmailedTo"].ToString();
                 tempTransaction.EmployeeID = int.Parse(transactionReader["EmployeeID"].ToString());
                 tempTransaction.ResidentID = int.Parse(transactionReader["ResidentID"].ToString());
+                tempTransaction.EmpFirstName = transactionReader["EmpFirstName"].ToString();
+                tempTransaction.EmpLastName = transactionReader["EmpLastName"].ToString();
+                tempTransaction.ResFirstName = transactionReader["ResFirstName"].ToString();
+                tempTransaction.ResLastName = transactionReader["ResLastName"].ToString();
                 transaction.Add(tempTransaction);
 
                 tempTransaction = null;
@@ -486,8 +505,8 @@ namespace Player_Card_System_CIS411
         internal static void SubmitTransaction(Transaction newTransaction)
         {
             connection.Open();
-            string InsertTransactionSQL = "INSERT INTO Trans_Action (DateTime, TypeTrans, RoundsChanged, TotalRounds, EmailedTo, Comments, EmployeeID, ResidentID) " +
-                                          "VALUES (@pDateTime, @pTypeTrans, @pRoundsChanged, @pTotalRounds, @pEmailedTo, @pComments, @pEmployeeID, @pResidentID)";
+            string InsertTransactionSQL = "INSERT INTO Trans_Action (DateTime, TypeTrans, RoundsChanged, OldBalance, TotalRounds, EmailedTo, Comments, EmployeeID, ResidentID) " +
+                                          "VALUES (@pDateTime, @pTypeTrans, @pRoundsChanged, @pOldBalance, @pTotalRounds, @pEmailedTo, @pComments, @pEmployeeID, @pResidentID)";
             command = new SqlCommand(InsertTransactionSQL, connection);
 
             try
@@ -496,6 +515,7 @@ namespace Player_Card_System_CIS411
                 command.Parameters.AddWithValue("@pDateTime", date);
                 command.Parameters.AddWithValue("@pTypeTrans", newTransaction.TypeTrans);
                 command.Parameters.AddWithValue("@pRoundsChanged", newTransaction.RoundsChanged);
+                command.Parameters.AddWithValue("@pOldBalance", newTransaction.OldBalance);
                 command.Parameters.AddWithValue("@pTotalRounds", newTransaction.TotalRounds);
                 command.Parameters.AddWithValue("@pEmailedTo", newTransaction.EmailedTo);
                 command.Parameters.AddWithValue("@pComments", newTransaction.Comments);
@@ -920,6 +940,9 @@ namespace Player_Card_System_CIS411
                 Console.WriteLine("Could Not Update Person Data " + ex.Message);
             }
             connection.Close();
+            ReadPerson();
+            ReadEmployee();
+            CreateEmployeeInfo();
         }
 
         internal static void ChangePassword(int empIndex, string newPassword)
@@ -955,15 +978,15 @@ namespace Player_Card_System_CIS411
         {
             connection.Open();
             string AddGolfRoundsSQL = "INSERT INTO Golf_Rounds " +
-                                      "(Years, TotalRounds, PackageType, CostPerRound) " +
-                                      "VALUES (@pYears, @pTotalRounds, @pPackageType, @pCostPerRound)";
+                                      "(Years, TotalRounds, PackageType, TotalCost) " +
+                                      "VALUES (@pYears, @pTotalRounds, @pPackageType, @pTotalCost)";
             command = new SqlCommand(AddGolfRoundsSQL, connection);
             try
             {
                 command.Parameters.AddWithValue("@pYears", golfRounds.Year);
                 command.Parameters.AddWithValue("@pTotalRounds", golfRounds.TotalRounds);
                 command.Parameters.AddWithValue("@pPackageType", golfRounds.PackageType);
-                command.Parameters.AddWithValue("@pCostPerRound", Convert.ToDecimal(golfRounds.CostPerRound));
+                command.Parameters.AddWithValue("@pTotalCost", Convert.ToDecimal(golfRounds.TotalCost));
 
                 int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
@@ -988,18 +1011,18 @@ namespace Player_Card_System_CIS411
             }
         }
 
-        internal static void DeleteGolfRounds(string pYears, int pTotalRounds, string pPackageType, decimal pCostPerRound)
+        internal static void DeleteGolfRounds(string pYears, int pTotalRounds, string pPackageType, decimal pTotalCost)
         {
             connection.Open();
             string DeleteGolfRoundSQL = "DELETE FROM Golf_Rounds " +
-                                             "WHERE Years = @pYears AND TotalRounds = @pTotalRounds AND PackageType = @pPackageType AND CostPerRound = @pCostPerRound";
+                                             "WHERE Years = @pYears AND TotalRounds = @pTotalRounds AND PackageType = @pPackageType AND TotalCost = @pTotalCost";
             command = new SqlCommand(DeleteGolfRoundSQL, connection);
             try
             {
                 command.Parameters.AddWithValue("@pYears", pYears);
                 command.Parameters.AddWithValue("@pTotalRounds", pTotalRounds);
                 command.Parameters.AddWithValue("@pPackageType", pPackageType);
-                command.Parameters.AddWithValue("@pCostPerRound", pCostPerRound);
+                command.Parameters.AddWithValue("@pTotalCost", pTotalCost);
                 int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
@@ -1053,6 +1076,11 @@ namespace Player_Card_System_CIS411
             else
             {
                 Console.WriteLine("Transaction Wipe Failed");
+            }
+            foreach(ResidentInfo res in ResidentInfo)
+            {
+                res.CurrentRounds = 0;
+                res.LastTransDate = " ";
             }
             connection.Close();
             ReadTransaction();
@@ -1190,8 +1218,8 @@ namespace Player_Card_System_CIS411
             else if(dtName == "Golf Rounds")
             {
                 string AddGolfRoundsSQL = "INSERT INTO Golf_Rounds " +
-                          "(Years, TotalRounds, PackageType, CostPerRound) " +
-                          "VALUES (@pYears, @pTotalRounds, @pPackageType, @pCostPerRound)";
+                          "(Years, TotalRounds, PackageType, TotalCost) " +
+                          "VALUES (@pYears, @pTotalRounds, @pPackageType, @pTotalCost)";
                 
                 try
                 {
@@ -1201,7 +1229,7 @@ namespace Player_Card_System_CIS411
                         command.Parameters.AddWithValue("@pYears", row["Years"]);
                         command.Parameters.AddWithValue("@pTotalRounds", row["TotalRounds"]);
                         command.Parameters.AddWithValue("@pPackageType", row["PackageType"]);
-                        command.Parameters.AddWithValue("@pCostPerRound", row["CostPerRound"]);
+                        command.Parameters.AddWithValue("@pTotalCost", row["TotalCost"]);
 
                         int rowsAffected = command.ExecuteNonQuery();
                         if (rowsAffected > 0)
@@ -1257,8 +1285,8 @@ namespace Player_Card_System_CIS411
             }
             else if (dtName == "Transactions")
             {
-                string InsertTransactionSQL = "INSERT INTO Trans_Action (DateTime, TypeTrans, RoundsChanged, TotalRounds, EmailedTo, EmployeeID, ResidentID, Comments) " +
-                              "VALUES (@pDateTime, @pTypeTrans, @pRoundsChanged, @pTotalRounds, @pEmailedTo,  @pEmployeeID, @pResidentID, @pComments)";
+                string InsertTransactionSQL = "INSERT INTO Trans_Action (DateTime, TypeTrans, RoundsChanged, OldBalance, TotalRounds, EmailedTo, EmployeeID, ResidentID, Comments) " +
+                              "VALUES (@pDateTime, @pTypeTrans, @pRoundsChanged, @pOldBalance, @pTotalRounds, @pEmailedTo,  @pEmployeeID, @pResidentID, @pComments)";
                 try
                 {
                     foreach (DataRow row in dt.Rows)
@@ -1267,6 +1295,7 @@ namespace Player_Card_System_CIS411
                         command.Parameters.AddWithValue("@pDateTime", row["Date"]);
                         command.Parameters.AddWithValue("@pTypeTrans", row["Transaction Type"]);
                         command.Parameters.AddWithValue("@pRoundsChanged", row["Rounds Changed"]);
+                        command.Parameters.AddWithValue("@pOldBalance", row["Old Balance"]);
                         command.Parameters.AddWithValue("@pTotalRounds", row["Total Rounds"]);
                         command.Parameters.AddWithValue("@pEmailedTo", row["Emailed"]);                       
                         command.Parameters.AddWithValue("@pEmployeeID", row["Employee ID"]);

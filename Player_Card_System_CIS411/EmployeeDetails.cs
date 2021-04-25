@@ -77,13 +77,39 @@ namespace Player_Card_System_CIS411
             chkIsAdmin.Enabled = false;
             chkIsCurrent.Enabled = false;
 
-            Database.EmployeeInfo[rowIndexHolder].FirstName = txtFirstName.Text;
-            Database.EmployeeInfo[rowIndexHolder].LastName = txtLastName.Text;
-            Database.EmployeeInfo[rowIndexHolder].IsAdmin = chkIsAdmin.Checked;
-            Database.EmployeeInfo[rowIndexHolder].UserName = txtUserName.Text;
-            Database.EmployeeInfo[rowIndexHolder].IsCurrent = chkIsCurrent.Checked;
-            Database.UpdateEmployee(rowIndexHolder);
-            employeeViewer.RefreshDataGridView();
+            bool adminChk = false;
+            int numAdmins = 0;
+            foreach (Employee emp in Database.Employee)
+            {
+                if (emp.IsAdmin && emp.IsCurrent)
+                {
+                    numAdmins++;
+                }
+            }
+            if (numAdmins == 1)
+            {
+                adminChk = false;
+            }
+            else
+            {
+                adminChk = true;
+            }
+
+            if (!adminChk && !chkIsAdmin.Checked && Database.EmployeeInfo[rowIndexHolder].IsAdmin)
+            {
+                MessageBox.Show("This user is the last remaining admin.\nAdd another admin before changing admin status.");
+                chkIsAdmin.Checked = true;
+            }
+            else
+            {               
+                Database.EmployeeInfo[rowIndexHolder].FirstName = txtFirstName.Text;
+                Database.EmployeeInfo[rowIndexHolder].LastName = txtLastName.Text;
+                Database.EmployeeInfo[rowIndexHolder].IsAdmin = chkIsAdmin.Checked;
+                Database.EmployeeInfo[rowIndexHolder].UserName = txtUserName.Text;
+                Database.EmployeeInfo[rowIndexHolder].IsCurrent = chkIsCurrent.Checked;
+                Database.UpdateEmployee(rowIndexHolder);
+                employeeViewer.RefreshDataGridView();
+            }
         }
     }
 }

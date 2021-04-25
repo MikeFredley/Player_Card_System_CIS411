@@ -27,11 +27,11 @@ namespace Player_Card_System_CIS411
                 golfRounds.Year = txtYear.Text;
                 golfRounds.TotalRounds = int.Parse(txtTotalRounds.Text);
                 golfRounds.PackageType = txtPackageType.Text;
-                golfRounds.CostPerRound = Convert.ToDecimal(txtCostPerRound.Text);
+                golfRounds.TotalCost = Convert.ToDecimal(txtTotalCost.Text);
 
                 if (Database.AddGolfRounds(golfRounds))
                 {
-                    MessageBox.Show("Golf Rounds Added!");
+                  //  MessageBox.Show("Golf Rounds Added!");
                     viewRounds.RefreshDataGridView();
                     this.Close();
                 }

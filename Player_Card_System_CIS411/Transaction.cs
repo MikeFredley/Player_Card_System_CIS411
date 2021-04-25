@@ -17,6 +17,11 @@ namespace Player_Card_System_CIS411
         private int employeeID;
         private int residentID;
         private int roundsChanged;
+        private int oldBalanace;
+        private string empFirstName;
+        private string empLastName;
+        private string resFirstName;
+        private string resLastName;
 
         public Transaction()
         {
@@ -29,9 +34,14 @@ namespace Player_Card_System_CIS411
             employeeID = 0;
             residentID = 0;
             roundsChanged = 0;
+            oldBalanace = 0;
+            empFirstName = "";
+            empLastName = "";
+            resFirstName = "";
+            resLastName = "";
         }
 
-        public Transaction(string pTypeTrans,int pRoundsChanged, int pTotalRounds, string pEmailedTo, int pEmployeeID, int pResidentID, string pComments)
+        public Transaction(string pTypeTrans,int pRoundsChanged, int pOldBalance, int pTotalRounds, string pEmailedTo, int pEmployeeID, int pResidentID, string pComments)
         {
            // dateTime =DateTime.Now
             typeTrans = pTypeTrans;
@@ -41,6 +51,7 @@ namespace Player_Card_System_CIS411
             employeeID = pEmployeeID;
             residentID = pResidentID;
             roundsChanged = pRoundsChanged;
+            oldBalanace = pOldBalance;
         }
 
         public int TransNo { get => transNo; set => transNo = value; }
@@ -52,6 +63,10 @@ namespace Player_Card_System_CIS411
         public string EmailedTo { get => emailedTo; set => emailedTo = value; }
         public int EmployeeID { get => employeeID; set => employeeID = value; }
         public int ResidentID { get => residentID; set => residentID = value; }
-
+        public int OldBalance { get => oldBalanace; set => oldBalanace = value; }
+        public string EmpFirstName { get => empFirstName; set => empFirstName = value; }
+        public string EmpLastName { get => empLastName; set => empLastName = value; }
+        public string ResFirstName { get => resFirstName; set => resFirstName = value; }
+        public string ResLastName { get => resLastName; set => resLastName = value; }
     }
 }

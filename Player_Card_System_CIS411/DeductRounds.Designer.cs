@@ -120,7 +120,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(306, 180);
+            this.ClientSize = new System.Drawing.Size(291, 177);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.txtNumRounds);
             this.Controls.Add(this.btnSubmit);
@@ -129,6 +129,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblCurrenRounds);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "DeductRounds";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Deduct Rounds";

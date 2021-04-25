@@ -59,6 +59,8 @@
             this.ClientSize = new System.Drawing.Size(663, 274);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.dgvAddRounds);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "AddRounds";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Rounds";

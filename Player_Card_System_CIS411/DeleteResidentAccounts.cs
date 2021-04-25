@@ -21,39 +21,44 @@ namespace Player_Card_System_CIS411
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            List<ResidentInfo> resToDelete = new List<ResidentInfo>();
-            if (txtGetDate.Text != "")
+            DialogResult dialog = MessageBox.Show("This can potentially delete a large portion of resident accounts.\nIt is recommended to take a full backup before clicking 'Yes'.", "Warning", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
             {
-                foreach (ResidentInfo res in Database.ResidentInfo)
+                List<ResidentInfo> resToDelete = new List<ResidentInfo>();
+                if (txtGetDate.Text != "")
                 {
-                    if (res.LastTransDate != "")
+                    foreach (ResidentInfo res in Database.ResidentInfo)
                     {
-                        DateTime resTransDate = Convert.ToDateTime(res.LastTransDate);
-                        DateTime enteredDate = Convert.ToDateTime(txtGetDate.Text);
-                        if (resTransDate > enteredDate)
+                        if (res.LastTransDate != "")
                         {
+                            DateTime resTransDate = Convert.ToDateTime(res.LastTransDate);
+                            DateTime enteredDate = Convert.ToDateTime(txtGetDate.Text);
+                            if (resTransDate > enteredDate)
+                            {
 
-                        }
-                        else
-                        {
-                            resToDelete.Add(res);
+                            }
+                            else
+                            {
+                                resToDelete.Add(res);
+                            }
                         }
                     }
-                }
-                int count = resToDelete.Count;
-                if (count != 0)
-                {
-                    Database.DeleteResidentAccounts(resToDelete);
-                    MessageBox.Show(count + " Residents Deleted!");
+                    int count = resToDelete.Count;
+                    if (count != 0)
+                    {
+                        Database.DeleteResidentAccounts(resToDelete);
+                        MessageBox.Show(count + " Residents Deleted!");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Residents Deleted!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No Residents Deleted!");
+                    MessageBox.Show("Enter a date.");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Enter a date.");
             }
         }
 

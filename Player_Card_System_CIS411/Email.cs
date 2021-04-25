@@ -17,7 +17,7 @@ namespace Player_Card_System_CIS411
         private static string body;
         static Email()
         {
-
+            
         }
 
         internal static void SetUserEmail(string pUserEmail)
@@ -29,8 +29,7 @@ namespace Player_Card_System_CIS411
         {
             userEmail = pUserEmail;
             subject = "Transaction History";
-            body = "Transaction History\n";
-            string.Format("<b>" + body + "</b>");
+            body = "<b>Transaction History</b><br><br>";
 
             AppendTransactions(transactions);
 
@@ -39,21 +38,55 @@ namespace Player_Card_System_CIS411
 
         internal static void EmailTransactionHistory(List<Transaction> transactions)
         {
-            body += "\n\n\nTransaction History\n";
+            body += "<br><br><b>Transaction History</b><br><br>";
 
             AppendTransactions(transactions);
         }
 
         private static void AppendTransactions(List<Transaction> transactions)
         {
+           // var columnHeader = string.Format($"{"Date",40}{"Transaction Type",45}{"Rounds Changed",20}{"Old Balance",20}{"New Balance",21}{"Reason",20}");
+        
+            string columnHeader = "<table style='border: 1px solid black'>" +
+                                    "<tr>" +
+                                       "<th>Date</th>" +
+                                       "<th>Transaction Type</th>" +
+                                       "<th>Rounds Changed</th>" +
+                                       "<th>Old Balance</th>" +
+                                       "<th>New Balance</th>" +
+                                       "<th>Reason</th> " +
+                                    "</tr>";
+
+            body += columnHeader;
             for (int i = transactions.Count - 1; i >= 0; i--)
             {
-                body += "\nDate: " + transactions[i].DateTime + "\n"
-                         + "Transaction Type: " + transactions[i].TypeTrans + "\n"
-                         + "Rounds Changed: " + transactions[i].RoundsChanged + "\n"
-                         + "Total Rounds: " + transactions[i].TotalRounds + "\n"
-                         + "Reason: " + transactions[i].Comments + "\n--------------------------------------";
+                string columnData = "<tr>" +
+                                       "<td style='border: 1px solid black; text-align: center'>" + transactions[i].DateTime + "</td>" +
+                                       "<td style='border: 1px solid black; text-align: center'>" + transactions[i].TypeTrans + "</td>" +
+                                       "<td style='border: 1px solid black; text-align: center'>" + transactions[i].RoundsChanged+ "</td>" +
+                                       "<td style='border: 1px solid black; text-align: center'>" + transactions[i].OldBalance + "</td>" +
+                                       "<td style='border: 1px solid black; text-align: center'>" + transactions[i].TotalRounds + "</td>" +
+                                       "<td style='border: 1px solid black; text-align: center'>" + transactions[i].Comments+ "</td> " +
+                                    "</tr>";
+                body += columnData;
+                /* var columnData = string.Format($"{transactions[i].DateTime,40}" +
+                                                 $"{transactions[i].TypeTrans,30}" +
+                                                 $"{transactions[i].RoundsChanged,+30}" +
+                                                 $"{transactions[i].OldBalance,+30}" +
+                                                 $"{transactions[i].TotalRounds,+30}" +
+                                                 $"{transactions[i].Comments,30}");
+
+                 body += "\n" + columnData;*/
+
+                /* body += "\nDate: " + transactions[i].DateTime + ", "
+                          + "Transaction Type: " + transactions[i].TypeTrans + ", "
+                          + "Rounds Changed: " + transactions[i].RoundsChanged + ", "
+                          + "Old Balance: " + transactions[i].OldBalance + ", "
+                          + "New Balance: " + transactions[i].TotalRounds + ", "
+                          + "Reason: " + transactions[i].Comments 
+                          + "\n---------------------------------------------------------------------------------------------------------------------------------------------------"; */
             }
+            body += "</table>";
         }
 
         internal static void SendEmail(Transaction transaction, List<Transaction> resTransactions)
@@ -61,10 +94,11 @@ namespace Player_Card_System_CIS411
             DateTime date = DateTime.Now;
             userEmail = transaction.EmailedTo;
             subject = "New Transaction";
-            body = "A new transaction has occured on your golf account.\n"
-                 + "Amount of Rounds " + transaction.TypeTrans +": " + transaction.RoundsChanged + "\n"
-                 + "New Amount of Rounds: " + transaction.TotalRounds + "\n"
-                 + "Date: " + date + "\n"
+            body = "A new transaction has occurred on your golf account.<br>"
+                 + "Number of Rounds " + transaction.TypeTrans +": " + transaction.RoundsChanged + "<br>"
+                 + "Old Balance of Rounds: " + transaction.OldBalance + "<br>"
+                 + "New Balance of Rounds: " + transaction.TotalRounds + "<br>"
+                 + "Date: " + date + "<br>"
                  + "Reason: " + transaction.Comments;
 
             EmailTransactionHistory(resTransactions);
@@ -78,7 +112,9 @@ namespace Player_Card_System_CIS411
             {
                 MailMessage mailDetails = new MailMessage(Database.OutGoingEmail.EmailAddress, userEmail);
                 mailDetails.Subject = subject;
-                mailDetails.Body = body;
+                mailDetails.IsBodyHtml = true;
+                mailDetails.Body = "<span style=''font-family:Courier;font-size: 10pt;''>&nbsp" + body + "</span>";
+
 
                 SmtpClient clientDetails = new SmtpClient();
                 clientDetails.Host = "smtp.gmail.com";
@@ -88,7 +124,7 @@ namespace Player_Card_System_CIS411
                 clientDetails.EnableSsl = true;
                 clientDetails.Send(mailDetails);
 
-                MessageBox.Show("Email Sent!");
+              //  MessageBox.Show("Email Sent!");
             }
             catch (Exception ex)
             {

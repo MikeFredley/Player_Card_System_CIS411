@@ -27,6 +27,7 @@ namespace Player_Card_System_CIS411
         private void HelpWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             editAccount.OpenWindow = false;
+            editAccount.Visible = true;
         }
     }
 }

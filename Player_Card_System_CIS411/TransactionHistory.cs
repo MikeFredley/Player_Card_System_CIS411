@@ -30,8 +30,9 @@ namespace Player_Card_System_CIS411
             dt = new DataTable();
             dt.Columns.Add(new DataColumn("Date", typeof(DateTime)));
             dt.Columns.Add(new DataColumn("Transaction Type", typeof(string)));
-            dt.Columns.Add(new DataColumn("Rounds Changed", typeof(int)));
-            dt.Columns.Add(new DataColumn("Total Rounds", typeof(int)));
+            dt.Columns.Add(new DataColumn("Transaction Rounds", typeof(int)));
+            dt.Columns.Add(new DataColumn("Old Balance", typeof(int)));
+            dt.Columns.Add(new DataColumn("New Balance", typeof(int)));
             dt.Columns.Add(new DataColumn("Emailed", typeof(string)));
             dt.Columns.Add(new DataColumn("Employee Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Resident Name", typeof(string)));
@@ -46,7 +47,20 @@ namespace Player_Card_System_CIS411
                 }
             }
 
-            foreach (Transaction trans in Database.ResidentTransactions(ID))
+            for (int i = Database.Transaction.Count - 1; i >= 0; i--)
+            {
+                foreach (EmployeeInfo emp in Database.EmployeeInfo)
+                {
+                    if (emp.ID == Database.Transaction[i].EmployeeID && ID == Database.Transaction[i].ResidentID)
+                    {
+                        dt.Rows.Add(Database.Transaction[i].DateTime, Database.Transaction[i].TypeTrans, Database.Transaction[i].RoundsChanged,
+                        Database.Transaction[i].OldBalance, Database.Transaction[i].TotalRounds, Database.Transaction[i].EmailedTo,
+                        emp.FirstName + " " + emp.LastName, residentName, Database.Transaction[i].Comments);
+                    }                   
+                }
+            } 
+
+          /*  foreach (Transaction trans in Database.ResidentTransactions(ID))
             {
                 foreach (EmployeeInfo emp in Database.EmployeeInfo)
                 {
@@ -56,7 +70,7 @@ namespace Player_Card_System_CIS411
                     }
                 }
                 
-            }
+            } */
 
             dgvTransactionHistory.DataSource = dt;
             dgvTransactionHistory.ReadOnly = true;
@@ -72,11 +86,13 @@ namespace Player_Card_System_CIS411
             editAccount.OpenWindow = false;
             editAccount.SetExitButton(true);
             editAccount.SetEditButton(true);
+            editAccount.Visible = true;
         }
 
         private void btnEmail_Click(object sender, EventArgs e)
         {
             Email.EmailTransactionHistory(Database.ResidentTransactions(ID), email);
+            MessageBox.Show("Email Sent!");
         }
     }
 }

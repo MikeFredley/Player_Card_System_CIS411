@@ -14,14 +14,16 @@ namespace Player_Card_System_CIS411
     {
         int newRounds, currentRounds, ID;
         string email;
+        bool noEmail;
         EditAccount editAccount;
-        public AdjustBalance(int pCurrentRounds, int pID, string pEmail, EditAccount pEditAccount)
+        public AdjustBalance(int pCurrentRounds, int pID, string pEmail, bool pNoEmail, EditAccount pEditAccount)
         {
             InitializeComponent();
             lblRounds.Text = pCurrentRounds.ToString();
             currentRounds = pCurrentRounds;
             email = pEmail;
             ID = pID;
+            noEmail = pNoEmail;
             editAccount = pEditAccount;
 
             // Adds each employee name into the combo box for selecting the transaction employee
@@ -98,11 +100,11 @@ namespace Player_Card_System_CIS411
             }
             // Creates a new transaction object then sends it to the database
             // class to be added to the list and the database
-            Transaction newTransaction = new Transaction("Adjusted", int.Parse(txtNumRounds.Value.ToString()), newRounds, email, empID, ID, reason);
+            Transaction newTransaction = new Transaction("Adjusted", int.Parse(txtNumRounds.Value.ToString()), currentRounds, newRounds, email, empID, ID, reason);
             
             // Refreshes to the new values on the details window and the main screen
             editAccount.EditWindowRefresh(ID);
-            if (email != " " || email != "")
+            if (noEmail)
             {
                 Email.SendEmail(newTransaction, Database.ResidentTransactions(ID));
                // Email.RoundsAdjustedEmail(int.Parse(txtNumRounds.Value.ToString()), newRounds, email, txtReason.Text);

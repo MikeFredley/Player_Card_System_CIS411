@@ -35,7 +35,7 @@
             this.txtYear = new System.Windows.Forms.TextBox();
             this.txtTotalRounds = new System.Windows.Forms.TextBox();
             this.txtPackageType = new System.Windows.Forms.TextBox();
-            this.txtCostPerRound = new System.Windows.Forms.TextBox();
+            this.txtTotalCost = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -63,18 +63,18 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 81);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.Size = new System.Drawing.Size(84, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Package Type:";
+            this.label3.Text = "Package Name:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 117);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 13);
+            this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Cost Per Round:";
+            this.label4.Text = "Total Cost:";
             // 
             // txtYear
             // 
@@ -98,12 +98,12 @@
             this.txtPackageType.Size = new System.Drawing.Size(100, 20);
             this.txtPackageType.TabIndex = 6;
             // 
-            // txtCostPerRound
+            // txtTotalCost
             // 
-            this.txtCostPerRound.Location = new System.Drawing.Point(103, 114);
-            this.txtCostPerRound.Name = "txtCostPerRound";
-            this.txtCostPerRound.Size = new System.Drawing.Size(100, 20);
-            this.txtCostPerRound.TabIndex = 7;
+            this.txtTotalCost.Location = new System.Drawing.Point(103, 114);
+            this.txtTotalCost.Name = "txtTotalCost";
+            this.txtTotalCost.Size = new System.Drawing.Size(100, 20);
+            this.txtTotalCost.TabIndex = 7;
             // 
             // btnAdd
             // 
@@ -132,7 +132,7 @@
             this.ClientSize = new System.Drawing.Size(223, 191);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.txtCostPerRound);
+            this.Controls.Add(this.txtTotalCost);
             this.Controls.Add(this.txtPackageType);
             this.Controls.Add(this.txtTotalRounds);
             this.Controls.Add(this.txtYear);
@@ -140,6 +140,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "AddNewDeals";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddNewDeals";
@@ -158,7 +160,7 @@
         private System.Windows.Forms.TextBox txtYear;
         private System.Windows.Forms.TextBox txtTotalRounds;
         private System.Windows.Forms.TextBox txtPackageType;
-        private System.Windows.Forms.TextBox txtCostPerRound;
+        private System.Windows.Forms.TextBox txtTotalCost;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnExit;
     }

@@ -82,6 +82,8 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.txtGetDate);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "DeleteResidentAccounts";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Delete Resident Accounts";

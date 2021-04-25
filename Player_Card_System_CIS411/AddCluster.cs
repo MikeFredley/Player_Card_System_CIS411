@@ -26,18 +26,29 @@ namespace Player_Card_System_CIS411
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            bool clusterCheck = false;
             if (txtAddCluster.Text != "")
             {
-                if(Database.AddCluster(txtAddCluster.Text, false))
+                foreach (Clusters cluster in Database.Clusters)
                 {
-                    MessageBox.Show("Cluster Added!");
+                    if(cluster.ClusterName == txtAddCluster.Text)
+                    {
+                        Database.UpdateClusters(cluster.ClusterName, false);
+                        manageClusters.InitializeDataGridView();
+                        MessageBox.Show("Cluster Added!");
+                        clusterCheck = true;
+                        this.Close();
+                        break;
+                    }
+                }
+
+                if (!clusterCheck)
+                {
+                    Database.AddCluster(txtAddCluster.Text, false);
                     manageClusters.InitializeDataGridView();
+                    MessageBox.Show("Cluster Added!");
                     this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Failed to add cluster");
-                }
+                }                
             }
             else
             {

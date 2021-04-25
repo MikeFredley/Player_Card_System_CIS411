@@ -32,7 +32,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.btnReAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClusters)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,13 +40,13 @@
             this.dgvClusters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvClusters.Location = new System.Drawing.Point(12, 12);
             this.dgvClusters.Name = "dgvClusters";
-            this.dgvClusters.Size = new System.Drawing.Size(263, 319);
+            this.dgvClusters.Size = new System.Drawing.Size(160, 319);
             this.dgvClusters.TabIndex = 0;
             this.dgvClusters.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClusters_CellClick);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(56, 340);
+            this.btnAdd.Location = new System.Drawing.Point(48, 340);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(88, 23);
             this.btnAdd.TabIndex = 1;
@@ -57,7 +56,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(150, 340);
+            this.btnDelete.Location = new System.Drawing.Point(48, 369);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(88, 23);
             this.btnDelete.TabIndex = 2;
@@ -67,7 +66,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(150, 369);
+            this.btnExit.Location = new System.Drawing.Point(48, 400);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(88, 23);
             this.btnExit.TabIndex = 3;
@@ -75,26 +74,17 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // btnReAdd
-            // 
-            this.btnReAdd.Location = new System.Drawing.Point(56, 369);
-            this.btnReAdd.Name = "btnReAdd";
-            this.btnReAdd.Size = new System.Drawing.Size(88, 23);
-            this.btnReAdd.TabIndex = 4;
-            this.btnReAdd.Text = "Re-Add Cluster";
-            this.btnReAdd.UseVisualStyleBackColor = true;
-            this.btnReAdd.Click += new System.EventHandler(this.btnReAdd_Click);
-            // 
             // ManageClusters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(290, 404);
-            this.Controls.Add(this.btnReAdd);
+            this.ClientSize = new System.Drawing.Size(186, 432);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dgvClusters);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ManageClusters";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Clusters";
@@ -110,6 +100,5 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button btnReAdd;
     }
 }

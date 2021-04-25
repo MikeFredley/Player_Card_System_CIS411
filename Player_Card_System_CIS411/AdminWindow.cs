@@ -34,6 +34,8 @@ namespace Player_Card_System_CIS411
             {
                 openWindow = true;
                 employeeWindow.OpenWindow = false;
+                employeeWindow.RefreshDataTable();
+                employeeWindow.Visible = true;
             }
             else
             {
@@ -48,6 +50,7 @@ namespace Player_Card_System_CIS411
                 openWindow = true;
                 EmployeeViewer employeeViewer = new EmployeeViewer(this);
                 employeeViewer.Show();
+                this.Visible = false;
             }
             else
             {
@@ -105,6 +108,7 @@ namespace Player_Card_System_CIS411
                 openWindow = true;
                 ViewGolfRounds viewRounds = new ViewGolfRounds(this);
                 viewRounds.Show();
+                this.Visible = false;
             }
             else
             {
@@ -118,6 +122,7 @@ namespace Player_Card_System_CIS411
             if (!openWindow)
             {
                 ImportInfo import = new ImportInfo();
+                employeeWindow.RefreshDataTable();
             }
             else
             {
@@ -134,6 +139,8 @@ namespace Player_Card_System_CIS411
                 if (dialog == DialogResult.Yes)
                 {
                     Database.WipeTransactions();
+                    employeeWindow.RefreshDataTable();
+                    MessageBox.Show("Transactions Wiped!");
                 }
 
             }
@@ -175,6 +182,7 @@ namespace Player_Card_System_CIS411
                 openWindow = true;
                 ManageClusters manage = new ManageClusters(this);
                 manage.Show();
+                this.Visible = false;
             }
         }
     }

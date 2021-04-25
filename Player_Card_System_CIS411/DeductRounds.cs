@@ -14,6 +14,7 @@ namespace Player_Card_System_CIS411
     {
         int resIndex;
         int newRounds;
+        int currentRounds;
         Transaction newTransaction;
         EmployeeWindow employeeWindow;
         public DeductRounds(int pID, EmployeeWindow pEmployeeWindow)
@@ -26,6 +27,7 @@ namespace Player_Card_System_CIS411
                 if (Database.ResidentInfo[i].ID == pID)
                 {
                     lblCurrenRounds.Text = Database.ResidentInfo[i].CurrentRounds + "";
+                    currentRounds = Database.ResidentInfo[i].CurrentRounds;
                     resIndex = i;
                 }
             }          
@@ -94,9 +96,9 @@ namespace Player_Card_System_CIS411
             }
 
 
-            newTransaction = new Transaction("Used", int.Parse(txtNumRounds.Value.ToString()), newRounds, email, empID, Database.ResidentInfo[resIndex].ID, " ");
+            newTransaction = new Transaction("Used", int.Parse(txtNumRounds.Value.ToString()), currentRounds, newRounds, email, empID, Database.ResidentInfo[resIndex].ID, " ");
 
-            if (email != "" || email != " ")
+            if (Database.ResidentInfo[resIndex].NoEmail)
             {
                 Email.SendEmail(newTransaction, Database.ResidentTransactions(Database.ResidentInfo[resIndex].ID));
             }

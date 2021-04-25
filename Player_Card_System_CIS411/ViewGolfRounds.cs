@@ -33,7 +33,7 @@ namespace Player_Card_System_CIS411
             dt = new DataTable();
             dt.Columns.Add(new DataColumn("Year", typeof(string)));
             dt.Columns.Add(new DataColumn("Total Rounds", typeof(int)));
-            dt.Columns.Add(new DataColumn("Package Type", typeof(string)));
+            dt.Columns.Add(new DataColumn("Package Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Cost Per Round", typeof(decimal)));
             dt.Columns.Add(new DataColumn("Total Cost", typeof(decimal)));
 
@@ -50,14 +50,14 @@ namespace Player_Card_System_CIS411
                 if (round.Year == dgvViewRounds.Rows[rowIndex].Cells[0].Value.ToString() &&
                     round.TotalRounds == int.Parse(dgvViewRounds.Rows[rowIndex].Cells[1].Value.ToString()) &&
                     round.PackageType == dgvViewRounds.Rows[rowIndex].Cells[2].Value.ToString() &&
-                    round.CostPerRound == Convert.ToDecimal(dgvViewRounds.Rows[rowIndex].Cells[3].Value.ToString()))
+                    round.TotalCost == Convert.ToDecimal(dgvViewRounds.Rows[rowIndex].Cells[4].Value.ToString()))
                 {
-                    Database.DeleteGolfRounds(round.Year, round.TotalRounds, round.PackageType, round.CostPerRound);
+                    Database.DeleteGolfRounds(round.Year, round.TotalRounds, round.PackageType, round.TotalCost);
                     break;
                 }
             }
             RefreshDataGridView();
-            MessageBox.Show("Golf Rounds Deleted");
+          //  MessageBox.Show("Golf Rounds Deleted");
         }
 
         private void dgvViewRounds_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -70,8 +70,8 @@ namespace Player_Card_System_CIS411
             dt.Clear();
             for (int i = 0; i < Database.GolfRounds.Count; i++)
             {
-                decimal totalCost = Database.GolfRounds[i].TotalRounds * Database.GolfRounds[i].CostPerRound;
-                dt.Rows.Add(Database.GolfRounds[i].Year, Database.GolfRounds[i].TotalRounds, Database.GolfRounds[i].PackageType, Database.GolfRounds[i].CostPerRound, totalCost);
+                decimal costPerRound = Database.GolfRounds[i].TotalCost / Database.GolfRounds[i].TotalRounds;
+                dt.Rows.Add(Database.GolfRounds[i].Year, Database.GolfRounds[i].TotalRounds, Database.GolfRounds[i].PackageType, costPerRound, Database.GolfRounds[i].TotalCost);
             }
         }
 
@@ -96,6 +96,7 @@ namespace Player_Card_System_CIS411
             if (!openWindow)
             {
                 adminWindow.OpenWindow = false;
+                adminWindow.Visible = true;
             }
             else
             {
