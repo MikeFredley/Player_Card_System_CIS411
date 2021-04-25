@@ -15,6 +15,8 @@ namespace Player_Card_System_CIS411
     {
         List<string> bookNames;
         List<DataTable> dataTables;
+        
+        string fileName;
         public ExportInfo()
         {
             bookNames = new List<string>();
@@ -22,27 +24,33 @@ namespace Player_Card_System_CIS411
         }
 
         public void ExportTransactions()
-        {           
+        {
+            DateTime date = DateTime.Now;
             dataTables.Clear();
             bookNames.Clear();
-            dataTables.Add(CreateTransactionsDataTable());
+            dataTables.Add(CreateTransactionsDataTable(true));
             bookNames.Add("Transactions");
+            fileName = "Transactions " + date.ToShortDateString();
+
             Export();
         }
 
         public void ExportAccounts()
-        {           
+        {
+            DateTime date = DateTime.Now;
             dataTables.Clear();
             bookNames.Clear();
             dataTables.Add(CreateResidentsDataTable());
             dataTables.Add(CreateEmployeesDataTable());
             bookNames.Add("Residents");
             bookNames.Add("Employees");
+            fileName = "Accounts " + date.ToShortDateString();
             Export();
         }
 
         public void FullBackup()
         {
+            DateTime date = DateTime.Now;
             dataTables.Clear();
             bookNames.Clear();
 
@@ -62,6 +70,8 @@ namespace Player_Card_System_CIS411
             bookNames.Add("Golf Rounds");
             bookNames.Add("Transactions");
 
+            fileName = "Backup " + date.ToShortDateString();
+
             Export();
         }
 
@@ -69,6 +79,7 @@ namespace Player_Card_System_CIS411
         {
             using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx" })
             {
+                sfd.FileName = fileName;
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     try
@@ -158,6 +169,32 @@ namespace Player_Card_System_CIS411
             foreach (Transaction trans in Database.Transaction)
             {
                 dt.Rows.Add(trans.TransNo, trans.DateTime, trans.TypeTrans, trans.RoundsChanged, trans.OldBalance, trans.TotalRounds, trans.EmailedTo, trans.EmployeeID, trans.ResidentID, trans.Comments);
+            }
+            return dt;
+        }
+
+        private DataTable CreateTransactionsDataTable(bool expTrans)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add(new DataColumn("TransNo", typeof(int)));
+            dt.Columns.Add(new DataColumn("Date", typeof(DateTime)));
+            dt.Columns.Add(new DataColumn("Transaction Type", typeof(string)));
+            dt.Columns.Add(new DataColumn("Rounds Changed", typeof(int)));
+            dt.Columns.Add(new DataColumn("Old Balance", typeof(int)));
+            dt.Columns.Add(new DataColumn("Total Rounds", typeof(int)));
+            dt.Columns.Add(new DataColumn("Emailed", typeof(string)));
+            dt.Columns.Add(new DataColumn("Employee ID", typeof(int)));
+            dt.Columns.Add(new DataColumn("Resident ID", typeof(int)));
+            dt.Columns.Add(new DataColumn("Comments", typeof(string)));
+            dt.Columns.Add(new DataColumn("Employee First Name", typeof(string)));
+            dt.Columns.Add(new DataColumn("Employee Last Name", typeof(string)));
+            dt.Columns.Add(new DataColumn("Resident First Name", typeof(string)));
+            dt.Columns.Add(new DataColumn("Resident Last Name", typeof(string)));           
+
+            foreach (Transaction trans in Database.Transaction)
+            {
+                dt.Rows.Add(trans.TransNo, trans.DateTime, trans.TypeTrans, trans.RoundsChanged, trans.OldBalance, trans.TotalRounds, trans.EmailedTo,
+                    trans.EmployeeID, trans.ResidentID, trans.Comments, trans.EmpFirstName, trans.EmpLastName, trans.ResFirstName, trans.ResLastName);
             }
             return dt;
         }

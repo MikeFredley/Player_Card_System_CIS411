@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Player_Card_System_CIS411
 {
@@ -173,152 +175,221 @@ namespace Player_Card_System_CIS411
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string email;
+            string email = " ";
             // If any textbox is empty is throws and error
             if (txtFirstName.Text == "" || txtLastName.Text == "" || cmbCluster.Text == "" || txtUnit.Text == "")
             {
                 MessageBox.Show("Please fill in the required fields");
+                lblFirstName.BackColor = Color.Red;
+                lblLastName.BackColor = Color.Red;
+                lblCluster.BackColor = Color.Red;
+                lblUnitNumber.BackColor = Color.Red;
             }
             else
             {
                 try
                 {
-                    if (CheckClusterBox())
+                    if (!isEdit)
                     {
-                        if (!isEdit)
+                        /*   foreach (ResidentInfo res in Database.ResidentInfo)
+                           {
+                               if (res.FirstName == txtFirstName.Text && res.LastName == txtLastName.Text ||
+                                   res.Email == txtEmail.Text && res.Phone == txtPhone.Text)
+                               {
+                                   DialogResult dialog = MessageBox.Show("There is already an account with similiar information.\nDo you wish to proceed?", "Warning", MessageBoxButtons.YesNo);
+                                   if (dialog == DialogResult.Yes)
+                                   {
+
+                                   }
+                                   else
+                                   {
+                                      // this.Close();
+                                   }
+                               }
+                           } */
+                        // this will prevent the backup/restore stuff from messing up
+                        // later down the road   
+                        if (txtEmail.Text == "" || txtEmail.Text == " ")
                         {
-                         /*   foreach (ResidentInfo res in Database.ResidentInfo)
-                            {
-                                if (res.FirstName == txtFirstName.Text && res.LastName == txtLastName.Text ||
-                                    res.Email == txtEmail.Text && res.Phone == txtPhone.Text)
-                                {
-                                    DialogResult dialog = MessageBox.Show("There is already an account with similiar information.\nDo you wish to proceed?", "Warning", MessageBoxButtons.YesNo);
-                                    if (dialog == DialogResult.Yes)
-                                    {
-
-                                    }
-                                    else
-                                    {
-                                       // this.Close();
-                                    }
-                                }
-                            } */
-                            // this will prevent the backup/restore stuff from messing up
-                            // later down the road   
-                            if (txtEmail.Text == "")
-                            {
-                                email = " ";
-                                chkEmails.Checked = false;
-                            }
-                            else
-                            {
-                                email = txtEmail.Text;
-                            }
-                            // If youre adding a resident with the addperson button it runs this code
-                            ResidentInfo newResident = new ResidentInfo();
-                            newResident.FirstName = txtFirstName.Text;
-                            newResident.LastName = txtLastName.Text;
-                            newResident.ClusterName = cmbCluster.Text;
-                            newResident.UnitNumber = int.Parse(txtUnit.Text);
-                            newResident.Email = email;
-                            newResident.Phone = txtPhone.Text;
-                            newResident.CommentBox = txtComments.Text;
-                            newResident.NoEmail = chkEmails.Checked;
-                            int ID = Database.AddResident(newResident);
-                            this.EditWindowRefresh(ID);
-                            isEdit = true;
-
-                            txtID.Visible = true;
-                            lblID.Visible = true;
-                            txtLastTransDate.Visible = true;
-                            lblLastTrans.Visible = true;
-                            lblCurrentBalance.Visible = true;
-                            lblAuthorizedUsers.Visible = true;
-                            dgvAuthorizedUsers.Visible = true;
-                            btnTransHistory.Visible = true;
-                            this.Text = "Account Details";
-                            InitializeDataGridView();
+                            email = " ";
+                            chkEmails.Checked = false;
+                            AddResident(email);
+                            ChangeButtonsAndBoxes();
                         }
                         else
                         {
-                            // this will prevent the backup/restore stuff from messing up
-                            // later down the road
-                            if (txtEmail.Text == "")
+                            if (IsValidEmail(txtEmail.Text))
                             {
-                                email = " ";
-                                chkEmails.Checked = false;
+                                email = txtEmail.Text;
+                                AddResident(email);
+                                ChangeButtonsAndBoxes();
                             }
                             else
                             {
-                                email = txtEmail.Text;
+                                MessageBox.Show("Email is not a valid email address.");
+                                txtEmail.Text = "";
                             }
-                            // If its the edit window then it calls the method to update the tables
-                            // instead of adding to them
-                            Database.ResidentInfo[rowIndexHolder].FirstName = txtFirstName.Text;
-                            Database.ResidentInfo[rowIndexHolder].LastName = txtLastName.Text;
-                            Database.ResidentInfo[rowIndexHolder].ClusterName = cmbCluster.Text;
-                            Database.ResidentInfo[rowIndexHolder].UnitNumber = int.Parse(txtUnit.Text);
-                            Database.ResidentInfo[rowIndexHolder].Email = email;
-                            Database.ResidentInfo[rowIndexHolder].Phone = txtPhone.Text;
-                            Database.ResidentInfo[rowIndexHolder].CommentBox = txtComments.Text;
-                            Database.ResidentInfo[rowIndexHolder].NoEmail = chkEmails.Checked;
-                            Database.UpdateResidentPersonTable(rowIndexHolder);
-                            employeeWindow.RefreshDataTable();
-                            
                         }
 
-                        // Disables you from being able to edit stuff in the textboxes
-                        //  txtID.ReadOnly = true;
-
-                        btnAdjustBalance.Visible = true;
-                        btnAddUser.Visible = true;
-                        btnRemoveUser.Visible = true;
-                        btnAddRounds.Visible = true;
-                        btnDeleteAccount.Visible = true;
-                        btnTransHistory.Visible = true;
-                        btnCancel.Visible = false;
-
-                        txtFirstName.ReadOnly = true;
-                        txtLastName.ReadOnly = true;
-                        cmbCluster.Enabled = false;
-                        txtUnit.ReadOnly = true;
-                        txtEmail.ReadOnly = true;
-                        txtPhone.ReadOnly = true;
-                        txtComments.ReadOnly = true;
-                        btnEditInfo.Visible = true;
-                        btnSave.Visible = false;
-                        chkEmails.Enabled = false;
-                        openWindow = false;
-                        btnAddRounds.Focus();
                     }
                     else
                     {
-                        MessageBox.Show("Cluster entered is not a valid cluster");
+                        // this will prevent the backup/restore stuff from messing up
+                        // later down the road
+                        if (txtEmail.Text == "" || txtEmail.Text == " ")
+                        {
+                            email = " ";
+                            chkEmails.Checked = false;
+                            UpdateResident(email);
+                            ChangeButtonsAndBoxes();
+                        }
+                        else
+                        {
+                            if (IsValidEmail(txtEmail.Text))
+                            {
+                                email = txtEmail.Text;
+                                UpdateResident(email);
+                                ChangeButtonsAndBoxes();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Email is not a valid email address.");
+                                txtEmail.Text = "";
+                            }
+                        }
+
+
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error With Existing Information");
+                    MessageBox.Show("Error With Required Information");
+                    lblFirstName.BackColor = Color.Red;
+                    lblLastName.BackColor = Color.Red;
+                    lblCluster.BackColor = Color.Red;
+                    lblUnitNumber.BackColor = Color.Red;
                 }
             }
         }
 
-        private bool CheckClusterBox()
+        private void ChangeButtonsAndBoxes()
         {
-            bool check = false;
-            foreach(Clusters cluster in Database.Clusters)
+            // Disables you from being able to edit stuff in the textboxes
+            //  txtID.ReadOnly = true;
+
+            btnAdjustBalance.Visible = true;
+            btnAddUser.Visible = true;
+            btnRemoveUser.Visible = true;
+            btnAddRounds.Visible = true;
+            btnDeleteAccount.Visible = true;
+            btnTransHistory.Visible = true;
+            btnCancel.Visible = false;
+
+            lblFirstName.BackColor = Color.Transparent;
+            lblLastName.BackColor = Color.Transparent;
+            lblCluster.BackColor = Color.Transparent;
+            lblUnitNumber.BackColor = Color.Transparent;
+
+            txtFirstName.ReadOnly = true;
+            txtLastName.ReadOnly = true;
+            cmbCluster.Enabled = false;
+            txtUnit.ReadOnly = true;
+            txtEmail.ReadOnly = true;
+            txtPhone.ReadOnly = true;
+            txtComments.ReadOnly = true;
+            btnEditInfo.Visible = true;
+            btnSave.Visible = false;
+            chkEmails.Enabled = false;
+            openWindow = false;
+            btnAddRounds.Focus();
+        }
+
+        private void UpdateResident(string email)
+        {
+            // If its the edit window then it calls the method to update the tables
+            // instead of adding to them
+            Database.ResidentInfo[rowIndexHolder].FirstName = txtFirstName.Text;
+            Database.ResidentInfo[rowIndexHolder].LastName = txtLastName.Text;
+            Database.ResidentInfo[rowIndexHolder].ClusterName = cmbCluster.Text;
+            Database.ResidentInfo[rowIndexHolder].UnitNumber = int.Parse(txtUnit.Text);
+            Database.ResidentInfo[rowIndexHolder].Email = email;
+            Database.ResidentInfo[rowIndexHolder].Phone = txtPhone.Text;
+            Database.ResidentInfo[rowIndexHolder].CommentBox = txtComments.Text;
+            Database.ResidentInfo[rowIndexHolder].NoEmail = chkEmails.Checked;
+            Database.UpdateResidentPersonTable(rowIndexHolder);
+            employeeWindow.RefreshDataTable();
+        }
+
+        private void AddResident(string email)
+        {
+            // If youre adding a resident with the addperson button it runs this code
+            ResidentInfo newResident = new ResidentInfo();
+            newResident.FirstName = txtFirstName.Text;
+            newResident.LastName = txtLastName.Text;
+            newResident.ClusterName = cmbCluster.Text;
+            newResident.UnitNumber = int.Parse(txtUnit.Text);
+            newResident.Email = email;
+            newResident.Phone = txtPhone.Text;
+            newResident.CommentBox = txtComments.Text;
+            newResident.NoEmail = chkEmails.Checked;
+            int ID = Database.AddResident(newResident);
+            this.EditWindowRefresh(ID);
+            isEdit = true;
+
+            txtID.Visible = true;
+            lblID.Visible = true;
+            txtLastTransDate.Visible = true;
+            lblLastTrans.Visible = true;
+            lblCurrentBalance.Visible = true;
+            lblAuthorizedUsers.Visible = true;
+            dgvAuthorizedUsers.Visible = true;
+            btnTransHistory.Visible = true;
+            this.Text = "Account Details";
+            InitializeDataGridView();
+        }
+
+        // I'll be 100% honest, I found this online
+        // https://docs.microsoft.com/en-us/dotnet/standard/base-types/how-to-verify-that-strings-are-in-valid-email-format
+        // Click the link if you want to know more about it
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
             {
-                if (cmbCluster.Text == cluster.ClusterName)
+                // Normalize the domain
+                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper, RegexOptions.None, TimeSpan.FromMilliseconds(200));
+
+                // Examines the domain part of the email and normalizes it
+                string DomainMapper(Match match)
                 {
-                    check = true;
-                    break;
-                }
-                else
-                {
-                    check = false;
+                    // Use IdnMapping class to convert Unicode domain names.
+                    var idn = new IdnMapping();
+
+                    // Pull out and process domain name (throws ArguementException on invalid)
+                    string domainName = idn.GetAscii(match.Groups[2].Value);
+
+                    return match.Groups[1].Value + domainName;
                 }
             }
-            return check;
+            catch(RegexMatchTimeoutException e)
+            {
+                return false;
+            }
+            catch(ArgumentException e)
+            {
+                return false;
+            }
+
+            try
+            {
+                return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch (RegexMatchTimeoutException e)
+            {
+                return false;
+            }
         }
         // If the person chooses to be emailed then it will use their email in the transaction for adding rounds
         private string IsEmail()
@@ -432,7 +503,7 @@ namespace Player_Card_System_CIS411
                         }
                     }
                     RefreshDataGridView();
-                    MessageBox.Show("Authorized User Deleted");
+                  //  MessageBox.Show("Authorized User Deleted");
                 }
             }
         }
@@ -462,6 +533,7 @@ namespace Player_Card_System_CIS411
                 openWindow = true;
                 HelpWindow help = new HelpWindow(this);
                 help.Show();
+                this.Visible = false;
             }
         }
 

@@ -50,7 +50,7 @@ namespace Player_Card_System_CIS411
             dt = new DataTable();
             dt.Columns.Add(new DataColumn("Year", typeof(string)));
             dt.Columns.Add(new DataColumn("Total Rounds", typeof(int)));
-            dt.Columns.Add(new DataColumn("Package Type", typeof(string)));
+            dt.Columns.Add(new DataColumn("Package Name", typeof(string)));
             dt.Columns.Add(new DataColumn("Cost Per Round", typeof(decimal)));
             dt.Columns.Add(new DataColumn("Total Cost", typeof(decimal)));
 

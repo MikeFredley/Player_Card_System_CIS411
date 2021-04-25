@@ -33,10 +33,10 @@
             this.btnEditInfo = new System.Windows.Forms.Button();
             this.btnAddRounds = new System.Windows.Forms.Button();
             this.lblCurrentBalance = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblFirstName = new System.Windows.Forms.Label();
+            this.lblLastName = new System.Windows.Forms.Label();
+            this.lblCluster = new System.Windows.Forms.Label();
+            this.lblUnitNumber = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
@@ -112,59 +112,59 @@
             this.lblCurrentBalance.TabIndex = 6;
             this.lblCurrentBalance.Text = "Current Rounds: 000";
             // 
-            // label5
+            // lblFirstName
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 79);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "First Name:";
+            this.lblFirstName.AutoSize = true;
+            this.lblFirstName.Location = new System.Drawing.Point(12, 79);
+            this.lblFirstName.Name = "lblFirstName";
+            this.lblFirstName.Size = new System.Drawing.Size(60, 13);
+            this.lblFirstName.TabIndex = 8;
+            this.lblFirstName.Text = "First Name:";
             // 
-            // label6
+            // lblLastName
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 113);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Last Name:";
+            this.lblLastName.AutoSize = true;
+            this.lblLastName.Location = new System.Drawing.Point(12, 113);
+            this.lblLastName.Name = "lblLastName";
+            this.lblLastName.Size = new System.Drawing.Size(61, 13);
+            this.lblLastName.TabIndex = 9;
+            this.lblLastName.Text = "Last Name:";
             // 
-            // label7
+            // lblCluster
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 147);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Cluster:";
+            this.lblCluster.AutoSize = true;
+            this.lblCluster.Location = new System.Drawing.Point(12, 147);
+            this.lblCluster.Name = "lblCluster";
+            this.lblCluster.Size = new System.Drawing.Size(42, 13);
+            this.lblCluster.TabIndex = 10;
+            this.lblCluster.Text = "Cluster:";
             // 
-            // label8
+            // lblUnitNumber
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 181);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(29, 13);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "Unit:";
+            this.lblUnitNumber.AutoSize = true;
+            this.lblUnitNumber.Location = new System.Drawing.Point(12, 181);
+            this.lblUnitNumber.Name = "lblUnitNumber";
+            this.lblUnitNumber.Size = new System.Drawing.Size(69, 13);
+            this.lblUnitNumber.TabIndex = 11;
+            this.lblUnitNumber.Text = "Unit Number:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(13, 216);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.Size = new System.Drawing.Size(76, 13);
             this.label9.TabIndex = 12;
-            this.label9.Text = "Email:";
+            this.label9.Text = "Email Address:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(12, 250);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.Size = new System.Drawing.Size(81, 13);
             this.label10.TabIndex = 13;
-            this.label10.Text = "Phone:";
+            this.label10.Text = "Phone Number:";
             // 
             // lblID
             // 
@@ -416,10 +416,10 @@
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblUnitNumber);
+            this.Controls.Add(this.lblCluster);
+            this.Controls.Add(this.lblLastName);
+            this.Controls.Add(this.lblFirstName);
             this.Controls.Add(this.lblCurrentBalance);
             this.Controls.Add(this.btnAddRounds);
             this.Controls.Add(this.btnEditInfo);
@@ -446,10 +446,10 @@
         private System.Windows.Forms.Button btnEditInfo;
         private System.Windows.Forms.Button btnAddRounds;
         private System.Windows.Forms.Label lblCurrentBalance;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblFirstName;
+        private System.Windows.Forms.Label lblLastName;
+        private System.Windows.Forms.Label lblCluster;
+        private System.Windows.Forms.Label lblUnitNumber;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblID;

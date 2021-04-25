@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace Player_Card_System_CIS411
 {
@@ -29,7 +30,21 @@ namespace Player_Card_System_CIS411
         static Database()
         {
             //connectionString = Properties.Settings.Default.OceanVillagePlayerCardConnectionString;
-            connectionString = Properties.Settings.Default.OceanVillagePlayerCardConnectionString1;
+            try
+            {
+                connectionString = Properties.Settings.Default.OceanVillagePlayerCardConnectionString1;
+                connection = new SqlConnection(connectionString);
+                connection.Open();
+                connection.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Could not make connection to the database: " + ex.Message + "\n\nCheck your connection string.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not make connection to the database: " + ex.Message + "\n\nCheck your connection string.");
+            }
             person = new List<Person>();
             resident = new List<Resident>();
             transaction = new List<Transaction>();
@@ -42,9 +57,7 @@ namespace Player_Card_System_CIS411
             outGoingEmail = new OutGoingEmail();
             residentTransactions = new List<Transaction>();
             try
-            {
-                connection = new SqlConnection(connectionString);
-
+            {              
                 ReadOutGoingEmail();
                 ReadPerson();
                 ReadResident();
@@ -282,7 +295,11 @@ namespace Player_Card_System_CIS411
         {
             transaction.Clear();
             connection.Open();
-            string GetTransactionSQL = "SELECT TransNo, DateTime, TypeTrans, RoundsChanged, OldBalance, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID FROM Trans_Action";
+            string GetTransactionSQL = "SELECT TransNo, DateTime, TypeTrans, RoundsChanged, OldBalance, TotalRounds, Comments, EmailedTo, EmployeeID, ResidentID," +
+                " E.FirstName as EmpFirstName, E.LastName as EmpLastName, R.FirstName as ResFirstName, R.LastName as ResLastName" +
+                " FROM Trans_Action TA" +
+                " INNER JOIN PERSON E on TA.EmployeeID = E.ID" +
+                " INNER JOIN PERSON R on R.ID = TA.ResidentID";
             command = new SqlCommand(GetTransactionSQL, connection);
 
             SqlDataReader transactionReader = command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -300,6 +317,10 @@ namespace Player_Card_System_CIS411
                 tempTransaction.EmailedTo = transactionReader["EmailedTo"].ToString();
                 tempTransaction.EmployeeID = int.Parse(transactionReader["EmployeeID"].ToString());
                 tempTransaction.ResidentID = int.Parse(transactionReader["ResidentID"].ToString());
+                tempTransaction.EmpFirstName = transactionReader["EmpFirstName"].ToString();
+                tempTransaction.EmpLastName = transactionReader["EmpLastName"].ToString();
+                tempTransaction.ResFirstName = transactionReader["ResFirstName"].ToString();
+                tempTransaction.ResLastName = transactionReader["ResLastName"].ToString();
                 transaction.Add(tempTransaction);
 
                 tempTransaction = null;
@@ -919,6 +940,9 @@ namespace Player_Card_System_CIS411
                 Console.WriteLine("Could Not Update Person Data " + ex.Message);
             }
             connection.Close();
+            ReadPerson();
+            ReadEmployee();
+            CreateEmployeeInfo();
         }
 
         internal static void ChangePassword(int empIndex, string newPassword)

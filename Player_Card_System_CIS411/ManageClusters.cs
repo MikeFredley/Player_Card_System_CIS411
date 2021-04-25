@@ -74,6 +74,7 @@ namespace Player_Card_System_CIS411
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            InitializeDataGridView();
             AddCluster add = new AddCluster(this);
             add.Show();
         }

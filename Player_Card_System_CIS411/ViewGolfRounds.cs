@@ -57,7 +57,7 @@ namespace Player_Card_System_CIS411
                 }
             }
             RefreshDataGridView();
-            MessageBox.Show("Golf Rounds Deleted");
+          //  MessageBox.Show("Golf Rounds Deleted");
         }
 
         private void dgvViewRounds_CellClick(object sender, DataGridViewCellEventArgs e)

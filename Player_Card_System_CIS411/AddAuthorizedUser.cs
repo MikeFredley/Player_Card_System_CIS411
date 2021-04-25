@@ -40,7 +40,7 @@ namespace Player_Card_System_CIS411
                 newAuthorizedUser.LastName = txtLastName.Text;
                 Database.AddAuthorizedUser(newAuthorizedUser);
                 editAccount.RefreshDataGridView();
-                MessageBox.Show("New Authorized User Added.");
+            //    MessageBox.Show("New Authorized User Added.");
                 this.Close();
             }
 

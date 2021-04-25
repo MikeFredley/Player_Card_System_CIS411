@@ -26,6 +26,7 @@ namespace Player_Card_System_CIS411
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            bool clusterCheck = false;
             if (txtAddCluster.Text != "")
             {
                 foreach (Clusters cluster in Database.Clusters)
@@ -35,18 +36,19 @@ namespace Player_Card_System_CIS411
                         Database.UpdateClusters(cluster.ClusterName, false);
                         manageClusters.InitializeDataGridView();
                         MessageBox.Show("Cluster Added!");
-                        this.Close();
-                        break;
-                    }
-                    else
-                    {
-                        Database.AddCluster(txtAddCluster.Text, false);
-                        manageClusters.InitializeDataGridView();
-                        MessageBox.Show("Cluster Added!");
+                        clusterCheck = true;
                         this.Close();
                         break;
                     }
                 }
+
+                if (!clusterCheck)
+                {
+                    Database.AddCluster(txtAddCluster.Text, false);
+                    manageClusters.InitializeDataGridView();
+                    MessageBox.Show("Cluster Added!");
+                    this.Close();
+                }                
             }
             else
             {
