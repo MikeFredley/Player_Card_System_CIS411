@@ -179,11 +179,7 @@ namespace Player_Card_System_CIS411
             // If any textbox is empty is throws and error
             if (txtFirstName.Text == "" || txtLastName.Text == "" || cmbCluster.Text == "" || txtUnit.Text == "")
             {
-                MessageBox.Show("Please fill in the required fields");
-                lblFirstName.BackColor = Color.Red;
-                lblLastName.BackColor = Color.Red;
-                lblCluster.BackColor = Color.Red;
-                lblUnitNumber.BackColor = Color.Red;
+                MessageBox.Show("Please fill in the required fields.\n\nFirst Name, Last Name, Cluster, Unit Number.");
             }
             else
             {
@@ -191,22 +187,6 @@ namespace Player_Card_System_CIS411
                 {
                     if (!isEdit)
                     {
-                        /*   foreach (ResidentInfo res in Database.ResidentInfo)
-                           {
-                               if (res.FirstName == txtFirstName.Text && res.LastName == txtLastName.Text ||
-                                   res.Email == txtEmail.Text && res.Phone == txtPhone.Text)
-                               {
-                                   DialogResult dialog = MessageBox.Show("There is already an account with similiar information.\nDo you wish to proceed?", "Warning", MessageBoxButtons.YesNo);
-                                   if (dialog == DialogResult.Yes)
-                                   {
-
-                                   }
-                                   else
-                                   {
-                                      // this.Close();
-                                   }
-                               }
-                           } */
                         // this will prevent the backup/restore stuff from messing up
                         // later down the road   
                         if (txtEmail.Text == "" || txtEmail.Text == " ")
@@ -264,10 +244,6 @@ namespace Player_Card_System_CIS411
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error With Required Information");
-                    lblFirstName.BackColor = Color.Red;
-                    lblLastName.BackColor = Color.Red;
-                    lblCluster.BackColor = Color.Red;
-                    lblUnitNumber.BackColor = Color.Red;
                 }
             }
         }
@@ -284,11 +260,6 @@ namespace Player_Card_System_CIS411
             btnDeleteAccount.Visible = true;
             btnTransHistory.Visible = true;
             btnCancel.Visible = false;
-
-            lblFirstName.BackColor = Color.Transparent;
-            lblLastName.BackColor = Color.Transparent;
-            lblCluster.BackColor = Color.Transparent;
-            lblUnitNumber.BackColor = Color.Transparent;
 
             txtFirstName.ReadOnly = true;
             txtLastName.ReadOnly = true;

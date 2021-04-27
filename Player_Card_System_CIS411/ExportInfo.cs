@@ -30,7 +30,7 @@ namespace Player_Card_System_CIS411
             bookNames.Clear();
             dataTables.Add(CreateTransactionsDataTable(true));
             bookNames.Add("Transactions");
-            fileName = "Transactions " + date.ToShortDateString();
+            fileName = "Transactions " + date.ToShortDateString().Replace("/", "-");
 
             Export();
         }
@@ -44,7 +44,7 @@ namespace Player_Card_System_CIS411
             dataTables.Add(CreateEmployeesDataTable());
             bookNames.Add("Residents");
             bookNames.Add("Employees");
-            fileName = "Accounts " + date.ToShortDateString();
+            fileName = "Accounts " + date.ToShortDateString().Replace("/", "-");
             Export();
         }
 
@@ -70,7 +70,7 @@ namespace Player_Card_System_CIS411
             bookNames.Add("Golf Rounds");
             bookNames.Add("Transactions");
 
-            fileName = "Backup " + date.ToShortDateString();
+            fileName = "Backup " + date.ToShortDateString().Replace("/", "-");
 
             Export();
         }
