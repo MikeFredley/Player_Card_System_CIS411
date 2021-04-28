@@ -68,8 +68,11 @@ namespace Player_Card_System_CIS411
 
             dgvAddRounds.DataSource = dt;
             dgvAddRounds.Columns.Add(addRoundsButton);
+            dgvAddRounds.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvAddRounds.Columns[3].DefaultCellStyle.Format = "c";
+            dgvAddRounds.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvAddRounds.Columns[4].DefaultCellStyle.Format = "c";
+            dgvAddRounds.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvAddRounds.ReadOnly = true;
         }
 

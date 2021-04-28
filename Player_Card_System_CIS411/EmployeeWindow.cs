@@ -64,7 +64,7 @@ namespace Player_Card_System_CIS411
             dt.Columns.Add(new DataColumn("Email", typeof(string)));
             dt.Columns.Add(new DataColumn("Phone Number", typeof(string)));
             dt.Columns.Add(new DataColumn("Current Rounds", typeof(string)));
-            dt.Columns.Add(new DataColumn("Last Transaction", typeof(string)));
+            dt.Columns.Add(new DataColumn("Last Transaction", typeof(DateTime)));
 
             DataGridViewButtonColumn deductRoundButton = new DataGridViewButtonColumn();
             deductRoundButton.HeaderText = "Deduct Rounds";
