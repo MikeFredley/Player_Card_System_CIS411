@@ -69,22 +69,6 @@ namespace Player_Card_System_CIS411
                                        "<td style='border: 1px solid black; text-align: center'>" + transactions[i].Comments+ "</td> " +
                                     "</tr>";
                 body += columnData;
-                /* var columnData = string.Format($"{transactions[i].DateTime,40}" +
-                                                 $"{transactions[i].TypeTrans,30}" +
-                                                 $"{transactions[i].RoundsChanged,+30}" +
-                                                 $"{transactions[i].OldBalance,+30}" +
-                                                 $"{transactions[i].TotalRounds,+30}" +
-                                                 $"{transactions[i].Comments,30}");
-
-                 body += "\n" + columnData;*/
-
-                /* body += "\nDate: " + transactions[i].DateTime + ", "
-                          + "Transaction Type: " + transactions[i].TypeTrans + ", "
-                          + "Rounds Changed: " + transactions[i].RoundsChanged + ", "
-                          + "Old Balance: " + transactions[i].OldBalance + ", "
-                          + "New Balance: " + transactions[i].TotalRounds + ", "
-                          + "Reason: " + transactions[i].Comments 
-                          + "\n---------------------------------------------------------------------------------------------------------------------------------------------------"; */
             }
             body += "</table>";
         }

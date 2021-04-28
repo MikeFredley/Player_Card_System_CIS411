@@ -40,6 +40,13 @@ namespace Player_Card_System_CIS411
             RefreshDataGridView();
 
             dgvViewRounds.DataSource = dt;
+          //  dgvViewRounds.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvViewRounds.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+          //  dgvViewRounds.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvViewRounds.Columns[3].DefaultCellStyle.Format = "c";
+            dgvViewRounds.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvViewRounds.Columns[4].DefaultCellStyle.Format = "c";
+            dgvViewRounds.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvViewRounds.ReadOnly = true;
         }
 

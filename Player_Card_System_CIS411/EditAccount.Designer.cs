@@ -62,6 +62,7 @@
             this.txtLastTransDate = new System.Windows.Forms.TextBox();
             this.lblLastTrans = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuthorizedUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,7 +107,7 @@
             // lblCurrentBalance
             // 
             this.lblCurrentBalance.AutoSize = true;
-            this.lblCurrentBalance.Location = new System.Drawing.Point(12, 360);
+            this.lblCurrentBalance.Location = new System.Drawing.Point(12, 375);
             this.lblCurrentBalance.Name = "lblCurrentBalance";
             this.lblCurrentBalance.Size = new System.Drawing.Size(105, 13);
             this.lblCurrentBalance.TabIndex = 6;
@@ -115,38 +116,39 @@
             // lblFirstName
             // 
             this.lblFirstName.AutoSize = true;
+            this.lblFirstName.BackColor = System.Drawing.SystemColors.Control;
             this.lblFirstName.Location = new System.Drawing.Point(12, 79);
             this.lblFirstName.Name = "lblFirstName";
-            this.lblFirstName.Size = new System.Drawing.Size(60, 13);
+            this.lblFirstName.Size = new System.Drawing.Size(64, 13);
             this.lblFirstName.TabIndex = 8;
-            this.lblFirstName.Text = "First Name:";
+            this.lblFirstName.Text = "First Name*:";
             // 
             // lblLastName
             // 
             this.lblLastName.AutoSize = true;
             this.lblLastName.Location = new System.Drawing.Point(12, 113);
             this.lblLastName.Name = "lblLastName";
-            this.lblLastName.Size = new System.Drawing.Size(61, 13);
+            this.lblLastName.Size = new System.Drawing.Size(65, 13);
             this.lblLastName.TabIndex = 9;
-            this.lblLastName.Text = "Last Name:";
+            this.lblLastName.Text = "Last Name*:";
             // 
             // lblCluster
             // 
             this.lblCluster.AutoSize = true;
             this.lblCluster.Location = new System.Drawing.Point(12, 147);
             this.lblCluster.Name = "lblCluster";
-            this.lblCluster.Size = new System.Drawing.Size(42, 13);
+            this.lblCluster.Size = new System.Drawing.Size(46, 13);
             this.lblCluster.TabIndex = 10;
-            this.lblCluster.Text = "Cluster:";
+            this.lblCluster.Text = "Cluster*:";
             // 
             // lblUnitNumber
             // 
             this.lblUnitNumber.AutoSize = true;
             this.lblUnitNumber.Location = new System.Drawing.Point(12, 181);
             this.lblUnitNumber.Name = "lblUnitNumber";
-            this.lblUnitNumber.Size = new System.Drawing.Size(69, 13);
+            this.lblUnitNumber.Size = new System.Drawing.Size(73, 13);
             this.lblUnitNumber.TabIndex = 11;
-            this.lblUnitNumber.Text = "Unit Number:";
+            this.lblUnitNumber.Text = "Unit Number*:";
             // 
             // label9
             // 
@@ -224,7 +226,7 @@
             this.chkEmails.Checked = true;
             this.chkEmails.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkEmails.Enabled = false;
-            this.chkEmails.Location = new System.Drawing.Point(19, 330);
+            this.chkEmails.Location = new System.Drawing.Point(19, 345);
             this.chkEmails.Name = "chkEmails";
             this.chkEmails.Size = new System.Drawing.Size(99, 17);
             this.chkEmails.TabIndex = 6;
@@ -388,11 +390,21 @@
             this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 319);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 13);
+            this.label2.TabIndex = 46;
+            this.label2.Text = "* - Required Field";
+            // 
             // EditAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 497);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblLastTrans);
             this.Controls.Add(this.txtLastTransDate);
@@ -475,5 +487,6 @@
         private System.Windows.Forms.TextBox txtLastTransDate;
         private System.Windows.Forms.Label lblLastTrans;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label2;
     }
 }
