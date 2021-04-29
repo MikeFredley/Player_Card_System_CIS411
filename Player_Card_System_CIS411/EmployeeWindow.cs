@@ -64,7 +64,7 @@ namespace Player_Card_System_CIS411
             dt.Columns.Add(new DataColumn("Email", typeof(string)));
             dt.Columns.Add(new DataColumn("Phone Number", typeof(string)));
             dt.Columns.Add(new DataColumn("Current Rounds", typeof(string)));
-            dt.Columns.Add(new DataColumn("Last Transaction", typeof(DateTime)));
+            dt.Columns.Add(new DataColumn("Last Transaction", typeof(string)));
 
             DataGridViewButtonColumn deductRoundButton = new DataGridViewButtonColumn();
             deductRoundButton.HeaderText = "Deduct Rounds";
@@ -90,9 +90,18 @@ namespace Player_Card_System_CIS411
 
         private void AddDataGridRows()
         {
+            string date;
             foreach (ResidentInfo resident in Database.ResidentInfo)
-            {
-                dt.Rows.Add(resident.ID, resident.FirstName, resident.LastName, resident.ClusterName, resident.UnitNumber, resident.Email, resident.Phone, resident.CurrentRounds, resident.LastTransDate);
+            {    
+                try
+                {
+                    date = Convert.ToDateTime(resident.LastTransDate).ToShortDateString().ToString();
+                }  
+                catch
+                {
+                    date = " ";
+                }
+                dt.Rows.Add(resident.ID, resident.FirstName, resident.LastName, resident.ClusterName, resident.UnitNumber, resident.Email, resident.Phone, resident.CurrentRounds, date);
             }
         }
 
